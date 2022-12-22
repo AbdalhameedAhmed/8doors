@@ -19,7 +19,7 @@
         "confirmPassword": "Confirm Password",
         "userNameIsRequired": "Username name is required",
         "pleaseConfirm": "Please confirm your email",
-        "alreadyHaveAccount": "Already have an Account? "
+        "alreadyHaveAccount": "You already have a membership? "
     },
     "forgetPassword": {
         "pleaseEnterYourEmail": "Please enter your email",

@@ -1,6 +1,8 @@
 import React from 'react';
 import SignUpContainer from 'components/signup';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import SignInSignOutLayout from 'components/layout/signIn-signOut';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = async ({ locale }: any) => ({
   props: {
@@ -9,5 +11,10 @@ export const getServerSideProps = async ({ locale }: any) => ({
 });
 
 export default function Signup() {
-  return <SignUpContainer />;
+  const router = useRouter();
+  return (
+    <SignInSignOutLayout type="SIGN IN" signOnClick={() => router.push('/login')}>
+      <SignUpContainer />
+    </SignInSignOutLayout>
+  );
 }

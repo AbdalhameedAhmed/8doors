@@ -11,8 +11,10 @@ const accountSlice = createSlice({
   initialState,
   reducers: {
     addAccount(state, action) {
+      //@ts-ignore
       let Account = state.accounts.find((account) => account?.id === action.payload.id);
       if (!Account) {
+        //@ts-ignore
         state.accounts.push(action?.payload);
       }
     },

@@ -1,0 +1,10 @@
+.title {
+  font-size: 1.57em;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  opacity: 3;
+  z-index: 3;
+}

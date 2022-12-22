@@ -4,10 +4,10 @@
 
 @layer components {
   .card {
-    background-color: theme("colors.white");
-    border-radius: theme("borderRadius.lg");
-    padding: theme("spacing.6");
-    box-shadow: theme("boxShadow.xl");
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
   }
 }
 
@@ -17,12 +17,17 @@
   }
 }
 
-.signup-container {
-  background-image: url("../src/assets//mainBg.jpg"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 90vh; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover;
-  width: 100% !important;
+.signin-signout-input {
+  background-color: rgb(0, 0, 0, 0);
+  color: #fff;
+  padding: 10px 18px 10px 18px;
+  border: 1px solid rgba(222, 221, 221, 0.913);
+}
+
+.signin-signout-input:focus {
+  outline: none;
+  border-color: #fff;
+}
+.signin-signout-input::placeholder {
+  color: #fff;
 }

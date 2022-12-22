@@ -1,0 +1,9 @@
+.content {
+  opacity: 0.9;
+  background-color: rgb(0, 0, 0, 0.5);
+  transition: 0.2s;
+}
+
+.fadeIn {
+  opacity: 1;
+}
