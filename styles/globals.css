@@ -49,6 +49,6 @@
   display: none;
 }
 .collapse {
-  display: none;
+  height: 0;
   transition: 0.5s;
 }

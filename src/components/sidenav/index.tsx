@@ -4,6 +4,8 @@ import React, { useRef } from 'react';
 import styles from './style.module.css';
 import profilePic from '../../assets/profile_av.png';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 type props = {
   toggle: boolean;
   setToggle: Function;
@@ -41,6 +43,10 @@ function SideNav({ toggle, setToggle }: props) {
         </div>
         <h4 className="mt-10">Main</h4>
         <div className={styles.main}>
+          <div className="flex gap-3">
+            <FontAwesomeIcon icon={faHome} />
+            Dashboard
+          </div>
           <h2 className="font-bold">Dashboard</h2>
           <h2 className="font-bold">Appointment</h2>
           <h2 className="font-bold">Doctors</h2>
