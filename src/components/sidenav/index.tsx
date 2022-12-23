@@ -2,7 +2,7 @@ import useOnClickOutside from 'hooks/useOnClickOutside';
 import useWindowSize from 'hooks/useWindowSize';
 import React, { useRef } from 'react';
 import styles from './style.module.css';
-import profilePic from '../../assets/profile_av.png';
+import Doctor from '../../assets/doctor.svg';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -34,19 +34,9 @@ function SideNav({ toggle, setToggle }: props) {
       }}
     >
       <div className={`${styles.container}`}>
-        <div className="flex items-center justify-evenly">
-          <button className="btn bg-white border p-3 rounded-lg">8door</button>
-          <button className="btn bg-white border p-3 rounded-lg">Doctor</button>
-        </div>
         <div className={`${styles.doctorProfile} mt-3`}>
-          <div className={`${styles.imgContainer}`}>
-            <Image
-              src="/profile_av.png"
-              width={80}
-              height={80}
-              alt=""
-              className={`${styles.img} `}
-            />
+          <div className={`${styles.imgContainer} rounded-full`} >
+              <Doctor style={{width: 80, height: 80}} />
           </div>
           <h2 className="text-center">Dr. Dagi</h2>
           <h5 className="text-center">Neurologist</h5>

@@ -1,6 +1,5 @@
 import useWindowSize from 'hooks/useWindowSize';
 import React, { useEffect, useState } from 'react';
-import styles from './style.module.css';
 import Bars from 'assets/bars.svg';
 import CustomInput from 'components/shared/customInput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,14 +16,16 @@ function Navbar({ setToggle }: Props) {
   const { width } = useWindowSize();
   const router = useRouter();
   const { pathname, asPath, query } = router;
+
   useEffect(() => {
     let dir = router.locale == 'ar' ? 'rtl' : 'ltr';
     let lang = router.locale == 'ar' ? 'ar' : 'en-US';
     document?.querySelector('html')?.setAttribute('dir', dir);
     document?.querySelector('html')?.setAttribute('lang', lang);
   }, [router.locale]);
+
   return (
-    <nav className={`${styles.navbar} bg-sky-500/100`}>
+    <nav className={`bg-sky-500/100 flex justify-between items-center px-4 h-20`}>
       <div className="flex w-full justify-between  h-full items-center">
         <div className="flex gap-5">
           {width <= 1184 ? (
@@ -34,16 +35,19 @@ function Navbar({ setToggle }: Props) {
           ) : (
             <React.Fragment></React.Fragment>
           )}
-          <CustomInput
+
+          {/* <CustomInput
             placeholder="search"
-            containerStyle={styles.containerStyle}
-            className={`signin-signout-input w-full rounded-lg ${styles.searchInput}`}
-          />
+            className={`signin-signout-input w-full rounded-lg `}
+          /> */}
         </div>
+
+            
+
         <div className="flex items-center gap-5">
           <FontAwesomeIcon icon={faGlobe} />
           <select
-            className={`signin-signout-input w-full rounded-lg ${styles.searchInput}`}
+            className={`signin-signout-input w-full rounded-lg`}
             name="language"
             value={router?.locale}
             onChange={(e) => router.push({ pathname, query }, asPath, { locale: e.target.value })}
