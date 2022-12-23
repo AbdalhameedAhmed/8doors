@@ -1,5 +1,10 @@
+import BasicLayout from 'components/layout/basicLayout';
 import React from 'react';
 
 export default function ClinicPage() {
-  return <h1 className="text-4xl">Index CLINIC</h1>
+  return (
+    <BasicLayout>
+      <h4>Home page</h4>
+    </BasicLayout>
+  );
 }

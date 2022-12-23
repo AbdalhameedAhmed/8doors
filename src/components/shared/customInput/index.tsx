@@ -6,10 +6,11 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: string | number | any;
   icon?: JsxElement;
   placeholder?: any;
+  containerStyle?: string;
 }
-function CustomInput({ label = '', error, icon, ...props }: Props) {
+function CustomInput({ label = '', error, icon, containerStyle = '', ...props }: Props) {
   return (
-    <label className="block mt-6">
+    <label className={`block mt-6 ${containerStyle}`}>
       <span className="block text-sm font-medium text-slate-700">{label}</span>
       <input
         type={props.type}

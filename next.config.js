@@ -32,7 +32,6 @@ const nextConfig = {
   typescript: {
     tsconfigPath,
   },
-  trailingSlash: true,
 };
 
 module.exports = nextConfig;
