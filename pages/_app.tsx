@@ -7,9 +7,18 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from '../src/redux';
 import { appWithTranslation } from 'next-i18next';
 import Head from 'next/head';
-import TransitionLayout from 'components/layout/transition';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    let dir = router.locale == 'ar' ? 'rtl' : 'ltr';
+    let lang = router.locale == 'ar' ? 'ar' : 'en';
+    document?.querySelector('html')?.setAttribute('dir', dir);
+    document?.querySelector('html')?.setAttribute('lang', lang);
+  }, [router.locale]);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
@@ -20,9 +29,7 @@ function App({ Component, pageProps }: AppProps) {
               rel="stylesheet"
             />
           </Head>
-          <TransitionLayout>
-            <Component {...pageProps} />
-          </TransitionLayout>
+          <Component {...pageProps} />
         </ThemeProvider>
       </PersistGate>
     </Provider>

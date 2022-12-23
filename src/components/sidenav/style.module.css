@@ -9,7 +9,10 @@
   overflow-x: hidden;
   transition: 0.5s;
 }
-
+[dir='rtl'] .sidenav {
+  left: unset;
+  right: 0;
+}
 .container {
   padding: 15px 15px;
 }
