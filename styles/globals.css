@@ -35,7 +35,6 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 13;
   top: 0;
   left: 0;
   background-color: #fff;
@@ -48,17 +47,7 @@
 .sidenav::-webkit-scrollbar {
   display: none;
 }
-.collapse {
-  display: none;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
 
-element.style {
-}
-.relative {
-  position: relative;
-}
 ol,
 ul,
 menu {
@@ -66,7 +55,7 @@ menu {
   margin: 0;
   padding: 0;
 }
-<style > * {
+* {
   box-sizing: border-box;
 }
 *,
@@ -147,4 +136,38 @@ ul {
 [dir='rtl'] .sidenav {
   left: unset;
   right: 0;
+}
+
+.page-header::before {
+  background-color: #01d8da;
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 210px;
+}
+
+.section-heaeder::before {
+  background: #00cfd1;
+  position: absolute;
+  width: 2px;
+  height: 18px;
+  left: -20px;
+  top: 3px;
+  content: '';
+}
+
+.stethoscopeBg {
+  background-image: url('../src/assets/mainBg.jpg');
+}
+
+.MyCalendar {
+  height: calc(100vh - 340px);
+}
+
+@media (min-width:1190px) {
+  .layout {
+    z-index: 20;
+  }
 }

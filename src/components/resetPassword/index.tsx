@@ -1,4 +1,4 @@
-import CustomInput from 'components/shared/customInput';
+import { CustomInput } from 'components/shared';
 import React from 'react';
 import Logo from '../../assets/logo.svg';
 import styles from './style.module.css';

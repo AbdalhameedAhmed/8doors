@@ -13,7 +13,7 @@
     "signup": {
         "signup": "Signup",
         "signUpContinue": "sign up to continue",
-        "userName": "User Name",
+        "userName": "Username",
         "email": "Email",
         "password": "Password",
         "confirmPassword": "Confirm Password",

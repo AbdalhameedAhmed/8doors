@@ -8,7 +8,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: any;
   containerStyle?: string;
 }
-function CustomInput({ label = '', error, icon, containerStyle = '', ...props }: Props) {
+export function CustomInput({ label = '', error, icon, containerStyle = '', ...props }: Props) {
   return (
     <label className={`block mt-6 ${containerStyle}`}>
       <span className="block text-sm font-medium text-slate-700">{label}</span>
@@ -23,5 +23,3 @@ function CustomInput({ label = '', error, icon, containerStyle = '', ...props }:
     </label>
   );
 }
-
-export default CustomInput;

@@ -1,10 +1,28 @@
 {
     "signin": {
-        "Login": "S'identifier",
-        "singContinue": "Connectez-vous pour continuer",
-        "forgetPassword": "Mot de passe oublié",
-        "resetPassword": "Réinitialiser le mot de passe",
-        "donotHaveAccount": "Je n'ai pas de compte",
-        "createAccount": "Create an Account"
+        "login": "Login",
+        "singContinue": "Sign in to continue",
+        "forgetPassword": "Forget Password",
+        "resetPassword": "Reset password",
+        "donotHaveAccount": "Don't have account",
+        "createAccount": "Create an Account",
+        "emailIsRequired": "Email is required",
+        "password": "Password",
+        "passwordIsRequired": "Password is required"
+    },
+    "signup": {
+        "signup": "Signup",
+        "signUpContinue": "sign up to continue",
+        "userName": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "userNameIsRequired": "Username name is required",
+        "pleaseConfirm": "Please confirm your email",
+        "alreadyHaveAccount": "You already have a membership? "
+    },
+    "forgetPassword": {
+        "pleaseEnterYourEmail": "Please enter your email",
+        "sendMeResetCode": "Send Me Reset Code"
     }
 }

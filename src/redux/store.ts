@@ -1,19 +1,12 @@
-//@ts-ignore
-import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import accountReducer from './reducers/accountReducer';
+import { configureStore } from "@reduxjs/toolkit";
+import { petApi } from "./services/clinic";
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['account'],
-};
-
-const reducers = combineReducers({
-  account: accountReducer,
+const store = configureStore({
+  reducer: {
+    [petApi.reducerPath]: petApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(petApi.middleware), // add middleware
 });
 
-const PersistReducer = persistReducer(persistConfig, reducers);
-
-export default PersistReducer;
+export default store;

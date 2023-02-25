@@ -1,14 +1,14 @@
-import CustomInput from 'components/shared/customInput';
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { generate } from 'randomized-string';
 import { useDispatch } from 'react-redux';
-import { addAccount } from 'redux/reducers/accountReducer';
 import { useRouter } from 'next/router';
 import Logo from '../../assets/logo.svg';
-import styles from './style.module.css';
+import { CustomInput } from 'components/shared';
+import { register } from 'api'
+import { SignupFormData } from 'types'
 
 function SignUp() {
   const { t } = useTranslation('common');
@@ -20,21 +20,10 @@ function SignUp() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [error, setError] = useState('');
-  const onSubmit = (data: any) => {
-    if (data?.confirmPassword !== data?.password) {
-      setError('Password confirmation error');
-      setTimeout(() => {
-        setError('');
-      }, 3000);
-      return;
-    }
-    const user = {
-      id: generate(10),
-      username: data?.userName,
-      password: data?.password,
-      email: data?.email,
-    };
-    dispatch(addAccount(user));
+  const onSubmit = async (data: any) => {
+    delete data.confirmPassword;
+    await register(data)
+    // dispatch(addAccount(user));
     router.push('/login');
   };
   return (
@@ -42,7 +31,7 @@ function SignUp() {
       <div className="flex  align-center justify-center">
         <Logo style={{ height: 65, width: 65 }} />
       </div>
-      <h1 className={styles.title}>{t('signup.signup')}</h1>
+      <h1 className="text-center text-3xl my-2 text-white"> {t('signup.signup')} </h1>
       <h4 className="text-white text-center">Register new membership</h4>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -57,12 +46,11 @@ function SignUp() {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              className={`signin-signout-input w-full rounded-lg ${
-                errors?.userName ? 'border-red-500' : ''
-              }`}
+              className={`signin-signout-input w-full rounded-lg ${errors?.userName ? 'border-red-500' : ''
+                }`}
             />
           )}
-          name="userName"
+          name="username"
         />
         <Controller
           control={control}
@@ -76,9 +64,8 @@ function SignUp() {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              className={`signin-signout-input w-full rounded-lg ${
-                errors?.email ? 'border-red-500' : ''
-              }`}
+              className={`signin-signout-input w-full rounded-lg ${errors?.email ? 'border-red-500' : ''
+                }`}
             />
           )}
           name="email"
@@ -96,9 +83,8 @@ function SignUp() {
               onChange={onChange}
               error={errors?.password ? t('signin.passwordIsRequired') : ''}
               onBlur={onBlur}
-              className={`signin-signout-input w-full rounded-lg ${
-                errors?.email ? 'border-red-500' : ''
-              }`}
+              className={`signin-signout-input w-full rounded-lg ${errors?.email ? 'border-red-500' : ''
+                }`}
             />
           )}
           name="password"
@@ -116,9 +102,8 @@ function SignUp() {
               onChange={onChange}
               error={errors?.confirmPassword ? t('signup.pleaseConfirm') : ''}
               onBlur={onBlur}
-              className={`signin-signout-input w-full rounded-lg ${
-                errors?.email ? 'border-red-500' : ''
-              }`}
+              className={`signin-signout-input w-full rounded-lg ${errors?.email ? 'border-red-500' : ''
+                }`}
             />
           )}
           name="confirmPassword"

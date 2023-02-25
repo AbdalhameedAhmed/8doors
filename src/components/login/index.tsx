@@ -1,12 +1,14 @@
-import CustomInput from 'components/shared/customInput';
-import React, { useState, useTransition } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../assets/logo.svg';
-import styles from './style.module.css';
+import { CustomInput } from 'components/shared';
+import { login } from 'api'
+import { useGetPetQuery, api } from "redux/services/clinic/auth";
+
 
 function SignIn() {
   const { t } = useTranslation('common');
@@ -22,14 +24,17 @@ function SignIn() {
   console.log(router.asPath);
   console.log(router.query);
   //@ts-ignore
-  const { accounts } = useSelector((state) => state?.account);
-  const onSubmit = (data: any) => {
-    const user = accounts.find(
-      //@ts-ignore
-      (account) => account?.email === data?.email && account?.password === data?.password
-    );
 
-    if (user) {
+  // const  [ trigger, { data } ] = api.endpoints.getPet.useLazyGetPetQuery()
+  // const { trigger, isLoading, data: pet } = useGetPetQuery(1);
+
+  const [trigger, { data }] = api.useLazyGetPetQuery();
+
+  const onSubmit = async (data: any) => {
+    const res = await login(data)
+    if (res) {
+      await trigger(true)
+      console.log(data)
       router.push('/');
     } else {
       setError('User is not registered yet!!');
@@ -38,13 +43,15 @@ function SignIn() {
       }, 3000);
     }
   };
+
   return (
-    <div className={`${styles.container} self-center px-10 py-10 w-96`}>
+    <div className={`self-center px-10 py-10 w-96`}>
       <div className="flex  align-center justify-center">
         <Logo style={{ height: 65, width: 65 }} />
       </div>
-      <h1 className={styles.title}>{t('signin.login')}</h1>
+      <h1 className="text-center text-3xl my-2 text-white"> {t('signin.login')}</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
+
         <Controller
           control={control}
           rules={{
@@ -58,14 +65,14 @@ function SignIn() {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              className={`signin-signout-input w-full rounded-lg ${
-                errors?.email ? 'border-red-500' : ''
-              }`}
-              type="email"
+              className={`signin-signout-input w-full rounded-lg ${errors?.email ? 'border-red-500' : ''
+                }`}
+              type="text"
             />
           )}
-          name="email"
+          name="username"
         />
+
         <Controller
           control={control}
           rules={{
@@ -79,9 +86,8 @@ function SignIn() {
               onChange={onChange}
               error={errors?.password ? t('signin.passwordIsRequired') : ''}
               onBlur={onBlur}
-              className={`signin-signout-input w-full rounded-lg ${
-                errors?.password ? 'border-red-500' : ''
-              }`}
+              className={`signin-signout-input w-full rounded-lg ${errors?.password ? 'border-red-500' : ''
+                }`}
             />
           )}
           name="password"
