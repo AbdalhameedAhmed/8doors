@@ -1,13 +1,10 @@
 import MenuItem from './menuItem';
 import { menuitemType } from './utils';
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faAngleRight,
-} from '@fortawesome/free-solid-svg-icons';
 import { generate } from 'randomized-string';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import AngleRight from "assets/angle-right-solid.svg"
 
 type Props = {
   item: menuitemType;
@@ -36,21 +33,20 @@ function MenuCollapsibleList({ item }: Props): JSX.Element {
     <MenuItem
       item={item}
       rightIcon={
-        <FontAwesomeIcon
-          icon={faAngleRight}
-          className={classNames('w-[10px] h-[10px] transition-all ease-in-out duration-300', {
+        <AngleRight
+          className={classNames('w-[15px] h-[15px] fill-secondary transition-all ease-in-out duration-300', {
             'rotate-90': open,
           })}
         />
       }
-      className={classNames({ '!text-primary font-bold': active })}
+      className={classNames({ '!text-active font-bold': active })}
       onClick={() => {
         toggle(!open);
       }}
     >
       <ul
         className={classNames(
-          'hover:text-primary overflow-hidden transition-all ease-in-out duration-300'
+          'hover:text-active overflow-hidden transition-all ease-in-out duration-300'
         )}
         style={{ height: !open ? 0 : 32 * submenuLenght + 40 }}
         onClick={(e) => {

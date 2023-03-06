@@ -12,16 +12,78 @@
 }
 
 @layer base {
+  :root{
+    --text-primary:#01d8da;          /*important*/
+    --text-secondary: black;       /*important*/
+    --text-active:#01d8da ;              /*important*/  
+    --calendar-text:black ;        
+    --background-primary:#01d8da;    /*important*/
+    --background-secondary:white;    /*important*/
+    --layout-primary: #f4f6f9 ; /*important*/
+    --layout-secondary: #F1F1F1 ; /*important*/
+
+  }
+  .dark{
+    --text-primary:#38BDF8;          /*important*/
+    --text-secondary: #8A97AD;       /*important*/
+    --text-active:#38BDF8 ;           /*important*/
+    --calendar-text:white ;        
+    --background-primary:#141B36;      /*important*/
+    --background-secondary:#0F172A;    /*important*/
+    --layout-primary: #141B36 ; /*important*/
+    --layout-secondary: #424242 ; /*important*/
+
+  }
+  .custom{
+    --text-primary:#65a30d ;          /*important*/
+    --text-secondary: black;       /*important*/
+    --text-active:#65a30d ;           /*important*/
+    --text-hover:red;              /*important*/
+    --calendar-text:black ;
+    --background-primary:#4d7c0f  ;      /*important*/
+    --background-secondary:white;    /*important*/
+    --background-tertiary: #f4f6f9 ; /*important*/
+  }
   html {
     font-family: Cairo;
   }
 }
-
 .signin-signout-input {
   background-color: rgb(0, 0, 0, 0);
   color: #fff;
   padding: 10px 18px 10px 18px;
   border: 1px solid rgba(222, 221, 221, 0.913);
+}
+
+
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--layout-secondary);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--text-primary);
+  border-radius: 14px;
+  border: 3px solid var(--layout-secondary);
+}
+
+
+
+
+.theme-slector {
+  background-color: var(--background-primary);
+  color: #fff;
+  padding: 10px ;
+  border: 1px solid rgba(222, 221, 221, 0.913);
+}
+.theme-slector option {
+  background-color: var(--background-primary);
 }
 
 .signin-signout-input:focus {
@@ -37,11 +99,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fff;
   overflow-x: hidden;
   transition: 0.5s;
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
+  overflow: hidden;
 }
 
 .sidenav::-webkit-scrollbar {
@@ -129,7 +191,6 @@ ul {
   z-index: 13;
   top: 0;
   left: 0;
-  background-color: #fff;
   overflow-x: hidden;
   transition: 0.5s;
 }
@@ -139,7 +200,7 @@ ul {
 }
 
 .page-header::before {
-  background-color: #01d8da;
+  background-color: var(--background-primary);
   content: '';
   position: absolute;
   top: -80px;
@@ -149,7 +210,7 @@ ul {
 }
 
 .section-heaeder::before {
-  background: #00cfd1;
+  background: var(--text-primary);
   position: absolute;
   width: 2px;
   height: 18px;
@@ -171,3 +232,46 @@ ul {
     z-index: 20;
   }
 }
+
+/* Calendar styles Start */
+
+.rbc-off-range-bg{
+  background-color: var(--background-secondary) !important;
+}
+.rbc-button-link{ 
+  color: var(--text-secondary) !important;
+}
+.rbc-today{
+  background-color: var(--layout-secondary) !important;
+}
+.rbc-now button{
+  color: var(--text-primary) !important;
+}
+.rbc-btn-group button{
+  color: var(--calendar-text) !important;
+}
+.rbc-btn-group button:hover {
+  background-color: var(--text-primary) !important;
+}
+.rbc-active{
+  background-color: var(--text-primary) !important;
+}
+.rbc-event{
+  background-color: #183150 !important;
+}
+.rbc-event:focus{
+  outline-color: green !important;
+  border: none;
+}
+/* Calendar styles End */
+
+/* scroll bar styles start */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none ;
+}
+/* scroll bar styles End */
+

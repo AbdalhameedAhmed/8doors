@@ -18,21 +18,21 @@ export function Section({
   className = '',
   headerClassName = '',
   childernClassName = '',
-  onClick = () => {},
+  onClick = () => { },
   ...rest
 }: Props) {
   return (
     <div
       {...rest}
       className={classNames(
-        'grow flex px-[15px] mb-[30px] w-full relative rounded-[.1875rem] overflow-hidden bg-white',
+        'grow flex px-[15px] mb-[30px] w-full relative rounded-[.1875rem] overflow-hidden bg-secondary text-secondary',
         className
       )}
     >
       <section className={classNames('w-full grow')}>
         {title?.length && (<>
           <SectionHeader onClick={onClick} className={headerClassName} title={title} subtitle={subtitle} />
-          </>
+        </>
         )}
         <div
           className={classNames(

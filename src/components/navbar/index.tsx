@@ -1,21 +1,21 @@
 import useWindowSize from 'hooks/useWindowSize';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Bars from 'assets/bars.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
-import { CustomInput } from 'components/shared';
 import classNames from 'classnames';
+import ThemeSelector from "./themeSelector"
+
 
 type Props = {
   setToggle: Function;
 };
 
+
 function Navbar({ setToggle }: Props) {
   const { width } = useWindowSize();
   const router = useRouter();
   const { pathname, asPath, query } = router;
+
 
   useEffect(() => {
     let dir = router.locale == 'ar' ? 'rtl' : 'ltr';
@@ -25,10 +25,11 @@ function Navbar({ setToggle }: Props) {
   }, [router.locale]);
 
   return (
-    <nav className={classNames('bg-primary flex justify-between items-center px-4 h-20 shadow-md fixed top-0 z-10',
-    {'right-0': router.locale !== 'ar', 'left-0': router.locale === 'ar' })}
-    style={{ width: width > 1184 ? 'calc(100vw - 250px)' : '100vw' ,
-    }}>
+    <nav className={classNames('bg-primary flex justify-between items-center px-4 h-20 shadow-md fixed top-0 z-20',
+      { 'right-0': router.locale !== 'ar', 'left-0': router.locale === 'ar' })}
+      style={{
+        width: width > 1184 ? 'calc(100vw - 250px)' : '100vw',
+      }}>
       <div className="flex w-full justify-between w-full h-full items-center">
         <div className="flex gap-5">
           {width <= 1184 && (
@@ -37,8 +38,9 @@ function Navbar({ setToggle }: Props) {
             </button>
           )}
         </div>
+        <ThemeSelector />
       </div>
-    </nav>
+    </nav >
   );
 }
 

@@ -20,7 +20,7 @@ export function Button({
 }: Props) {
   const styles = {
     primary: 'text-white bg-primary border-primary',
-    secondary: 'text-gray-mid bg-white border-gray-mid',
+    secondary: 'text-secondary bg-secondary border-gray-mid',
     success: '',
     danger: '',
     warning: '',

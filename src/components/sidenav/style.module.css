@@ -27,7 +27,7 @@
 }
 
 .imgContainer {
-  background-color: rgb(0, 0, 0, 0.1);
+  background-color: var(--layout-secondary);
   opacity: 0.7;
   display: flex;
   align-items: center;

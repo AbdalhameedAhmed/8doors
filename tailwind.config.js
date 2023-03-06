@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: "class",
   theme: {
     extend: {
       transitionProperty: {
@@ -11,19 +12,30 @@ module.exports = {
         cairo: ['Cairo , sans-serif'],
       },
       colors: {
-        primary: '#01d8da;',
-        gray: {
-          lighter: '#f4f6f9',
-          light: '#9e9e9e',
-          mid: '#888',
-          dark: '#757575',
-          darker: '#455a64',
+        layout: {
+          primary: "var(--layout-primary)",
+          secondary: "var(--layout-secondary)"
         },
-        black: {
-          light: '#424242',
-          mid: '#2c2c2c',
-          dark: '#212529',
-        },
+
+
+      },
+      textColor: {
+        primary: 'var(--text-primary)',
+        active: "var(--text-active)",
+        secondary: "var(--text-secondary)",
+        calendar: "var(--calendar-text)"
+      },
+      fill: {
+        primary: 'var(--text-primary)',
+        secondary: "var(--text-secondary)",
+
+      },
+      placeholderColor: {
+        secondary: "var(--text-secondary)",
+      },
+      backgroundColor: {
+        primary: 'var(--background-primary)',
+        secondary: 'var(--background-secondary)',
       },
       keyframes: {
         wiggle: {
@@ -36,11 +48,11 @@ module.exports = {
       }
     },
     screens: {
-      'sm': {'min': '640px', 'max': '767px'},
-      'md': {'min': '768px', 'max': '1023px'},
-      'lg': {'min': '1024px', 'max': '1279px'},
-      'xl': {'min': '1280px', 'max': '1535px'},
-      '2xl': {'min': '1536px'},
+      'sm': { 'min': '640px', 'max': '767px' },
+      'md': { 'min': '768px', 'max': '1023px' },
+      'lg': { 'min': '1024px', 'max': '1279px' },
+      'xl': { 'min': '1280px', 'max': '1535px' },
+      '2xl': { 'min': '1536px' },
     },
   },
   plugins: [],

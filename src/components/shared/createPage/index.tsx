@@ -17,7 +17,7 @@ export function Page({
   const Content = (): JSX.Element => {
     return (
       <div
-        className='page-header flex flex-col px-2.5 h-[calc(100vh-80px)] overflow-scroll w-full mt-[80px] bg-gray-lighter relative'
+        className='page-header flex flex-col px-2.5 h-[calc(100vh-80px)] overflow-y-scroll w-full mt-[80px] bg-layout-primary relative'
       >
         <div className='flex jutify-between p-[15px] z-10'>
           <h2 className='text-xl text-white font-medium'>

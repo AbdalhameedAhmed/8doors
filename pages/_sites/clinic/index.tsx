@@ -1,4 +1,4 @@
-import { Page, Section,ModalPage } from 'components/shared';
+import { Page, Section } from 'components/shared';
 import React from 'react';
 import MainCalendar from "components/MainCalendar"
 

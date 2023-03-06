@@ -18,13 +18,13 @@ export function UserTemplate({
   return (
     <div
       className={classNames(
-        'flex items-center gap-4 text-gray-darker px-[15px] py-[10px]',
+        'flex items-center gap-4 text-secondary px-[15px] py-[10px]',
         className
       )}
     >
       <div
         className={classNames(
-          'flex justify-center items-center bg-gray-light border-2 border-white rounded-full !w-[50px] !h-[50px]',
+          'flex justify-center items-center bg-layout-secondary border-2 border-white rounded-full !w-[50px] !h-[50px]',
           circleClassName
         )}
       >

@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Section } from '../section';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+import AngleRight from "../../../assets/angle-right-solid.svg"
+import Plus from "../../../assets/plus-solid.svg"
 
 type Props = {
   children?: React.ReactNode;
@@ -24,7 +24,6 @@ export function CollapsibleSection({
   headerClassName = '',
   childernClassName = '',
   onAction,
-  hasAction,
   modalTitle
 }: Props) {
 
@@ -40,22 +39,19 @@ export function CollapsibleSection({
       headerClassName={classNames('cursor-pointer', headerClassName)}
       childernClassName={open ? childernClassName : '!py-0'}
     >
-      <FontAwesomeIcon
-        icon={faAngleRight}
+      <AngleRight
         className={classNames(
-          'w-[14px] h-[14px] absolute top-[25px] right-[33px] transition-all ease-in-out duration-300',
+          'w-[15px] h-[15px] fill-secondary absolute top-[25px] right-[33px] transition-all ease-in-out duration-300',
           { 'rotate-90': open }
         )}
         onClick={() => toggle(!open)}
       />
-      { hasAction && <FontAwesomeIcon
-        icon={faPlus}
+      <Plus
         className={classNames(
-          'w-[14px] h-[14px] absolute top-[25px] right-[55px] transition-all ease-in-out duration-300',
-          // { 'rotate-90': open }
+          'w-[15px] h-[15px] fill-secondary absolute top-[25px] right-[52px] cursor-pointer transition-all ease-in-out duration-300',
         )}
         onClick={() => onAction(modalTitle)}
-      />}
+      />
 
 
       <div

@@ -1,6 +1,4 @@
 import Document, { Html, Main, NextScript, Head } from 'next/document';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 async function getInitialProps(ctx: any) {
   const initialProps = await Document.getInitialProps(ctx);

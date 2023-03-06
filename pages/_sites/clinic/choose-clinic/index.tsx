@@ -40,7 +40,7 @@ export default function SelectClinic({ list = dummyData }: Props) {
           {list.map((item) => (
             <li
               key={generate(8)}
-              className='border-b last:border-0 flex justify-between items-center bg-gray-lighter hover:bg-[#e2e3e3] ease-in-out duration-150'
+              className='border-b last:border-0 flex justify-between items-center bg-layout-primary hover:bg-layout-secondary ease-in-out duration-150'
             >
               <UserTemplate
                 title={item.title}
@@ -49,7 +49,7 @@ export default function SelectClinic({ list = dummyData }: Props) {
               />
               <Button
                 onClick={() => router.push('/')}
-                className='mr-[15px] py-[5px] font-medium hover:bg-white hover:text-primary hover:font-bold ease-in-out duration-200'
+                className='mr-[15px] py-[5px] font-medium hover:bg-primary hover:text-active hover:font-bold ease-in-out duration-200'
                 fit
               >
                 Join Clinic

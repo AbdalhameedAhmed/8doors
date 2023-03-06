@@ -2,6 +2,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import { useState } from "react"
 import moment from 'moment'
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+import Test from "./test"
 
 const localizer = momentLocalizer(moment)
 const DnDCalendar = withDragAndDrop(Calendar);
@@ -70,7 +71,6 @@ const MainCalendar = () => {
       }
     })
     setEvents(eventsData)
-    console.log(data)
   }
 
 

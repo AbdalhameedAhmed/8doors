@@ -28,7 +28,7 @@ export default function Configuration() {
         <Section childernClassName='flex flex-col gap-[15px] px-0'>
           <CollapsibleSection
             title='Managers'
-            className='!bg-gray-lighter !m-0 !p-0'
+            className='!bg-layout-primary !m-0 !p-0'
             childernClassName='!px-0'
             hasAction
             modalTitle="Add Manager"
@@ -36,9 +36,10 @@ export default function Configuration() {
           >
             <Table />
           </CollapsibleSection>
+
           <CollapsibleSection
             title='Doctors'
-            className='!bg-gray-lighter !m-0 !p-0'
+            className='!bg-layout-primary !m-0 !p-0'
             childernClassName='!px-0'
             hasAction
             modalTitle="Add Doctor"
@@ -50,7 +51,7 @@ export default function Configuration() {
           </CollapsibleSection>
           <CollapsibleSection
             title='secretaries'
-            className='!bg-gray-lighter !m-0 !p-0'
+            className='!bg-layout-primary !m-0 !p-0'
             childernClassName='!px-0'
             hasAction
             modalTitle="Add Secretary"

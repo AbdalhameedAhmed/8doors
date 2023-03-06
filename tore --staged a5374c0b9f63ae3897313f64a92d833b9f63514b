@@ -1,0 +1,331 @@
+[33mcommit a5374c0b9f63ae3897313f64a92d833b9f63514b[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Author: Eg-Turbo <xp_boody.std@scib.azhar.live>
+Date:   Tue Mar 7 00:41:16 2023 +0200
+
+    Add Theme Selector
+
+[33mcommit de7612d7a13a98b8d64b3a06078a870d91a0782b[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Abdalhameed-Ahmed <abdalhameed.ahmed15@gmail.com>
+Date:   Sat Feb 25 02:48:31 2023 +0200
+
+    add Calender and Modal
+
+[33mcommit a6a37d45c9392a8f9621e83c1141d746494e9444[m
+Merge: 03eb8e2 5cc8e18
+Author: RamadanMohamd <82966067+RamadanMohamd@users.noreply.github.com>
+Date:   Fri Dec 23 18:56:23 2022 +0200
+
+    Merge pull request #5 from RamadanMohamd/sidenav-home
+    
+    Added sidenave and navbar
+
+[33mcommit 5cc8e18f055a12faf181e500c58cda5acddaee05[m[33m ([m[1;31morigin/sidenav-home[m[33m)[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Fri Dec 23 18:54:04 2022 +0200
+
+    refactor
+
+[33mcommit 003ed090ee7a937880a19faa02df1e5e9434689b[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Fri Dec 23 16:36:57 2022 +0300
+
+    finished rtl
+
+[33mcommit ded247cd6ed2114488ab4e060fccdeb64732af57[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Fri Dec 23 09:15:44 2022 +0300
+
+    Added dropdown and Fontawesome icon
+
+[33mcommit d31de14cbdd731344ed5b491600d83143785f48e[m
+Merge: 063d1ca 03eb8e2
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 20:35:54 2022 +0300
+
+    Merge branch 'dev' into sidenav-home
+
+[33mcommit 063d1ca726efda360e8bf083e4082464f6549414[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 17:57:18 2022 +0300
+
+    Added sidenav details
+
+[33mcommit 03eb8e23b1ba34caaa23b4b3bd76e9207e2754ee[m
+Merge: 2f5b15d a53d577
+Author: RamadanMohamd <82966067+RamadanMohamd@users.noreply.github.com>
+Date:   Thu Dec 22 16:12:30 2022 +0200
+
+    Merge pull request #4 from RamadanMohamd/auth-per-theme
+    
+    Changed the sign-in sign-up per theme and Added reset password page
+
+[33mcommit 062dbb266c718c6baa0b2d0c88634cbcdfcef0a6[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 15:40:31 2022 +0300
+
+    Properly responsive layout created
+
+[33mcommit 139b99a99139e6d52561d1d9163599eb7f2c2c1c[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 13:53:49 2022 +0300
+
+    Added side-nav
+
+[33mcommit 5d35382b1c2771af36afad0569408fabfea93048[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 13:53:45 2022 +0300
+
+    Added side-nav
+
+[33mcommit a53d577e2ce2144f38d6dfd3b58b7735da48838d[m[33m ([m[1;31morigin/auth-per-theme[m[33m)[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 11:16:14 2022 +0300
+
+    fixed ts Lintors
+
+[33mcommit 798bee07639db0b923d6f236738a390ba3545531[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 11:06:25 2022 +0300
+
+    Added transition and fade-in component
+
+[33mcommit 11a27a05cb8883324a753071cf5da2014818f236[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 10:30:09 2022 +0300
+
+    added react-spring library
+
+[33mcommit 146f2bd64fa946ec75c1307983062116d107b798[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 10:23:48 2022 +0300
+
+    fixed border color
+
+[33mcommit 62fee39115f0c13d05a00ed25b08bf55a7f1a751[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 10:16:11 2022 +0300
+
+    removed opacity added transparent color
+
+[33mcommit bfd773bf2075e61cadc7a5e7401bfa4b1a5178d3[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Thu Dec 22 10:00:56 2022 +0300
+
+    Confirm new password
+
+[33mcommit 3fb057880f068db0aa983cd5e8f6c2d2310bcda2[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 19:10:26 2022 +0300
+
+    Finished adding Reset password page
+
+[33mcommit 1a55a8764655939049cec03b5b0ff73029cbe776[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 18:40:00 2022 +0300
+
+    Finished styling forget password
+
+[33mcommit e628558832ea4017179906009a0255242c965a2d[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 18:15:11 2022 +0300
+
+    Finished styling sign-up page
+
+[33mcommit bccd6de74d44e9fd1ddcd10e8b2800974eab4d7f[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 17:55:19 2022 +0300
+
+    Added styles for login page
+
+[33mcommit a789f49b3db02a17f0d45b092228737ed89f4cb9[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 13:16:19 2022 +0300
+
+    added layout to signup signin
+
+[33mcommit 6524bd144f0f2a8999b437b0c60224bb8cfbfc55[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 12:51:17 2022 +0300
+
+    Added navbar in sign-in
+
+[33mcommit 2f5b15da08897f85745b4a73d96746514938b060[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 10:19:22 2022 +0300
+
+    Some minor fixes on type
+
+[33mcommit 64ffbba9ef78894a2dd8611b3f1c7677c98c513c[m
+Merge: fa76f0f 906dc67
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 10:19:08 2022 +0300
+
+    Merge branch 'dev' of https://github.com/RamadanMohamd/8doors into dev
+
+[33mcommit fa76f0f8c9b4a8ac861b1143a1ceef2f33236c07[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Wed Dec 21 09:53:15 2022 +0300
+
+    Some minor fixes
+
+[33mcommit 906dc67a1db2cee18987b161c951b3ceb52806c1[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Wed Dec 21 00:19:49 2022 +0200
+
+    UI updates
+
+[33mcommit b79ab32ed6733ee83b87c31e34aeb35b50b906cc[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Wed Dec 21 00:06:16 2022 +0200
+
+    add default font to Cairo in Tailwind css
+
+[33mcommit e45e4816b5cd2b8d6047af09070ba2229825e0f5[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 19:30:17 2022 +0300
+
+    Finished signup sign-in integration
+
+[33mcommit c588c8556548f4fbc38c09d957cfce157f619f54[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 19:03:09 2022 +0300
+
+    finished bg
+
+[33mcommit c5df6bd941491ecfe23ba393633dcedd1cc31b48[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 18:49:15 2022 +0300
+
+    Added account reducer
+
+[33mcommit 7622a093d17a05c2576d375f5f4c6e904d2a94e7[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 18:44:07 2022 +0300
+
+    started integration of redux toolkit
+
+[33mcommit d3c8a634d9830941f00b61c185b7ddbb8936b086[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 18:44:02 2022 +0300
+
+    started integration of redux toolkit
+
+[33mcommit 3be7942e583c2d59f4f5d9ed55a8eb6235e17735[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 18:42:58 2022 +0300
+
+    started integration of redux toolkit
+
+[33mcommit 3f1baace1ca0d7881dc95c436fb8c4e05315e4c3[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 16:10:04 2022 +0300
+
+    Finished linking sign-up page with translation and React hook form
+
+[33mcommit 0c700979cb4d76487abe2a95de7c4d9e523f3f03[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 16:09:35 2022 +0300
+
+    Finished linking sign-up page with translation and React hook form
+
+[33mcommit 3e0a2d05ea981fba33f03f654c4c81e15b3d0b23[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 16:09:28 2022 +0300
+
+    Finished linking sign-up page with translation and React hook form
+
+[33mcommit f9b150f3a97c254ccc6996a6a1950bf9b3a1de1a[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 15:19:25 2022 +0300
+
+    Finished adding react hook form on login component
+
+[33mcommit 0ccf2d4c8286c8c7d9988f8edd2ac275817bc9dc[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 15:19:19 2022 +0300
+
+    Finished adding react hook form on login component
+
+[33mcommit 066946ce6726914e1f640e78fb8e2706d783d4f9[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 14:59:08 2022 +0300
+
+    Installed react hook form
+
+[33mcommit 690d5d18bd69db13801443f28f0aa0ec290f6e20[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 14:58:02 2022 +0300
+
+    Added translation to signin page
+
+[33mcommit 7570ec494b593d043348e04cf10c4de2a3c74374[m
+Author: Dagi <dagi.zewdu.dz@gmail.com>
+Date:   Tue Dec 20 14:17:11 2022 +0300
+
+    Added basic language configuration
+
+[33mcommit 6107e0eaadf5b6ba8d3671ea7875a06b07708f14[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Mon Dec 19 02:11:57 2022 +0200
+
+    test
+
+[33mcommit 109940bed6b78501ac60a0a48a3efae460d5f987[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Mon Dec 19 02:07:20 2022 +0200
+
+    test
+
+[33mcommit d0e2ef2cf076db1e8defa5091d85c691266611f1[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 16:56:50 2022 +0200
+
+    Fix
+
+[33mcommit 80d5026550675fc220379ed990e5ab7d61757f8e[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 16:38:18 2022 +0200
+
+    change host name
+
+[33mcommit 97a417304e1f1b684760bd694a28f529368ca0b1[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 15:18:04 2022 +0200
+
+    update
+
+[33mcommit c273af923428a4b8e1b4bdcd6fd08ff2d917d28c[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 15:15:21 2022 +0200
+
+    fix
+
+[33mcommit 121bb0a27459ff2e2cabbcd6f4885e5e702e4ea5[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 15:04:02 2022 +0200
+
+    changes
+
+[33mcommit 7165964a8984ce2b5d264d71ff84991c5dbfbe9b[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 14:58:03 2022 +0200
+
+    test
+
+[33mcommit ab5dd40048c808d4341956a8abe032671d0bab6f[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 13:11:50 2022 +0200
+
+    update middleware
+
+[33mcommit 46ea2366e0d7f2148913e46d5c50a3977b3dcbac[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 13:06:18 2022 +0200
+
+    refactor some stuff
+
+[33mcommit af5ed68c6de3f5c50db63363670e3ae159eb6db6[m
+Author: Ramadan <ramadan@Ramadans-MacBook-Pro.local>
+Date:   Sun Dec 18 11:19:09 2022 +0200
+
+    first commit
