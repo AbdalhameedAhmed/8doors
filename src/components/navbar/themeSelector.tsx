@@ -4,12 +4,13 @@ import Light from "../../assets/sun-solid.svg";
 import Dark from "../../assets/moon-solid.svg";
 import Custom from "../../assets/paintbrush-solid.svg";
 import classNames from "classnames";
+import MainAnimation from "../shared/mainAnimation";
 
 export default function ThemeSelector() {
   let [theme, setTheme] = useState("");
   let [menu, openMenu] = useState(false);
   const ref = useRef(null);
-  useOnClickOutside(ref, () => openMenu(false));
+  // useOnClickOutside(ref, () => openMenu(false));
 
   useEffect(() => {
     setTheme(localStorage.getItem("theme") || "");
@@ -34,6 +35,7 @@ export default function ThemeSelector() {
     <>
       <button
         className="text-white text-lg relative"
+        ref={ref}
         onClick={() => {
           openMenu(!menu);
         }}
@@ -46,13 +48,17 @@ export default function ThemeSelector() {
           <Custom className="w-[20px] fill-secondary mr-8 box-content p-2 " />
         )}
       </button>
-      <div
-        className={classNames(
-          "absolute opacity-0 transition duration-200 shadow-md shadow-black/50 py-2 w-[150px] -translate-y-full top-[80px] -z-50 right-[25px] bg-secondary rounded-xl ",
-          { "opacity-100": menu, "translate-y-0": menu }
-        )}
-        ref={ref}
+
+      <MainAnimation
+        startanimation={menu}
+        className="absolute shadow-md shadow-black/50 py-2 w-[150px] top-[80px] -z-50 right-[25px] bg-secondary rounded-xl "
       >
+        {/* <div
+          className={classNames(
+            "absolute transition duration-200 shadow-md shadow-black/50 py-2 w-[150px] top-[80px] -z-50 right-[25px] bg-secondary rounded-xl "
+          )}
+          ref={ref}
+        > */}
         <ul className="flex flex-col text-secondary ">
           <li>
             <button
@@ -112,7 +118,8 @@ export default function ThemeSelector() {
             </button>
           </li>
         </ul>
-      </div>
+        {/* </div> */}
+      </MainAnimation>
     </>
   );
 }
