@@ -1,10 +1,9 @@
-import { Calendar, momentLocalizer } from 'react-big-calendar'
-import { useState } from "react"
-import moment from 'moment'
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import { useState } from "react";
+import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import Test from "./test"
 
-const localizer = momentLocalizer(moment)
+const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
 const MainCalendar = () => {
   let [events, setEvents] = useState([
@@ -39,47 +38,35 @@ const MainCalendar = () => {
     {
       id: 4,
       start: moment().add(5, "days").toDate(),
-      end: moment()
-        .add(6, "days")
-        .toDate(),
-      title: "i'm event"
+      end: moment().add(6, "days").toDate(),
+      title: "i'm event",
     },
     {
       id: 5,
       start: new Date("2 17 2023"),
       end: new Date("2 19 2023"),
-      title: "i'm event"
+      title: "i'm event",
     },
     {
       id: 6,
       start: moment().add(8, "days").toDate(),
-      end: moment()
-        .add(9, "days")
-        .toDate(),
-      title: "Hello test"
+      end: moment().add(9, "days").toDate(),
+      title: "Hello test",
     },
-  ])
-
-
+  ]);
 
   function onEventDropHandler(data: any) {
-    let eventsData = events
-    eventsData.forEach(event => {
+    let eventsData = events;
+    eventsData.forEach((event) => {
       if (event.id === data.event.id) {
-        event.start = data.start
-        event.end = data.end
+        event.start = data.start;
+        event.end = data.end;
       }
-    })
-    setEvents(eventsData)
+    });
+    setEvents(eventsData);
   }
 
-
-
-
-
-
   return (
-
     <div className="MyCalendar">
       <DnDCalendar
         defaultDate={new Date()}
@@ -92,10 +79,7 @@ const MainCalendar = () => {
         style={{ height: "100%" }}
       />
     </div>
-  )
+  );
+};
 
-
-
-}
-
-export default MainCalendar
+export default MainCalendar;

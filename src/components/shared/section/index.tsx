@@ -1,5 +1,5 @@
-import classNames from 'classnames';
-import { SectionHeader } from '../sectionHeader';
+import classNames from "classnames";
+import { SectionHeader } from "../sectionHeader";
 
 type Props = {
   children?: React.ReactNode;
@@ -15,28 +15,34 @@ export function Section({
   children,
   title,
   subtitle,
-  className = '',
-  headerClassName = '',
-  childernClassName = '',
-  onClick = () => { },
+  className = "",
+  headerClassName = "",
+  childernClassName = "",
+  onClick = () => {},
   ...rest
 }: Props) {
   return (
     <div
       {...rest}
       className={classNames(
-        'grow flex px-[15px] mb-[30px] w-full relative rounded-[.1875rem] overflow-hidden bg-secondary text-secondary',
+        "grow flex px-[15px] mb-[30px] w-full relative rounded-[.1875rem] overflow-hidden bg-secondary text-secondary",
         className
       )}
     >
-      <section className={classNames('w-full grow')}>
-        {title?.length && (<>
-          <SectionHeader onClick={onClick} className={headerClassName} title={title} subtitle={subtitle} />
-        </>
+      <section className={classNames("w-full grow")}>
+        {title?.length && (
+          <>
+            <SectionHeader
+              onClick={onClick}
+              className={headerClassName}
+              title={title}
+              subtitle={subtitle}
+            />
+          </>
         )}
         <div
           className={classNames(
-            'p-5 ease-in-out duration-300',
+            "p-5 ease-in-out duration-300",
             childernClassName
           )}
         >
