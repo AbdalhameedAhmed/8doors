@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 import useOnClickOutside from "hooks/useOnClickOutside";
+import MainAnimation from "../mainAnimation"
 
 export default function Modal({
   openModal,
@@ -7,38 +8,37 @@ export default function Modal({
   title,
   children,
 }: any) {
-  let modaldiv = document.querySelector(".ModalCard");
-  const ref = useRef(null);
-  useOnClickOutside(ref, () => openModal && closeModal());
+let [layout,setLayout] = useState(false)
+const ref = useRef(null)
 
   useEffect(() => {
-    if (openModal) {
-      setTimeout(() => {
-        modaldiv?.classList.add("!opacity-100", "!translate-y-0");
-      }, 100);
-    }
+    openModal&&setLayout(true)
   }, [openModal]);
 
   function closeModal() {
-    modaldiv?.classList.remove("!opacity-100", "!translate-y-0");
+    changeModalState(false);
     setTimeout(() => {
-      changeModalState(false);
+      setLayout(false)
     }, 300);
   }
+
+  useOnClickOutside(ref, () => openModal&&closeModal());
 
   return (
     <>
       <div
         className={`justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed  flex ${
-          openModal ? "fixed bg-cyan-800/50 flex" : "hidden"
+          layout ? "fixed bg-cyan-800/50 flex" : "hidden"
         }  inset-0 z-50 outline-none focus:outline-none`}
-      >
+        >
+
         <div
           className={`relative  "w-auto" my-6 mx-auto max-w-3xl transition-all duration-[500ms] ease-in-out`}
         >
           {/*content*/}
+        <MainAnimation startanimation={openModal} className="">
           <div
-            className={`ModalCard border-0 bg-secondary text-secondary rounded-lg shadow-lg relative relative w-[400px] sm:w-[450px] md:w-[550px] lg:w-[700px] xl:w-[700px] -translate-y-full transfor opacity-0 flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
+            className={`ModalCard border-0 bg-secondary text-secondary rounded-lg shadow-lg relative relative w-[400px] sm:w-[450px] md:w-[550px] lg:w-[700px] xl:w-[700px] flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
             ref={ref}
           >
             {/*header*/}
@@ -60,8 +60,10 @@ export default function Modal({
               </button>
             </div>
           </div>
+        </MainAnimation>
         </div>
       </div>
+
     </>
   );
 }
