@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import { Form, Field } from "react-final-form";
@@ -38,6 +39,7 @@ function SignIn() {
     //     setError('');
     //   }, 3000);
     // }
+    window.alert("done");
   };
 
   return (
@@ -56,48 +58,48 @@ function SignIn() {
           validate={(values) => {
             const errors: any = {};
 
-            if (!values.userName) {
-              errors.userName = "Required";
+            if (!values.username) {
+              errors.username = "This field is required";
             }
-            if (!values.passWord) {
-              errors.passWord = "Required";
+            if (!values.password) {
+              errors.password = "This field is required";
             }
             return errors;
           }}
-          render={({ handleSubmit, submitting, form, pristine, values }) => (
+          render={({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
-              <Field name="userName">
+              <Field name="username">
                 {({ input, meta }) => (
                   <>
                     <CustomInput
                       label=""
                       placeholder={t("signup.email")}
-                      className={`signin-signout-input w-full rounded-lg`}
+                      className={classNames(
+                        `signin-signout-input w-full rounded-lg `,
+                        { "!border-red-500": meta.error && meta.touched }
+                      )}
+                      error={meta.error}
+                      touched={meta.touched}
                       type="text"
                       {...input}
                     />
-                    {meta.error && meta.touched && (
-                      <p className="text-red-500 text-center text-sm mt-2">
-                        {meta.error}
-                      </p>
-                    )}
                   </>
                 )}
               </Field>
-              <Field name="passWord">
+              <Field name="password">
                 {({ input, meta }) => (
                   <>
                     <CustomInput
                       placeholder={t("signin.password")}
                       type="password"
-                      className={`signin-signout-input w-full rounded-lg`}
+                      className={classNames(
+                        `signin-signout-input w-full rounded-lg `,
+                        { "!border-red-500": meta.error && meta.touched }
+                      )}
+                      error={meta.error}
+                      touched={meta.touched}
                       {...input}
                     />
-                    {meta.error && meta.touched && (
-                      <p className="text-red-500 text-center text-sm mt-2">
-                        {meta.error}
-                      </p>
-                    )}
                   </>
                 )}
               </Field>

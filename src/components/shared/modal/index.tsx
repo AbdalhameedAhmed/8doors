@@ -1,6 +1,6 @@
-import { useEffect, useRef,useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useOnClickOutside from "hooks/useOnClickOutside";
-import MainAnimation from "../mainAnimation"
+import MainAnimation from "../mainAnimation";
 
 export default function Modal({
   openModal,
@@ -8,62 +8,47 @@ export default function Modal({
   title,
   children,
 }: any) {
-let [layout,setLayout] = useState(false)
-const ref = useRef(null)
+  let [layout, setLayout] = useState(false);
+  const ref = useRef(null);
 
   useEffect(() => {
-    openModal&&setLayout(true)
+    openModal && setLayout(true);
   }, [openModal]);
 
   function closeModal() {
     changeModalState(false);
     setTimeout(() => {
-      setLayout(false)
+      setLayout(false);
     }, 300);
   }
 
-  useOnClickOutside(ref, () => openModal&&closeModal());
+  useOnClickOutside(ref, () => openModal && closeModal());
 
   return (
     <>
       <div
-        className={`justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed  flex ${
-          layout ? "fixed bg-cyan-800/50 flex" : "hidden"
-        }  inset-0 z-50 outline-none focus:outline-none`}
-        >
-
+        className={`justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed  flex ${layout ? "fixed bg-cyan-800/50 flex" : "hidden"
+          }  inset-0 z-50 outline-none focus:outline-none`}
+      >
         <div
           className={`relative  "w-auto" my-6 mx-auto max-w-3xl transition-all duration-[500ms] ease-in-out`}
         >
           {/*content*/}
-        <MainAnimation startanimation={openModal} className="">
-          <div
-            className={`ModalCard border-0 bg-secondary text-secondary rounded-lg shadow-lg relative relative w-[400px] sm:w-[450px] md:w-[550px] lg:w-[700px] xl:w-[700px] flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
-            ref={ref}
-          >
-            {/*header*/}
-            <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-              <h3 className="text-3xl font-semibold text-primary">{title}</h3>
-            </div>
-            {/*body*/}
-            <div className="relative p-6 flex-auto max-h-96 overflow-auto ">
+          <MainAnimation startanimation={openModal} className="">
+            <div
+              className={`ModalCard border-0 bg-secondary text-secondary rounded-lg shadow-lg relative relative w-[400px] sm:w-[450px] md:w-[550px] lg:w-[700px] xl:w-[700px] flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
+              ref={ref}
+            >
+              {/*header*/}
+              <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                <h3 className="text-3xl font-semibold text-primary">{title}</h3>
+              </div>
+              {/*body*/}
               {children}
             </div>
-            {/*footer*/}
-            <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-              <button
-                className="mt-5 w-full rounded-lg text-white p-4 bg-sky-500/100"
-                type="button"
-                onClick={() => closeModal()}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </MainAnimation>
+          </MainAnimation>
         </div>
       </div>
-
     </>
   );
 }
