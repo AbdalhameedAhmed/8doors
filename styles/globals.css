@@ -11,6 +11,18 @@
   }
 }
 
+.shared-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+
 @layer base {
   :root{
     --text-primary:#01d8da;          /*important*/

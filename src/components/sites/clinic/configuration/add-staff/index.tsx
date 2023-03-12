@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import { CustomInput } from "components/shared/customInput";
-export const AddManagerForm = () => {
+export const AddStaffForm = () => {
   const onSubmit = async (values: any, form: any) => {
     window.alert("done");
   };
@@ -18,6 +18,9 @@ export const AddManagerForm = () => {
         }
         if (!values.tel) {
           errors.tel = "This field is required";
+        }
+        if (!values.speciality) {
+          errors.speciality = "This field is required";
         }
         return errors;
       }}
@@ -36,9 +39,9 @@ export const AddManagerForm = () => {
                 />
               )}
             </Field>
-            {/* <Field name="email" />
-            {({ input, meta }) => (
-               <CustomInput
+            <Field name="email">
+              {({ input, meta }) => (
+                <CustomInput
                   type="email"
                   className=" mt-1 mb-4 px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                   placeholder="Email"
@@ -47,7 +50,7 @@ export const AddManagerForm = () => {
                   {...input}
                 />
               )}
-            </Field>  */}
+            </Field>
             <Field name="tel">
               {({ input, meta }) => (
                 <CustomInput
@@ -58,6 +61,29 @@ export const AddManagerForm = () => {
                   touched={meta.touched}
                   {...input}
                 />
+              )}
+            </Field>
+            <Field name="speciality" component="select">
+              {({ input, meta }) => (
+                <>
+                  <select
+                    className="min-h-40 overflow-auto mt-1 mb-4 px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                    {...input}
+                  >
+                    <option value="" selected>
+                      Choose Your Speciality
+                    </option>
+                    <option value="allergist">Allergist</option>
+                    <option value="dermatologist">Dermatologist</option>
+                    <option value="infectious disease">
+                      Infectious disease
+                    </option>
+                    <option value="ophthalmologists">Ophthalmologists</option>
+                  </select>
+                  {meta.error && meta.touched && (
+                    <p className="text-red-500 text-sm mt-2">{meta.error}</p>
+                  )}
+                </>
               )}
             </Field>
           </div>
