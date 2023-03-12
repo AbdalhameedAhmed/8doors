@@ -11,14 +11,14 @@ export function SectionHeader({
   title,
   subtitle,
   className = "",
-  onClick = () => {},
+  onClick = () => { },
 }: Props) {
   const first = title?.split(" ")[0];
   const rest = title?.split(" ").slice(1).join(" ");
 
   return (
     <div
-      className={classNames("p-5 bg-secondary", className)}
+      className={classNames("p-5 px-8 bg-secondary", className)}
       onClick={onClick}
     >
       <h2 className="section-heaeder relative text-[15px] capitalize text-secondary">

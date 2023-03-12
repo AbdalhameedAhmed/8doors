@@ -6,9 +6,12 @@ import React, { useEffect, useState } from 'react';
 
 type Props = {
   children?: React.ReactNode;
+  showModal: boolean
+  showModalButton: boolean
+  handelModalState: Function
 };
 
-function BasicLayout({ children }: Props) {
+function BasicLayout({ children, showModal, handelModalState, showModalButton = false }: Props) {
   const [toggle, setToggle] = useState(false);
   const { width } = useWindowSize();
   const router = useRouter();
@@ -24,7 +27,7 @@ function BasicLayout({ children }: Props) {
           marginRight: width > 1184 && router.locale === 'ar' ? '250px' : 0,
         }}
       >
-        <Navbar setToggle={setToggle} />
+        <Navbar setToggle={setToggle} showModal={showModal} handelModalState={handelModalState} showModalButton={showModalButton} />
         {children}
       </div>
     </div>

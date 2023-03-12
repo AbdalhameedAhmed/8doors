@@ -31,12 +31,12 @@ export default function Modal({
           }  inset-0 z-50 outline-none focus:outline-none`}
       >
         <div
-          className={`relative  "w-auto" my-6 mx-auto max-w-3xl transition-all duration-[500ms] ease-in-out`}
+          className={`relative  w-[85%] my-6 mx-auto max-w-3xl transition-all duration-[500ms] ease-in-out`}
         >
           {/*content*/}
           <MainAnimation startanimation={openModal} className="">
             <div
-              className={`ModalCard border-0 bg-secondary text-secondary rounded-lg shadow-lg relative relative w-[400px] sm:w-[450px] md:w-[550px] lg:w-[700px] xl:w-[700px] flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
+              className={`ModalCard border-0 bg-secondary text-secondary rounded-lg shadow-lg relative relative w-full flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
               ref={ref}
             >
               {/*header*/}
