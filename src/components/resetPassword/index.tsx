@@ -65,7 +65,7 @@ function index() {
                 />
               )}
             </Field>
-            <CustomBtn fit={true} type="submit" className="py-4 bg-sky-500/100">
+            <CustomBtn fit={true} type="submit" className="py-4 mt-8 bg-sky-500/100">
               Change password
             </CustomBtn>
             <p className="my-2 text-sm text-white text-center flex justify-center">

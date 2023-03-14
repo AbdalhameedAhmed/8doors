@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, Section } from "components/shared";
-import { AddDoctorForm } from "components/sites/clinic/configuration";
+import { AddStaff } from "components/sites/clinic/configuration";
 import { data } from "./doctorDeta";
 import InfoCard from "components/shared/infoCard";
 import ConfirmationModal from "components/shared/confirmationModal";
@@ -17,7 +17,7 @@ export default function Staff() {
         changeModalState={setModal}
         title={"Add Secretary"}
       >
-        <AddDoctorForm />
+        <AddStaff />
       </Modal>
       <ConfirmationModal openModal={conmodal} changeModalState={setconModal} />
       <Page

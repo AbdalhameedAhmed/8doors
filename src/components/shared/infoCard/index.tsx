@@ -68,7 +68,7 @@ export default function InfoCard({ data, openModal, openConfirmModal }: any) {
               openCardMenu();
             }}
           >
-            <MenuIcon className="w-[30px] h-[30px]" />
+            <MenuIcon className="w-[20px] h-[20px]" />
           </button>
         </div>
         {/* card body */}

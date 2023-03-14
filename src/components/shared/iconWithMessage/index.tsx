@@ -6,7 +6,7 @@ function IconWithMessage({ visibleIcon, hoverIcon, message, goto }: any) {
       onClick={() => {
         router.push(goto);
       }}
-      className="icon group cursor-pointer relative before:content-[''] before:absolute before:hidden hover:before:block before:top-[16px] before:-left-0 before:border-[8px] before:border-t-transparent before:border-r-transparent before:border-l-transparent before:border-layout-primary"
+      className="icon group cursor-pointer relative before:content-[''] before:absolute before:hidden hover:before:block before:top-[16px] before:left-[5px] before:border-[8px] before:border-t-transparent before:border-r-transparent before:border-l-transparent before:border-layout-primary"
     >
       <button className="group [&_svg]:w-[25px] [&_svg]:fill-secondary [&_svg]:h-[25px]">
         <div className="visible-icon group-hover:hidden">{visibleIcon}</div>

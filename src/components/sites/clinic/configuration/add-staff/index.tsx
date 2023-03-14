@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { CustomInput } from "components/shared/customInput";
 import CustomBtn from "components/shared/button/CustomBtn";
-export const AddDoctorForm = () => {
+export const AddStaff = () => {
   const onSubmit = async (values: any, form: any) => {
     window.alert("done");
   };
@@ -90,13 +90,6 @@ export const AddDoctorForm = () => {
           </div>
 
           <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-            {/* <button
-              className="mt-5 w-full rounded-lg text-white p-4 bg-sky-500/100"
-              type="submit"
-              disabled={submitting}
-            >
-              Submit
-            </button> */}
             <CustomBtn type="submit" disabled={submitting} fit={true}>
               submit
             </CustomBtn>

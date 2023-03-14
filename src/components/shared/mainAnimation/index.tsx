@@ -4,6 +4,7 @@ import classNames from "classnames";
 function MainAnimation({ children, startanimation, className = "" }: any) {
   const [springs, api] = useSpring(() => ({
     from: { y: -1000, opacity: 0 },
+    config: { delay: 0, duration: 300 }
   }));
   useEffect(() => {
     api.start({

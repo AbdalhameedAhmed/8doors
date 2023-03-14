@@ -9,7 +9,7 @@ function HiehgtAnimation({
 }: any) {
     const [springs, api] = useSpring(() => ({
         from: { height: 0 },
-        config: { delay: 0, duration: 1000 },
+        config: { delay: 0, duration: 200 }
     }));
     useEffect(() => {
         ele &&
