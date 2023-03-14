@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { useRouter } from "next/router";
 import Logo from "../../assets/logo.svg";
 import { CustomInput } from "components/shared";
+import CustomBtn from "components/shared/button/CustomBtn";
 import { register } from "api";
 import { SignupFormData } from "types";
 
@@ -151,9 +152,14 @@ function SignUp() {
                   I read and agree to the <u>terms of usage</u>{" "}
                 </p>
               </div>
-              <button className="mt-8 w-full p-4 text-white bg-sky-500/100 rounded-lg">
+              <CustomBtn
+                fit={true}
+                type="submit"
+                disabled={submitting}
+                className="py-4 bg-sky-500/100"
+              >
                 {t("signup.signup")}
-              </button>
+              </CustomBtn>
             </form>
           )}
         ></Form>
@@ -168,4 +174,3 @@ function SignUp() {
 }
 
 export default SignUp;
-

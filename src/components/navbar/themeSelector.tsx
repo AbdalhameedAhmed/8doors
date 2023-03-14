@@ -4,7 +4,7 @@ import Light from "../../assets/sun-solid.svg";
 import Dark from "../../assets/moon-solid.svg";
 import Custom from "../../assets/paintbrush-solid.svg";
 import classNames from "classnames";
-import MainAnimation from "../shared/mainAnimation";
+import HeightAnimation from "animations/HeightAnimation";
 
 export default function ThemeSelector() {
   let [theme, setTheme] = useState("");
@@ -32,7 +32,7 @@ export default function ThemeSelector() {
   }
 
   return (
-    <>
+    <div className="relative">
       <button
         className="text-white text-lg relative"
         ref={ref}
@@ -41,25 +41,24 @@ export default function ThemeSelector() {
         }}
       >
         {!theme ? (
-          <Light className="w-[20px] fill-secondary mr-8 box-content p-2 " />
+          <Light className="w-[20px] fill-secondary box-content p-2 " />
         ) : theme === "dark" ? (
-          <Dark className="w-[20px] fill-secondary mr-8 box-content p-2 " />
+          <Dark className="w-[20px] fill-secondary box-content p-2 " />
         ) : (
-          <Custom className="w-[20px] fill-secondary mr-8 box-content p-2 " />
+          <Custom className="w-[20px] fill-secondary box-content p-2 " />
         )}
       </button>
 
-      <MainAnimation
+      {/* <MainAnimation
         startanimation={menu}
         className="absolute shadow-md shadow-black/50 py-2 w-[150px] top-[80px] -z-50 right-[25px] bg-secondary rounded-xl "
+      > */}
+      <HeightAnimation
+        startanimation={menu}
+        ele={ref}
+        className="absolute shadow-md shadow-black/50 transform transition-75 ease-in overflow-hidden w-[150px] top-[60px] -z-50 -right-[20px] bg-secondary rounded-xl "
       >
-        {/* <div
-          className={classNames(
-            "absolute transition duration-200 shadow-md shadow-black/50 py-2 w-[150px] top-[80px] -z-50 right-[25px] bg-secondary rounded-xl "
-          )}
-          ref={ref}
-        > */}
-        <ul className="flex flex-col text-secondary ">
+        <ul className="flex flex-col text-secondary py-3" ref={ref}>
           <li>
             <button
               className={classNames(
@@ -119,7 +118,8 @@ export default function ThemeSelector() {
           </li>
         </ul>
         {/* </div> */}
-      </MainAnimation>
-    </>
+      </HeightAnimation>
+      {/* </MainAnimation> */}
+    </div>
   );
 }

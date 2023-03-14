@@ -72,10 +72,6 @@
   border-radius: 14px;
   border: 3px solid var(--layout-secondary);
 }
-
-
-
-
 .theme-slector {
   background-color: var(--background-primary);
   color: #fff;
@@ -285,7 +281,7 @@ ul {
    }
   
    .modalBtn:not([disabled]):active {
-     box-shadow: var(--background-primary) 2px 2px 0 0, #000 2px 2px 0 1px;
+     box-shadow: var(--background-primary) 2px 2px 0 0, rgb(0, 0, 0) 2px 2px 0 1px;
      transform: translate(2px, 2px);
    }
 

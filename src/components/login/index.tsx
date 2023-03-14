@@ -7,6 +7,7 @@ import { Form, Field } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../assets/logo.svg";
 import { CustomInput } from "components/shared";
+import CustomBtn from "components/shared/button/CustomBtn";
 import { login } from "api";
 import { useGetPetQuery, api } from "redux/services/clinic/auth";
 import { isMetaProperty } from "typescript";
@@ -103,14 +104,14 @@ function SignIn() {
                   </>
                 )}
               </Field>
-              <button
+              <CustomBtn
+                fit={true}
                 type="submit"
-                className="mt-5 w-full rounded-lg text-white p-4 bg-sky-500/100"
                 disabled={submitting}
+                className="py-4 bg-sky-500/100"
               >
                 {t("signin.login")}
-              </button>
-
+              </CustomBtn>
               <p className="mt-3 text-sm text-white text-center">
                 <Link href="/forget-password">
                   <u>{" " + t("signin.forgetPassword")}</u>

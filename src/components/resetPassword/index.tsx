@@ -4,7 +4,7 @@ import { Form, Field } from "react-final-form";
 import Logo from "../../assets/logo.svg";
 import styles from "./style.module.css";
 import classNames from "classnames";
-
+import CustomBtn from "components/shared/button/CustomBtn";
 function index() {
   const onSubmit = async (values: any) => {
     window.alert("done");
@@ -65,9 +65,9 @@ function index() {
                 />
               )}
             </Field>
-            <button className="mt-8 w-full text-white p-4 bg-sky-500/100 rounded-lg">
+            <CustomBtn fit={true} type="submit" className="py-4 bg-sky-500/100">
               Change password
-            </button>
+            </CustomBtn>
             <p className="my-2 text-sm text-white text-center flex justify-center">
               <b>Need Help?</b>
             </p>
