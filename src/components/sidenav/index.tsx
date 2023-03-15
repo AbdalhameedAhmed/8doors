@@ -18,7 +18,7 @@ function SideNav({ toggle, setToggle }: SideNavProps) {
   return (
     <div
       className={classNames(
-        "sidenav bg-secondary !z-30 shadow-2xl relative ease-in-out duration-300"
+        "sidenav bg-secondary !z-30 shadow-2xl ease-in-out duration-300"
       )}
       ref={ref}
       style={{

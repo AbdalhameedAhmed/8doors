@@ -21,7 +21,7 @@ export default function Staff() {
       </Modal>
       <ConfirmationModal openModal={conmodal} changeModalState={setconModal} />
       <Page
-        title="Configuration Page"
+        title="Staff Page"
         showSiderMenu={true}
         showModal={modal}
         handelModalState={setModal}

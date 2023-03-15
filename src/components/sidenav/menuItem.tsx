@@ -19,7 +19,7 @@ export default function MenuItem({
   rightIcon = <React.Fragment />,
   children = <React.Fragment />,
   activeStyle = "font-bold text-active [&_svg]:fill-primary",
-  onClick = () => {},
+  onClick = () => { },
 }: Props) {
   const { label, icon, path, display } = item;
   const router = useRouter();

@@ -1,10 +1,12 @@
 import useWindowSize from "hooks/useWindowSize";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Bars from "assets/bars.svg";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 import ThemeSelector from "./themeSelector";
 import IconWithMessage from "components/shared/iconWithMessage";
+import ClosedDoor from "assets/closed-door.svg";
+import OpenDoor from "assets/open-door.svg";
 type Props = {
   setToggle: Function;
   title?: string;
@@ -12,10 +14,6 @@ type Props = {
   showModalButton?: boolean;
   showModal?: boolean;
   handelModalState?: Function;
-  visibleIcon?: Element;
-  hoverIcon?: Element;
-  message?: string;
-  goto?: string;
 };
 
 function Navbar({
@@ -25,20 +23,22 @@ function Navbar({
   showModalButton = false,
   showModal,
   handelModalState,
-  visibleIcon,
-  hoverIcon,
-  message,
-  goto,
 }: Props) {
   const { width } = useWindowSize();
   const router = useRouter();
   const { pathname, asPath, query } = router;
-
+  const [message, setMessage] = useState("go to dashboard")
+  const [path, setPath] = useState("/dashboard")
+  let iconInfo = { message: "", path: "" }
   useEffect(() => {
     let dir = router.locale == "ar" ? "rtl" : "ltr";
     let lang = router.locale == "ar" ? "ar" : "en-US";
     document?.querySelector("html")?.setAttribute("dir", dir);
     document?.querySelector("html")?.setAttribute("lang", lang);
+    if (asPath === "/dashboard") {
+      setMessage("Log Out")
+      setPath("/login")
+    }
   }, [router.locale]);
 
   return (
@@ -69,16 +69,16 @@ function Navbar({
             <div className="flex justify-venter  items-center gap-4 mr-8">
               <ThemeSelector />
               <IconWithMessage
-                visibleIcon={visibleIcon}
-                hoverIcon={hoverIcon}
+                visibleIcon={<ClosedDoor />}
+                hoverIcon={<OpenDoor />}
                 message={message}
-                goto={goto}
+                goto={path}
               />
             </div>
           </div>
         </div>
         {showSideHeader && (
-          <div className="p-[15px] bg-primary z-0  relative flex justify-between items-center pl-8 pr-12">
+          <div className="p-[15px] bg-primary z-0 h-[66px] flex justify-between items-center pl-8 pr-12">
             <h2 className="text-xl text-secondary font-medium">{title}</h2>
             {showModalButton && (
               <button

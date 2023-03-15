@@ -3,7 +3,7 @@ import BasicLayout from 'components/layout/basicLayout';
 interface Props {
   title?: string;
   children: React.ReactNode;
-  showSiderMenu: boolean;
+  showSiderMenu?: boolean;
   showModal: boolean
   handelModalState: Function
   showModalButton: boolean
@@ -22,7 +22,7 @@ export function Page({
   const Content = (): JSX.Element => {
     return (
       <div
-        className='page-header flex flex-col h-[calc(100vh-174px)] overflow-y-auto w-full bg-layout-primary relative'
+        className='page-header flex flex-col h-[calc(100vh-146px)] overflow-y-auto w-full bg-layout-primary'
       >
         <div className='z-10 flex flex-wrap'>{children}</div>
       </div>

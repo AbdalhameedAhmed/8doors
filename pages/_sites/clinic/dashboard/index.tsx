@@ -1,4 +1,5 @@
-import { Button, ModalPage, Section, UserTemplate } from 'components/shared';
+import { Page, Section, UserTemplate } from 'components/shared';
+import CustomBtn from "components/shared/button/CustomBtn"
 import { useRouter } from 'next/router';
 import { generate } from 'randomized-string';
 import React from 'react';
@@ -25,39 +26,39 @@ type Props = {
   }[];
 };
 
-export default function SelectClinic({ list = dummyData }: Props) {
+export default function Dashboard({ list = dummyData }: Props) {
   const router = useRouter();
 
   return (
-    <ModalPage>
+    <Page title="Home Page" showSiderMenu>
       <Section
         title='Clinics'
         subtitle='Select your clinics'
         childernClassName='p-0'
-        className='max-w-[460px]'
+        className='w-full h-full'
       >
         <ul>
           {list.map((item) => (
             <li
               key={generate(8)}
-              className='border-b last:border-0 flex justify-between items-center bg-layout-primary hover:bg-layout-secondary ease-in-out duration-150'
+              className='border-b last:border-0 flex pr-8 justify-between items-center bg-layout-primary hover:bg-layout-secondary ease-in-out duration-150'
             >
               <UserTemplate
                 title={item.title}
                 subtitle={item.subtitle}
                 img={item.img}
               />
-              <Button
+              <CustomBtn
                 onClick={() => router.push('/')}
-                className='mr-[15px] py-[5px] font-medium hover:bg-primary hover:text-active hover:font-bold ease-in-out duration-200'
-                fit
+                className="px-2"
               >
+
                 Join Clinic
-              </Button>
+              </CustomBtn>
             </li>
           ))}
         </ul>
       </Section>
-    </ModalPage>
+    </Page>
   );
 }

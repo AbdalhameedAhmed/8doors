@@ -2,10 +2,7 @@ import Navbar from "components/navbar";
 import SideNav from "components/sidenav";
 import useWindowSize from "hooks/useWindowSize";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import ClosedDoor from "assets/closed-door.svg";
-import OpenDoor from "assets/open-door.svg";
-
+import React, { useState } from "react";
 type Props = {
   children?: React.ReactNode;
   showModal: boolean;
@@ -27,7 +24,7 @@ function BasicLayout({
     <div className="w-screen">
       <SideNav toggle={toggle} setToggle={setToggle} />
       <div
-        className="relative layout"
+        className="layout"
         style={{
           marginLeft: width > 1184 && router.locale !== "ar" ? "250px" : 0,
           backgroundColor: "#fff",
@@ -35,10 +32,6 @@ function BasicLayout({
         }}
       >
         <Navbar
-          visibleIcon={<ClosedDoor />}
-          hoverIcon={<OpenDoor />}
-          message="go to dashboard"
-          goto="/"
           setToggle={setToggle}
           showModal={showModal}
           handelModalState={handelModalState}
