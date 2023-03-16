@@ -1,84 +1,39 @@
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import { useState } from "react";
-import moment from "moment";
-import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-
-const localizer = momentLocalizer(moment);
-const DnDCalendar = withDragAndDrop(Calendar);
+import React from "react"
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import EventMenu from "./eventMenu"
 const MainCalendar = () => {
-  let [events, setEvents] = useState([
-    {
-      id: 0,
-      start: new Date("2 1 2023"),
-      isAllDay: true,
-      end: new Date("2 3 2023"),
-      title: "title 1",
-    },
-    {
-      id: 1,
-      start: new Date("2 4 2023"),
-      isAllDay: true,
-      end: new Date("2 6 2023"),
-      title: "title 2",
-    },
-    {
-      id: 2,
-      start: new Date("2 9 2023"),
-      isAllDay: true,
-      end: new Date("2 11 2023"),
-      title: "title 3",
-    },
-    {
-      id: 3,
-      start: new Date("2 13 2023"),
-      isAllDay: true,
-      end: new Date("2 15 2023"),
-      title: "title 4",
-    },
-    {
-      id: 4,
-      start: moment().add(5, "days").toDate(),
-      end: moment().add(6, "days").toDate(),
-      title: "i'm event",
-    },
-    {
-      id: 5,
-      start: new Date("2 17 2023"),
-      end: new Date("2 19 2023"),
-      title: "i'm event",
-    },
-    {
-      id: 6,
-      start: moment().add(8, "days").toDate(),
-      end: moment().add(9, "days").toDate(),
-      title: "Hello test",
-    },
-  ]);
-
-  function onEventDropHandler(data: any) {
-    let eventsData = events;
-    eventsData.forEach((event) => {
-      if (event.id === data.event.id) {
-        event.start = data.start;
-        event.end = data.end;
-      }
-    });
-    setEvents(eventsData);
-  }
+  const [eventMenu, isVisible] = React.useState(false)
+  const [eventData, changeEventData]: any = React.useState(null)
 
   return (
-    <div className="MyCalendar">
-      <DnDCalendar
-        defaultDate={new Date()}
-        defaultView="month"
-        events={events}
-        localizer={localizer}
-        onEventDrop={onEventDropHandler}
-        resizable
+    <>
+      <EventMenu isvisible={eventMenu} eventData={eventData} visiblestate={isVisible} />
+      <FullCalendar
+        eventClick={(ele) => { isVisible(true); changeEventData({ ...ele }) }}
+        plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
+        headerToolbar={{
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        }}
+        initialView='timeGridDay'
+        nowIndicator={true}
+        editable={true}
         selectable={true}
-        style={{ height: "100%" }}
+        selectMirror={true}
+        initialEvents={[
+          { id: "1", title: 'nice event', start: "2023-03-01 10:30", display: "block", backgroundColor: "red" },
+          { id: "2", title: 'nice event1', start: "2023-03-03 10:30", display: "block", backgroundColor: "green" },
+          { id: "3", title: 'nice event2', start: "2023-03-05 10:30", borderColor: "red" },
+          { id: "4", title: 'nice event3', start: "2023-03-08 10:30", borderColor: "green" },
+          { id: "5", title: 'nice event4', start: "2023-03-10 10:30", display: "block" },
+          { id: "6", title: 'nice event5', start: "2023-03-11 10:30", display: "block", backgroundColor: "green" }
+        ]}
       />
-    </div>
+    </>
   );
 };
 

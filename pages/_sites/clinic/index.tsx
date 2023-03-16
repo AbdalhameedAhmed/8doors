@@ -8,7 +8,7 @@ export default function ClinicPage() {
   return (
     <Page title="Home Page" showSiderMenu>
       <Section title="Book Appointment">
-        <MainCalendar />
+        <MainCalendar/>
       </Section>
     </Page>
   );
