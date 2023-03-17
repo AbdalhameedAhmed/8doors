@@ -1,12 +1,12 @@
-import BasicLayout from 'components/layout/basicLayout';
+import BasicLayout from "components/layout/basicLayout";
 
 interface Props {
   title?: string;
   children: React.ReactNode;
   showSiderMenu?: boolean;
-  showModal: boolean
-  handelModalState: Function
-  showModalButton: boolean
+  showModal: boolean;
+  handelModalState: Function;
+  showModalButton: boolean;
 }
 
 export function Page({
@@ -15,22 +15,22 @@ export function Page({
   showSiderMenu = true,
   showModal,
   handelModalState,
-  showModalButton = false
-
+  showModalButton = false,
 }: Props): JSX.Element {
-
   const Content = (): JSX.Element => {
     return (
-      <div
-        className='page-header flex flex-col h-[calc(100vh-146px)] overflow-y-auto w-full bg-layout-primary'
-      >
-        <div className='z-10 flex flex-wrap'>{children}</div>
+      <div className="page-header flex flex-col h-[calc(100vh-146px)] overflow-y-auto w-full bg-layout-primary">
+        <div className="flex flex-wrap">{children}</div>
       </div>
     );
   };
   if (showSiderMenu)
     return (
-      <BasicLayout showModal={showModal} showModalButton={showModalButton} handelModalState={handelModalState} >
+      <BasicLayout
+        showModal={showModal}
+        showModalButton={showModalButton}
+        handelModalState={handelModalState}
+      >
         <Content />
       </BasicLayout>
     );

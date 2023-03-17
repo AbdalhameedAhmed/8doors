@@ -3,7 +3,7 @@ import useWindowSize from "hooks/useWindowSize";
 import React, { useRef } from "react";
 import styles from "./style.module.css";
 import Doctor from "../../assets/doctor.svg";
-import { mainMenuItems } from "./utils";
+import { mainMenuItems } from "./clinicUtils";
 import { RenderMenuItems } from "./menuRenderer";
 import classNames from "classnames";
 type SideNavProps = {
@@ -11,7 +11,7 @@ type SideNavProps = {
   setToggle: Function;
 };
 
-function SideNav({ toggle, setToggle }: SideNavProps) {
+function ClinicSideNav({ toggle, setToggle }: SideNavProps) {
   const { width } = useWindowSize();
   const ref = useRef(null);
   useOnClickOutside(ref, () => setToggle(false));
@@ -42,4 +42,4 @@ function SideNav({ toggle, setToggle }: SideNavProps) {
   );
 }
 
-export default SideNav;
+export default ClinicSideNav;

@@ -64,6 +64,62 @@ export const mainMenuItems: menuItemsType = [
     ],
   },
   {
+    label: "Doctors",
+    icon: (
+      <UserPlus className="fill-secondary group-hover:fill-primary w-[16px] h-[16px]" />
+    ),
+    display: true,
+    path: "",
+    submenu: [
+      {
+        label: "All Doctors",
+        display: true,
+        path: "/doctors",
+        icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
+      },
+      {
+        label: "Add Doctor",
+        display: true,
+        path: "/add-doctor",
+        icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
+      },
+      {
+        label: "Doctor Profile",
+        display: true,
+        path: "/doctor-profile",
+        icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
+      },
+    ],
+  },
+  {
+    label: "Doctors",
+    icon: (
+      <UserPlus className="fill-secondary group-hover:fill-primary w-[16px] h-[16px]" />
+    ),
+    display: true,
+    path: "",
+    submenu: [
+      {
+        label: "All Doctors",
+        display: true,
+        path: "/doctors",
+        icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
+      },
+      {
+        label: "Add Doctor",
+        display: true,
+        path: "/add-doctor",
+        icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
+      },
+      {
+        label: "Doctor Profile",
+        display: true,
+        path: "/doctor-profile",
+        icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
+      },
+    ],
+  },
+  {
     label: "Staff",
     icon: (
       <User className="fill-secondary group-hover:fill-primary w-[16px] h-[16px]" />

@@ -1,5 +1,6 @@
 import Navbar from "components/navbar";
 import SideNav from "components/sidenav";
+import ClinicSidenav from "components/sidenav/ClinicSidenav";
 import useWindowSize from "hooks/useWindowSize";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -19,10 +20,14 @@ function BasicLayout({
   const [toggle, setToggle] = useState(false);
   const { width } = useWindowSize();
   const router = useRouter();
-
+  const { pathname, asPath, query } = router;
   return (
     <div className="w-screen">
-      <SideNav toggle={toggle} setToggle={setToggle} />
+      {asPath === "/dashboard" ? (
+        <ClinicSidenav toggle={toggle} setToggle={setToggle} />
+      ) : (
+        <SideNav toggle={toggle} setToggle={setToggle} />
+      )}
       <div
         className="layout"
         style={{
