@@ -32,8 +32,10 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
               { "!block": isvisible }
             )}
             style={{
-              left: eventData.jsEvent.clientX - eventData.jsEvent.layerX,
-              top: eventData.jsEvent.clientY - eventData.jsEvent.layerY + 23,
+              left: eventData.el.getBoundingClientRect().x,
+              top:
+                eventData.el.getBoundingClientRect().y +
+                eventData.el.getBoundingClientRect().height,
               backgroundColor: menuBackground,
             }}
           >
