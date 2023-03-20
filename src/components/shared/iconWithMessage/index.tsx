@@ -12,7 +12,7 @@ function IconWithMessage({ visibleIcon, hoverIcon, message, goto }: any) {
         <div className="visible-icon group-hover:hidden">{visibleIcon}</div>
         <div className="hover-icon hidden group-hover:block">{hoverIcon}</div>
       </button>
-      <div className="absolute top-[55px] max-h-0 p-0 -right-[20px] bg-layout-primary text-secondary transition-all duration-300 group-hover:max-h-[100px] overflow-hidden rounded ">
+      <div className="absolute top-[55px] max-h-0 p-0 -right-[20px] bg-layout-primary text-secondary transition-all duration-500 group-hover:max-h-[100px] overflow-hidden rounded ">
         <p className="text-sm w-max px-4 py-2">{message}</p>
       </div>
     </div>

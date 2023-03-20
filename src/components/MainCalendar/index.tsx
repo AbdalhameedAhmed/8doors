@@ -3,14 +3,19 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import EventMenu from "./eventMenu";
+import dynamic from "next/dynamic";
+
+const EventMenu = dynamic(() => import("./eventMenu"), {
+  ssr: false,
+});
 const MainCalendar = () => {
   const [eventMenu, isVisible] = React.useState(false);
   const [eventData, setEventData]: any = React.useState(null);
+
   const [events, changeEvents]: any = React.useState([
     {
       id: "1",
-      title: "nice event",
+      title: "xDDDD",
       start: "2023-03-01 09:30",
       display: "block",
       backgroundColor: "red",
@@ -19,6 +24,7 @@ const MainCalendar = () => {
       id: "2",
       title: "nice event1",
       start: "2023-03-03 08:30",
+      end: "2023-03-08 08:30",
       display: "block",
       backgroundColor: "green",
     },
@@ -48,6 +54,7 @@ const MainCalendar = () => {
       backgroundColor: "green",
     },
   ]);
+
   return (
     <>
       <EventMenu

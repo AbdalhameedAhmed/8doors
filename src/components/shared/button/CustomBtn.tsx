@@ -6,7 +6,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   fit?: boolean;
   type?: "button" | "submit";
   design?: "fullwidth" | "block";
-  style: object;
+  style?: object;
   onClick?: () => void;
 }
 

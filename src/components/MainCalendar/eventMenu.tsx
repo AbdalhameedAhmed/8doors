@@ -5,19 +5,67 @@ import useOnClickOutside from "hooks/useOnClickOutside";
 export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
   let ref = React.useRef(null);
   let menuBackground = "";
+  let left = 0;
+  let top = 0;
   if (eventData) {
     menuBackground = eventData.event.backgroundColor
       ? eventData.event.backgroundColor
       : eventData.event.borderColor
       ? eventData.event.borderColor
       : "#3788d8";
+    left = eventData.el.getBoundingClientRect().x;
+    top =
+      eventData.el.getBoundingClientRect().y +
+      eventData.el.getBoundingClientRect().height;
   }
+  const [windowSize, setWindowSize] = React.useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
   useOnClickOutside(ref, () => {
-    visiblestate(false);
+    ref.current.classList.remove("!opacity-100", "!translate-y-0");
+    setTimeout(() => {
+      visiblestate(false);
+    }, 300);
   });
+  function handelMenu() {
+    let width = 448;
+    let height = 197;
+    if (eventData) {
+      if (windowSize[0] - eventData.el.getBoundingClientRect().x < width) {
+        // console.log("shift it to left");
+        left =
+          eventData.el.getBoundingClientRect().x -
+          width +
+          eventData.el.getBoundingClientRect().width;
+      } else {
+        // console.log("normal display");
+      }
+      if (windowSize[1] - eventData.el.getBoundingClientRect().y < height) {
+        // console.log("display on top");
+        top = eventData.el.getBoundingClientRect().y - height;
+      } else {
+        // console.log("height normal");
+      }
+    }
+  }
+  handelMenu();
+  React.useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+    if (isvisible && ref.current) {
+      ref.current.classList.add("!opacity-100", "!translate-y-0");
+    }
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [isvisible]);
+
   return (
     <>
-      {eventData && (
+      {isvisible && (
         <>
           <div
             className={classNames(
@@ -28,22 +76,35 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
           <div
             ref={ref}
             className={classNames(
-              `fixed z-50 top-0 pl-4 pr-8  py-2 rounded shadow-2xl hidden left-0`,
-              { "!block": isvisible }
+              `fixed z-50 top-0 pl-4 pr-8 w-[448px] h-[197px] py-2 transition-all duration-500 -translate-y-full opacity-0 rounded-lg shadow-2xl left-0`
             )}
             style={{
-              left: eventData.el.getBoundingClientRect().x,
-              top:
-                eventData.el.getBoundingClientRect().y +
-                eventData.el.getBoundingClientRect().height,
+              left: left,
+              top: top,
               backgroundColor: menuBackground,
             }}
           >
-            <h2>Event Name: {eventData.event.title}</h2>
-            <p>Start At: {eventData.event.startStr.slice(0, 10)}</p>
+            <h2 className="text-2xl">{eventData.event.title}</h2>
+            <p>
+              {eventData.event.endStr
+                ? `${eventData.event.startStr.slice(
+                    0,
+                    10
+                  )} ${eventData.event.startStr.slice(
+                    11,
+                    16
+                  )} / ${eventData.event.endStr.slice(
+                    0,
+                    10
+                  )} ${eventData.event.endStr.slice(11, 16)}`
+                : `${eventData.event.startStr.slice(
+                    0,
+                    10
+                  )} ${eventData.event.startStr.slice(11, 16)}`}
+            </p>
             <p>At Time: {eventData.event.startStr.slice(11, 16)}</p>
             <CustomBtn
-              className={`ml-auto !block mb-4 mt-8 ]`}
+              className={`ml-auto !block mt-12 ]`}
               onClick={() => {
                 visiblestate(false);
               }}
