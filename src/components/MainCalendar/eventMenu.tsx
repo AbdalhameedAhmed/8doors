@@ -23,31 +23,29 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
     window.innerHeight,
   ]);
   useOnClickOutside(ref, () => {
-    ref.current.classList.remove("!opacity-100", "!translate-y-0");
-    setTimeout(() => {
-      visiblestate(false);
-    }, 300);
+    smoothClose();
   });
   function handelMenu() {
     let width = 448;
-    let height = 197;
+    let height = 200;
+
     if (eventData) {
       if (windowSize[0] - eventData.el.getBoundingClientRect().x < width) {
-        // console.log("shift it to left");
         left =
           eventData.el.getBoundingClientRect().x -
           width +
           eventData.el.getBoundingClientRect().width;
-      } else {
-        // console.log("normal display");
       }
       if (windowSize[1] - eventData.el.getBoundingClientRect().y < height) {
-        // console.log("display on top");
         top = eventData.el.getBoundingClientRect().y - height;
-      } else {
-        // console.log("height normal");
       }
     }
+  }
+  function smoothClose() {
+    ref.current.classList.remove("!opacity-100", "!translate-y-0");
+    setTimeout(() => {
+      visiblestate(false);
+    }, 300);
   }
   handelMenu();
   React.useEffect(() => {
@@ -106,7 +104,7 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
             <CustomBtn
               className={`ml-auto !block mt-12 ]`}
               onClick={() => {
-                visiblestate(false);
+                smoothClose();
               }}
               style={{
                 backgroundColor: menuBackground,

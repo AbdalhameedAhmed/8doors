@@ -27,17 +27,17 @@ function Navbar({
   const { width } = useWindowSize();
   const router = useRouter();
   const { pathname, asPath, query } = router;
-  const [message, setMessage] = useState("go to dashboard")
-  const [path, setPath] = useState("/dashboard")
-  let iconInfo = { message: "", path: "" }
+  const [message, setMessage] = useState("go to dashboard");
+  const [path, setPath] = useState("/dashboard");
+  let iconInfo = { message: "", path: "" };
   useEffect(() => {
     let dir = router.locale == "ar" ? "rtl" : "ltr";
     let lang = router.locale == "ar" ? "ar" : "en-US";
     document?.querySelector("html")?.setAttribute("dir", dir);
     document?.querySelector("html")?.setAttribute("lang", lang);
     if (asPath === "/dashboard") {
-      setMessage("Log Out")
-      setPath("/login")
+      setMessage("Log Out");
+      setPath("/login");
     }
   }, [router.locale]);
 

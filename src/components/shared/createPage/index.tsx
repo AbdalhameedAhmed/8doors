@@ -4,9 +4,9 @@ interface Props {
   title?: string;
   children: React.ReactNode;
   showSiderMenu?: boolean;
-  showModal: boolean;
-  handelModalState: Function;
-  showModalButton: boolean;
+  showModal?: boolean;
+  handelModalState?: Function;
+  showModalButton?: boolean;
 }
 
 export function Page({

@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 type Props = {
   children?: React.ReactNode;
-  showModal: boolean;
-  showModalButton: boolean;
-  handelModalState: Function;
+  showModal?: boolean;
+  showModalButton?: boolean;
+  handelModalState?: Function;
 };
 
 function BasicLayout({

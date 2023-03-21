@@ -4,13 +4,17 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import dynamic from "next/dynamic";
-
 const EventMenu = dynamic(() => import("./eventMenu"), {
+  ssr: false,
+});
+const SelectDayMenu = dynamic(() => import("./selectDayMenu"), {
   ssr: false,
 });
 const MainCalendar = () => {
   const [eventMenu, isVisible] = React.useState(false);
   const [eventData, setEventData]: any = React.useState(null);
+  const [dayData, setDayData]: any = React.useState(null);
+  const [selectDayMenu, openSelectDayMenu]: any = React.useState(false);
 
   const [events, changeEvents]: any = React.useState([
     {
@@ -62,10 +66,19 @@ const MainCalendar = () => {
         eventData={eventData}
         visiblestate={isVisible}
       />
+      <SelectDayMenu
+        isvisible={selectDayMenu}
+        dayData={dayData}
+        visiblestate={openSelectDayMenu}
+      />
       <FullCalendar
         eventClick={(ele) => {
           isVisible(true);
           setEventData({ ...ele });
+        }}
+        dateClick={(info) => {
+          setDayData(info);
+          openSelectDayMenu(true);
         }}
         plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
         headerToolbar={{
