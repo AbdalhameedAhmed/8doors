@@ -20,7 +20,8 @@ export default function SelectDayMenu({
       dayData.dayEl.getBoundingClientRect().height;
     console.log(dayData);
     if (dayData.dateStr.length > 10) {
-      top = dayData.jsEvent.clientY;
+      top = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y
+        + dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().height;
     }
   }
   const [windowSize, setWindowSize] = React.useState([
@@ -32,7 +33,7 @@ export default function SelectDayMenu({
   });
   function handelMenu() {
     let width = 161;
-    let height = 130;
+    let height = 136;
 
     if (dayData) {
       if (windowSize[0] - dayData.dayEl.getBoundingClientRect().x < width) {
@@ -47,6 +48,8 @@ export default function SelectDayMenu({
       if (dayData.dateStr.length > 10) {
         if (windowSize[1] - dayData.jsEvent.clientY < height) {
           top = dayData.jsEvent.clientY - height;
+          top = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y
+            - height
         }
       }
     }
@@ -66,9 +69,11 @@ export default function SelectDayMenu({
       ref.current.classList.add("!opacity-100", "!translate-y-0");
     }
     window.addEventListener("resize", handleWindowResize);
+    console.log("ref is", ref);
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
+
   }, [isvisible]);
 
   return (
@@ -91,7 +96,8 @@ export default function SelectDayMenu({
             backgroundColor: menuBackground,
           }}
         >
-          <h2 className="text-2xl mb-8">{dayData.dateStr.slice(0, 10)}</h2>
+          <h2 className="text-2xl ">{dayData.dateStr.slice(0, 10)}</h2>
+          <h2 className="text-lg mb-4">{dayData.dateStr.slice(11, 19)}</h2>
           <CustomBtn
             className={`ml-auto !block !mt-12]`}
             onClick={() => {

@@ -24,7 +24,7 @@ export const mainMenuItems: menuItemsType = [
     ),
     submenu: [],
     display: true,
-    path: "/",
+    path: "/clinic-dashboard",
   },
   {
     label: "Appointments",

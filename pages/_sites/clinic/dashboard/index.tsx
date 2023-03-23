@@ -49,8 +49,8 @@ export default function Dashboard({ list = dummyData }: Props) {
                 img={item.img}
               />
               <CustomBtn
-                onClick={() => router.push('/')}
-                className="px-2"
+                onClick={() => router.push('/clinic-dashboard')}
+                className="px-2 !bg-transparent !shadow-[4px_4px_0_0_rgba(241,241,241,1),4px_4px_0_1px_rgba(0,0,0,1)] active:!shadow-[2px_2px_0_0_rgba(241,241,241,1),2px_2px_0_1px_rgba(0,0,0,1)]"
               >
 
                 Join Clinic

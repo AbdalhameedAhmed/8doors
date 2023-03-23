@@ -1,17 +1,17 @@
 import React from "react";
 import classNames from "classnames";
 import AngleDown from "assets/angle-down-solid.svg";
-export default function CustomSelector({ input, placeholder = "select" }: any) {
+let itemsarr = [
+  "item 1",
+  "item 2",
+  "item 3",
+  "item 4",
+  "item 5",
+  "item 6",
+  "item 7",
+];
+export default function CustomSelector({ input, placeholder = "select", items = itemsarr }: any) {
   let [menu, openMenu] = React.useState(false);
-  let items = [
-    "item 1",
-    "item 2",
-    "item 3",
-    "item 4",
-    "item 5",
-    "item 6",
-    "item 7",
-  ];
   let ref = React.useRef(null);
   return (
     <>
@@ -22,7 +22,6 @@ export default function CustomSelector({ input, placeholder = "select" }: any) {
         )}
         onClick={() => {
           openMenu(!menu);
-          input.onChange("gogo value");
         }}
       >
         <p ref={ref}>{placeholder}</p>
@@ -30,7 +29,7 @@ export default function CustomSelector({ input, placeholder = "select" }: any) {
       </div>
       <div
         className={classNames(
-          "max-h-0 min-h-auto border border-2 rounded  h-auto overflow-y-hidden transition-all duration-500",
+          "max-h-0 border border-2 rounded  h-auto overflow-y-hidden transition-all duration-500",
           {
             "!max-h-[200px]": menu,
             "!overflow-y-auto": menu,

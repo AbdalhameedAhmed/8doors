@@ -1,15 +1,8 @@
-import { Page, Section } from "components/shared";
 import React from "react";
-import MainCalendar from "components/MainCalendar";
-
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 export default function ClinicPage() {
   return (
-    <Page title="Home Page" showSiderMenu>
-      <Section title="Book Appointment">
-        <MainCalendar/>
-      </Section>
-    </Page>
+    <h1>clinic</h1>
   );
 }

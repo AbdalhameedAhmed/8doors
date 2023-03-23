@@ -79,6 +79,8 @@ const MainCalendar = () => {
         dateClick={(info) => {
           setDayData(info);
           openSelectDayMenu(true);
+          // console.log(info.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().x)
+
         }}
         plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
         headerToolbar={{
