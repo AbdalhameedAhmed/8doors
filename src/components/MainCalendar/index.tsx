@@ -79,8 +79,6 @@ const MainCalendar = () => {
         dateClick={(info) => {
           setDayData(info);
           openSelectDayMenu(true);
-          // console.log(info.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().x)
-
         }}
         plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
         headerToolbar={{
@@ -93,8 +91,18 @@ const MainCalendar = () => {
         editable={true}
         selectable={true}
         selectMirror={true}
-        initialEvents={events}
+        // initialEvents={events}
+        events={events}
       />
+      <button onClick={() => {
+        changeEvents([...events, {
+          id: "6",
+          title: "nice event5",
+          start: "2023-03-24 07:30",
+          display: "block",
+          backgroundColor: "green",
+        }])
+      }}>click me add event</button>
     </>
   );
 };

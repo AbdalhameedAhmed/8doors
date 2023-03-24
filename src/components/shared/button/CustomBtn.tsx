@@ -1,19 +1,17 @@
 import classNames from "classnames";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode | string;
+  children: React.ReactNode | string;
   className?: string;
   fit?: boolean;
   type?: "button" | "submit";
-  design?: "fullwidth" | "block";
   style?: object;
   onClick?: () => void;
 }
 
 export default function CustomBtn({
-  onClick = () => {},
+  onClick = () => { },
   children,
-  design = "block",
   type = "button",
   fit = false,
   className = "",

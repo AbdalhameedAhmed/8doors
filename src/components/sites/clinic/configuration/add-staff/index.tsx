@@ -13,11 +13,14 @@ export const AddStaff = () => {
       onSubmit={onSubmit}
       validate={(values) => {
         const errors: any = {};
+        const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (!values.name) {
           errors.name = "This field is required";
         }
         if (!values.email) {
           errors.email = "This field is required";
+        } else if (!values.email.match(validEmail)) {
+          errors.email = "Please include an @ in the email address then add more letters";
         }
         if (!values.tel) {
           errors.tel = "This field is required";
@@ -45,7 +48,7 @@ export const AddStaff = () => {
             <Field name="email">
               {({ input, meta }) => (
                 <CustomInput
-                  type="email"
+                  type="text"
                   className=" mt-1 mb-4 px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                   placeholder="Email"
                   error={meta.error}
@@ -79,7 +82,7 @@ export const AddStaff = () => {
           </div>
 
           <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-            <CustomBtn type="submit" disabled={submitting} fit={true}>
+            <CustomBtn type="submit" disabled={submitting} fit={false} className="mr-4">
               submit
             </CustomBtn>
           </div>

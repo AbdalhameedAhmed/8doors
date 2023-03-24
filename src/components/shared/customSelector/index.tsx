@@ -2,17 +2,14 @@ import React from "react";
 import classNames from "classnames";
 import AngleDown from "assets/angle-down-solid.svg";
 let itemsarr = [
-  "item 1",
-  "item 2",
-  "item 3",
-  "item 4",
-  "item 5",
-  "item 6",
-  "item 7",
+  "Allergist",
+  "Dermatologist",
+  "Infectious disease",
+  "Ophthalmologists"
 ];
 export default function CustomSelector({ input, placeholder = "select", items = itemsarr }: any) {
   let [menu, openMenu] = React.useState(false);
-  let ref = React.useRef(null);
+  let ref = React.useRef<HTMLDivElement>(null!);
   return (
     <>
       <div
@@ -38,11 +35,11 @@ export default function CustomSelector({ input, placeholder = "select", items = 
         )}
       >
         <ul className="w-full">
-          {items.map((item, index) => (
+          {items.map((item: string, index: number) => (
             <li
               key={index}
               className="px-4 mb-2 hover:bg-layout-secondary py-2 w-full"
-              onClick={(ele) => {
+              onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
                 let selected = ref.current.innerHTML;
                 if (selected === placeholder) {
                   ref.current.innerHTML = item;
@@ -51,8 +48,8 @@ export default function CustomSelector({ input, placeholder = "select", items = 
                 } else {
                   if (selected.split("/").indexOf(item) !== -1) {
                     ref.current.innerHTML = selected
-                      .split("/")
-                      .filter((e: any) => e !== item)
+                      .split(" / ")
+                      .filter((e: string) => e !== item)
                       .join("/");
                     input.onChange(ref.current.innerHTML);
                     if (!ref.current.innerHTML) {

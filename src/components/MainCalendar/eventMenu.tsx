@@ -2,17 +2,26 @@ import React from "react";
 import classNames from "classnames";
 import CustomBtn from "components/shared/button/CustomBtn";
 import useOnClickOutside from "hooks/useOnClickOutside";
-export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
-  let ref = React.useRef(null);
+
+type props = {
+  isvisible: boolean
+  visiblestate: Function
+  eventData: Object | any
+}
+
+export default function EventMenu({ isvisible, eventData, visiblestate }: props) {
+  let ref = React.useRef<HTMLDivElement>(null!);
   let menuBackground = "";
   let left = 0;
   let top = 0;
+  // let [width,setWidth] = React.useState(0)
+  // let [height,setHeight] = React.useState(0)
   if (eventData) {
     menuBackground = eventData.event.backgroundColor
       ? eventData.event.backgroundColor
       : eventData.event.borderColor
-      ? eventData.event.borderColor
-      : "#3788d8";
+        ? eventData.event.borderColor
+        : "#3788d8";
     left = eventData.el.getBoundingClientRect().x;
     top =
       eventData.el.getBoundingClientRect().y +
@@ -28,7 +37,6 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
   function handelMenu() {
     let width = 448;
     let height = 200;
-
     if (eventData) {
       if (windowSize[0] - eventData.el.getBoundingClientRect().x < width) {
         left =
@@ -52,10 +60,12 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
     };
-    if (isvisible && ref.current) {
-      ref.current.classList.add("!opacity-100", "!translate-y-0");
-    }
+    ref.current?.classList.add("!opacity-100", "!translate-y-0");
+
     window.addEventListener("resize", handleWindowResize);
+    // console.log(ref.current?.getBoundingClientRect().width)
+    // setWidth(ref.current?.getBoundingClientRect().width)
+    // setHeight(ref.current?.getBoundingClientRect().height)
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
@@ -86,19 +96,19 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: any) {
             <p>
               {eventData.event.endStr
                 ? `${eventData.event.startStr.slice(
-                    0,
-                    10
-                  )} ${eventData.event.startStr.slice(
-                    11,
-                    16
-                  )} / ${eventData.event.endStr.slice(
-                    0,
-                    10
-                  )} ${eventData.event.endStr.slice(11, 16)}`
+                  0,
+                  10
+                )} ${eventData.event.startStr.slice(
+                  11,
+                  16
+                )} / ${eventData.event.endStr.slice(
+                  0,
+                  10
+                )} ${eventData.event.endStr.slice(11, 16)}`
                 : `${eventData.event.startStr.slice(
-                    0,
-                    10
-                  )} ${eventData.event.startStr.slice(11, 16)}`}
+                  0,
+                  10
+                )} ${eventData.event.startStr.slice(11, 16)}`}
             </p>
             <p>At Time: {eventData.event.startStr.slice(11, 16)}</p>
             <CustomBtn

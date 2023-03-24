@@ -2,12 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import useOnClickOutside from "hooks/useOnClickOutside";
 import MainAnimation from "../mainAnimation";
 
+type props = {
+  openModal: boolean
+  changeModalState: Function
+  title: string
+  children: React.ReactNode
+}
 export default function Modal({
   openModal,
   changeModalState,
   title,
   children,
-}: any) {
+}: props) {
   let [layout, setLayout] = useState(false);
   const ref = useRef(null);
 
@@ -27,9 +33,8 @@ export default function Modal({
   return (
     <>
       <div
-        className={`justify-center items-center flex overflow-x-hidden overflow-y-auto fixed  flex ${
-          layout ? "fixed bg-cyan-800/50 flex" : "hidden"
-        }  inset-0 z-50 outline-none focus:outline-none`}
+        className={`justify-center items-center flex overflow-x-hidden overflow-y-auto fixed  flex ${layout ? "fixed bg-cyan-800/50 flex" : "hidden"
+          }  inset-0 z-50 outline-none focus:outline-none`}
       >
         <div
           className={`relative  w-[85%] my-6 mx-auto max-w-3xl transition-all duration-[500ms] ease-in-out`}

@@ -3,12 +3,19 @@ import classNames from "classnames";
 import CustomBtn from "components/shared/button/CustomBtn";
 import useOnClickOutside from "hooks/useOnClickOutside";
 
+type props = {
+  isvisible: boolean
+  visiblestate: Function
+  dayData: Object | any
+}
+
+
 export default function SelectDayMenu({
   isvisible,
   visiblestate,
   dayData,
-}: any) {
-  let ref = React.useRef(null);
+}: props) {
+  let ref = React.useRef<HTMLDivElement>(null!);
   let menuBackground = "#3788d8";
   let left = 0;
   let top = 0;

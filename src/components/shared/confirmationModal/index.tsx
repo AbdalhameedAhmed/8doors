@@ -3,10 +3,14 @@ import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import MainAnimation from "../mainAnimation";
 import DangerIcon from "assets/danger.svg";
 import CustomBtn from "components/shared/button/CustomBtn";
+type props = {
+  openModal: boolean
+  changeModalState: Function
+}
 export default function ConfirmationModal({
   openModal,
   changeModalState,
-}: any) {
+}: props) {
   let [layout, setLayout] = useState(false);
   const ref = useRef(null);
 
