@@ -5,6 +5,9 @@ function IconWithMessage({ visibleIcon, hoverIcon, message, goto }: any) {
     <div
       onClick={() => {
         router.push(goto);
+        if (message == "Log Out") {
+          localStorage.setItem("token", "")
+        }
       }}
       className="icon group cursor-pointer relative"
     >

@@ -53,16 +53,19 @@ export default function SelectDayMenu({
       }
       if (dayData.dateStr.length > 10) {
         if (height - (dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y - top) > windowSize[1] - dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y) {
-          console.log("this done so colosd");
           top = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y
             - height
         }
       }
+      if (dayData.view.type === "timeGridDay") {
+        console.log("done");
+        left = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().x
+        console.log(left)
+
+      }
     }
   }
   handelMenu();
-  console.log("top is", top);
-  console.log("height is", windowSize[1])
   function smoothClose() {
     ref.current.classList.remove("!opacity-100", "!translate-x-0");
     setTimeout(() => {

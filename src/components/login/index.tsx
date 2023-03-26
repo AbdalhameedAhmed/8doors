@@ -29,18 +29,8 @@ function SignIn() {
   const [trigger, { data }] = api.useLazyGetPetQuery();
 
   const onSubmit = async (values: any) => {
-    // const res = await login(data)
-    // if (res) {
-    //   await trigger(true)
-    //   console.log(data)
-    //   router.push('/');
-    // } else {
-    //   setError('User is not registered yet!!');
-    //   setTimeout(() => {
-    //     setError('');
-    //   }, 3000);
-    // }
-    window.alert("done");
+    localStorage.setItem("token", "success")
+    router.push("/dashboard")
   };
 
   return (
