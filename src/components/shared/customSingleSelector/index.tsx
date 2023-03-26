@@ -1,14 +1,16 @@
 import React from "react";
 import classNames from "classnames";
 import AngleDown from "assets/angle-down-solid.svg";
-let itemsarr = [
-  "Allergist",
-  "Dermatologist",
-  "Infectious disease",
-  "Ophthalmologists"
-];
-export default function CustomSelector({ input, placeholder = "select", items = itemsarr }: any) {
+import { ClassNames } from "@emotion/react";
+
+type props = {
+  placeholder: string
+  items: string[]
+  input: any
+}
+export default function CustomSingleSelector({ input, placeholder = "select", items }: props) {
   let [menu, openMenu] = React.useState(false);
+  let [activeLi, changeActiveLi] = React.useState<null | number>(null)
   let ref = React.useRef<HTMLDivElement>(null!);
   return (
     <>
@@ -31,6 +33,7 @@ export default function CustomSelector({ input, placeholder = "select", items = 
             "!max-h-[200px]": menu,
             "!overflow-y-auto": menu,
             "!border-transparent": !menu,
+            "mb-4": menu
           }
         )}
       >
@@ -38,30 +41,21 @@ export default function CustomSelector({ input, placeholder = "select", items = 
           {items.map((item: string, index: number) => (
             <li
               key={index}
-              className="px-4 mb-2 hover:bg-layout-secondary py-2 w-full"
+              className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-primary": index == activeLi, "mb-2": !(index == items.length - 1) })}
               onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
                 let selected = ref.current.innerHTML;
-                if (selected === placeholder) {
-                  ref.current.innerHTML = item;
-                  input.onChange(ref.current.innerHTML.split("/"));
-                  console.log("case 1 done");
+                changeActiveLi(index)
+                if (selected == item) {
+                  ref.current.innerHTML = placeholder
+                  input.onChange("");
                 } else {
-                  if (selected.split("/").indexOf(item) !== -1) {
-                    ref.current.innerHTML = selected
-                      .split(" / ")
-                      .filter((e: string) => e !== item)
-                      .join("/");
-                    input.onChange(ref.current.innerHTML);
-                    if (!ref.current.innerHTML) {
-                      ref.current.innerHTML = placeholder;
-                      input.onChange("");
-                    }
-                  } else {
-                    ref.current.innerHTML = `${ref.current.innerHTML}/${item}`;
-                    input.onChange(ref.current.innerHTML.split("/"));
-                  }
+                  ref.current.innerHTML = item
+                  input.onChange(item);
                 }
-                ele.target.classList.toggle("!bg-primary");
+                if (activeLi == index) {
+                  ele.target.classList.toggle("!bg-primary")
+                }
+                openMenu(!menu)
               }}
             >
               {item}

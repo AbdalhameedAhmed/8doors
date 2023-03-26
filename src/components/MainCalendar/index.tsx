@@ -90,19 +90,9 @@ const MainCalendar = () => {
         nowIndicator={true}
         editable={true}
         selectable={true}
-        selectMirror={true}
-        // initialEvents={events}
+        selectMirror={true}         
         events={events}
       />
-      <button onClick={() => {
-        changeEvents([...events, {
-          id: "6",
-          title: "nice event5",
-          start: "2023-03-24 07:30",
-          display: "block",
-          backgroundColor: "green",
-        }])
-      }}>click me add event</button>
     </>
   );
 };

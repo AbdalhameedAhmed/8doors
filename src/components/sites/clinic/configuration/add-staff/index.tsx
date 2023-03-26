@@ -2,11 +2,11 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { CustomInput } from "components/shared/customInput";
 import CustomBtn from "components/shared/button/CustomBtn";
-import CustomSelector from "components/shared/customSelector";
+import CustomSelector from "components/shared/customMultipleSelector";
+import CustomSSelector from "components/shared/customSingleSelector";
 export const AddStaff = () => {
   const onSubmit = async (values: any, form: any) => {
     window.alert(values);
-    console.log(values);
   };
   return (
     <Form
@@ -14,6 +14,7 @@ export const AddStaff = () => {
       validate={(values) => {
         const errors: any = {};
         const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        const validTel = /^[0-9]*$/
         if (!values.name) {
           errors.name = "This field is required";
         }
@@ -24,6 +25,8 @@ export const AddStaff = () => {
         }
         if (!values.tel) {
           errors.tel = "This field is required";
+        } else if (!values.tel.match(validTel)) {
+          errors.tel = "Only numbers is required";
         }
         if (!values.speciality) {
           errors.speciality = "This field is required";
@@ -69,10 +72,26 @@ export const AddStaff = () => {
                 />
               )}
             </Field>
+            <Field name="speciality single" component="select">
+              {({ input, meta }) => (
+                <>
+                  <CustomSSelector input={input} placeholder="Gender" items={["male", "female"]} />
+                  {meta.error && meta.touched && (
+                    <p className="text-red-500 text-sm mt-2">{meta.error}</p>
+                  )}
+                </>
+              )}
+            </Field>
             <Field name="speciality" component="select">
               {({ input, meta }) => (
                 <>
-                  <CustomSelector input={input} placeholder="select role/s" />
+                  <CustomSelector input={input} placeholder="select role/s"
+                    items={[
+                      "Allergist",
+                      "Dermatologist",
+                      "Infectious disease",
+                      "Ophthalmologists"
+                    ]} />
                   {meta.error && meta.touched && (
                     <p className="text-red-500 text-sm mt-2">{meta.error}</p>
                   )}

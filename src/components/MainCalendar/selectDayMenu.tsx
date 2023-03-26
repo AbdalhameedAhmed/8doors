@@ -9,7 +9,6 @@ type props = {
   dayData: Object | any
 }
 
-
 export default function SelectDayMenu({
   isvisible,
   visiblestate,
@@ -19,42 +18,42 @@ export default function SelectDayMenu({
   let menuBackground = "#3788d8";
   let left = 0;
   let top = 0;
+  let width = 448;
+  let height = 517;
 
-  if (dayData) {
-    left = dayData.dayEl.getBoundingClientRect().x;
-    top =
-      dayData.dayEl.getBoundingClientRect().y +
-      dayData.dayEl.getBoundingClientRect().height;
-    console.log(dayData);
-    if (dayData.dateStr.length > 10) {
-      top = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y
-        + dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().height;
-    }
-  }
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
     window.innerHeight,
   ]);
+
+  if (dayData) {
+    left = dayData.dayEl.getBoundingClientRect().x - width;
+    top =
+      dayData.dayEl.getBoundingClientRect().y
+      - dayData.dayEl.getBoundingClientRect().y / 2
+
+    if (dayData.dateStr.length > 10) {
+      top = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y
+        - dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y / 2;
+    }
+  }
   useOnClickOutside(ref, () => {
     smoothClose();
   });
   function handelMenu() {
-    let width = 161;
-    let height = 136;
 
     if (dayData) {
-      if (windowSize[0] - dayData.dayEl.getBoundingClientRect().x < width) {
+      if (dayData.dayEl.getBoundingClientRect().x < width) {
         left =
-          dayData.dayEl.getBoundingClientRect().x -
-          width +
-          dayData.dayEl.getBoundingClientRect().width;
+          dayData.dayEl.getBoundingClientRect().x + dayData.dayEl.getBoundingClientRect().width
       }
-      if (windowSize[1] - dayData.dayEl.getBoundingClientRect().y < height) {
+      if (height - (dayData.dayEl.getBoundingClientRect().y - top) > windowSize[1] - dayData.dayEl.getBoundingClientRect().y && dayData.dateStr.length <= 10) {
         top = dayData.dayEl.getBoundingClientRect().y - height;
+
       }
       if (dayData.dateStr.length > 10) {
-        if (windowSize[1] - dayData.jsEvent.clientY < height) {
-          top = dayData.jsEvent.clientY - height;
+        if (height - (dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y - top) > windowSize[1] - dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y) {
+          console.log("this done so colosd");
           top = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y
             - height
         }
@@ -62,8 +61,10 @@ export default function SelectDayMenu({
     }
   }
   handelMenu();
+  console.log("top is", top);
+  console.log("height is", windowSize[1])
   function smoothClose() {
-    ref.current.classList.remove("!opacity-100", "!translate-y-0");
+    ref.current.classList.remove("!opacity-100", "!translate-x-0");
     setTimeout(() => {
       visiblestate(false);
     }, 300);
@@ -73,7 +74,7 @@ export default function SelectDayMenu({
       setWindowSize([window.innerWidth, window.innerHeight]);
     };
     if (isvisible && ref.current) {
-      ref.current.classList.add("!opacity-100", "!translate-y-0");
+      ref.current.classList.add("!opacity-100", "!translate-x-0");
     }
     window.addEventListener("resize", handleWindowResize);
     console.log("ref is", ref);
@@ -95,7 +96,7 @@ export default function SelectDayMenu({
         <div
           ref={ref}
           className={classNames(
-            `fixed z-50 top-0 px-4 py-2 pb-4 transition-all duration-500 -translate-y-full opacity-0 rounded-lg shadow-2xl left-0`
+            `fixed flex flex-wrap items-start flex-wrap z-50 content-between w-[448px] h-[517px] top-0 p-8 pb-4 transition-all duration-500 translate-x-[60px] opacity-0 rounded-lg shadow-2xl left-0`
           )}
           style={{
             left: left,
@@ -103,10 +104,12 @@ export default function SelectDayMenu({
             backgroundColor: menuBackground,
           }}
         >
-          <h2 className="text-2xl ">{dayData.dateStr.slice(0, 10)}</h2>
-          <h2 className="text-lg mb-4">{dayData.dateStr.slice(11, 19)}</h2>
+          <div className="w-full">
+            <h2 className="text-2xl ">{dayData.dateStr.slice(0, 10)}</h2>
+            <h2 className="text-lg mb-4">{dayData.dateStr.slice(11, 19)}</h2>
+          </div>
           <CustomBtn
-            className={`ml-auto !block !mt-12]`}
+            className={`ml-auto !block mb-4`}
             onClick={() => {
               smoothClose();
             }}
