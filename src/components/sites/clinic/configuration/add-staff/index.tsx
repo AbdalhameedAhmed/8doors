@@ -13,7 +13,7 @@ export const AddStaff = () => {
       onSubmit={onSubmit}
       validate={(values) => {
         const errors: any = {};
-        const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
         const validTel = /^[0-9]*$/
         if (!values.name) {
           errors.name = "This field is required";

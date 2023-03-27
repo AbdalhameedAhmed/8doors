@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { generate } from "randomized-string";
 import classNames from "classnames";
+import { useDispatch } from "react-redux";
+import { addUser } from "redux/slices/clinic/authSlice"
 import { useRouter } from "next/router";
 import Logo from "../../assets/logo.svg";
 import { CustomInput } from "components/shared";
@@ -13,6 +15,7 @@ import { SignupFormData } from "types";
 
 function SignUp() {
   const { t } = useTranslation("common");
+  const dispatch = useDispatch()
   // const {
   //   control,
   //   handleSubmit,
@@ -21,12 +24,12 @@ function SignUp() {
   const router = useRouter();
   // const dispatch = useDispatch();
   // const [error, setError] = useState('');
-  const onSubmit = async (data: any) => {
+  const onSubmit = (values: any) => {
     // delete data.confirmPassword;
     // await register(data)
     // // dispatch(addAccount(user));
+    dispatch(addUser({ username: values.username, password: values.password }))
     // router.push('/login');
-    window.alert("done");
   };
   return (
     <>
@@ -44,11 +47,14 @@ function SignUp() {
           onSubmit={onSubmit}
           validate={(values) => {
             const errors: any = {};
+            const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             if (!values.username) {
               errors.username = "This field is required";
             }
             if (!values.email) {
               errors.email = "This field is required";
+            } else if (!values.email.match(validEmail)) {
+              errors.email = "Please include an @ in the email address then add more letters";
             }
             if (!values.password) {
               errors.password = "This field is required";
@@ -56,7 +62,7 @@ function SignUp() {
             if (!values.confirm) {
               errors.confirm = "This field is required";
             } else if (values.password !== values.confirm) {
-              errors.confirm = "Must Match";
+              errors.confirm = "the password and the confirm password must be the same";
             }
             if (!values.terms) {
               errors.terms = "accept the terms";
@@ -92,7 +98,7 @@ function SignUp() {
                         `signin-signout-input w-full rounded-lg `,
                         { "!border-red-500": meta.error && meta.touched }
                       )}
-                      type="email"
+                      type="text"
                       error={meta.error}
                       touched={meta.touched}
                       {...input}

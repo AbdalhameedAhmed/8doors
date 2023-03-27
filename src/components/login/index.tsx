@@ -11,16 +11,14 @@ import CustomBtn from "components/shared/button/CustomBtn";
 import { login } from "api";
 import { useGetPetQuery, api } from "redux/services/clinic/auth";
 import { isMetaProperty } from "typescript";
-
+import { checkauth } from "redux/slices/clinic/authSlice"
 function SignIn() {
   const { t } = useTranslation("common");
 
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const router = useRouter();
-  console.log(router.pathname);
-  console.log(router.asPath);
-  console.log(router.query);
+
   //@ts-ignore
 
   // const  [ trigger, { data } ] = api.endpoints.getPet.useLazyGetPetQuery()
@@ -28,9 +26,8 @@ function SignIn() {
 
   const [trigger, { data }] = api.useLazyGetPetQuery();
 
-  const onSubmit = async (values: any) => {
-    localStorage.setItem("token", "success")
-    router.push("/dashboard")
+  const onSubmit = (values: any) => {
+    dispatch(checkauth({ username: values.username, password: values.password }))
   };
 
   return (
