@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import useOnClickOutside from "hooks/useOnClickOutside";
+import { AddStaff } from "components/sites/clinic/configuration";
 import MainAnimation from "../mainAnimation";
 
 type props = {
   openModal: boolean
   changeModalState: Function
   title: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 export default function Modal({
   openModal,
@@ -50,7 +51,7 @@ export default function Modal({
                 <h3 className="text-3xl font-semibold text-primary">{title}</h3>
               </div>
               {/*body*/}
-              {children}
+              <AddStaff closeModal={closeModal} />
             </div>
           </MainAnimation>
         </div>

@@ -1,19 +1,20 @@
 import React from "react"
-import { useRouter } from 'next/router';
+import RedirectPage from "./redirectPage"
 
 type props = {
     children: React.ReactNode
 }
 
 export default function ProtectedRoute({ children }: props) {
-    const router = useRouter()
+
+    const [isAuth, changeAuthState] = React.useState(false)
     React.useEffect(() => {
         const token = localStorage.getItem("token")
-        if (token !== process.env.NEXT_PUBLIC_token) {
-            router.push("/login")
+        if (token === process.env.NEXT_PUBLIC_token) {
+            changeAuthState(true)
         }
     }, [])
 
 
-    return (<>{children}</>)
+    return isAuth ? <>{children}</> : <RedirectPage />
 }

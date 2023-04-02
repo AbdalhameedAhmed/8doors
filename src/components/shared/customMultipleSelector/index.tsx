@@ -2,26 +2,35 @@ import React from "react";
 import classNames from "classnames";
 import AngleDown from "assets/angle-down-solid.svg";
 import Check from "assets/check-solid.svg"
+import useOnClickOutside from "hooks/useOnClickOutside"
 type props = {
   placeholder: string
   items: string[]
   input: any
+  inputStyle?: string
+  menuStyle?: string
+  dirtyFields?: any
+  error?: string | number | any;
+  touched?: string | number | any;
+  errorActive?: string
 }
-export default function CustomSelector({ input, placeholder = "select", items }: props) {
+export default function CustomSelector({ input, errorActive, placeholder = "select", items, inputStyle, menuStyle, error, touched }: props) {
   let [menu, openMenu] = React.useState(false);
-  let ref = React.useRef<HTMLDivElement>(null!);
+  let inputTitleRef = React.useRef<HTMLDivElement>(null!);
+  let menuRef = React.useRef<HTMLDivElement>(null!);
+  useOnClickOutside(menuRef, () => openMenu(false));
   return (
     <>
       <div
         className={classNames(
-          "mt-1 cursor-pointer flex justify-between items-center mb-4 px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
-          { "border-sky-500": menu, "ring-sky-500": menu, "ring-1": menu }
+          "cursor-pointer flex justify-between items-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
+          { "border-sky-500": menu, "ring-sky-500": menu, "ring-1": menu, "!mb-4": menu }, inputStyle
         )}
         onClick={() => {
           openMenu(!menu);
         }}
       >
-        <p ref={ref}>{placeholder}</p>
+        <p ref={inputTitleRef}>{placeholder}</p>
         <AngleDown width={13} height={13} />
       </div>
       <div
@@ -32,8 +41,10 @@ export default function CustomSelector({ input, placeholder = "select", items }:
             "!overflow-y-auto": menu,
             "!border-transparent": !menu,
             "mb-4": menu
-          }
+          },
+          menuStyle
         )}
+        ref={menuRef}
       >
         <ul className="w-full">
           {items.map((item: string, index: number) => {
@@ -42,24 +53,24 @@ export default function CustomSelector({ input, placeholder = "select", items }:
                 key={index}
                 className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "mb-2": !(index == items.length - 1) })}
                 onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
-                  let selected = ref.current.innerHTML;
+                  let selected = inputTitleRef.current.innerHTML;
                   if (selected === placeholder) {
-                    ref.current.innerHTML = item;
-                    input.onChange(ref.current.innerHTML.split("/"));
+                    inputTitleRef.current.innerHTML = item;
+                    input.onChange(inputTitleRef.current.innerHTML.split("/"));
                   } else {
                     if (selected.split("/").indexOf(item) !== -1) {
-                      ref.current.innerHTML = selected
+                      inputTitleRef.current.innerHTML = selected
                         .split("/")
                         .filter((e: string) => e !== item)
                         .join("/");
-                      input.onChange(ref.current.innerHTML);
-                      if (!ref.current.innerHTML) {
-                        ref.current.innerHTML = placeholder;
+                      input.onChange(inputTitleRef.current.innerHTML);
+                      if (!inputTitleRef.current.innerHTML) {
+                        inputTitleRef.current.innerHTML = placeholder;
                         input.onChange("");
                       }
                     } else {
-                      ref.current.innerHTML = `${ref.current.innerHTML}/${item}`;
-                      input.onChange(ref.current.innerHTML.split("/"));
+                      inputTitleRef.current.innerHTML = `${inputTitleRef.current.innerHTML}/${item}`;
+                      input.onChange(inputTitleRef.current.innerHTML.split("/"));
                     }
                   }
                   ele.target.classList.toggle("!text-primary");
@@ -77,6 +88,7 @@ export default function CustomSelector({ input, placeholder = "select", items }:
           )}
         </ul>
       </div>
+      {error && touched && errorActive === input.name && <p className={`text-red-500 text-sm mt-2`}>{error}</p>}
     </>
   );
 }

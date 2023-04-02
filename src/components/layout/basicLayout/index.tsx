@@ -4,6 +4,7 @@ import ClinicSidenav from "components/sidenav/ClinicSidenav";
 import useWindowSize from "hooks/useWindowSize";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import ProtectedRoute from "components/protectedRoute"
 type Props = {
   children?: React.ReactNode;
   showModal?: boolean;
@@ -22,29 +23,32 @@ function BasicLayout({
   const router = useRouter();
   const { pathname, asPath, query } = router;
   return (
-    <div className="w-screen">
-      {asPath === "/dashboard" ? (
-        <ClinicSidenav toggle={toggle} setToggle={setToggle} />
-      ) : (
-        <SideNav toggle={toggle} setToggle={setToggle} />
-      )}
-      <div
-        className="layout"
-        style={{
-          marginLeft: width > 1184 && router.locale !== "ar" ? "250px" : 0,
-          backgroundColor: "#fff",
-          marginRight: width > 1184 && router.locale === "ar" ? "250px" : 0,
-        }}
-      >
-        <Navbar
-          setToggle={setToggle}
-          showModal={showModal}
-          handelModalState={handelModalState}
-          showModalButton={showModalButton}
-        />
-        {children}
+    <ProtectedRoute>
+
+      <div className="w-screen">
+        {asPath === "/dashboard" ? (
+          <ClinicSidenav toggle={toggle} setToggle={setToggle} />
+        ) : (
+          <SideNav toggle={toggle} setToggle={setToggle} />
+        )}
+        <div
+          className="layout"
+          style={{
+            marginLeft: width > 1184 && router.locale !== "ar" ? "250px" : 0,
+            backgroundColor: "#fff",
+            marginRight: width > 1184 && router.locale === "ar" ? "250px" : 0,
+          }}
+        >
+          <Navbar
+            setToggle={setToggle}
+            showModal={showModal}
+            handelModalState={handelModalState}
+            showModalButton={showModalButton}
+          />
+          {children}
+        </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 }
 

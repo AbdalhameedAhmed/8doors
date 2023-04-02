@@ -37,6 +37,9 @@ module.exports = {
         primary: 'var(--background-primary)',
         secondary: 'var(--background-secondary)',
       },
+      backgroundImage: {
+        doctor: "url('../src/assets/mainBg.jpg')"
+      },
       keyframes: {
         wiggle: {
           '0%, 100%': 'bg-white',

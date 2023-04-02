@@ -12,10 +12,22 @@ import { CustomInput } from "components/shared";
 import CustomBtn from "components/shared/button/CustomBtn";
 import { register } from "api";
 import { SignupFormData } from "types";
-
+import { fromValdate } from "./formValidate"
 function SignUp() {
   const { t } = useTranslation("common");
   const dispatch = useDispatch()
+  const [submit, isSubmitTime] = React.useState(false)
+  const [activeList, changeActiveList] = React.useState<Array<string>>([])
+  const [activeInput, changeActiveInput] = React.useState("username")
+  const [errorActive, changeErrorActive] = React.useState("")
+  const isFieldActive = (name: string) => {
+    let isActive = activeList.find((activeInput) => activeInput === name)
+    if (isActive) {
+      return true
+    } else {
+      return false
+    }
+  }
   // const {
   //   control,
   //   handleSubmit,
@@ -41,130 +53,140 @@ function SignUp() {
           {" "}
           {t("signup.signup")}{" "}
         </h1>
-        <h4 className="text-white text-center">Register new membership</h4>
-
+        <h4 className="text-white text-center mb-8">Register new membership</h4>
+        <div className="flex justify-center gap-4 mb-4 items-center">
+          <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("username") })}></div>
+          <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("email") })}></div>
+          <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("password") })}></div>
+          <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("confirm") })}></div>
+        </div>
         <Form
           onSubmit={onSubmit}
           validate={(values) => {
-            const errors: any = {};
-            const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-            if (!values.username) {
-              errors.username = "This field is required";
-            }
-            if (!values.email) {
-              errors.email = "This field is required";
-            } else if (!values.email.match(validEmail)) {
-              errors.email = "Please include an @ in the email address then add more letters";
-            }
-            if (!values.password) {
-              errors.password = "This field is required";
-            }
-            if (!values.confirm) {
-              errors.confirm = "This field is required";
-            } else if (values.password !== values.confirm) {
-              errors.confirm = "the password and the confirm password must be the same";
-            }
-            if (!values.terms) {
-              errors.terms = "accept the terms";
-            }
-
-            return errors;
+            return fromValdate(values, isSubmitTime)
           }}
-          render={({ handleSubmit, submitting }) => (
+          render={({ handleSubmit, dirtyFields, submitting, modified, errors }: any) => (
             <form onSubmit={handleSubmit}>
-              <Field name="username">
-                {({ input, meta }) => (
-                  <>
-                    <CustomInput
-                      placeholder={t("signup.userName")}
-                      className={classNames(
-                        `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error && meta.touched }
-                      )}
-                      type="text"
-                      error={meta.error}
-                      touched={meta.touched}
-                      {...input}
-                    />
-                  </>
-                )}
-              </Field>
-              <Field name="email">
-                {({ input, meta }) => (
-                  <>
-                    <CustomInput
-                      placeholder={t("signup.email")}
-                      className={classNames(
-                        `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error && meta.touched }
-                      )}
-                      type="text"
-                      error={meta.error}
-                      touched={meta.touched}
-                      {...input}
-                    />
-                  </>
-                )}
-              </Field>
-              <Field name="password">
-                {({ input, meta }) => (
-                  <>
-                    <CustomInput
-                      placeholder={t("signup.password")}
-                      className={classNames(
-                        `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error && meta.touched }
-                      )}
-                      type="password"
-                      error={meta.error}
-                      touched={meta.touched}
-                      {...input}
-                    />
-                  </>
-                )}
-              </Field>
-              <Field name="confirm">
-                {({ input, meta }) => (
-                  <>
-                    <CustomInput
-                      placeholder={t("signup.confirmPassword")}
-                      className={classNames(
-                        `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error && meta.touched }
-                      )}
-                      type="password"
-                      error={meta.error}
-                      touched={meta.touched}
-                      {...input}
-                    />
-                  </>
-                )}
-              </Field>
-              <div className="flex items-center mt-5 justify-center">
-                <Field name="terms" type="checkbox">
+              <div className="relative">
+                <Field name="username">
                   {({ input, meta }) => (
                     <>
-                      <input
-                        type="checkbox"
-                        className={classNames(`mr-3`, {
-                          "ring-red-500 ": meta.error && meta.touched,
-                        })}
+                      <CustomInput
+                        placeholder={"Username"}
+                        className={classNames(
+                          `signin-signout-input w-full rounded-lg `,
+                          { "!border-red-500": meta.error && meta.touched }
+                        )}
+                        type="text"
+                        errorActive={errorActive}
+                        error={meta.error}
+                        touched={meta.touched}
+                        containerStyle={classNames("absolute w-full transition-all duration-300 opacity-100 mt-0 top-0 left-0", { "!opacity-0": activeInput !== input.name, "!-z-10": activeInput !== input.name })}
+                        isFirst={true}
+                        dirtyFields={dirtyFields}
                         {...input}
                       />
                     </>
                   )}
                 </Field>
+                <Field name="email">
+                  {({ input, meta }) => (
+                    <>
+                      <CustomInput
+                        placeholder={"Email"}
+                        className={classNames(
+                          `signin-signout-input w-full rounded-lg `,
+                          { "!border-red-500": meta.error && meta.touched && (dirtyFields[input.name]) }
+                        )}
+                        type="text"
+                        errorActive={errorActive}
+                        error={meta.error}
+                        dirtyFields={dirtyFields}
+                        touched={meta.touched}
+                        containerStyle={classNames("absolute w-full transition-all duration-300 opacity-0 -z-10 mt-0 top-0 left-0", { "!opacity-100": activeInput == input.name, "!z-10": activeInput == input.name })}
+                        {...input}
+                      />
+                    </>
+                  )}
+                </Field>
+                <Field name="password">
+                  {({ input, meta }) => (
+                    <>
+                      <CustomInput
+                        placeholder={"Password"}
+                        className={classNames(
+                          `signin-signout-input w-full rounded-lg `,
+                          { "!border-red-500": meta.error && meta.touched && (dirtyFields[input.name]) }
+                        )}
+                        type="password"
+                        dirtyFields={dirtyFields}
+                        errorActive={errorActive}
+                        error={meta.error}
+                        touched={meta.touched}
+                        containerStyle={classNames("absolute w-full transition-all duration-300 opacity-0 -z-10 mt-0 top-0 left-0", { "!opacity-100": activeInput == input.name, "!z-10": activeInput == input.name })}
+                        {...input}
+                      />
+                    </>
+                  )}
+                </Field>
+                <Field name="confirm">
+                  {({ input, meta }) => (
+                    <>
+                      <CustomInput
+                        placeholder={"Confirm"}
+                        className={classNames(
+                          `signin-signout-input w-full rounded-lg `,
+                          { "!border-red-500": meta.error && meta.touched && (dirtyFields[input.name]) }
+                        )}
+                        type="password"
+                        errorActive={errorActive}
+                        error={meta.error}
+                        containerStyle={classNames("absolute w-full transition-all duration-300 opacity-100 mt-0 top-0 left-0", { "!opacity-0": activeInput !== input.name, "!-z-10": activeInput !== input.name })}
+                        touched={meta.touched}
+                        dirtyFields={dirtyFields}
+                        {...input}
+                      />
+                    </>
+                  )}
+                </Field>
+                {/* <div className="flex items-center mt-5 justify-center">
+                <Field name="terms" type="checkbox">
+                {({ input, meta }) => (
+                  <>
+                  <input
+                  type="checkbox"
+                        className={classNames(`mr-3`, {
+                          "ring-red-500 ": meta.error && meta.touched,
+                        })}
+                        {...input}
+                        />
+                    </>
+                  )}
+                </Field>
                 <p className="text-white">
-                  I read and agree to the <u>terms of usage</u>{" "}
+                I read and agree to the <u>terms of usage</u>{" "}
                 </p>
+              </div> */}
               </div>
               <CustomBtn
                 fit={true}
                 type="submit"
                 disabled={submitting}
-                className="py-4 mt-8 bg-sky-500/100"
+                className="py-4 mt-12 mt-36 bg-sky-500/100"
+                onClick={() => {
+                  let inputs = Object.keys(modified)
+                  inputs.forEach((key, index) => {
+                    if (activeInput === key && errors[key]) {
+                      changeErrorActive(key)
+                    }
+                    if (!errors[key]) {
+                      changeActiveInput(inputs[index + 1])
+                      changeActiveList([...activeList, key])
+                    }
+                  })
+                }}
               >
-                {t("signup.signup")}
+                {submit ? t("signup.signup") : "Next"}
               </CustomBtn>
             </form>
           )}
