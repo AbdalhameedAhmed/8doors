@@ -3,15 +3,17 @@ import useWindowSize from "hooks/useWindowSize";
 import React, { useRef } from "react";
 import styles from "./style.module.css";
 import Doctor from "../../assets/doctor.svg";
-import { mainMenuItems } from "./utils";
+import { menuItemsType } from "./utils";
+import {dashboardItemsType} from "./dashboardUtils"
 import { RenderMenuItems } from "./menuRenderer";
 import classNames from "classnames";
 type SideNavProps = {
   toggle: boolean;
   setToggle: Function;
+  sideNavItems:menuItemsType | dashboardItemsType
 };
 
-function SideNav({ toggle, setToggle }: SideNavProps) {
+function SideNav({ toggle, setToggle,sideNavItems }: SideNavProps) {
   const { width } = useWindowSize();
   const ref = useRef(null);
   useOnClickOutside(ref, () => setToggle(false));
@@ -36,7 +38,7 @@ function SideNav({ toggle, setToggle }: SideNavProps) {
           <h2 className="text-center text-calendar">Dr. Dagi</h2>
           <h5 className="text-center text-calendar">Neurologist</h5>
         </div>
-        <RenderMenuItems list={mainMenuItems} />
+        <RenderMenuItems list={sideNavItems} />
       </div>
     </div>
   );

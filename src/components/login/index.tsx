@@ -6,12 +6,12 @@ import { useRouter } from "next/router";
 import { Form, Field } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../assets/logo.svg";
-import { CustomInput } from "components/shared";
+import LoginInput from "./LoginInput";
+import PasswordInput from "./PasswordInput";
 import CustomBtn from "components/shared/button/CustomBtn";
-import { login } from "api";
 import { useGetPetQuery, api } from "redux/services/clinic/auth";
 import { isMetaProperty } from "typescript";
-import { checkauth } from "redux/slices/clinic/authSlice"
+import { login } from "redux/slices/clinic/authSlice"
 function SignIn() {
   const { t } = useTranslation("common");
 
@@ -27,7 +27,7 @@ function SignIn() {
   const [trigger, { data }] = api.useLazyGetPetQuery();
 
   const onSubmit = (values: any) => {
-    dispatch(checkauth({ username: values.username, password: values.password }))
+    dispatch(login({ username: values.username, password: values.password }))
   };
 
   return (
@@ -59,7 +59,7 @@ function SignIn() {
               <Field name="username">
                 {({ input, meta }) => (
                   <>
-                    <CustomInput
+                    <LoginInput
                       label=""
                       placeholder={t("signup.email")}
                       className={classNames(
@@ -77,9 +77,8 @@ function SignIn() {
               <Field name="password">
                 {({ input, meta }) => (
                   <>
-                    <CustomInput
+                    <PasswordInput
                       placeholder={t("signin.password")}
-                      type="password"
                       className={classNames(
                         `signin-signout-input w-full rounded-lg `,
                         { "!border-red-500": meta.error && meta.touched }

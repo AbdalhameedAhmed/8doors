@@ -7,6 +7,6 @@ export const register = (data: SignupFormData) => {
     return axios.post(`${baseURL}/v1/account/register`, data)
 }
 
-export const login = (data: LoginFormData) => {
+export const apilogin = (data: LoginFormData) => {
     return axios.post(`${baseURL}/v1/authenticate`, data)
 }

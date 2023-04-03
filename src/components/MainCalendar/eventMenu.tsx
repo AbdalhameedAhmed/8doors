@@ -12,8 +12,11 @@ type props = {
 export default function EventMenu({ isvisible, eventData, visiblestate }: props) {
   let ref = React.useRef<HTMLDivElement>(null!);
   let menuBackground = "";
+  let width = 448;
+  let height = 197;
   let left = 0;
   let top = 0;
+
   // let [width,setWidth] = React.useState(0)
   // let [height,setHeight] = React.useState(0)
   if (eventData) {
@@ -35,8 +38,6 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
     smoothClose();
   });
   function handelMenu() {
-    let width = 448;
-    let height = 200;
     if (eventData) {
       if (windowSize[0] - eventData.el.getBoundingClientRect().x < width) {
         left =
@@ -50,7 +51,7 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
     }
   }
   function smoothClose() {
-    ref.current.classList.remove("!opacity-100", "!translate-y-0");
+    ref.current.classList.remove( `!max-h-[200px]`,"py-2");
     setTimeout(() => {
       visiblestate(false);
     }, 300);
@@ -60,12 +61,9 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
     };
-    ref.current?.classList.add("!opacity-100", "!translate-y-0");
+    ref.current?.classList.add( `!max-h-[200px]`,"py-2");
 
     window.addEventListener("resize", handleWindowResize);
-    // console.log(ref.current?.getBoundingClientRect().width)
-    // setWidth(ref.current?.getBoundingClientRect().width)
-    // setHeight(ref.current?.getBoundingClientRect().height)
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
@@ -84,7 +82,7 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
           <div
             ref={ref}
             className={classNames(
-              `fixed z-50 top-0 pl-4 pr-8 w-[448px] h-[197px] py-2 transition-all duration-500 -translate-y-full opacity-0 rounded-lg shadow-2xl left-0`
+              `fixed z-50 top-0 pl-4 pr-8 w-[${width}px] h-[${height}px] transition-all max-h-0 overflow-hidden  duration-[500ms] rounded-lg shadow-2xl left-0`
             )}
             style={{
               left: left,

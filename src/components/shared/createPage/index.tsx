@@ -1,7 +1,4 @@
-import dynamic from "next/dynamic";
-const BasicLayout = dynamic(() => import("components/layout/basicLayout"), {
-  ssr: false,
-});
+import BasicLayout from "components/layout/basicLayout"
 interface Props {
   title?: string;
   children: React.ReactNode;

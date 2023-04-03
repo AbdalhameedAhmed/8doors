@@ -5,7 +5,7 @@ import Link from "next/link";
 import { generate } from "randomized-string";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
-import { addUser } from "redux/slices/clinic/authSlice"
+import { signup } from "redux/slices/clinic/authSlice"
 import { useRouter } from "next/router";
 import Logo from "../../assets/logo.svg";
 import { CustomInput } from "components/shared";
@@ -13,6 +13,7 @@ import CustomBtn from "components/shared/button/CustomBtn";
 import { register } from "api";
 import { SignupFormData } from "types";
 import { fromValdate } from "./formValidate"
+import { isAsyncThunkAction } from "@reduxjs/toolkit";
 function SignUp() {
   const { t } = useTranslation("common");
   const dispatch = useDispatch()
@@ -39,9 +40,8 @@ function SignUp() {
   const onSubmit = (values: any) => {
     // delete data.confirmPassword;
     // await register(data)
-    // // dispatch(addAccount(user));
-    dispatch(addUser({ username: values.username, password: values.password }))
-    // router.push('/login');
+    dispatch(signup({ username: values.username,email:values.email, password: values.password }))
+    router.push('/login');
   };
   return (
     <>

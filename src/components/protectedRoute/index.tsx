@@ -16,5 +16,5 @@ export default function ProtectedRoute({ children }: props) {
     }, [])
 
 
-    return isAuth ? <>{children}</> : <RedirectPage />
+    return isAuth ? <>{children}</> : null
 }

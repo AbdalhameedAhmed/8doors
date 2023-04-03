@@ -1,8 +1,9 @@
 import Navbar from "components/navbar";
 import SideNav from "components/sidenav";
-import ClinicSidenav from "components/sidenav/ClinicSidenav";
 import useWindowSize from "hooks/useWindowSize";
 import { useRouter } from "next/router";
+import { mainMenuItems,menuItemsType} from "components/sidenav/utils"
+import { dashboardItems,dashboardItemsType} from "components/sidenav/dashboardUtils"
 import React, { useState } from "react";
 import ProtectedRoute from "components/protectedRoute"
 type Props = {
@@ -18,19 +19,27 @@ function BasicLayout({
   handelModalState,
   showModalButton = false,
 }: Props) {
+
   const [toggle, setToggle] = useState(false);
+  const [sidenavItems,changeSideNavItems] = useState<menuItemsType|dashboardItemsType>
+  (mainMenuItems)
+
   const { width } = useWindowSize();
   const router = useRouter();
-  const { pathname, asPath, query } = router;
+
+  const { asPath } = router;
+
+  React.useEffect(()=>{
+    asPath === "/dashboard" && changeSideNavItems(dashboardItems)
+  },[asPath])
+
   return (
     <ProtectedRoute>
 
       <div className="w-screen">
-        {asPath === "/dashboard" ? (
-          <ClinicSidenav toggle={toggle} setToggle={setToggle} />
-        ) : (
-          <SideNav toggle={toggle} setToggle={setToggle} />
-        )}
+        {   
+          <SideNav toggle={toggle} sideNavItems={sidenavItems} setToggle={setToggle} />
+        }
         <div
           className="layout"
           style={{

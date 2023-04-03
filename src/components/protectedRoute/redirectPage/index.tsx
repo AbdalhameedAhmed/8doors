@@ -21,7 +21,7 @@ export default function RedirectPage() {
                             type="submit"
                             className="py-4 mt-12 bg-sky-500/100"
                         >
-                            signin now
+                            Login now
                 </CustomBtn>
                     </Link>
                 </div>
