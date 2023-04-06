@@ -8,7 +8,8 @@ function Navbar({ signType, signOnClick = () => { } }: Props) {
   return (
     <div className="flex justify-between items-center">
       <div className="text-white">8door</div>
-      <div className="flex justify-evenly items-center">
+      <div className="flex justify-between gap-4 items-center">
+        {signType === "SIGN UP" && <h1 className="text-white">Don&apos;t have an account?</h1>}
         <button
           className={`py-[11px] px-[22px] btn rounded-lg bg-white`}
           onClick={signOnClick}

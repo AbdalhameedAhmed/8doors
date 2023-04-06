@@ -19,6 +19,7 @@ export default function InfoCard({ data, openModal, openConfirmModal }: any) {
       <div
         className="info-card overflow-hidden transform transition-300 relative w-full bg-secondary grid grid-rows-5 gap-0 shadow-lg rounded-xl"
         ref={ref}
+        key={data.id}
       >
         {/* card menu */}
         <MainAnimation

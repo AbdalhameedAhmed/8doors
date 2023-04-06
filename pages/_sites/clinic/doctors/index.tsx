@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Doctors() {
   return (
-    <Page title='Doctors Page' subTitle='sub-text' showSiderMenu>
+    <Page showSiderMenu>
       <Section title='Book Appointment' subtitle='Description text here...'>
         <div className='h-[100px] w-full bg-gray-lighter'>content 1</div>
         <div className='flex flex-wrap gap-x-2.5 mt-5'>

@@ -33,7 +33,8 @@
     --background-secondary:white;    /*important*/
     --layout-primary: #f4f6f9 ; /*important*/
     --layout-secondary: #F1F1F1 ; /*important*/
-
+    --scroll-color:#01d8da;
+    --scrollbar-track-color:#F1F1F1;
   }
   .dark{
     --text-primary:#38BDF8;          /*important*/
@@ -75,14 +76,14 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--layout-secondary);
+  background: var(--scrollbar-track-color);
   border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--text-primary);
+  background-color: var(--scroll-color);
   border-radius: 14px;
-  border: 3px solid var(--layout-secondary);
+  border: 3px solid var(--scrollbar-track-color);
 }
 .theme-slector {
   background-color: var(--background-primary);
@@ -117,7 +118,9 @@
 .sidenav::-webkit-scrollbar {
   display: none;
 }
-
+.min-h-inherit{
+  min-height: inherit;
+}
 ol,
 ul,
 menu {
@@ -205,16 +208,6 @@ ul {
 [dir='rtl'] .sidenav {
   left: unset;
   right: 0;
-}
-
-.section-heaeder::before {
-  background: var(--text-primary);
-  position: absolute;
-  width: 2px;
-  height: 18px;
-  left: -20px;
-  top: 3px;
-  content: '';
 }
 
 .stethoscopeBg {

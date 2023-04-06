@@ -51,7 +51,7 @@ function Navbar({
       >
         <div
           className={classNames(
-            "bg-primary flex justify-between w-full items-center px-4 h-20 shadow-md z-10 relative",
+            "bg-primary flex justify-between w-full items-center px-5 h-20 shadow-md z-10 relative",
             {
               "right-0": router.locale !== "ar",
               "left-0": router.locale === "ar",
@@ -66,7 +66,7 @@ function Navbar({
                 </button>
               )}
             </div>
-            <div className="flex justify-venter  items-center gap-4 mr-8">
+            <div className="flex justify-venter  items-center gap-4">
               <ThemeSelector />
               <IconWithMessage
                 visibleIcon={<ClosedDoor />}
@@ -78,17 +78,20 @@ function Navbar({
           </div>
         </div>
         {showSideHeader && (
-          <div className="p-[15px] bg-primary z-0 h-[66px] flex justify-between items-center pl-8 pr-12">
+          <div className="p-5 bg-primary z-0 h-[66px] flex justify-between items-center">
             <h2 className="text-xl text-secondary font-medium">{title}</h2>
             {showModalButton && (
+              <div className="mr-[4px]">
+
               <button
                 onClick={() => {
                   handelModalState && handelModalState(!showModal);
                 }}
                 className="modalBtn bg-primary border-[1px] py-[5px] text-secondary px-[20px] border-black rounded-lg overflow-visible inline-block touch-manipulation"
-              >
-                Add
+                >
+                Add staff
               </button>
+                </div>
             )}
           </div>
         )}

@@ -5,7 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 export default function ClinicPage() {
     return (
-        <Page title="Home Page" showSiderMenu>
+        <Page navbarTitle="Clinic Dashboard" showSiderMenu>
             <Section title="Book Appointment">
                 <MainCalendar />
             </Section>

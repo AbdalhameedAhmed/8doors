@@ -7,14 +7,10 @@ type props = {
 
 export default function ProtectedRoute({ children }: props) {
 
-    const [isAuth, changeAuthState] = React.useState(false)
-    React.useEffect(() => {
-        const token = localStorage.getItem("token")
-        if (token === process.env.NEXT_PUBLIC_token) {
-            changeAuthState(true)
-        }
-    }, [])
+    const token = localStorage.getItem("token")
 
+    console.log("render protected route");
+    
 
-    return isAuth ? <>{children}</> : null
+    return token === process.env.NEXT_PUBLIC_token ? <>{children}</> : <RedirectPage />
 }

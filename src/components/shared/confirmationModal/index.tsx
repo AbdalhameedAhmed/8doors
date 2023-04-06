@@ -37,20 +37,21 @@ export default function ConfirmationModal({
           {/*content*/}
           <MainAnimation startanimation={openModal}>
             <div
-              className={`ModalCard border-0 bg-secondary text-secondary p-12 pt-8 pb-16 rounded-2xl shadow-lg relative relative flex flex-col justify-center items-center transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
+              className={`ModalCard border-0 bg-secondary text-secondary p-12 py-8 rounded-2xl shadow-lg relative relative flex flex-col justify-evenly items-center transition-all ease-in-out duration-[200ms] sm:w-[500px] w-[700px] h-[450px] outline-none focus:outline-none`}
               ref={ref}
             >
               <div className="icon">
-                <DangerIcon className="w-32 h-32" />
+                <DangerIcon className="w-24 h-24" />
               </div>
-              <h1 className="text-4xl bold mt-8 font-semibold">
+              <div className="text-center">
+              <h1 className="text-3xl bold mb-4 font-semibold">
                 Are You Sure ?
               </h1>
-              <p className="text-xl bold mt-8">
+              <p className="text-xl bold">
                 Do You really want to delete this card?
               </p>
-              <p className="text-xl bold mt-2">This process cannot be undone</p>
-              <div className="btns flex justify-center items-center gap-8 mt-8">
+              </div>
+              <div className="btns flex justify-center items-center gap-8">
                 <CustomBtn
                   type="submit"
                   onClick={() => {

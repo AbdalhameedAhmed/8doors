@@ -18,7 +18,7 @@ export function UserTemplate({
   return (
     <div
       className={classNames(
-        'flex items-center gap-4 text-secondary px-[15px] py-[10px]',
+        'flex items-center gap-4 text-secondary',
         className
       )}
     >

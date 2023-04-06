@@ -1,5 +1,4 @@
 import { createSlice,createAsyncThunk  } from "@reduxjs/toolkit"
-import { users } from "redux/users/users"
 import router from "next/router"
 import {apilogin,register} from "api/index"
 import { SignupFormData } from "types"
@@ -27,7 +26,7 @@ export const signup = createAsyncThunk("users/signup",(data:SignupFormData)=>{
 })
 const usersSlice = createSlice({
     name: "users",
-    initialState: users,
+    initialState: [],
     reducers: {},
     extraReducers:(bulder)=>{
         bulder.addCase(login.fulfilled,(state,action)=>{

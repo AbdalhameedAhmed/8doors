@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useOnClickOutside from "hooks/useOnClickOutside";
 import { AddStaff } from "components/sites/clinic/configuration";
-import MainAnimation from "../mainAnimation";
+import MainAnimation from "components/shared/mainAnimation";
 
 type props = {
   openModal: boolean
@@ -18,16 +18,16 @@ export default function Modal({
   let [layout, setLayout] = useState(false);
   const ref = useRef(null);
 
-  useEffect(() => {
-    openModal && setLayout(true);
-  }, [openModal]);
-
   function closeModal() {
     changeModalState(false);
     setTimeout(() => {
       setLayout(false);
     }, 300);
   }
+  useEffect(() => {
+    openModal ?setLayout(true):closeModal()
+  }, [openModal]);
+
 
   useOnClickOutside(ref, () => openModal && closeModal());
 
@@ -51,7 +51,7 @@ export default function Modal({
                 <h3 className="text-3xl font-semibold text-primary">{title}</h3>
               </div>
               {/*body*/}
-              <AddStaff closeModal={closeModal} />
+            {children}
             </div>
           </MainAnimation>
         </div>

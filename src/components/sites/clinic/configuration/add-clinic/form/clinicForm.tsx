@@ -1,23 +1,22 @@
-import React from "react";
+import React from "react"
 import { Form, Field } from "react-final-form";
 import classNames from "classnames"
 import { CustomInput } from "components/shared/customInput";
 import CustomBtn from "components/shared/button/CustomBtn";
-import CustomSelector from "components/shared/customMultipleSelector";
-import CustomSSelector from "components/shared/customSingleSelector";
-import { fromValdate } from "./formValidate"
+import { formValdate } from "../formValidate"
+
 type props = {
   openModal: Function
 }
-export const AddStaff = ({ openModal }: props) => {
+export default function ClinicForm ({ openModal }: props){
   const [submit, isSubmitTime] = React.useState(false)
   const [activeList, changeActiveList] = React.useState<Array<string>>([])
-  const [activeInput, changeActiveInput] = React.useState("name")
+  const [activeInput, changeActiveInput] = React.useState("clinicName")
   const [errorActive, changeErrorActive] = React.useState("")
 
   const onSubmit = async (values: FormData) => {
     window.alert(values);
-    openModal(false)
+    openModal()
   };
   const isFieldActive = (name: string) => {
     let isActive = activeList.find((active) => active === name)
@@ -30,23 +29,22 @@ export const AddStaff = ({ openModal }: props) => {
   return (
     <>
       <div className="flex justify-center mt-8 gap-4 items-center">
-        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("name") })}></div>
-        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("email") })}></div>
-        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("tel") })}></div>
-        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("gender") })}></div>
-        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("speciality") })}></div>
+        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("clinicName") })}></div>
+        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("address") })}></div>
+        <div className={classNames("w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive("phone") })}></div>
       </div>
+
       <Form
         onSubmit={onSubmit}
         validate={(values) => {
-          return fromValdate(values, isSubmitTime)
+          return formValdate(values, isSubmitTime)
         }}
         render={({ handleSubmit, dirtyFields, modified, submitting, errors }: any) => (
           <form onSubmit={handleSubmit}>
             <div className="px-6 flex-auto  max-h-96 min-h-[150px] overflow-auto ">
               <div className={classNames("relative min-h-inherit overflow-hidden flex items-center py-5")}>
 
-                <Field name="name">
+              <Field name="clinicName">
                   {({ input, meta }) => (
                     <CustomInput
                       containerStyle={classNames("absolute w-full transition-all duration-300 opacity-100 mt-0 top-1/2 left-0 -translate-y-1/2", { "!opacity-0": activeInput !== input.name, "!-translate-y-full": activeInput !== input.name })}
@@ -64,7 +62,7 @@ export const AddStaff = ({ openModal }: props) => {
                     />
                   )}
                 </Field>
-                <Field name="email">
+                <Field name="address">
                   {({ input, meta }) => (
                     <CustomInput
                       type="text"
@@ -80,7 +78,7 @@ export const AddStaff = ({ openModal }: props) => {
                     />
                   )}
                 </Field>
-                <Field name="tel">
+                <Field name="phone">
                   {({ input, meta }) => (
                     <CustomInput
                       type="tel"
@@ -94,47 +92,6 @@ export const AddStaff = ({ openModal }: props) => {
                       containerStyle={classNames("absolute w-full transition-all duration-300 opacity-0 mt-0 top-1/2  left-0 translate-y-full", { "!opacity-100": activeInput == input.name, "!-translate-y-1/2": activeInput == input.name ,"!-translate-y-full":isFieldActive(input.name)})}
                       {...input}
                     />
-                  )}
-                </Field>
-                <Field name="gender" component="select">
-                  {({ input, meta }) => (
-                    <>
-                      <CustomSSelector
-                        input={input}
-                        placeholder="Gender"
-                        error={meta.error}
-                        dirtyFields={dirtyFields}
-                        touched={meta.touched}
-                        errorActive={errorActive}
-                        containerStyle={classNames("relative transition-all duration-300 translate-y-[200px] w-full",{"!-translate-y-0": activeInput == input.name ,"!-translate-y-[200px]":isFieldActive(input.name),"!absolute":isFieldActive(input.name)})}
-                        items={["male", "female"]}
-                        menuStyle={classNames({"hidden":!(activeInput == input.name)})}
-                        inputStyle={classNames("w-full transition-all opacity-0 duration-300", {"!opacity-100": activeInput == input.name} )}
-                      />
-                    </>
-                  )}
-                </Field>
-                <Field name="speciality" component="select">
-                  {({ input, meta }) => (
-                    <>
-                      <CustomSelector
-                        input={input}
-                        placeholder="select role/s"
-                        items={[
-                          "Allergist",
-                          "Dermatologist",
-                          "Infectious disease",
-                          "Ophthalmologists"
-                        ]}
-                        error={meta.error}
-                        dirtyFields={dirtyFields}
-                        errorActive={errorActive}
-                        touched={meta.touched}
-                        containerStyle={classNames("absolute top-1/2 left-0 transition-all duration-300 translate-y-[200px] w-full",{"!-translate-y-1/2": activeInput == input.name ,"!-translate-y-[200px]":isFieldActive(input.name),"!absolute":isFieldActive(input.name)})}
-                        menuStyle={classNames({"hidden":!(activeInput == input.name)})}
-                        inputStyle={classNames("w-full transition-all duration-300", {"!opacity-100": activeInput == input.name} )}
-                      />
-                    </>
                   )}
                 </Field>
               </div>
@@ -166,4 +123,4 @@ export const AddStaff = ({ openModal }: props) => {
       ></Form>
     </>
   );
-};
+}

@@ -1,8 +1,10 @@
 import React from "react";
+import { useRouter } from "next/router";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 export default function ClinicPage() {
-  return (
-    <h1>clinic</h1>
-  );
+  let router = useRouter()
+  React.useEffect(() => {
+    router.push("/dashboard")
+  }, [])
 }

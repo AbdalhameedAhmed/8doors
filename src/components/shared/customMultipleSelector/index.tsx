@@ -9,24 +9,28 @@ type props = {
   input: any
   inputStyle?: string
   menuStyle?: string
+  containerStyle?:string
   dirtyFields?: any
   error?: string | number | any;
   touched?: string | number | any;
   errorActive?: string
 }
-export default function CustomSelector({ input, errorActive, placeholder = "select", items, inputStyle, menuStyle, error, touched }: props) {
+export default function CustomSelector({ input, errorActive,containerStyle, placeholder = "select", items, inputStyle, menuStyle, error, touched }: props) {
   let [menu, openMenu] = React.useState(false);
+  let [inputPosition, positionValue] = React.useState("");
+
   let inputTitleRef = React.useRef<HTMLDivElement>(null!);
   let menuRef = React.useRef<HTMLDivElement>(null!);
   useOnClickOutside(menuRef, () => openMenu(false));
   return (
-    <>
-      <div
+    <div className={classNames(containerStyle,inputPosition)}>
+     <div
         className={classNames(
           "cursor-pointer flex justify-between items-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
           { "border-sky-500": menu, "ring-sky-500": menu, "ring-1": menu, "!mb-4": menu }, inputStyle
         )}
         onClick={() => {
+          positionValue("!relative !translate-y-0")
           openMenu(!menu);
         }}
       >
@@ -89,6 +93,6 @@ export default function CustomSelector({ input, errorActive, placeholder = "sele
         </ul>
       </div>
       {error && touched && errorActive === input.name && <p className={`text-red-500 text-sm mt-2`}>{error}</p>}
-    </>
+    </div>
   );
 }

@@ -6,6 +6,9 @@ type Props = {
   title?: string | null | undefined;
   subtitle?: string | null | undefined;
   className?: string;
+  sectionHeaderBtnTitle?:string;
+  sectionHeaderBtnVisibility?:boolean;
+  sectionHeaderBtnHandler?:()=>void;
   childernClassName?: string;
   headerClassName?: string;
   onClick?: () => void;
@@ -14,6 +17,9 @@ type Props = {
 export function Section({
   children,
   title,
+  sectionHeaderBtnTitle="Add",
+  sectionHeaderBtnVisibility=false,
+  sectionHeaderBtnHandler=()=>{},
   subtitle,
   className = "",
   headerClassName = "",
@@ -33,7 +39,9 @@ export function Section({
         {title?.length && (
           <>
             <SectionHeader
-              onClick={onClick}
+              btnTitle={sectionHeaderBtnTitle}
+              showBtn={sectionHeaderBtnVisibility}
+              onClick={sectionHeaderBtnHandler}
               className={headerClassName}
               title={title}
               subtitle={subtitle}

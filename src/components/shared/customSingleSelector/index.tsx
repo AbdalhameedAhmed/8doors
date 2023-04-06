@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import AngleDown from "assets/angle-down-solid.svg";
-import { ClassNames } from "@emotion/react";
+
 
 type props = {
   placeholder: string
@@ -12,27 +12,27 @@ type props = {
   dirtyFields?: any
   error?: string | number | any;
   touched?: string | number | any;
+  containerStyle?:string
   errorActive?: string
 
 }
-export default function CustomSingleSelector({ input, placeholder = "select", errorActive, items, inputStyle, menuStyle, error, touched, dirtyFields }: props) {
+export default function CustomSingleSelector({ input,containerStyle, placeholder = "select", errorActive, items, inputStyle, menuStyle, error, touched, dirtyFields }: props) {
   let [menu, openMenu] = React.useState(false);
   let [activeLi, changeActiveLi] = React.useState<null | number>(null)
   let ref = React.useRef<HTMLDivElement>(null!);
-
   return (
-    <>
+    <div className={classNames(containerStyle)}>
       <div
         className={classNames(
-          "mt-1 cursor-pointer flex justify-between items-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
+          "cursor-pointer flex justify-between items-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
           { "border-sky-500": menu, "ring-sky-500": menu, "ring-1": menu, "!mb-4": menu }, inputStyle
-        )}
-        onClick={() => {
-          openMenu(!menu);
-          console.log(ref.current.parentElement?.classList.contains("!relative"));
-        }}
-        {...input}
-      >
+          )}
+          onClick={() => {
+            openMenu(!menu);
+            console.log(ref.current.parentElement?.classList.contains("!relative"));
+          }}
+          {...input}
+          >
         <p ref={ref}>{placeholder}</p>
         <AngleDown width={13} height={13} />
       </div>
@@ -46,24 +46,23 @@ export default function CustomSingleSelector({ input, placeholder = "select", er
             "mb-4": menu
           },
           menuStyle
-        )}
-      >
+          )}
+          >
         <ul className="w-full">
           {items.map((item: string, index: number) => (
             <li
-              key={index}
-              className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-primary": index == activeLi, "mb-2": !(index == items.length - 1) })}
-              onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
-                changeActiveLi(index)
-
-                ref.current.innerHTML = item
-                input.onChange(item);
-
-                if (activeLi == index) {
-                  ele.target.classList.add("!bg-primary")
-                }
-                openMenu(!menu)
-              }}
+            key={index}
+            className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-primary": index == activeLi, "mb-2": !(index == items.length - 1) })}
+            onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
+              changeActiveLi(index)
+              ref.current.innerHTML = item
+              input.onChange(item);
+              
+              if (activeLi == index) {
+                ele.target.classList.add("!bg-primary")
+              }
+              openMenu(!menu)
+            }}
             >
               {item}
             </li>
@@ -71,6 +70,7 @@ export default function CustomSingleSelector({ input, placeholder = "select", er
         </ul>
       </div>
       {error && touched && errorActive === "gender" && <p className={`text-red-500 text-sm mt-2`}>{error}</p>}
-    </>
+    </div>
+    
   );
 }

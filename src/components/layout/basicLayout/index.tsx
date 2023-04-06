@@ -5,15 +5,21 @@ import { useRouter } from "next/router";
 import { mainMenuItems,menuItemsType} from "components/sidenav/utils"
 import { dashboardItems,dashboardItemsType} from "components/sidenav/dashboardUtils"
 import React, { useState } from "react";
-import ProtectedRoute from "components/protectedRoute"
+// import ProtectedRoute from "components/protectedRoute"
+import dynamic from "next/dynamic";
+const ProtectedRoute = dynamic(() => import("components/protectedRoute"), {
+  ssr: false,
+});
 type Props = {
   children?: React.ReactNode;
   showModal?: boolean;
+  navbarTitle?:string;
   showModalButton?: boolean;
   handelModalState?: Function;
 };
 
 function BasicLayout({
+  navbarTitle,
   children,
   showModal,
   handelModalState,
@@ -53,6 +59,7 @@ function BasicLayout({
             showModal={showModal}
             handelModalState={handelModalState}
             showModalButton={showModalButton}
+            title={navbarTitle}
           />
           {children}
         </div>

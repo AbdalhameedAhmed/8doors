@@ -1,6 +1,6 @@
 import BasicLayout from "components/layout/basicLayout"
 interface Props {
-  title?: string;
+  navbarTitle?: string;
   children: React.ReactNode;
   showSiderMenu?: boolean;
   showModal?: boolean;
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function Page({
-  title,
+  navbarTitle,
   children,
   showSiderMenu = true,
   showModal,
@@ -26,6 +26,7 @@ export function Page({
   if (showSiderMenu)
     return (
       <BasicLayout
+        navbarTitle={navbarTitle}
         showModal={showModal}
         showModalButton={showModalButton}
         handelModalState={handelModalState}
