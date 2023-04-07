@@ -5,7 +5,7 @@ import AngleDown from "assets/angle-down-solid.svg";
 
 type props = {
   placeholder: string
-  items: string[]
+  options: string[]
   input: any
   inputStyle?: string
   menuStyle?: string
@@ -16,7 +16,7 @@ type props = {
   errorActive?: string
 
 }
-export default function CustomSingleSelector({ input,containerStyle, placeholder = "select", errorActive, items, inputStyle, menuStyle, error, touched, dirtyFields }: props) {
+export default function CustomSingleSelector({ input,containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched, dirtyFields }: props) {
   let [menu, openMenu] = React.useState(false);
   let [activeLi, changeActiveLi] = React.useState<null | number>(null)
   let ref = React.useRef<HTMLDivElement>(null!);
@@ -24,7 +24,7 @@ export default function CustomSingleSelector({ input,containerStyle, placeholder
     <div className={classNames(containerStyle)}>
       <div
         className={classNames(
-          "cursor-pointer flex justify-between items-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
+          "cursor-pointer flex justify-between items-center options-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
           { "border-sky-500": menu, "ring-sky-500": menu, "ring-1": menu, "!mb-4": menu }, inputStyle
           )}
           onClick={() => {
@@ -49,10 +49,10 @@ export default function CustomSingleSelector({ input,containerStyle, placeholder
           )}
           >
         <ul className="w-full">
-          {items.map((item: string, index: number) => (
+          {options.map((item: string, index: number) => (
             <li
             key={index}
-            className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-primary": index == activeLi, "mb-2": !(index == items.length - 1) })}
+            className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-primary": index == activeLi, "mb-2": !(index == options.length - 1) })}
             onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
               changeActiveLi(index)
               ref.current.innerHTML = item

@@ -12,7 +12,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   errorStyle?: string;
   dirtyFields?: {};
   errorActive?: string
-  isFirst?: boolean;
   isactive?: string;
   props?: InputProps;
 }
@@ -26,7 +25,6 @@ export function CustomInput({
   errorStyle,
   errorActive,
   dirtyFields,
-  isFirst = false,
   ...props
 }: Props) {
   return (

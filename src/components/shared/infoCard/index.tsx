@@ -55,12 +55,13 @@ export default function InfoCard({ data, openModal, openConfirmModal }: any) {
             <h2 className="font-bold text-primary">{data.name}</h2>
             <h2 className="text-sm">
               {data.roles.map((role: any, index: any) => (
-                <>
+                <span key={index}>
+
                   {role}{" "}
                   {data.roles.length - 1 !== index && (
                     <span className="mx-1 font-bold text-lg">|</span>
-                  )}
-                </>
+                    )}
+                    </span>
               ))}
             </h2>
           </div>

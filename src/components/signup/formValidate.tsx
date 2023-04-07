@@ -1,4 +1,4 @@
-function fromValdate(values: any, submitTime: Function) {
+function formValdate(values: any, submitTime: Function) {
     const errors: any = {};
     const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (!values.username) {
@@ -23,4 +23,4 @@ function fromValdate(values: any, submitTime: Function) {
     return errors;
 }
 
-export { fromValdate }
+export { formValdate }
