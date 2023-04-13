@@ -1,5 +1,8 @@
 import React from "react";
 import Home from "assets/house-solid.svg";
+import ArrowLongRight from "assets/arrow-right-long-solid.svg";
+import UserPlus from "assets/user-plus-solid.svg";
+import Gear from "assets/gear-solid.svg"
 export type dashboardItemType = {
   label?: string;
   icon?: React.ReactElement;
@@ -20,5 +23,21 @@ export const dashboardItems: dashboardItemsType = [
     submenu: [],
     display: true,
     path: "/dashboard",
+  },
+  {
+    label: "Settings",
+    icon: (
+      <Gear className="fill-secondary group-hover:fill-primary w-[16px] h-[16px]" />
+    ),
+    display: true,
+    path: "",
+    submenu: [
+      {
+        label: "Change password",
+        display: true,
+        path: "/change-password",
+        icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
+      },
+    ],
   },
 ];

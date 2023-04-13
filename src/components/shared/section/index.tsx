@@ -6,9 +6,9 @@ type Props = {
   title?: string | null | undefined;
   subtitle?: string | null | undefined;
   className?: string;
-  sectionHeaderBtnTitle?:string;
-  sectionHeaderBtnVisibility?:boolean;
-  sectionHeaderBtnHandler?:()=>void;
+  sectionHeaderBtnTitle?: string;
+  sectionHeaderBtnVisibility?: boolean;
+  sectionHeaderBtnHandler?: () => void;
   childernClassName?: string;
   headerClassName?: string;
   onClick?: () => void;
@@ -17,9 +17,9 @@ type Props = {
 export function Section({
   children,
   title,
-  sectionHeaderBtnTitle="Add",
-  sectionHeaderBtnVisibility=false,
-  sectionHeaderBtnHandler=()=>{},
+  sectionHeaderBtnTitle = "Add",
+  sectionHeaderBtnVisibility = false,
+  sectionHeaderBtnHandler = () => { },
   subtitle,
   className = "",
   headerClassName = "",
@@ -50,7 +50,7 @@ export function Section({
         )}
         <div
           className={classNames(
-            "p-5 ease-in-out duration-300",
+            "p-5 xs:p-3 ease-in-out duration-300",
             childernClassName
           )}
         >

@@ -25,15 +25,15 @@
 
 @layer base {
   :root{
-    --text-primary:#01d8da;          /*important*/
-    --text-secondary: black;       /*important*/
-    --text-active:#01d8da ;              /*important*/  
+    --text-primary:black;          /*important*/
+    --text-secondary:#2c3e50 ;       /*important*/
+    --text-active:black ;              /*important*/  
     --calendar-text:black ;        
-    --background-primary:#01d8da;    /*important*/
+    --background-primary:#D0D0D0;    /*important*/
     --background-secondary:white;    /*important*/
     --layout-primary: #f4f6f9 ; /*important*/
     --layout-secondary: #F1F1F1 ; /*important*/
-    --scroll-color:#01d8da;
+    --scroll-color:#D0D0D0;
     --scrollbar-track-color:#F1F1F1;
   }
   .dark{
@@ -282,3 +282,25 @@ ul {
 
 
 /* End modal */
+
+ /*start calendar style */
+ 
+ .fc-popover {
+   z-index: 40 !important;
+  }
+
+  @media only screen and (min-width:450px) and (max-width:639px){
+
+    .fc-header-toolbar{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .fc-header-toolbar div:nth-child(2){
+      order: -1;
+      width: 100%;
+      text-align: center;
+    }
+  }
+/*end calendar style */

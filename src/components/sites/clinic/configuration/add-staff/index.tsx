@@ -1,12 +1,8 @@
 import React from "react";
-import { Form, Field } from "react-final-form";
-import classNames from "classnames"
-import { CustomInput } from "components/shared/customInput";
-import CustomBtn from "components/shared/button/CustomBtn";
-import MultipleSelector from "components/shared/customMultipleSelector";
-import SingleSelector from "components/shared/customSingleSelector";
-import { fromValdate } from "./formValidate"
-import OpacityForm,{inputInfo} from "components/shared/opacityForm"
+import { formValidate } from "./formValidate"
+import OpacityForm from "components/shared/opacityForm"
+import {inputInfo} from "types/opacityFormTypes"
+import useToast from "hooks/useToast"
 type props = {
   openModal: Function
 }
@@ -46,12 +42,14 @@ export const AddStaff = ({ openModal }: props) => {
     }
   ]
   const onSubmit = async (values: FormData) => {
-    window.alert(values);
     openModal(false)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useToast("success","Added successfully")
+
   };
   return (
     <>
-      <OpacityForm inputsData={inputsData} formValidate={fromValdate} formSubmit={onSubmit}/>
+      <OpacityForm inputsData={inputsData} formValidate={formValidate} formSubmit={onSubmit} inputContainerStyle="py-0" trackerContainerStyle="absolute top-[37px] right-[24px] xs:right-[16px] !m-0 xs:gap-2" submitBtnContainer="!pt-0 !border-0"/>
     </>
   );
 };

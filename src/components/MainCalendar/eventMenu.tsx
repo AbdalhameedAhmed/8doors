@@ -10,15 +10,18 @@ type props = {
 }
 
 export default function EventMenu({ isvisible, eventData, visiblestate }: props) {
+  const [windowSize, setWindowSize] = React.useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+
   let ref = React.useRef<HTMLDivElement>(null!);
   let menuBackground = "";
-  let width = 448;
-  let height = 197;
+  let height = 190;
   let left = 0;
   let top = 0;
+  let width = windowSize[0] >= 450 && windowSize[0] <= 639 ? 420 : 448 
 
-  // let [width,setWidth] = React.useState(0)
-  // let [height,setHeight] = React.useState(0)
   if (eventData) {
     menuBackground = eventData.event.backgroundColor
       ? eventData.event.backgroundColor
@@ -30,14 +33,12 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
       eventData.el.getBoundingClientRect().y +
       eventData.el.getBoundingClientRect().height;
   }
-  const [windowSize, setWindowSize] = React.useState([
-    window.innerWidth,
-    window.innerHeight,
-  ]);
+
   useOnClickOutside(ref, () => {
     smoothClose();
   });
-  function handelMenu() {
+
+  const handelMenu = ()=> {
     if (eventData) {
       if (windowSize[0] - eventData.el.getBoundingClientRect().x < width) {
         left =
@@ -48,15 +49,22 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
       if (windowSize[1] - eventData.el.getBoundingClientRect().y < height) {
         top = eventData.el.getBoundingClientRect().y - height;
       }
+      if(windowSize[0] - eventData.el.getBoundingClientRect().x < width && eventData.el.getBoundingClientRect().x +
+      eventData.el.getBoundingClientRect().width<width){
+      left=windowSize[0]/2 - width/2
+      top = 100
+      } 
     }
   }
-  function smoothClose() {
+  const smoothClose =() => {
     ref.current.classList.remove( `!max-h-[200px]`,"py-2");
     setTimeout(() => {
       visiblestate(false);
     }, 300);
   }
+
   handelMenu();
+
   React.useEffect(() => {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
@@ -81,14 +89,17 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
           ></div>
           <div
             ref={ref}
-            className={classNames(
-              `fixed z-50 top-0 pl-4 pr-8 w-[${width}px] h-[${height}px] transition-all max-h-0 overflow-hidden  duration-[500ms] rounded-lg shadow-2xl left-0`
-            )}
             style={{
+              width:width,
+              height:height,
               left: left,
               top: top,
               backgroundColor: menuBackground,
             }}
+            className={classNames(
+              `fixed z-50 top-0 px-5 transition-all max-h-0 overflow-hidden  duration-[500ms] rounded-lg shadow-2xl left-0`
+            )}
+            
           >
             <h2 className="text-2xl">{eventData.event.title}</h2>
             <p>
@@ -109,8 +120,9 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
                 )} ${eventData.event.startStr.slice(11, 16)}`}
             </p>
             <p>At Time: {eventData.event.startStr.slice(11, 16)}</p>
+            <div className="flex justify-end items-center mt-12 pr-[5px] pb-[10px]">
             <CustomBtn
-              className={`ml-auto !block mt-12 ]`}
+              className={`!block `}
               onClick={() => {
                 smoothClose();
               }}
@@ -118,9 +130,10 @@ export default function EventMenu({ isvisible, eventData, visiblestate }: props)
                 backgroundColor: menuBackground,
                 boxShadow: `4px 4px 0 0 ${menuBackground}, 4px 4px 0 1px black`,
               }}
-            >
+              >
               Close
             </CustomBtn>
+              </div>
           </div>
         </>
       )}

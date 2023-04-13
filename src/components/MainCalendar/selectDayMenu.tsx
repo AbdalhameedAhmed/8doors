@@ -14,17 +14,16 @@ export default function SelectDayMenu({
   visiblestate,
   dayData,
 }: props) {
-  let ref = React.useRef<HTMLDivElement>(null!);
-  let menuBackground = "#3788d8";
-  let left = 0;
-  let top = 0;
-  let width = 448;
-  let height = 517;
-
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
     window.innerHeight,
   ]);
+  let ref = React.useRef<HTMLDivElement>(null!);
+  let menuBackground = "#3788d8";
+  let left = 0;
+  let top = 0;
+  let width = windowSize[0] >= 450 && windowSize[0] <= 639 ? 420 : 448
+  let height = 517;
 
   if (dayData) {
     left = dayData.dayEl.getBoundingClientRect().x - width;
@@ -40,7 +39,7 @@ export default function SelectDayMenu({
   useOnClickOutside(ref, () => {
     smoothClose();
   });
-  function handelMenu() {
+  const handelMenu = () => {
 
     if (dayData) {
       if (dayData.dayEl.getBoundingClientRect().x < width) {
@@ -63,6 +62,11 @@ export default function SelectDayMenu({
         console.log(left)
 
       }
+      
+      if(windowSize[0]-(dayData.dayEl.getBoundingClientRect().x + dayData.dayEl.getBoundingClientRect().width) < width && dayData.dayEl.getBoundingClientRect().x < width){
+        left = windowSize[0]/2 - width/2
+        top = windowSize[1]/2 - height/2
+      }
     }
   }
   handelMenu();
@@ -80,7 +84,6 @@ export default function SelectDayMenu({
       ref.current.classList.add("!opacity-100", "!translate-x-0");
     }
     window.addEventListener("resize", handleWindowResize);
-    console.log("ref is", ref);
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
@@ -98,14 +101,16 @@ export default function SelectDayMenu({
         ></div>
         <div
           ref={ref}
-          className={classNames(
-            `fixed flex flex-wrap items-start flex-wrap z-50 content-between w-[448px] h-[517px] top-0 p-8 pb-4 transition-all duration-500 translate-x-[60px] opacity-0 rounded-lg shadow-2xl left-0`
-          )}
           style={{
+            width:width,
+            height:height,
             left: left,
             top: top,
             backgroundColor: menuBackground,
           }}
+          className={classNames(
+            `fixed flex flex-wrap items-start flex-wrap z-50 content-between w-[${width}px] h-[${height}px] top-0 p-8 pb-4 transition-all duration-500 translate-x-[60px] opacity-0 rounded-lg shadow-2xl left-0`
+          )}
         >
           <div className="w-full">
             <h2 className="text-2xl ">{dayData.dateStr.slice(0, 10)}</h2>

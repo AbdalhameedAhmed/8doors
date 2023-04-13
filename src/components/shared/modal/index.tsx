@@ -1,31 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import useOnClickOutside from "hooks/useOnClickOutside";
-import { AddStaff } from "components/sites/clinic/configuration";
 import MainAnimation from "components/shared/mainAnimation";
-
-type props = {
-  openModal: boolean
-  changeModalState: Function
-  title: string
-  children?: React.ReactNode
-}
+import {modaltypes} from "types/modalTypes"
 export default function Modal({
   openModal,
   changeModalState,
   title,
   children,
-}: props) {
+}: modaltypes) {
   let [layout, setLayout] = useState(false);
+  let [resetForm, setResetForm] = useState(false)
   const ref = useRef(null);
 
   function closeModal() {
     changeModalState(false);
     setTimeout(() => {
       setLayout(false);
+      setResetForm(false)
     }, 300);
   }
   useEffect(() => {
-    openModal ?setLayout(true):closeModal()
+    if (openModal) {
+      setLayout(true)
+      setResetForm(true)
+    } else {
+      closeModal()
+    }
   }, [openModal]);
 
 
@@ -43,15 +43,15 @@ export default function Modal({
           {/*content*/}
           <MainAnimation startanimation={openModal}>
             <div
-              className={`ModalCard border-0 bg-secondary text-secondary rounded-lg shadow-lg relative relative w-full flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
+              className={`ModalCard border-0 bg-secondary text-secondary shadow-lg relative relative w-full flex flex-col transition-all ease-in-out duration-[200ms] w-full outline-none focus:outline-none`}
               ref={ref}
             >
               {/*header*/}
-              <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                <h3 className="text-3xl font-semibold text-primary">{title}</h3>
+              <div className="flex items-start justify-between p-6 xs:p-4 pb-0  rounded-t">
+                <h3 className="xs:text-2xl text-3xl font-semibold text-primary ">{title}</h3>
               </div>
               {/*body*/}
-            {children}
+              {resetForm && children}
             </div>
           </MainAnimation>
         </div>

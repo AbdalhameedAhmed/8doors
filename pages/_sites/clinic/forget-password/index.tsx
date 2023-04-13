@@ -3,6 +3,7 @@ import ForgetPasswordContainer from 'components/forgetPassword';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import SignInSignOutLayout from 'components/layout/signIn-signOut';
 import { useRouter } from 'next/router';
+import { removeDashAndCapitalize } from 'utiles';
 
 export const getServerSideProps = async ({ locale }: any) => ({
   props: {
@@ -12,6 +13,9 @@ export const getServerSideProps = async ({ locale }: any) => ({
 
 function ForgetPassword() {
   const router = useRouter();
+  React.useEffect(()=>{
+    document.title = removeDashAndCapitalize(router.asPath)
+  },[])
   return (
     <SignInSignOutLayout type="SIGN IN" signOnClick={() => router.push('/login')}>
       <ForgetPasswordContainer />

@@ -2,37 +2,28 @@ import React, { useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
 import { Form, Field } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../assets/logo.svg";
 import LoginInput from "./LoginInput";
 import PasswordInput from "./PasswordInput";
 import CustomBtn from "components/shared/button/CustomBtn";
-import { useGetPetQuery, api } from "redux/services/clinic/auth";
-import { isMetaProperty } from "typescript";
+import {useRedLoginMutation} from "redux/services/clinic/auth"
 import { login } from "redux/slices/clinic/authSlice"
+import { LoginFormData } from "types";
 function SignIn() {
   const { t } = useTranslation("common");
+  const data = useSelector(state=>state)
+  const [postData] = useRedLoginMutation()
 
-  const [error, setError] = useState("");
-  const dispatch = useDispatch();
-  const router = useRouter();
-
-  //@ts-ignore
-
-  // const  [ trigger, { data } ] = api.endpoints.getPet.useLazyGetPetQuery()
-  // const { trigger, isLoading, data: pet } = useGetPetQuery(1);
-
-  const [trigger, { data }] = api.useLazyGetPetQuery();
-
-  const onSubmit = (values: any) => {
-    dispatch(login({ username: values.username, password: values.password }))
+  const onSubmit = (values: LoginFormData) => {
+    // dispatch(login({ username: values.username, password: values.password }))
+    postData({username:values.username,password:values.password})
   };
-
+  
   return (
     <>
-      <div className={`self-center px-10 py-10 w-96`}>
+      <div className={`self-center px-10 py-10 w-96 bg-[rgba(0,0,0,0.1)] rounded`}>
         <div className="flex  align-center justify-center">
           <Logo style={{ height: 65, width: 65 }} />
         </div>
@@ -61,7 +52,7 @@ function SignIn() {
                   <>
                     <LoginInput
                       label=""
-                      placeholder={t("signup.email")}
+                      placeholder={"Email"}
                       className={classNames(
                         `signin-signout-input w-full rounded-lg `,
                         { "!border-red-500": meta.error && meta.touched }
@@ -71,6 +62,7 @@ function SignIn() {
                       type="text"
                       {...input}
                     />
+
                   </>
                 )}
               </Field>
@@ -78,7 +70,7 @@ function SignIn() {
                 {({ input, meta }) => (
                   <>
                     <PasswordInput
-                      placeholder={t("signin.password")}
+                      placeholder={"Password"}
                       className={classNames(
                         `signin-signout-input w-full rounded-lg `,
                         { "!border-red-500": meta.error && meta.touched }

@@ -1,8 +1,8 @@
 import React from "react";
 import ArrowLongRight from "assets/arrow-right-long-solid.svg";
+import UserPlus from "assets/user-plus-solid.svg";
 import Home from "assets/house-solid.svg";
 import CalendarCheck from "assets/calendar-check-solid.svg";
-import UserPlus from "assets/user-plus-solid.svg";
 import User from "assets/user-solid.svg";
 
 export type menuitemType = {

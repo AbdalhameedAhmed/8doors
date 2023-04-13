@@ -2,39 +2,24 @@ import React from "react";
 
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
-import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { signup } from "redux/slices/clinic/authSlice"
 import { useRouter } from "next/router";
 import Logo from "../../assets/logo.svg";
-import { CustomInput } from "components/shared";
-import CustomBtn from "components/shared/button/CustomBtn";
 import { formValdate } from "./formValidate"
-import OpacityForm,{inputInfo} from "components/shared/opacityForm"
+import OpacityForm from "components/shared/opacityForm"
+import {inputInfo} from "types/opacityFormTypes"
+import {useSignupMutation} from "redux/services/signup"
 
 function SignUp() {
 
   const dispatch = useDispatch()
-
   const { t } = useTranslation("common");
-
-  const [submit, isSubmitTime] = React.useState(false)
-  const [activeList, changeActiveList] = React.useState<Array<string>>([])
-  const [activeInput, changeActiveInput] = React.useState("username")
-  const [errorActive, changeErrorActive] = React.useState("")
-
-  const isFieldActive = (name: string) => {
-    let isActive = activeList.find((activeInput) => activeInput === name)
-    if (isActive) {
-      return true
-    } else {
-      return false
-    }
-  }
   const router = useRouter();
- 
+  const [postData] = useSignupMutation()
   const onSubmit = (values: FormData) => {
-    dispatch(signup({ username: values.username,email:values.email, password: values.password }))
+    // dispatch(signup({ username: values.username,email:values.email, password: values.password }))
+    postData({ username: values.username,email:values.email, password: values.password })
     router.push('/login');
   };
 
@@ -64,7 +49,7 @@ function SignUp() {
 
   return (
     <>
-      <div className="self-center px-10 py-10 w-96">
+      <div className="self-center p-10 w-96 bg-[rgb(0,0,0,0.1)] rounded">
         <div className="flex  align-center justify-center">
           <Logo style={{ height: 65, width: 65 }} />
         </div>

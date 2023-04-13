@@ -1,5 +1,5 @@
 
-function formValdate(values: any, submitTime: Function) {
+function formValidate(values: any, submitTime: Function) {
   const errors: any = {};
   const validPhone = /^[0-9]*$/
   if (!values.clinicName) {
@@ -13,6 +13,10 @@ function formValdate(values: any, submitTime: Function) {
   } else if (!values.phone.match(validPhone)) {
       errors.phone = "Only numbers is required";
   }
+  if(!values.authorities){
+    errors.authorities = "This field is required";
+
+  }
   else {
       submitTime(true)
   }
@@ -21,4 +25,4 @@ function formValdate(values: any, submitTime: Function) {
   return errors;
 }
 
-export { formValdate }
+export { formValidate }

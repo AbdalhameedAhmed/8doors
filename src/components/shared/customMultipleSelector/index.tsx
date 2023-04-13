@@ -3,19 +3,9 @@ import classNames from "classnames";
 import AngleDown from "assets/angle-down-solid.svg";
 import Check from "assets/check-solid.svg"
 import useOnClickOutside from "hooks/useOnClickOutside"
-type props = {
-  placeholder: string
-  options: string[]
-  input: any
-  inputStyle?: string
-  menuStyle?: string
-  containerStyle?:string
-  dirtyFields?: any
-  error?: string | number | any;
-  touched?: string | number | any;
-  errorActive?: string
-}
-export default function CustomSelector({ input, errorActive,containerStyle, placeholder = "select", options, inputStyle, menuStyle, error, touched }: props) {
+import {multipleSelectorTypes} from "types/multipleSelectorTypes"
+export default function CustomSelector(props: multipleSelectorTypes) {
+  const { input, errorActive,containerStyle, placeholder = "select", options, inputStyle, menuStyle, error, touched } = props
   let [menu, openMenu] = React.useState(false);
   let inputTitleRef = React.useRef<HTMLDivElement>(null!);
   let menuRef = React.useRef<HTMLDivElement>(null!);
@@ -25,7 +15,7 @@ export default function CustomSelector({ input, errorActive,containerStyle, plac
      <div
         className={classNames(
           "cursor-pointer flex justify-between items-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
-          { "border-sky-500": menu, "ring-sky-500": menu, "ring-1": menu, "!mb-4": menu }, inputStyle
+          { "border-sky-500": menu,"border-b-transparent": menu,"rounded-b-none": menu, "ring-sky-500": menu, "ring-1": menu, "!mt-4": menu }, inputStyle
         )}
         onClick={() => {
           openMenu(!menu);
@@ -74,9 +64,9 @@ export default function CustomSelector({ input, errorActive,containerStyle, plac
                       input.onChange(inputTitleRef.current.innerHTML.split("/"));
                     }
                   }
-                  ele.target.classList.toggle("!text-primary");
-                  ele.target.classList.toggle("[&_p_svg]:!opacity-100");
-                  ele.target.classList.toggle("[&_p_svg]:!-right-[20px]");
+                  (ele.target as HTMLElement).classList.toggle("!text-primary");
+                  (ele.target as HTMLElement).classList.toggle("[&_p_svg]:!opacity-100");
+                  (ele.target as HTMLElement).classList.toggle("[&_p_svg]:!-right-[20px]");
                 }}
               >
                 <p className="relative inline-block">

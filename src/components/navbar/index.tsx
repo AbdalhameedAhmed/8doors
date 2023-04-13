@@ -51,7 +51,7 @@ function Navbar({
       >
         <div
           className={classNames(
-            "bg-primary flex justify-between w-full items-center px-5 h-20 shadow-md z-10 relative",
+            "bg-primary flex justify-between w-full items-center px-5 xs:px-3 h-20 shadow-md z-10 relative",
             {
               "right-0": router.locale !== "ar",
               "left-0": router.locale === "ar",
@@ -78,8 +78,8 @@ function Navbar({
           </div>
         </div>
         {showSideHeader && (
-          <div className="p-5 bg-primary z-0 h-[66px] flex justify-between items-center">
-            <h2 className="text-xl text-secondary font-medium">{title}</h2>
+          <div className="p-5 xs:p-3 bg-primary z-0 h-[66px] flex justify-between items-center">
+            <h2 className="text-xl text-secondaryص font-medium">{title}</h2>
             {showModalButton && (
               <div className="mr-[4px]">
 

@@ -12,7 +12,7 @@ interface Props {
 function SignInSignOutLayout({ type = 'SIGN UP', children, signOnClick = () => { } }: Props) {
   return (
     <div className="w-full h-full bg-doctor bg-cover bg-center absolute -z-10">
-      <div className={`w-full h-full flex flex-col z-10 justify-between bg-[rgba(0,0,0,0.5)] py-[15px] px-[51.5px] lg:px-10`}>
+      <div className={`w-full h-full flex flex-col z-10 justify-between bg-[rgba(0,0,0,0.5)] py-[15px] px-[51.5px] xs:px-[15px] lg:px-10`}>
         <Navbar signType={type} signOnClick={signOnClick} />
         {children}
         <SignInSignUpFooter />

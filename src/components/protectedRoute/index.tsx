@@ -12,5 +12,5 @@ export default function ProtectedRoute({ children }: props) {
     console.log("render protected route");
     
 
-    return token === process.env.NEXT_PUBLIC_token ? <>{children}</> : <RedirectPage />
+    return token  ? <>{children}</> : <RedirectPage />
 }

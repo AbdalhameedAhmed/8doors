@@ -1,22 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 import AngleDown from "assets/angle-down-solid.svg";
+import {singleSelectorTypes} from "types/singleSelectorTypes"
 
-
-type props = {
-  placeholder: string
-  options: string[]
-  input: any
-  inputStyle?: string
-  menuStyle?: string
-  dirtyFields?: any
-  error?: string | number | any;
-  touched?: string | number | any;
-  containerStyle?:string
-  errorActive?: string
-
-}
-export default function CustomSingleSelector({ input,containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched, dirtyFields }: props) {
+export default function CustomSingleSelector(props: singleSelectorTypes) {
+  const { input,containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched, dirtyFields } = props
   let [menu, openMenu] = React.useState(false);
   let [activeLi, changeActiveLi] = React.useState<null | number>(null)
   let ref = React.useRef<HTMLDivElement>(null!);
@@ -25,7 +13,7 @@ export default function CustomSingleSelector({ input,containerStyle, placeholder
       <div
         className={classNames(
           "cursor-pointer flex justify-between items-center options-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
-          { "border-sky-500": menu, "ring-sky-500": menu, "ring-1": menu, "!mb-4": menu }, inputStyle
+          { "border-sky-500": menu,"border-b-transparent": menu,"rounded-b-none": menu,"mt-4": menu, "ring-sky-500": menu, "ring-1": menu }, inputStyle
           )}
           onClick={() => {
             openMenu(!menu);
@@ -59,7 +47,7 @@ export default function CustomSingleSelector({ input,containerStyle, placeholder
               input.onChange(item);
               
               if (activeLi == index) {
-                ele.target.classList.add("!bg-primary")
+                (ele.target as HTMLElement).classList.add("!bg-primary")
               }
               openMenu(!menu)
             }}

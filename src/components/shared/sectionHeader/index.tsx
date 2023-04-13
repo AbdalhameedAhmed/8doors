@@ -21,7 +21,7 @@ export function SectionHeader({
 
   return (
     <div
-      className={classNames("p-5 bg-secondary flex justify-between items-center", className)}
+      className={classNames("p-5 xs:p-3 bg-secondary flex justify-between items-center", className)}
     >
       <h2 className="section-heaeder relative text-[15px] capitalize text-secondary">
         <strong className="text-primary leading-5"><span className="text-xl bold mr-2">|</span> {title} </strong>

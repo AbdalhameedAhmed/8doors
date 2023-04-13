@@ -10,7 +10,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   containerStyle?: string;
   inputStyle?: string
   errorStyle?: string;
-  dirtyFields?: {};
   errorActive?: string
   isactive?: string;
   props?: InputProps;
@@ -24,7 +23,6 @@ export function CustomInput({
   containerStyle = "",
   errorStyle,
   errorActive,
-  dirtyFields,
   ...props
 }: Props) {
   return (
