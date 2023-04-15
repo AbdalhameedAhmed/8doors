@@ -3,7 +3,8 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'theme-ui';
 import { theme } from '../theme/index';
 import { Provider } from 'react-redux';
-import store from 'redux/store';
+import store,{persistor} from 'redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
 import { ToastContainer } from 'react-toastify'
 import { appWithTranslation } from 'next-i18next';
 import Head from 'next/head';
@@ -23,6 +24,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
+      <PersistGate persistor={persistor}/>
       <ToastContainer />
       <ThemeProvider theme={theme}>
         <Head>

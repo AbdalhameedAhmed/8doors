@@ -1,12 +1,17 @@
 import { useRouter } from "next/router";
+import {useDispatch} from "react-redux"
+import {clearUser} from "redux/slices/auth"
 function IconWithMessage({ visibleIcon, hoverIcon, message, goto }: any) {
+
   const router = useRouter();
+  const dispatch = useDispatch();
+
   return (
     <div
       onClick={() => {
         router.push(goto);
         if (message == "Log Out") {
-          localStorage.setItem("token", "")
+          dispatch(clearUser())
         }
       }}
       className="icon group cursor-pointer relative"

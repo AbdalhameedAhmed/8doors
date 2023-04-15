@@ -3,4 +3,5 @@ export type modaltypes = {
   changeModalState: Function
   title: string
   children?: React.ReactNode
+  onModalClose?:Function
 }

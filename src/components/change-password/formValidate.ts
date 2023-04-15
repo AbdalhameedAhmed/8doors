@@ -1,4 +1,4 @@
-export function changeFormValidate (values:any){
+export function FormValidate (values:any){
   
     const errors:any = {};
     if (!values.currentPassword) {
@@ -10,11 +10,11 @@ export function changeFormValidate (values:any){
     }
 
     if (
-      values.newPassword &&
-      values.newPasswordConfirmation !== values.newPassword
+      values.newPassword !==
+      values.newPasswordConfirmation 
     ) {
       errors.newPasswordConfirmation = "Passwords do not match";
-    }
+    } 
 
     return errors;
   

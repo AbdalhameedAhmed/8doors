@@ -1,15 +1,18 @@
-import React, { Dispatch, SetStateAction } from "react"
+import React from "react"
 import { Form, Field } from "react-final-form";
 import classNames from "classnames"
 import { CustomInput } from "components/shared/customInput";
 import CustomBtn from "components/shared/button/CustomBtn";
 import SingleSelector from "components/shared/customSingleSelector"
 import MultipleSelector from "components/shared/customMultipleSelector"
-import {opacityFormData} from "types/opacityFormTypes"
+import { opacityFormData } from "types/opacityFormTypes"
 
 export default function OpacityForm(props: opacityFormData) {
-  const { inputsData, formValidate, formSubmit, inputContainerStyle, inputStyle, fitSubmitBtn = false, submitBtnContainer, submitBtnStyle ,trackerContainerStyle } = props
+
+  const { inputsData, formValidate, formSubmit, inputContainerStyle, inputStyle, fitSubmitBtn = false, submitBtnContainer, submitBtnStyle, trackerContainerStyle } = props
+
   const [submit, isSubmitTime] = React.useState<boolean>(false)
+  const [activeFieldIndex, changeActiveIndex] = React.useState(0)
   const [activeList, changeActiveList] = React.useState<Array<string>>([])
   const [activeInput, changeActiveInput] = React.useState(inputsData[0].name)
   const [errorActive, changeErrorActive] = React.useState("")
@@ -23,29 +26,45 @@ export default function OpacityForm(props: opacityFormData) {
     }
   }
 
+  const submitBtnFunction = (errors) => {
+    if (activeFieldIndex == inputsData.length - 1) {
+      isSubmitTime(true)
+    }
+    if (errors[inputsData[activeFieldIndex].name]) {
+      changeErrorActive(inputsData[activeFieldIndex].name)
+    } else if (activeFieldIndex !== inputsData.length - 1) {
+      changeActiveInput(inputsData[activeFieldIndex + 1].name)
+      changeActiveList([...activeList, inputsData[activeFieldIndex].name])
+      changeActiveIndex(activeFieldIndex + 1)
+    }
+  }
+
+  const preventForm = (values, formSubmit) => {
+    return submit && formSubmit(values)
+  }
+
   return (
     <>
-      <div className={classNames("flex justify-center mt-8 gap-4 items-center flx-wrap",trackerContainerStyle)}>
+      <div className={classNames("flex justify-center mt-8 gap-4 items-center flx-wrap", trackerContainerStyle)}>
         {inputsData.map((inputInfo, index) => (
-          <div key={index} className={classNames("xs:w-[20px] w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": isFieldActive(inputInfo.name) })}></div>
+          <div key={index} className={classNames("xs:w-[20px] w-[30px] h-[6px] bg-layout-secondary", { "!bg-green-500": inputInfo.value || isFieldActive(inputInfo.name) })}></div>
         ))}
       </div>
 
       <Form
-        onSubmit={formSubmit}
+        onSubmit={(values) => { preventForm(values, formSubmit) }}
         validate={(values) => {
-          return formValidate(values, isSubmitTime)
+          return formValidate(values)
         }}
-        render={({ handleSubmit, dirtyFields, modified, submitting, errors }: any) => (
-          <form onSubmit={handleSubmit}>
+        render={(data) => (
+          <form onSubmit={data.handleSubmit}>
             <div className={`p-6 xs:px-4 flex-auto  max-h-96 min-h-[200px] overflow-auto ${inputContainerStyle}`}>
               <div className={classNames("relative min-h-inherit overflow-hidden flex items-center")}>
-
                 {
                   inputsData.map((inputInfo, index) => {
                     if ((inputInfo.type !== "singleSelector") && (inputInfo.type !== "multipleSelector")) {
                       return (
-                        <Field name={inputInfo.name} key={index}>
+                        <Field name={inputInfo.name} key={index} initialValue={inputInfo.value}>
                           {({ input, meta }) => (
                             <CustomInput
                               type={inputInfo.type}
@@ -70,7 +89,7 @@ export default function OpacityForm(props: opacityFormData) {
                               input={input}
                               placeholder={inputInfo.placeholder}
                               error={meta.error}
-                              dirtyFields={dirtyFields}
+                              dirtyFields={data.dirtyFields}
                               touched={meta.touched}
                               errorActive={errorActive}
                               containerStyle={classNames("absolute top-1/2 left-0 transition-all duration-300 translate-y-[200px] w-full", { "!translate-y-0": activeInput == input.name, "!relative": activeInput == input.name, "!-translate-y-[200px]": isFieldActive(input.name), "!absolute": isFieldActive(input.name) })}
@@ -90,7 +109,7 @@ export default function OpacityForm(props: opacityFormData) {
                               placeholder={inputInfo.placeholder}
                               options={inputInfo.options!}
                               error={meta.error}
-                              dirtyFields={dirtyFields}
+                              dirtyFields={data.dirtyFields}
                               errorActive={errorActive}
                               touched={meta.touched}
                               containerStyle={classNames("absolute top-1/2 left-0 transition-all duration-300 translate-y-[200px] w-full", { "!translate-y-0": activeInput == input.name, "!relative": activeInput == input.name, "!-translate-y-[200px]": isFieldActive(input.name), "!absolute": isFieldActive(input.name) })}
@@ -107,24 +126,11 @@ export default function OpacityForm(props: opacityFormData) {
             </div>
 
             <div className={`flex items-center justify-end p-6 xs:p-4 border-t border-solid border-slate-200 rounded-b ${submitBtnContainer}`}>
-              <CustomBtn type="submit" disabled={submitting} fit={fitSubmitBtn} className={`mr-[7px] ${submitBtnStyle}`}
+              <CustomBtn type="submit" disabled={data.submitting} fit={fitSubmitBtn} className={`mr-[7px] ${submitBtnStyle}`}
                 onClick={() => {
-                  if (modified) {
-                    let inputs = Object.keys(modified)
-                    inputs.forEach((key, index) => {
-                      if (activeInput === key && errors[key]) {
-                        changeErrorActive(key)
-                      }
-                      if (!errors[key]) {
-                        changeActiveInput(inputs[index + 1])
-                        changeActiveList([...activeList, key])
-                      }
-                    })
-                  }
-
-
+                  submitBtnFunction(data.errors)
                 }}>
-                {submit ? "submit" : "Next"}
+                {activeFieldIndex == inputsData.length - 1 ? "submit" : "Next"}
               </CustomBtn>
             </div>
           </form>

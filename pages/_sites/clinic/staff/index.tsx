@@ -8,20 +8,15 @@ import ConfirmationModal from "components/shared/confirmationModal";
 import Modal from "components/shared/modal";
 import { AddStaff } from "components/sites/clinic/configuration";
 import { useSelector } from "react-redux";
-import  { useRedLoginMutation ,redLogin } from "redux/services/clinic/auth";
 export default function Staff() {
   const [modal, setModal] = React.useState(false);
   const [conmodal, setconModal] = React.useState(false);
-  const red = useRedLoginMutation()
-  const token = useSelector(state=>state.token.redLogin)
-  console.log("redux data is", token)
   
   const router = useRouter()
   React.useEffect(()=>{
     document.title = removeDashAndCapitalize(router.asPath)
-    console.log("token is" , token);
     
-  },[token])
+  },[])
   return (
     <>
       <Modal
@@ -32,7 +27,7 @@ export default function Staff() {
         <AddStaff openModal={setModal} />
       </Modal>
 
-      <ConfirmationModal openModal={conmodal} changeModalState={setconModal} />
+      <ConfirmationModal openModal={conmodal} changeModalState={setconModal} warningMessage="Do you realy want to delete this card ?"/>
       <Page
         navbarTitle="Staff"
         showSiderMenu={true}

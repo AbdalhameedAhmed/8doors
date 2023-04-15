@@ -1,30 +1,25 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import {customBaseQuery} from "./customBaseQuery"
-import Router from "next/router";
 
-export const redLogin = createApi({
+export const Login = createApi({
   reducerPath:"token",
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
-    redLogin: builder.mutation({
+    Login: builder.mutation({
       query: (data) => ({
         url:`/v1/authenticate`,
         method:"post",
         body:data
       }),
       transformResponse: (response) => {
-        const token = response.data.token;
-        console.log("Hello from redux",response.data.token);
-        localStorage.setItem("token", token)
-        Router.push("/staff")
-        return response.data.token;
+        return response.data;
       },
       
     }),
   }),
 });
 
-export const {useRedLoginMutation} = redLogin
+export const {useLoginMutation} = Login
 
 
 

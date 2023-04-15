@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import {customBaseQuery} from "./customBaseQuery"
-
 export const addClinic = createApi({
+  reducerPath: 'clinicApi',
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
     addClinic: builder.mutation({
@@ -9,7 +9,7 @@ export const addClinic = createApi({
         url:`/v1/clinics`,
         method:"post",
         body:data
-      }),
+      })
     }),
   }),
 });
@@ -23,10 +23,6 @@ export const getClinics = createApi({
         url:`/v1/clinics`,
         method:"get",
       }),
-      transformResponse: (response) => {
-        
-        return response.data.token;
-      },
       
     }),
   }),

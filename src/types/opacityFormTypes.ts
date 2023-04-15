@@ -1,13 +1,13 @@
-import {Dispatch, SetStateAction} from "react"
 export type inputInfo = {
   name: string;
   placeholder: string;
+  value:string;
   type: "text" | "email" | "tel" | "password" | "number" | "singleSelector" | "multipleSelector"
   options?: string[]
 }
 export type opacityFormData = {
   inputsData: inputInfo[];
-  formValidate: (values: FormData, isSubmitTime: Dispatch<SetStateAction<boolean>>) => string[];
+  formValidate: (values: FormData) => string[];
   formSubmit: (values: FormData) => void
   inputContainerStyle?: string
   fitSubmitBtn?: boolean

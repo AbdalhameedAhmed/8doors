@@ -7,6 +7,7 @@ export default function Modal({
   changeModalState,
   title,
   children,
+  onModalClose = ()=>{}
 }: modaltypes) {
   let [layout, setLayout] = useState(false);
   let [resetForm, setResetForm] = useState(false)
@@ -15,6 +16,7 @@ export default function Modal({
   function closeModal() {
     changeModalState(false);
     setTimeout(() => {
+      onModalClose()
       setLayout(false);
       setResetForm(false)
     }, 300);

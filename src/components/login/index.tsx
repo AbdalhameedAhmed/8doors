@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Form, Field } from "react-final-form";
@@ -8,18 +9,30 @@ import Logo from "../../assets/logo.svg";
 import LoginInput from "./LoginInput";
 import PasswordInput from "./PasswordInput";
 import CustomBtn from "components/shared/button/CustomBtn";
-import {useRedLoginMutation} from "redux/services/clinic/auth"
-import { login } from "redux/slices/clinic/authSlice"
+import {useLoginMutation} from "redux/services/clinic/auth"
 import { LoginFormData } from "types";
+import {addUser} from "redux/slices/auth"
+import useToast from "hooks/useToast";
 function SignIn() {
-  const { t } = useTranslation("common");
-  const data = useSelector(state=>state)
-  const [postData] = useRedLoginMutation()
 
-  const onSubmit = (values: LoginFormData) => {
-    // dispatch(login({ username: values.username, password: values.password }))
-    postData({username:values.username,password:values.password})
+  const { t } = useTranslation("common");
+  const [postData] = useLoginMutation()
+  const dispatch = useDispatch()
+  const reduxData = useSelector(state=>state.auth)
+  const router = useRouter()
+  const addToast = useToast()
+
+  const onSubmit =async (values: LoginFormData) => {
+    await postData({username:values.username,password:values.password}).unwrap()
+    .then((res)=>{
+      dispatch(addUser(res))
+      router.push("/dashboard")
+    })
+    .catch(()=>{
+      addToast("error","Username or password is wrong")
+    })
   };
+  console.log(reduxData);
   
   return (
     <>

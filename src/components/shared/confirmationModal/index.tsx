@@ -3,17 +3,25 @@ import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import MainAnimation from "../mainAnimation";
 import DangerIcon from "assets/danger.svg";
 import CustomBtn from "components/shared/button/CustomBtn";
+import { useDispatch } from 'react-redux';
+import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
+
+
 type props = {
   openModal: boolean
   changeModalState: Function
+  warningMessage:string;
+  deleteFunction?:Function;
 }
 export default function ConfirmationModal({
   openModal,
   changeModalState,
+  deleteFunction=()=>{},
+  warningMessage 
 }: props) {
   let [layout, setLayout] = useState(false);
   const ref = useRef(null);
-
+  const dispatch = useDispatch()
   useEffect(() => {
     openModal && setLayout(true);
   }, [openModal]);
@@ -22,6 +30,7 @@ export default function ConfirmationModal({
     changeModalState(false);
     setTimeout(() => {
       setLayout(false);
+      dispatch(changeActiveClinic(null))
     }, 300);
   }
 
@@ -48,7 +57,7 @@ export default function ConfirmationModal({
                 Are You Sure ?
               </h1>
               <p className="text-xl bold">
-                Do You really want to delete this card?
+                {warningMessage}
               </p>
               </div>
               <div className="btns flex justify-center items-center gap-8">
@@ -64,6 +73,7 @@ export default function ConfirmationModal({
                 <CustomBtn
                   type="submit"
                   onClick={() => {
+                    deleteFunction();
                     closeModal();
                   }}
                   className="rounded-lg font-bold text-lg bg-red-500 !shadow-[4px_4px_0_0_rgba(239,68,68,1),4px_4px_0_1px_rgba(0,0,0,1)] active:!shadow-[2px_2px_0_0_rgba(239,68,68,1),2px_2px_0_1px_rgba(0,0,0,1)]"

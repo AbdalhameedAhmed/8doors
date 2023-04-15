@@ -36,7 +36,7 @@ function BasicLayout({
   const { asPath } = router;
 
   React.useEffect(()=>{
-    (asPath === "/dashboard" || asPath === "/change-password") && changeSideNavItems(dashboardItems)
+    (asPath === "/dashboard" || asPath.startsWith("/settings")) && changeSideNavItems(dashboardItems)
   },[asPath])
 
   return (

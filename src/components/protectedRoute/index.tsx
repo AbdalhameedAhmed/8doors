@@ -1,4 +1,5 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import RedirectPage from "./redirectPage"
 
 type props = {
@@ -7,10 +8,8 @@ type props = {
 
 export default function ProtectedRoute({ children }: props) {
 
-    const token = localStorage.getItem("token")
+    const token = useSelector(state=>state.auth.user.token)
 
-    console.log("render protected route");
     
-
     return token  ? <>{children}</> : <RedirectPage />
 }

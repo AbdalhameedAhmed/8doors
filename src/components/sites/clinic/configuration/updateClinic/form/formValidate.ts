@@ -12,7 +12,6 @@ function formValidate(values: any) {
       errors.phone = "This field is required";
   } 
 
-
   return errors;
 }
 

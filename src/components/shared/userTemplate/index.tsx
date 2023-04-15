@@ -31,7 +31,7 @@ export function UserTemplate({
         {img ? (
           <img className='w-full h-auto' src={img} alt='' />
         ) : (
-          <span className='text-white text-lg font-medium'>{title?.charAt(0)}</span>
+          <span className=' text-lg font-medium'>{title?.charAt(0)}</span>
         )}
       </div>
       <div className='flex flex-col'>

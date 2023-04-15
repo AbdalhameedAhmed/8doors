@@ -35,7 +35,7 @@ export const dashboardItems: dashboardItemsType = [
       {
         label: "Change password",
         display: true,
-        path: "/change-password",
+        path: "/settings/change-password",
         icon: <ArrowLongRight className="fill-secondary w-[10px]" />,
       },
     ],

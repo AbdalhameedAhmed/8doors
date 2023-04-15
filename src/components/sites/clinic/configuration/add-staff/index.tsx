@@ -7,6 +7,7 @@ type props = {
   openModal: Function
 }
 export const AddStaff = ({ openModal }: props) => {
+  let addToast = useToast()
   let inputsData:inputInfo[] = [
     {
       name:"name",
@@ -44,7 +45,7 @@ export const AddStaff = ({ openModal }: props) => {
   const onSubmit = async (values: FormData) => {
     openModal(false)
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    useToast("success","Added successfully")
+    addToast("success","Added successfully")
 
   };
   return (
