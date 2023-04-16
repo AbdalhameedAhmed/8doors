@@ -30,9 +30,7 @@ export default function Dashboard() {
   const [modal, setModal] = useState(false)
   const [openConfirmationModal, changeConfirmationModal] = useState(false)
   const activeClinic = useSelector(reduxData => (reduxData as rootState).activeClinic)
-  const reduxdata = useSelector(state => state)
-  const apiClinicsData = useGetClinicsQuery(null).data
-  let reFetch = useGetClinicsQuery(null).refetch
+  const {data:apiClinicsData,refetch} = useGetClinicsQuery(null)
   const router = useRouter();
   const [removeClinic] = useDeleteClinicMutation()
   const dispatch = useDispatch()
@@ -56,15 +54,15 @@ export default function Dashboard() {
 
   const deleteClinic = async (id: string) => {
     await removeClinic({ id: id }).unwrap().then(() => { addToast("success", "deleted Successfully") }).catch(error => { addToast("error", "something wrong") })
-    reFetch()
+    refetch()
   }
 
   useEffect(() => {
     setClinics(apiClinicsData)
     document.title = removeDashAndCapitalize(router.asPath)
     !(clinics == undefined || clinics.length) ? changeBtnState(false) : changeBtnState(true)
-    reFetch()
-  }, [clinics, apiClinicsData, router.asPath, reFetch,activeClinic])
+    refetch()
+  }, [clinics, apiClinicsData, router.asPath, refetch,activeClinic])
 
   return (
     <>
@@ -100,7 +98,7 @@ export default function Dashboard() {
                       subtitle={clinic.address}
                       img={clinic.img}
                     />
-                    <div className='mr-[4px] flex items-center justify-between gap-8'>
+                    <div className='mr-[4px] flex items-center justify-between gap-3'>
 
                       <button
                         onClick={() => {

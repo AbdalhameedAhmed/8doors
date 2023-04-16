@@ -17,7 +17,7 @@ export default function ClinicPage() {
     }, [router.asPath])
     return (
         <Page navbarTitle="Clinic Dashboard" showSiderMenu>
-            <Section title="Book Appointment">
+            <Section title="Book Appointment" >
                 <MainCalendar />
             </Section>
         </Page>

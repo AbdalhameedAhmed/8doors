@@ -19,7 +19,7 @@ export function Page({
 
   const Content = (): JSX.Element => {
     return (
-      <div className="page-header flex flex-col h-[calc(100vh-146px)] overflow-y-auto w-full bg-layout-primary">
+      <div className="page-header flex flex-col w-full bg-layout-primary">
         <div className="flex flex-wrap">{children}</div>
       </div>
     );

@@ -21,11 +21,11 @@ export function Section({
     <div
       {...rest}
       className={classNames(
-        "grow flex mb-[30px] w-full relative rounded-[.1875rem] overflow-hidden bg-secondary text-secondary",
+        "grow flex w-full relative rounded-[.1875rem] overflow-hidden bg-secondary text-secondary",
         className
       )}
     >
-      <section className={classNames("w-full grow")}>
+      <section className={classNames("w-full grow relative")}>
         {title?.length && (
           <>
             <SectionHeader
@@ -40,7 +40,7 @@ export function Section({
         )}
         <div
           className={classNames(
-            "p-5 xs:p-3 ease-in-out duration-300",
+            "p-5 xs:p-3 h-[calc(100vh-232px)] overflow-y-auto ease-in-out duration-300",
             childernClassName
           )}
         >

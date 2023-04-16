@@ -288,7 +288,14 @@ ul {
  .fc-popover {
    z-index: 40 !important;
   }
-
+  .fc-header-toolbar{
+    position: absolute;
+    width: calc(100% - 55px);
+    background-color: white;
+    z-index: 10;
+    padding-bottom: 25px;
+    top: 68px;
+  }
   @media only screen and (min-width:450px) and (max-width:639px){
 
     .fc-header-toolbar{
@@ -296,6 +303,8 @@ ul {
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
+      width: calc(100% - 25px);
+      top: 50px;
     }
     .fc-header-toolbar div:nth-child(2){
       order: -1;

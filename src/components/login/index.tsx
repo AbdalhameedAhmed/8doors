@@ -18,7 +18,7 @@ import useToast from "hooks/useToast";
 import Logo from "../../assets/logo.svg";
 
 export default function SignIn() {
-
+const [error,activeError] = React.useState(false)
   const { t } = useTranslation("common");
   const [postData] = useLoginMutation()
   const dispatch = useDispatch()
@@ -64,7 +64,7 @@ export default function SignIn() {
             return errors;
           }}
 
-          render={({ handleSubmit, submitting }) => (
+          render={({ handleSubmit,submitting }) => (
             <form onSubmit={handleSubmit}>
               <Field name="username">
                 {({ input, meta }) => (
@@ -74,10 +74,10 @@ export default function SignIn() {
                       placeholder={"Email"}
                       className={classNames(
                         `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error }
+                        { "!border-red-500": meta.error && error }
                       )}
                       error={meta.error}
-                      touched={meta.touched}
+                      errorActive={error}
                       type="text"
                       {...input}
                     />
@@ -92,10 +92,10 @@ export default function SignIn() {
                       placeholder={"Password"}
                       className={classNames(
                         `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error && meta.touched }
+                        { "!border-red-500": meta.error && error }
                       )}
+                      errorActive={error}
                       error={meta.error}
-                      touched={meta.touched}
                       {...input}
                     />
                   </>
@@ -106,6 +106,7 @@ export default function SignIn() {
                 type="submit"
                 disabled={submitting}
                 className="py-4 mt-8 bg-sky-500/100"
+                onClick={()=>{activeError(true)}}
               >
                 {t("signin.login")}
               </CustomBtn>

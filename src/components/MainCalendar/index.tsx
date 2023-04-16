@@ -94,7 +94,7 @@ const MainCalendar = () => {
     setCalendarHandler("max-w-full")
   }, [])
   return (
-    <>
+    <div className="mt-[42px]">
       <EventMenu
         isvisible={eventMenu}
         eventData={eventData}
@@ -110,6 +110,7 @@ const MainCalendar = () => {
           isVisible(true);
           setEventData({ ...ele });
         }}
+        
         dayCellClassNames={calendarHandlerClass}
         dayMaxEvents={true}
         dateClick={(info) => {
@@ -129,7 +130,7 @@ const MainCalendar = () => {
         selectMirror={true}
         events={events}
       />
-    </>
+    </div>
   );
 };
 

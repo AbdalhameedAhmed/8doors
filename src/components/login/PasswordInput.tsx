@@ -11,6 +11,7 @@ interface passwordInputTypes extends InputHTMLAttributes<HTMLInputElement> {
   inputStyle?: string
   errorStyle?: string;
   props?: InputProps;
+  errorActive:boolean
 }
 export default function PasswordInput({
   label = "",
@@ -20,6 +21,7 @@ export default function PasswordInput({
   inputStyle = "",
   containerStyle = "",
   errorStyle,
+  errorActive,
   ...props
 }: passwordInputTypes) {
 
@@ -43,7 +45,7 @@ export default function PasswordInput({
           }}
         >{inputType === "password" ? "show" : "hide"}</span>
       </div>
-      {error && touched && <p className={`text-red-500 text-sm mt-2 ${errorStyle}`}>{error}</p>}
+      {error && errorActive && <p className={`text-red-500 text-sm mt-2 ${errorStyle}`}>{error}</p>}
 
     </label>
   );
