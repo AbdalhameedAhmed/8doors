@@ -1,5 +1,5 @@
 import BasicLayout from "components/layout/basicLayout"
-interface Props {
+interface pageProps {
   navbarTitle?: string;
   children: React.ReactNode;
   showSiderMenu?: boolean;
@@ -15,7 +15,8 @@ export function Page({
   showModal,
   handelModalState,
   showModalButton = false,
-}: Props): JSX.Element {
+}: pageProps): JSX.Element {
+
   const Content = (): JSX.Element => {
     return (
       <div className="page-header flex flex-col h-[calc(100vh-146px)] overflow-y-auto w-full bg-layout-primary">
@@ -23,7 +24,9 @@ export function Page({
       </div>
     );
   };
+
   if (showSiderMenu)
+
     return (
       <BasicLayout
         navbarTitle={navbarTitle}
@@ -34,5 +37,6 @@ export function Page({
         <Content />
       </BasicLayout>
     );
+
   return <Content />;
 }

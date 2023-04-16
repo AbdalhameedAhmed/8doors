@@ -1,4 +1,5 @@
 import { generate } from "randomized-string";
+
 import MenuCollapsibleList from "./menuCollapsableList";
 import MenuItem from "./menuItem";
 import { menuItemsType } from "./utils";

@@ -1,6 +1,8 @@
-function formValdate(values: any, submitTime: Function) {
-    const errors: any = {};
+function formValdate(values: Record<string, any>):Record<string,string> {
+
+    const errors: Record<string, string> = {};
     const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    
     if (!values.username) {
         errors.username = "This field is required";
     }
@@ -16,8 +18,6 @@ function formValdate(values: any, submitTime: Function) {
         errors.confirm = "This field is required";
     } else if (values.password !== values.confirm) {
         errors.confirm = "the password and the confirm password must be the same";
-    } else {
-        submitTime(true)
     }
 
     return errors;

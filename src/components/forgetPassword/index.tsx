@@ -1,8 +1,9 @@
-import { CustomInput } from 'components/shared';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { CustomInput } from 'components/shared';
+
 import Logo from '../../assets/logo.svg';
-import styles from './style.module.css';
 
 function Index() {
   const { t } = useTranslation('common');
@@ -12,7 +13,7 @@ function Index() {
       <div className="flex  align-center justify-center">
         <Logo style={{ height: 65, width: 65 }} />
       </div>
-      <h1 className={styles.title}>Forgot Password?</h1>
+      <h1 className="text-center text-white text-[1.57em]">Forgot Password?</h1>
       <h4 className="text-white text-center">
         Enter your e-mail address below to reset your password.
       </h4>

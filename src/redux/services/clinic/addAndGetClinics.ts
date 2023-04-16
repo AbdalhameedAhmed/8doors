@@ -1,5 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
+
 import {customBaseQuery} from "./customBaseQuery"
+
 export const addClinic = createApi({
   reducerPath: 'clinicApi',
   baseQuery: customBaseQuery,
@@ -27,5 +29,6 @@ export const getClinics = createApi({
     }),
   }),
 });
+
 export const {useAddClinicMutation} = addClinic
 export const {useGetClinicsQuery} = getClinics

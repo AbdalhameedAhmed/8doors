@@ -1,11 +1,12 @@
-import Link from 'next/link';
-import { useState, memo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
 import styles from './style.module.css';
-type props = {
+
+type transitionTypes = {
   children?: React.ReactNode;
 };
 
-export default function TransitionLayout({ children }: props) {
+export default function TransitionLayout({ children }: transitionTypes) {
   const [displayChildren, setDisplayChildren] = useState(children);
   const [transitionStage, setTransitionStage] = useState('fadeOut');
   useEffect(() => {

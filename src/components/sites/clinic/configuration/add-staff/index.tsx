@@ -1,56 +1,64 @@
 import React from "react";
-import { formValidate } from "./formValidate"
+
 import OpacityForm from "components/shared/opacityForm"
-import {inputInfo} from "types/opacityFormTypes"
+import { formValidate } from "./formValidate"
+import { inputInfo } from "types/opacityFormTypes"
 import useToast from "hooks/useToast"
-type props = {
+
+type addStaffTypes = {
   openModal: Function
 }
-export const AddStaff = ({ openModal }: props) => {
+export const AddStaff = ({ openModal }: addStaffTypes) => {
   let addToast = useToast()
-  let inputsData:inputInfo[] = [
+  let inputsData: inputInfo[] = [
     {
-      name:"name",
-      placeholder:"Name",
-      type:"text"
+      name: "name",
+      placeholder: "Name",
+      type: "text",
+      value: ""
     },
     {
-      name:"email",
-      placeholder:"Email",
-      type:"text"
+      name: "email",
+      placeholder: "Email",
+      type: "text"
+      ,
+      value: ""
     },
     {
-      name:"tel",
-      placeholder:"phone",
-      type:"text"
+      name: "tel",
+      placeholder: "phone",
+      type: "text"
+      ,
+      value: ""
     },
     {
-      name:"gender",
-      placeholder:"Gender",
-      type:"singleSelector",
-      options:["male","female"]
+      name: "gender",
+      placeholder: "Gender",
+      type: "singleSelector",
+      options: ["male", "female"],
+      value: ""
     },
     {
-      name:"speciality",
-      placeholder:"select role/s",
-      type:"multipleSelector",
-      options:[
-          "Allergist",
-          "Dermatologist",
-          "Infectious disease",
-          "Ophthalmologists"
-      ]
+      name: "speciality",
+      placeholder: "select role/s",
+      type: "multipleSelector",
+      options: [
+        "Allergist",
+        "Dermatologist",
+        "Infectious disease",
+        "Ophthalmologists"
+      ],
+      value: ""
     }
   ]
   const onSubmit = async (values: FormData) => {
     openModal(false)
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    addToast("success","Added successfully")
 
+    addToast("success", "Added successfully")
   };
   return (
     <>
-      <OpacityForm inputsData={inputsData} formValidate={formValidate} formSubmit={onSubmit} inputContainerStyle="py-0" trackerContainerStyle="absolute top-[37px] right-[24px] xs:right-[16px] !m-0 xs:gap-2" submitBtnContainer="!pt-0 !border-0"/>
+      <OpacityForm inputsData={inputsData} formValidate={formValidate} formSubmit={onSubmit} inputContainerStyle="py-0" trackerContainerStyle="absolute top-[37px] right-[24px] xs:right-[16px] !m-0 xs:gap-2" submitBtnContainer="!pt-0 !border-0" />
     </>
   );
 };

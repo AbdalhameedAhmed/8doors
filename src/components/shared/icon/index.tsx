@@ -1,8 +1,9 @@
-import { IconContext } from 'react-icons';
-import classNames from 'classnames';
 import React from 'react';
+import { IconContext } from 'react-icons';
 
-type Props = {
+import classNames from 'classnames';
+
+type iconTypes = {
   color: string | undefined;
   size: string | undefined;
   icon: React.ReactElement | React.ReactNode;
@@ -16,13 +17,13 @@ export function ReactIcon({
   className = '',
   hoverColor = null,
   ...rest
-}: Props) {
+}: iconTypes) {
+
   const [appliedColor, setAppliedColor] = React.useState(color);
 
   const resetColor = () => {
     !!hoverColor && setAppliedColor(color);
   };
-
   const changeColorHover = () => {
     !!hoverColor && setAppliedColor(hoverColor);
   };

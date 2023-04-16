@@ -1,5 +1,6 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import {customBaseQuery} from "./customBaseQuery"
+import { createApi } from '@reduxjs/toolkit/query/react';
+
+import { customBaseQuery } from './customBaseQuery';
 
 export const changePassword = createApi({
   reducerPath: 'changePassword',
@@ -7,12 +8,12 @@ export const changePassword = createApi({
   endpoints: (builder) => ({
     changePassword: builder.mutation({
       query: (data) => ({
-        url:`/v1/account/change-password`,
-        method:"post",
-        body:data
-      })
+        url: `/v1/account/change-password`,
+        method: 'post',
+        body: data,
+      }),
     }),
   }),
 });
 
-export const {useChangePasswordMutation} = changePassword 
+export const { useChangePasswordMutation } = changePassword;

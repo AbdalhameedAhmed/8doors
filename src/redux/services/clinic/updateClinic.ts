@@ -1,5 +1,6 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import {customBaseQuery} from "./customBaseQuery"
+import { createApi } from '@reduxjs/toolkit/query/react';
+
+import { customBaseQuery } from './customBaseQuery';
 
 export const updateClinic = createApi({
   reducerPath: 'updateClinic',
@@ -7,12 +8,12 @@ export const updateClinic = createApi({
   endpoints: (builder) => ({
     updateClinic: builder.mutation({
       query: (data) => ({
-        url:`/v1/clinics/${data.id}`,
-        method:"put",
-        body:data
-      })
+        url: `/v1/clinics/${data.id}`,
+        method: 'put',
+        body: data,
+      }),
     }),
   }),
 });
 
-export const {useUpdateClinicMutation} = updateClinic
+export const { useUpdateClinicMutation } = updateClinic;

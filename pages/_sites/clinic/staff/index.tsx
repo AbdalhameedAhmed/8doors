@@ -1,14 +1,16 @@
 import React from "react";
-import { Page, Section } from "components/shared";
-import { data } from "./doctorDeta";
 import {useRouter} from "next/router";
+
+import { Page, Section } from "components/shared";
 import InfoCard from "components/shared/infoCard";
 import {removeDashAndCapitalize} from "utiles"
 import ConfirmationModal from "components/shared/confirmationModal";
 import Modal from "components/shared/modal";
 import { AddStaff } from "components/sites/clinic/configuration";
-import { useSelector } from "react-redux";
+import { data } from "./doctorDeta";
+
 export default function Staff() {
+  
   const [modal, setModal] = React.useState(false);
   const [conmodal, setconModal] = React.useState(false);
   
@@ -16,7 +18,7 @@ export default function Staff() {
   React.useEffect(()=>{
     document.title = removeDashAndCapitalize(router.asPath)
     
-  },[])
+  },[router.asPath])
   return (
     <>
       <Modal

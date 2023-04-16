@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
-import {useDispatch} from "react-redux"
-import {clearUser} from "redux/slices/auth"
+
+import { useDispatch } from "react-redux"
+import { clearUser } from "redux/slices/auth"
+
 function IconWithMessage({ visibleIcon, hoverIcon, message, goto }: any) {
 
   const router = useRouter();
@@ -29,4 +31,3 @@ function IconWithMessage({ visibleIcon, hoverIcon, message, goto }: any) {
 
 export default IconWithMessage;
 
-// before:content-[''] before:-translate-y-[100px] group-hover:before:translate-y-0 before:transition before:duration-300 before:absolute before:-bottom-[5px] before:left-[4px] before:border-[8px] before:border-t-transparent before:border-r-transparent before:border-l-transparent before:border-layout-primary

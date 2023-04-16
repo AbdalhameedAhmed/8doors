@@ -1,10 +1,13 @@
 import React from 'react';
-import classNames from 'classnames';
-import { Section } from '../section';
-import AngleRight from "../../../assets/angle-right-solid.svg"
-import Plus from "../../../assets/plus-solid.svg"
 
-type Props = {
+import classNames from 'classnames';
+
+import { Section } from 'components/shared/section';
+
+import AngleRight from "assets/angle-right-solid.svg"
+import Plus from "assets/plus-solid.svg"
+
+type collapsibleSectionTypes = {
   children?: React.ReactNode;
   title?: string | null | undefined;
   subtitle?: string | null | undefined;
@@ -25,7 +28,7 @@ export function CollapsibleSection({
   childernClassName = '',
   onAction,
   modalTitle
-}: Props) {
+}: collapsibleSectionTypes) {
 
   const [open, toggle] = React.useState(false);
 

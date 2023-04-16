@@ -1,12 +1,14 @@
-import { Button, Page, Section } from 'components/shared';
 import React from "react";
-import {removeDashAndCapitalize} from  "utiles"
 import { useRouter } from 'next/router';
+
+import { Button, Page, Section } from 'components/shared';
+import { removeDashAndCapitalize } from "utiles"
+
 export default function Doctors() {
   const router = useRouter()
-  React.useEffect(()=>{
+  React.useEffect(() => {
     document.title = removeDashAndCapitalize(router.asPath)
-  },[])
+  }, [])
   return (
     <Page showSiderMenu>
       <Section title='Book Appointment' subtitle='Description text here...'>

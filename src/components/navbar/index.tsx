@@ -1,13 +1,17 @@
-import useWindowSize from "hooks/useWindowSize";
 import React, { useState, useEffect } from "react";
-import Bars from "assets/bars.svg";
 import { useRouter } from "next/router";
+
 import classNames from "classnames";
+
+import useWindowSize from "hooks/useWindowSize";
 import ThemeSelector from "./themeSelector";
 import IconWithMessage from "components/shared/iconWithMessage";
+
+import Bars from "assets/bars.svg";
 import ClosedDoor from "assets/closed-door.svg";
 import OpenDoor from "assets/open-door.svg";
-type Props = {
+
+type NavbarTypes = {
   setToggle: Function;
   title?: string;
   showSideHeader?: boolean;
@@ -23,13 +27,15 @@ function Navbar({
   showModalButton = false,
   showModal,
   handelModalState,
-}: Props) {
-  const { width } = useWindowSize();
-  const router = useRouter();
-  const { pathname, asPath, query } = router;
+}: NavbarTypes) {
+
   const [message, setMessage] = useState("go to dashboard");
   const [path, setPath] = useState("/dashboard");
-  let iconInfo = { message: "", path: "" };
+  const { width } = useWindowSize();
+  const router = useRouter();
+
+  const { asPath } = router;
+
   useEffect(() => {
     let dir = router.locale == "ar" ? "rtl" : "ltr";
     let lang = router.locale == "ar" ? "ar" : "en-US";
@@ -39,7 +45,7 @@ function Navbar({
       setMessage("Log Out");
       setPath("/login");
     }
-  }, [router.locale]);
+  }, [asPath, router.locale]);
 
   return (
     <>
@@ -83,15 +89,15 @@ function Navbar({
             {showModalButton && (
               <div className="mr-[4px]">
 
-              <button
-                onClick={() => {
-                  handelModalState && handelModalState(!showModal);
-                }}
-                className="modalBtn bg-primary border-[1px] py-[5px] text-secondary px-[20px] border-black rounded-lg overflow-visible inline-block touch-manipulation"
+                <button
+                  onClick={() => {
+                    handelModalState && handelModalState(!showModal);
+                  }}
+                  className="modalBtn bg-primary border-[1px] py-[5px] text-secondary px-[20px] border-black rounded-lg overflow-visible inline-block touch-manipulation"
                 >
-                Add staff
-              </button>
-                </div>
+                  Add staff
+                </button>
+              </div>
             )}
           </div>
         )}

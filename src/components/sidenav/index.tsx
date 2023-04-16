@@ -1,19 +1,16 @@
+import React, { useRef } from "react";
+
+import classNames from "classnames";
+
 import useOnClickOutside from "hooks/useOnClickOutside";
 import useWindowSize from "hooks/useWindowSize";
-import React, { useRef } from "react";
-import styles from "./style.module.css";
-import Doctor from "../../assets/doctor.svg";
-import { menuItemsType } from "./utils";
-import {dashboardItemsType} from "./dashboardUtils"
 import { RenderMenuItems } from "./menuRenderer";
-import classNames from "classnames";
-type SideNavProps = {
-  toggle: boolean;
-  setToggle: Function;
-  sideNavItems:menuItemsType | dashboardItemsType
-};
+import {SideNavProps} from "types/sidenavTypes"
 
-function SideNav({ toggle, setToggle,sideNavItems }: SideNavProps) {
+import Doctor from "../../assets/doctor.svg";
+
+
+function SideNav({ toggle, setToggle, sideNavItems }: SideNavProps) {
   const { width } = useWindowSize();
   const ref = useRef(null);
   useOnClickOutside(ref, () => setToggle(false));
@@ -31,8 +28,8 @@ function SideNav({ toggle, setToggle,sideNavItems }: SideNavProps) {
         className="h-full overflow-y-auto scrollbar-hide width-auto p-[15px] transition-all ease-in-out duration-100 overflow-hidden"
         style={{ display: width > 1184 || toggle ? "block" : "none" }}
       >
-        <div className={`${styles.doctorProfile} my-4`}>
-          <div className={`${styles.imgContainer} rounded-full`}>
+        <div className={`h-[180px] w-full flex flex-col items-center justify-evenly border-b-1 border-white my-4`}>
+          <div className={`bg-layout-secondary opacity-[0.7] flex justify-center items-center p-[10px] h-[90px] rounded-full`}>
             <Doctor style={{ width: 80, height: 80 }} />
           </div>
           <h2 className="text-center text-calendar">Dr. Dagi</h2>

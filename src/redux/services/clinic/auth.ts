@@ -1,5 +1,11 @@
+import { AxiosResponse } from "axios";
 import { createApi } from "@reduxjs/toolkit/query/react";
+
 import {customBaseQuery} from "./customBaseQuery"
+
+interface LoginResponse {
+  token: string;
+}
 
 export const Login = createApi({
   reducerPath:"token",
@@ -11,7 +17,7 @@ export const Login = createApi({
         method:"post",
         body:data
       }),
-      transformResponse: (response) => {
+      transformResponse: (response:AxiosResponse<LoginResponse>) => {
         return response.data;
       },
       

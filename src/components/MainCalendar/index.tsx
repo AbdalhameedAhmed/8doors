@@ -1,15 +1,19 @@
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
+
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import dynamic from "next/dynamic";
+
 const SelectDayMenu = dynamic(() => import("./selectDayMenu"), {
   ssr: false,
 });
+
 const EventMenu = dynamic(() => import("./eventMenu"), {
   ssr: false,
 });
+
 const MainCalendar = () => {
   const [eventMenu, isVisible] = React.useState(false);
   const [eventData, setEventData]: any = React.useState(null);

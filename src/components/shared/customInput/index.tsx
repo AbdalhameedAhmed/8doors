@@ -1,8 +1,9 @@
-import { InputProps } from "@theme-ui/components";
 import React, { InputHTMLAttributes } from "react";
 import { JsxElement } from "typescript";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+import { InputProps } from "@theme-ui/components";
+
+interface customInputTypes extends InputHTMLAttributes<HTMLInputElement> {
   label?: string | number | any;
   error?: string | number | any;
   touched?: string | number | any;
@@ -24,7 +25,8 @@ export function CustomInput({
   errorStyle,
   errorActive,
   ...props
-}: Props) {
+}: customInputTypes) {
+  
   return (
     <label className={`block mt-6 ${containerStyle}`}>
       <span className="block text-sm font-medium text-slate-700">{label}</span>

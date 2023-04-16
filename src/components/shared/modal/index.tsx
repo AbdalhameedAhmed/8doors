@@ -1,26 +1,34 @@
 import { useEffect, useRef, useState } from "react";
+
 import useOnClickOutside from "hooks/useOnClickOutside";
 import MainAnimation from "components/shared/mainAnimation";
-import {modaltypes} from "types/modalTypes"
+import { modaltypes } from "types/modalTypes"
+
 export default function Modal({
   openModal,
   changeModalState,
   title,
   children,
-  onModalClose = ()=>{}
+  onModalClose = () => { }
 }: modaltypes) {
+  
   let [layout, setLayout] = useState(false);
   let [resetForm, setResetForm] = useState(false)
+  
   const ref = useRef(null);
+  useOnClickOutside(ref, () => openModal && closeModal());
 
-  function closeModal() {
+  const closeModal = () => {
+
     changeModalState(false);
     setTimeout(() => {
       onModalClose()
       setLayout(false);
       setResetForm(false)
     }, 300);
+
   }
+
   useEffect(() => {
     if (openModal) {
       setLayout(true)
@@ -31,7 +39,6 @@ export default function Modal({
   }, [openModal]);
 
 
-  useOnClickOutside(ref, () => openModal && closeModal());
 
   return (
     <>

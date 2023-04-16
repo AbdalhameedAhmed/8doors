@@ -1,18 +1,7 @@
 import classNames from "classnames";
-import { SectionHeader } from "../sectionHeader";
 
-type Props = {
-  children?: React.ReactNode;
-  title?: string | null | undefined;
-  subtitle?: string | null | undefined;
-  className?: string;
-  sectionHeaderBtnTitle?: string;
-  sectionHeaderBtnVisibility?: boolean;
-  sectionHeaderBtnHandler?: () => void;
-  childernClassName?: string;
-  headerClassName?: string;
-  onClick?: () => void;
-};
+import { SectionHeader } from "../sectionHeader";
+import {sectionTypes} from "types/sectionTypes"
 
 export function Section({
   children,
@@ -26,7 +15,8 @@ export function Section({
   childernClassName = "",
   onClick = () => { },
   ...rest
-}: Props) {
+}: sectionTypes) {
+
   return (
     <div
       {...rest}

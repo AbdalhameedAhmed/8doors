@@ -1,9 +1,11 @@
-import classNames from "classnames";
-import { useRouter } from "next/router";
 import React from "react";
+import { useRouter } from "next/router";
+
+import classNames from "classnames";
+
 import { menuitemType } from "./utils";
 
-type Props = {
+type menuTypes = {
   item: menuitemType;
   children?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -20,11 +22,14 @@ export default function MenuItem({
   children = <React.Fragment />,
   activeStyle = "font-bold text-active [&_svg]:fill-primary",
   onClick = () => { },
-}: Props) {
-  const { label, icon, path, display } = item;
+}: menuTypes) {
+
   const router = useRouter();
 
+  const { label, icon, path, display } = item;
+
   if (!display) return <React.Fragment></React.Fragment>;
+  
   return (
     <li
       className={classNames(

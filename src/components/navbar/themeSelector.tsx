@@ -1,16 +1,18 @@
-import { useEffect, useState, useRef } from "react";
-import useOnClickOutside from "hooks/useOnClickOutside";
-import Light from "../../assets/sun-solid.svg";
-import Dark from "../../assets/moon-solid.svg";
-import Custom from "../../assets/paintbrush-solid.svg";
+import React, { useEffect, useState, useRef } from "react";
+
 import classNames from "classnames";
+
 import HeightAnimation from "animations/HeightAnimation";
 
+import Custom from "../../assets/paintbrush-solid.svg";
+import Dark from "../../assets/moon-solid.svg";
+import Light from "../../assets/sun-solid.svg";
+
 export default function ThemeSelector() {
+
   let [theme, setTheme] = useState("");
   let [menu, openMenu] = useState(false);
   const ref = useRef(null);
-  // useOnClickOutside(ref, () => openMenu(false));
 
   useEffect(() => {
     setTheme(localStorage.getItem("theme") || "");
@@ -49,10 +51,6 @@ export default function ThemeSelector() {
         )}
       </button>
 
-      {/* <MainAnimation
-        startanimation={menu}
-        className="absolute shadow-md shadow-black/50 py-2 w-[150px] top-[80px] -z-50 right-[25px] bg-secondary rounded-xl "
-      > */}
       <HeightAnimation
         startanimation={menu}
         ele={ref}
@@ -117,9 +115,7 @@ export default function ThemeSelector() {
             </button>
           </li>
         </ul>
-        {/* </div> */}
       </HeightAnimation>
-      {/* </MainAnimation> */}
     </div>
   );
 }

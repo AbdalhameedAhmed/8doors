@@ -1,48 +1,57 @@
 import React from "react";
-
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { signup } from "redux/slices/clinic/authSlice"
 import { useRouter } from "next/router";
-import Logo from "../../assets/logo.svg";
-import { formValdate } from "./formValidate"
+
 import OpacityForm from "components/shared/opacityForm"
-import {inputInfo} from "types/opacityFormTypes"
-import {useSignupMutation} from "redux/services/signup"
+import { formValdate } from "./formValidate"
+import { inputInfo } from "types/opacityFormTypes"
+import { useSignupMutation } from "redux/services/signup"
+import useToast from "hooks/useToast"
+
+import Logo from "assets/logo.svg";
 
 function SignUp() {
 
-  const dispatch = useDispatch()
   const { t } = useTranslation("common");
   const router = useRouter();
-  const [postData] = useSignupMutation()
-  const onSubmit = (values: FormData) => {
-    // dispatch(signup({ username: values.username,email:values.email, password: values.password }))
-    postData({ username: values.username,email:values.email, password: values.password })
-    router.push('/login');
+  const [signup] = useSignupMutation()
+  const addToast = useToast()
+
+  const onSubmit = async (values: Record<string, any>) => {
+
+    await signup({ username: values.username, email: values.email, password: values.password }).unwrap()
+      .then(() => {
+        router.push('/login');
+      }).catch(() => {
+        addToast("error", "somthing wrong")
+      })
   };
 
-  let inputsData:inputInfo[] = [
+  let inputsData: inputInfo[] = [
     {
-      name:"username",
-      placeholder:"Username",
-      type:"text"
+      name: "username",
+      placeholder: "Username",
+      type: "text",
+      value: ""
     },
     {
-      name:"email",
-      placeholder:"Email",
-      type:"text"
+      name: "email",
+      placeholder: "Email",
+      type: "text",
+      value: ""
     },
     {
-      name:"password",
-      placeholder:"Password",
-      type:"password"
+      name: "password",
+      placeholder: "Password",
+      type: "password",
+      value: ""
     },
     {
-      name:"confirm",
-      placeholder:"Confirm password",
-      type:"password"
+      name: "confirm",
+      placeholder: "Confirm password",
+      type: "password",
+      value: ""
     }
   ]
 
@@ -58,15 +67,15 @@ function SignUp() {
           {t("signup.signup")}{" "}
         </h1>
         <h4 className="text-white text-center mb-8">Register new membership</h4>
-        <OpacityForm 
-        inputsData={inputsData} 
-        formValidate={formValdate} 
-        formSubmit={onSubmit} 
-        inputContainerStyle="!px-0" 
-        inputStyle={"!bg-transparent placeholder:text-white !text-white !border-[rgba(222, 221, 221, 0.913)] focus:!border-white focus:!ring-0 !py-[10px] !px-[18px] !border-[1px] "} 
-        fitSubmitBtn={true} 
-        submitBtnContainer="!p-0 !border-none" 
-        submitBtnStyle="!mr-0 !mb-4"/>
+        <OpacityForm
+          inputsData={inputsData}
+          formValidate={formValdate}
+          formSubmit={onSubmit}
+          inputContainerStyle="!px-0"
+          inputStyle={"!bg-transparent placeholder:text-white !text-white !border-[rgba(222, 221, 221, 0.913)] focus:!border-white focus:!ring-0 !py-[10px] !px-[18px] !border-[1px] "}
+          fitSubmitBtn={true}
+          submitBtnContainer="!p-0 !border-none"
+          submitBtnStyle="!mr-0 !mb-4" />
         <p className="my-2 text-sm text-white text-center flex justify-center">
           <Link href="/login">
             <b>{t("signup.alreadyHaveAccount") + " "}</b>
@@ -80,21 +89,3 @@ function SignUp() {
 export default SignUp;
 
 
-{/* <div className="flex items-center mt-5 justify-center">
-<Field name="terms" type="checkbox">
-{({ input, meta }) => (
-  <>
-  <input
-  type="checkbox"
-        className={classNames(`mr-3`, {
-          "ring-red-500 ": meta.error && meta.touched,
-        })}
-        {...input}
-        />
-    </>
-  )}
-</Field>
-<p className="text-white">
-I read and agree to the <u>terms of usage</u>{" "}
-</p>
-</div> */}

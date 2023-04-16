@@ -1,23 +1,21 @@
 import React from "react";
 import classNames from "classnames";
+
 import CustomBtn from "components/shared/button/CustomBtn";
 import useOnClickOutside from "hooks/useOnClickOutside";
-
-type props = {
-  isvisible: boolean
-  visiblestate: Function
-  dayData: Object | any
-}
+import { SelectDayMenuTypes } from "types/selectDayMenuTypes"
 
 export default function SelectDayMenu({
   isvisible,
   visiblestate,
   dayData,
-}: props) {
+}: SelectDayMenuTypes) {
+
   const [windowSize, setWindowSize] = React.useState([
     window.innerWidth,
     window.innerHeight,
   ]);
+
   let ref = React.useRef<HTMLDivElement>(null!);
   let menuBackground = "#3788d8";
   let left = 0;
@@ -36,9 +34,11 @@ export default function SelectDayMenu({
         - dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().y / 2;
     }
   }
+
   useOnClickOutside(ref, () => {
     smoothClose();
   });
+
   const handelMenu = () => {
 
     if (dayData) {
@@ -62,20 +62,23 @@ export default function SelectDayMenu({
         console.log(left)
 
       }
-      
-      if(windowSize[0]-(dayData.dayEl.getBoundingClientRect().x + dayData.dayEl.getBoundingClientRect().width) < width && dayData.dayEl.getBoundingClientRect().x < width){
-        left = windowSize[0]/2 - width/2
-        top = windowSize[1]/2 - height/2
+
+      if (windowSize[0] - (dayData.dayEl.getBoundingClientRect().x + dayData.dayEl.getBoundingClientRect().width) < width && dayData.dayEl.getBoundingClientRect().x < width) {
+        left = windowSize[0] / 2 - width / 2
+        top = windowSize[1] / 2 - height / 2
       }
     }
   }
+
   handelMenu();
+
   function smoothClose() {
     ref.current.classList.remove("!opacity-100", "!translate-x-0");
     setTimeout(() => {
       visiblestate(false);
     }, 300);
   }
+
   React.useEffect(() => {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
@@ -102,8 +105,8 @@ export default function SelectDayMenu({
         <div
           ref={ref}
           style={{
-            width:width,
-            height:height,
+            width: width,
+            height: height,
             left: left,
             top: top,
             backgroundColor: menuBackground,

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface buttonTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode | string;
   className?: string;
   fit?: boolean;
@@ -17,7 +17,7 @@ export function Button({
   fit = false,
   className = '',
   ...rest
-}: Props) {
+}: buttonTypes) {
   const styles = {
     primary: 'text-white bg-primary border-primary',
     secondary: 'text-secondary bg-secondary border-gray-mid',

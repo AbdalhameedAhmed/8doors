@@ -1,30 +1,33 @@
 import { useEffect, useRef, useState } from "react";
-import useOnClickOutside from "../../../hooks/useOnClickOutside";
-import MainAnimation from "../mainAnimation";
-import DangerIcon from "assets/danger.svg";
-import CustomBtn from "components/shared/button/CustomBtn";
+
 import { useDispatch } from 'react-redux';
+
+import MainAnimation from "components/shared/mainAnimation";
+import useOnClickOutside from "hooks/useOnClickOutside";
+import CustomBtn from "components/shared/button/CustomBtn";
 import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
 
+import DangerIcon from "assets/danger.svg";
 
-type props = {
+
+type confirmationModalTypes = {
   openModal: boolean
   changeModalState: Function
-  warningMessage:string;
-  deleteFunction?:Function;
+  warningMessage: string;
+  deleteFunction?: Function;
 }
 export default function ConfirmationModal({
   openModal,
   changeModalState,
-  deleteFunction=()=>{},
-  warningMessage 
-}: props) {
+  deleteFunction = () => { },
+  warningMessage
+}: confirmationModalTypes) {
+
   let [layout, setLayout] = useState(false);
   const ref = useRef(null);
   const dispatch = useDispatch()
-  useEffect(() => {
-    openModal && setLayout(true);
-  }, [openModal]);
+  useOnClickOutside(ref, () => openModal && closeModal());
+
 
   function closeModal() {
     changeModalState(false);
@@ -34,7 +37,10 @@ export default function ConfirmationModal({
     }, 300);
   }
 
-  useOnClickOutside(ref, () => openModal && closeModal());
+
+  useEffect(() => {
+    openModal && setLayout(true);
+  }, [openModal]);
 
   return (
     <>
@@ -53,12 +59,12 @@ export default function ConfirmationModal({
                 <DangerIcon className="w-24 h-24" />
               </div>
               <div className="text-center">
-              <h1 className="text-3xl bold mb-4 font-semibold">
-                Are You Sure ?
-              </h1>
-              <p className="text-xl bold">
-                {warningMessage}
-              </p>
+                <h1 className="text-3xl bold mb-4 font-semibold">
+                  Are You Sure ?
+                </h1>
+                <p className="text-xl bold">
+                  {warningMessage}
+                </p>
               </div>
               <div className="btns flex justify-center items-center gap-8">
                 <CustomBtn

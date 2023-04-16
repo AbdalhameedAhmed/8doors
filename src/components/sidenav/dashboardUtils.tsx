@@ -1,8 +1,9 @@
 import React from "react";
-import Home from "assets/house-solid.svg";
+
 import ArrowLongRight from "assets/arrow-right-long-solid.svg";
-import UserPlus from "assets/user-plus-solid.svg";
 import Gear from "assets/gear-solid.svg"
+import Home from "assets/house-solid.svg";
+
 export type dashboardItemType = {
   label?: string;
   icon?: React.ReactElement;

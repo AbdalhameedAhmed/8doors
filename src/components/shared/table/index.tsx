@@ -1,13 +1,13 @@
 import classNames from "classnames";
 import { SectionHeader } from "../sectionHeader";
 
-type Props = {
+type TabelTypes = {
   title?: string | null | undefined;
   subtitle?: string | null | undefined;
   className?: string;
 };
 
-export function Table({ title, subtitle, className = "" }: Props) {
+export function Table({ title, subtitle, className = "" }: TabelTypes) {
   return (
     <section className={classNames("flex flex-col gap-3", className)}>
       {title?.length && <SectionHeader title={title} subtitle={subtitle} />}

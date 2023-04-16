@@ -1,9 +1,11 @@
 import React from "react"
+
 import { Form, Field } from "react-final-form";
+import { useChangePasswordMutation } from "redux/services/clinic/changePassword"
+
 import { FormValidate } from "./formValidate"
 import CustomBtn from "components/shared/button/CustomBtn";
 import PasswordInput from "./passwordInput"
-import { useChangePasswordMutation } from "redux/services/clinic/changePassword"
 import useToast from "hooks/useToast";
 import { changePasswordFormTypes } from "types/changePasswordFormTypes"
 

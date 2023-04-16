@@ -1,5 +1,5 @@
-function formValidate(values: any, submitTime: Function) {
-    const errors: any = {};
+function formValidate(values: Record<string, any>) {
+    const errors: Record<string, string> = {};
     const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     const validTel = /^[0-9]*$/
     if (!values.name) {
@@ -20,8 +20,6 @@ function formValidate(values: any, submitTime: Function) {
     }
     if (!values.speciality) {
         errors.speciality = "This field is required";
-    } else {
-        submitTime(true)
     }
     return errors;
 }

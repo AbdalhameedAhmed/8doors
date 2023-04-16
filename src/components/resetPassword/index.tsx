@@ -1,20 +1,26 @@
-import { CustomInput } from "components/shared";
 import React from "react";
+
 import { Form, Field } from "react-final-form";
-import Logo from "../../assets/logo.svg";
-import styles from "./style.module.css";
 import classNames from "classnames";
+
+import { CustomInput } from "components/shared";
 import CustomBtn from "components/shared/button/CustomBtn";
+
+import Logo from "../../assets/logo.svg";
+
 function index() {
   const onSubmit = async (values: any) => {
+
     window.alert("done");
+
   };
+
   return (
     <div className="self-center px-10 py-10 w-96">
       <div className="flex  align-center justify-center">
         <Logo style={{ height: 65, width: 65 }} />
       </div>
-      <h1 className={styles.title}>Forgot Password?</h1>
+      <h1 className="text-[1.57em] text-white text-center">Forgot Password?</h1>
       <h4 className="text-white text-center">Enter your new password.</h4>
       <Form
         onSubmit={onSubmit}

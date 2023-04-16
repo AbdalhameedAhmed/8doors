@@ -1,6 +1,8 @@
-import { InputProps } from "@theme-ui/components";
 import React, { InputHTMLAttributes } from "react";
+
+import { InputProps } from "@theme-ui/components";
 import { JsxElement } from "typescript";
+
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string | number | any;
@@ -12,6 +14,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   errorStyle?: string;
   props?: InputProps;
 }
+
 export default function PasswordInput({
   label = "",
   error,
@@ -22,7 +25,9 @@ export default function PasswordInput({
   errorStyle,
   ...props
 }: Props) {
+
   let [inputType, changeInputType] = React.useState("password")
+
   return (
     <>
       <div className={`relative ${containerStyle}`}>

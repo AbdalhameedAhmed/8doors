@@ -1,19 +1,23 @@
-import MenuItem from './menuItem';
-import { menuitemType } from './utils';
 import React from 'react';
+import { useRouter } from 'next/router';
+
 import { generate } from 'randomized-string';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
+
+import MenuItem from './menuItem';
+import { menuitemType } from './utils';
+
 import AngleRight from "assets/angle-right-solid.svg"
 
-type Props = {
+type menuCollapseType = {
   item: menuitemType;
 };
 
-function MenuCollapsibleList({ item }: Props): JSX.Element {
-  const router = useRouter();
+function MenuCollapsibleList({ item }: menuCollapseType): JSX.Element {
+
   const [open, toggle] = React.useState(false);
   const [active, setActive] = React.useState(false);
+  const router = useRouter();
 
   const submenuLenght = item.submenu ? item.submenu.length : 0;
 

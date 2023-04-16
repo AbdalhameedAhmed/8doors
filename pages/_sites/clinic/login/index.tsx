@@ -1,9 +1,10 @@
 import React from 'react';
-import SignInContainer from 'components/login';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { removeDashAndCapitalize } from 'utiles';
+
+import SignInContainer from 'components/login';
 import SignInSignOutLayout from 'components/layout/signIn-signOut';
+import { removeDashAndCapitalize } from 'utiles';
 
 export const getServerSideProps = async ({ locale }: any) => ({
   props: {
@@ -13,9 +14,9 @@ export const getServerSideProps = async ({ locale }: any) => ({
 
 export default function SignIn() {
   const router = useRouter();
-  React.useEffect(()=>{
+  React.useEffect(() => {
     document.title = removeDashAndCapitalize(router.asPath)
-  },[])
+  }, [])
   return (
     <SignInSignOutLayout type="SIGN UP" signOnClick={() => router.push('/signup')}>
       <SignInContainer />

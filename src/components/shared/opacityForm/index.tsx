@@ -1,6 +1,9 @@
 import React from "react"
-import { Form, Field } from "react-final-form";
+
 import classNames from "classnames"
+import { Form, Field } from "react-final-form";
+import { ValidationErrors } from "final-form";
+
 import { CustomInput } from "components/shared/customInput";
 import CustomBtn from "components/shared/button/CustomBtn";
 import SingleSelector from "components/shared/customSingleSelector"
@@ -26,11 +29,11 @@ export default function OpacityForm(props: opacityFormData) {
     }
   }
 
-  const submitBtnFunction = (errors) => {
+  const submitBtnFunction = (errors: ValidationErrors) => {
     if (activeFieldIndex == inputsData.length - 1) {
       isSubmitTime(true)
     }
-    if (errors[inputsData[activeFieldIndex].name]) {
+    if (errors && errors[inputsData[activeFieldIndex].name]) {
       changeErrorActive(inputsData[activeFieldIndex].name)
     } else if (activeFieldIndex !== inputsData.length - 1) {
       changeActiveInput(inputsData[activeFieldIndex + 1].name)
@@ -39,7 +42,7 @@ export default function OpacityForm(props: opacityFormData) {
     }
   }
 
-  const preventForm = (values, formSubmit) => {
+  const preventForm = (values: Record<string, any>, formSubmit: Function) => {
     return submit && formSubmit(values)
   }
 
@@ -75,7 +78,7 @@ export default function OpacityForm(props: opacityFormData) {
                               errorActive={errorActive}
                               error={meta.error}
                               touched={meta.touched}
-                              containerStyle={classNames("absolute w-full transition-all duration-300 opacity-0 mt-0 top-1/2 left-0 translate-y-[200px]", { "!-translate-y-1/2": activeInput == input.name, "!opacity-100": activeInput == input.name, "!opacity-0": activeInput !== input.name, "!-translate-y-[200px]": isFieldActive(input.name) })}
+                              containerStyle={classNames("absolute w-full !mt-0 transition-all duration-300 opacity-0 mt-0 top-1/2 left-0 translate-y-[200px]", { "!-translate-y-1/2": activeInput == input.name, "!opacity-100": activeInput == input.name, "!opacity-0": activeInput !== input.name, "!-translate-y-[200px]": isFieldActive(input.name) })}
                               {...input}
                             />
                           )}

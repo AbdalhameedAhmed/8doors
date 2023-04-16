@@ -1,22 +1,24 @@
-import { Page, Section, UserTemplate } from 'components/shared';
-import CustomBtn from "components/shared/button/CustomBtn"
-import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
-import { removeDashAndCapitalize } from "utiles"
-import Trash from "assets/trash-solid.svg"
-import Join from "assets/right-to-bracket-solid.svg"
-import Edit from "assets/pen-to-square-solid.svg"
-import { useGetClinicsQuery } from "redux/services/clinic/addAndGetClinics"
-import { useDeleteClinicMutation } from 'redux/services/clinic/deleteClinic';
-import NoItemsFound from "components/sites/clinic/configuration/add-clinic/no-items/NoItemsFound"
-import Modal from "components/shared/modal";
-import ConfirmationModal from 'components/shared/confirmationModal';
-import useToast from 'hooks/useToast';
-import ClinicForm from "components/sites/clinic/configuration/add-clinic/form/clinicForm"
-import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Page, Section, UserTemplate } from 'components/shared';
+import NoItemsFound from "components/sites/clinic/configuration/add-clinic/no-items/NoItemsFound"
+import ClinicForm from "components/sites/clinic/configuration/add-clinic/form/clinicForm"
+import Modal from "components/shared/modal";
+import ConfirmationModal from 'components/shared/confirmationModal';
+import { useGetClinicsQuery } from "redux/services/clinic/addAndGetClinics"
+import { useDeleteClinicMutation } from 'redux/services/clinic/deleteClinic';
+import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
+import { rootState } from "redux/store"
+import { removeDashAndCapitalize } from "utiles"
+import useToast from 'hooks/useToast';
+
+import Edit from "assets/pen-to-square-solid.svg"
+import Join from "assets/right-to-bracket-solid.svg"
+
 type clinicData = {
+  id: string
   clinicName: string;
   address: string;
   img?: string
@@ -27,31 +29,28 @@ export default function Dashboard() {
   const [clinics, setClinics] = useState<clinicData[]>([])
   const [modal, setModal] = useState(false)
   const [openConfirmationModal, changeConfirmationModal] = useState(false)
-  const activeClinic = useSelector(reduxData => reduxData.activeClinic)
-  const reduxdata = useSelector(state=>state)
-
-  const apiClinicsData = useGetClinicsQuery().data
-  let reFetch = useGetClinicsQuery().refetch
+  const activeClinic = useSelector(reduxData => (reduxData as rootState).activeClinic)
+  const reduxdata = useSelector(state => state)
+  const apiClinicsData = useGetClinicsQuery(null).data
+  let reFetch = useGetClinicsQuery(null).refetch
   const router = useRouter();
   const [removeClinic] = useDeleteClinicMutation()
-  const addToast = useToast()
   const dispatch = useDispatch()
-console.log("redux data equal",reduxdata);
+  const addToast = useToast()
+
 
   const sectionBtnHandler = () => {
     setModal(!modal)
 
   }
-  const joinBtnHandler = (clinic) => {
+
+  const joinBtnHandler = (clinic: clinicData) => {
     router.push('/clinic-dashboard');
     dispatch(changeActiveClinic(clinic))
   }
-  const editBtnHandler = (clinic) => {
+
+  const editBtnHandler = (clinic: clinicData) => {
     setModal(true)
-    dispatch(changeActiveClinic(clinic))
-  }
-  const deleteBtnHandler = (clinic) => {
-    changeConfirmationModal(true)
     dispatch(changeActiveClinic(clinic))
   }
 
@@ -65,17 +64,16 @@ console.log("redux data equal",reduxdata);
     document.title = removeDashAndCapitalize(router.asPath)
     !(clinics == undefined || clinics.length) ? changeBtnState(false) : changeBtnState(true)
     reFetch()
-  }, [clinics, apiClinicsData])
+  }, [clinics, apiClinicsData, router.asPath, reFetch,activeClinic])
 
   return (
     <>
       <Modal
         openModal={modal}
         changeModalState={setModal}
-        title={activeClinic ? "Update clinic" : "Add clinic"}
+        title={(activeClinic && activeClinic.id) ? "Update clinic" : "Add clinic"}
         onModalClose={() => { dispatch(changeActiveClinic(null)) }}
       >
-        {/* {activeClinic?<UpdateClinicForm openModal={setModal} clinicData={activeClinic}/>:<ClinicForm openModal={setModal} />} */}
         <ClinicForm openModal={setModal} />
       </Modal>
       <ConfirmationModal openModal={openConfirmationModal} changeModalState={changeConfirmationModal} deleteFunction={() => { deleteClinic(activeClinic.id) }} warningMessage='Do you realy want to delete this clinic?' />
@@ -103,13 +101,6 @@ console.log("redux data equal",reduxdata);
                       img={clinic.img}
                     />
                     <div className='mr-[4px] flex items-center justify-between gap-8'>
-                      {/* <button className='p-2' onClick={() => {
-
-                        deleteBtnHandler(clinic)
-                      }}>
-
-                        <Trash width={20} height={20} />
-                      </button> */}
 
                       <button
                         onClick={() => {

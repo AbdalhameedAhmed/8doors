@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './styles.module.css';
-interface Props {
+interface NavebarTypes {
   signType: 'SIGN UP' | 'SIGN IN';
   signOnClick: () => void;
 }
-function Navbar({ signType, signOnClick = () => { } }: Props) {
+function Navbar({ signType, signOnClick = () => { } }: NavebarTypes) {
   return (
     <div className="flex justify-between items-center">
       <div className="text-white">8door</div>

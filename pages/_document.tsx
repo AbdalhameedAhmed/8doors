@@ -4,7 +4,9 @@ async function getInitialProps(ctx: any) {
   const initialProps = await Document.getInitialProps(ctx);
   return { ...initialProps, locale: ctx?.locale || 'en' };
 }
+
 function MyDocument({ props }: any) {
+  
   return (
     <Html dir={props?.locale === 'ar' ? 'rtl' : 'ltr'} lang={props?.locale}>
       <Head></Head>
@@ -14,6 +16,7 @@ function MyDocument({ props }: any) {
       </body>
     </Html>
   );
+  
 }
 
 export default MyDocument;

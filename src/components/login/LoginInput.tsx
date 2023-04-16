@@ -1,8 +1,8 @@
-import { InputProps } from "@theme-ui/components";
 import React, { InputHTMLAttributes } from "react";
+import { InputProps } from "@theme-ui/components";
 import { JsxElement } from "typescript";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface LoginInputTypes extends InputHTMLAttributes<HTMLInputElement> {
   label?: string | number | any;
   error?: string | number | any;
   touched?: string | number | any;
@@ -12,6 +12,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   errorStyle?: string;
   props?: InputProps;
 }
+
 export default function LoginInput({
   label = "",
   error,
@@ -21,7 +22,8 @@ export default function LoginInput({
   containerStyle = "",
   errorStyle,
   ...props
-}: Props) {
+}: LoginInputTypes) {
+
   return (
     <label className={`block mt-6 ${containerStyle}`}>
       <span className="block text-sm font-medium text-slate-700">{label}</span>
@@ -34,4 +36,5 @@ export default function LoginInput({
 
     </label>
   );
+
 }

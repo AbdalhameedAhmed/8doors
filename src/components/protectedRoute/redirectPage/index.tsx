@@ -1,7 +1,11 @@
 import Link from 'next/link'
-import Logo from "assets/logo.svg";
+
 import CustomBtn from "components/shared/button/CustomBtn";
+
+import Logo from "assets/logo.svg";
+
 export default function RedirectPage() {
+
     return (
         <div className="w-full h-full bg-doctor bg-cover bg-center absolute -z-10">
             <div className="w-full h-full flex flex-col z-10 justify-between bg-[rgba(0,0,0,0.5)] pb-[15px] pt-[26px] px-[51.5px] xs:px-[15px]">
@@ -22,13 +26,9 @@ export default function RedirectPage() {
                             className="py-4 mt-12 bg-sky-500/100"
                         >
                             Login now
-                </CustomBtn>
+                        </CustomBtn>
                     </Link>
                 </div>
-
-
-
-
                 <div className="flex flex-wrap justify-between items-center">
                     <div className="flex w-64 justify-between">
                         <Link href="/contact">

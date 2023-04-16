@@ -1,15 +1,19 @@
 import React from "react";
-import MenuIcon from "../../../assets/menu-icon.svg";
+
 import MainAnimation from "components/shared/mainAnimation";
+import useOnClickOutside from "hooks/useOnClickOutside";
+
+import MenuIcon from "assets/menu-icon.svg";
 import doctorAvatar from "assets/doc2.jpg";
 import Email from "assets/EmailIcon.svg";
 import Telephone from "assets/telephone.svg";
-import useOnClickOutside from "hooks/useOnClickOutside";
+
 export default function InfoCard({ data, openModal, openConfirmModal }: any) {
+
   const [cardMenu, setCardMenu] = React.useState(false);
   let ref = React.useRef(null);
-
   useOnClickOutside(ref, () => cardMenu && openCardMenu());
+
   const openCardMenu = () => {
     setCardMenu(!cardMenu);
   };
@@ -60,8 +64,8 @@ export default function InfoCard({ data, openModal, openConfirmModal }: any) {
                   {role}{" "}
                   {data.roles.length - 1 !== index && (
                     <span className="mx-1 font-bold text-lg">|</span>
-                    )}
-                    </span>
+                  )}
+                </span>
               ))}
             </h2>
           </div>

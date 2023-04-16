@@ -1,13 +1,12 @@
 export type singleSelectorTypes = {
-  placeholder: string
-  options: string[]
-  input: any
-  inputStyle?: string
-  menuStyle?: string
-  dirtyFields?: any
+  placeholder: string;
+  options: string[];
+  input: any;
+  inputStyle?: string;
+  menuStyle?: string;
+  dirtyFields?: any;
   error?: string | number | any;
   touched?: string | number | any;
-  containerStyle?:string
-  errorActive?: string
-
-}
+  containerStyle?: string;
+  errorActive?: string;
+};

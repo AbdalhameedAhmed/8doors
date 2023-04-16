@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface customBtnTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode | string;
   className?: string;
   fit?: boolean;
@@ -17,7 +17,8 @@ export default function CustomBtn({
   className = "",
   style,
   ...rest
-}: Props) {
+}: customBtnTypes) {
+  
   return (
     <button
       className={classNames(

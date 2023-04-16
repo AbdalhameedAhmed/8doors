@@ -1,7 +1,8 @@
 import classNames from "classnames";
+
 import CustomBtn from "components/shared/button/CustomBtn";
 
-type Props = {
+type sectionHeaderTypes = {
   title?: string | null | undefined;
   subtitle?: string | null | undefined;
   className?: string;
@@ -17,7 +18,7 @@ export function SectionHeader({
   showBtn = false,
   className = "",
   onClick = () => { },
-}: Props) {
+}: sectionHeaderTypes) {
 
   return (
     <div

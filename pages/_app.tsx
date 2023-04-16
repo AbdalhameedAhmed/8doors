@@ -1,18 +1,22 @@
-import '../styles/globals.css';
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'theme-ui';
-import { theme } from '../theme/index';
 import { Provider } from 'react-redux';
 import store,{persistor} from 'redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
-import { ToastContainer } from 'react-toastify'
+
 import { appWithTranslation } from 'next-i18next';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify'
 import { useRouter } from 'next/router';
+
+import { ThemeProvider } from 'theme-ui';
+import { theme } from '../theme/index';
+
 import 'react-toastify/dist/ReactToastify.css'
+import '../styles/globals.css';
 
 function App({ Component, pageProps }: AppProps) {
+  
   const router = useRouter();
 
   useEffect(() => {

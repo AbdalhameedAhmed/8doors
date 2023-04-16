@@ -1,5 +1,5 @@
 export type changePasswordFormTypes = {
-  currentPassword:string;
-  newPassword:string;
-  newPasswordConfirmation:string
-}
+  currentPassword: string;
+  newPassword: string;
+  newPasswordConfirmation: string;
+};
