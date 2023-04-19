@@ -18,7 +18,7 @@ function IconWithMessage({ visibleIcon, hoverIcon, message, goto }: any) {
       }}
       className="icon group cursor-pointer relative"
     >
-      <button className="group relative [&_svg]:w-[25px] [&_svg]:fill-secondary [&_svg]:h-[25px] ">
+      <button className="group relative [&_svg]:w-[25px] [&_svg]:fill-secondary [&_svg]:h-[25px] flex items-center">
         <div className="visible-icon group-hover:hidden">{visibleIcon}</div>
         <div className="hover-icon hidden group-hover:block">{hoverIcon}</div>
       </button>

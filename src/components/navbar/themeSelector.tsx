@@ -36,18 +36,18 @@ export default function ThemeSelector() {
   return (
     <div className="relative">
       <button
-        className="text-white text-lg relative"
+        className="text-white text-lg relative flex items-center"
         ref={ref}
         onClick={() => {
           openMenu(!menu);
         }}
       >
         {!theme ? (
-          <Light className="w-[20px] fill-secondary box-content p-2 " />
+          <Light className="w-[20px] fill-secondary box-content " />
         ) : theme === "dark" ? (
-          <Dark className="w-[20px] fill-secondary box-content p-2 " />
+          <Dark className="w-[20px] fill-secondary box-content " />
         ) : (
-          <Custom className="w-[20px] fill-secondary box-content p-2 " />
+          <Custom className="w-[20px] fill-secondary box-content " />
         )}
       </button>
 

@@ -6,6 +6,7 @@ import classNames from "classnames";
 import useWindowSize from "hooks/useWindowSize";
 import ThemeSelector from "./themeSelector";
 import IconWithMessage from "components/shared/iconWithMessage";
+import SearchBar from "./SearchBar"
 
 import Bars from "assets/bars.svg";
 import ClosedDoor from "assets/closed-door.svg";
@@ -62,6 +63,7 @@ function Navbar({
         style={{
         }}
       >
+        <SearchBar searchBarState={searchBar} changeSearchBarState={openSearchBar}/>
         <div
           className={classNames(
             "bg-primary flex justify-between w-full !bg-white items-center px-5 xs:px-3 h-20 z-10 relative",
