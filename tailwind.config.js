@@ -36,6 +36,7 @@ module.exports = {
       backgroundColor: {
         primary: 'var(--background-primary)',
         secondary: 'var(--background-secondary)',
+        active: "var(--bg-active)"
       },
       backgroundImage: {
         doctor: "url('../src/assets/mainBg.jpg')"

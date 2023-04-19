@@ -64,6 +64,7 @@ export const mainMenuItems: menuItemsType = [
       },
     ],
   },
+  
   {
     label: "Staff",
     icon: (

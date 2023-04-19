@@ -35,16 +35,16 @@ function BasicLayout({
   return (
     <ProtectedRoute>
 
-      <div className="w-screen">
+      <div className="w-screen flex">
         {
           <SideNav toggle={toggle} sideNavItems={sidenavItems} setToggle={setToggle} />
         }
         <div
-          className="layout"
+          className="layout w-full flex-1"
           style={{
-            marginLeft: width > 1184 && router.locale !== "ar" ? "250px" : 0,
+            // marginLeft: width > 1184 && router.locale !== "ar" ? "250px" : 0,
             backgroundColor: "#fff",
-            marginRight: width > 1184 && router.locale === "ar" ? "250px" : 0,
+            // marginRight: width > 1184 && router.locale === "ar" ? "250px" : 0,
           }}
         >
           <Navbar

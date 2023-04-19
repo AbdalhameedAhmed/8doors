@@ -20,8 +20,7 @@ export const AddStaff = ({ openModal }: addStaffTypes) => {
     {
       name: "email",
       placeholder: "Email",
-      type: "text"
-      ,
+      type: "text",
       value: ""
     },
     {

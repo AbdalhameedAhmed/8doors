@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 
 import { Page, Section } from "components/shared";
 import InfoCard from "components/shared/infoCard";
+import SecondCard from "components/shared/infoCard/SecondCard";
+
 import { removeDashAndCapitalize } from "utiles"
 import ConfirmationModal from "components/shared/confirmationModal";
 import Modal from "components/shared/modal";
@@ -48,14 +50,10 @@ export default function Staff() {
           title='Staff'
           subtitle='create / choose / update a staff'
 
-
-
-
-
         >
-          <div className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-5 xs:gap-3 p-5 xs:p-3 bg-layout-primary ">
+          <div className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xs:gap-3 p-5 xs:p-3 bg-layout-primary px-20 ">
             {data.map((card) => (
-              <InfoCard
+              <SecondCard
                 key={card.id}
                 openConfirmModal={setconModal}
                 data={card}

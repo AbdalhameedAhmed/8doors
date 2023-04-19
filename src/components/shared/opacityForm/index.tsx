@@ -76,7 +76,7 @@ export default function OpacityForm(props: opacityFormData) {
                                 , { "!border-red-500": (errorActive === input.name && meta.error), "focus:!border-red-500": (errorActive === input.name && meta.error), "focus:!ring-red-500": (errorActive === input.name && meta.error) })}
                               placeholder={inputInfo.placeholder}
                               errorActive={errorActive}
-                              errorStyle="absolute button-0 left-0"
+                              errorStyle="absolute buttom-8 left-0"
                               error={meta.error}
                               touched={meta.touched}
                               containerStyle={classNames("absolute w-full !mt-0 transition-all duration-300 opacity-0 mt-0 top-1/2 left-0 translate-y-[200px]", { "!-translate-y-1/2": activeInput == input.name, "!opacity-100": activeInput == input.name, "!opacity-0": activeInput !== input.name, "!-translate-y-[200px]": isFieldActive(input.name) })}

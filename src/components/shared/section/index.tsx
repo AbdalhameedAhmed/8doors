@@ -40,7 +40,7 @@ export function Section({
         )}
         <div
           className={classNames(
-            "p-5 xs:p-3 h-[calc(100vh-232px)] overflow-y-auto ease-in-out duration-300",
+            "p-5 xs:p-3 h-[calc(100vh-170px)] overflow-y-auto ease-in-out duration-300",
             childernClassName
           )}
         >
