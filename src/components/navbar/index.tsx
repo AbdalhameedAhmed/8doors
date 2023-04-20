@@ -12,6 +12,7 @@ import Bars from "assets/bars.svg";
 import ClosedDoor from "assets/closed-door.svg";
 import OpenDoor from "assets/open-door.svg";
 import SearchIcon from "assets/search.svg"
+import SelectLang from "./SeletLang";
 
 type NavbarTypes = {
   setToggle: Function;
@@ -85,7 +86,11 @@ function Navbar({
             </div>
 
             <div className="flex justify-venter  items-center gap-4">
+
+              <SelectLang/>
+
               <ThemeSelector />
+              
               <IconWithMessage
                 visibleIcon={<ClosedDoor />}
                 hoverIcon={<OpenDoor />}

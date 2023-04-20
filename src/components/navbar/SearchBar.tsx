@@ -29,7 +29,7 @@ const searchHandler = ()=>{
 }
 
   return (
-    <div className={classNames("absolute overflow-hidden bg-[#ffffffc4] transition-all duration-300 max-h-[100px]top-0 scale-y-100 origin-top p-8 left-o w-full z-50 backdrop-blur-[6px] shadow-md", {
+    <div className={classNames("absolute overflow-hidden bg-[#ffffffc4] transition-all duration-300 max-h-[100px]top-0 scale-y-100 origin-top p-8 left-o w-full z-50 backdrop-blur-[6px] shadow-md shadow-[rgb(145,158,171,0.16)]", {
       "scale-y-0 ": !searchBarState
     })} ref={serachBarRef}>
       <div className="flex justify-start gap-2 items-center ">
