@@ -128,6 +128,21 @@
 .sidenav::-webkit-scrollbar {
   display: none;
 }
+
+.sidenavItems {
+
+}
+
+.sidenavItems:hover > a{
+  background-color: var(--layout-secondary);
+  color: var(--text-primary);
+  font-weight: bold;
+}
+.sidenavItems:hover > a svg {
+  fill: var(--text-primary);
+  
+}
+
 .min-h-inherit{
   min-height: inherit;
 }

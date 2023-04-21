@@ -21,30 +21,12 @@ export default function SecondCard({ data, openModal, openConfirmModal }: any) {
   return (
     data && (
       <div
-        className="overflow-hidden h-[600px] transform transition-300 relative w-full bg-secondary bg-doctor bg-cover bg-center shadow-lg rounded-3xl flex flex-col justify-end"
+        className="overflow-hidden h-[600px] transform transition-300 relative w-full bg-layout-secondary shadow-lg rounded-3xl flex flex-col justify-end"
         ref={ref}
         key={data.id}
       >
 
-        {/* card header */}
-        {/* <div className="flex justify-between items-center w-full p-4 self-start">
-          <div className="info">
-            <h2 className="font-bold text-primary">{data.name}</h2>
-            <h2 className="text-sm">
-              {data.roles.map((role: any, index: any) => (
-                <span key={index}>
-
-                  {role}{" "}
-                  {data.roles.length - 1 !== index && (
-                    <span className="mx-1 font-bold text-lg">|</span>
-                  )}
-                </span>
-              ))}
-            </h2>
-          </div>
-        
-        </div> */}
-        {/* card body */}
+ 
 
         <div className="h-[60%] bg-white relative ">
 
@@ -71,21 +53,21 @@ export default function SecondCard({ data, openModal, openConfirmModal }: any) {
             <div className="items-center w-full border-t-2 p-4 self-end absolute bottom-0 left-0">
               <div className="info text-start">
                 <h2 className="text-sm">
-                  <Email className="w-[20px] h-[20px] inline-block mr-1" />
+                  <Email className="w-[20px] h-[20px] inline-block mr-1 fill-secondary" />
                   {data.email}
                 </h2>
                 <h2 className="text-sm mt-1">
-                  <Telephone className="w-[20px] h-[20px] inline-block mr-1" />
+                  <Telephone className="w-[20px] h-[20px] inline-block mr-1 fill-secondary " />
                   {data.phone}
                 </h2>
               </div>
 
               <div className="icons flex gap-8 absolute right-[16px] top-1/2 -translate-y-1/2">
-                <Trash className="w-[20px] h-[20px] cursor-pointer" onClick={()=>{
+                <Trash className="w-[20px] h-[20px] cursor-pointer fill-secondary hover:fill-primary" onClick={()=>{
                       openConfirmModal(true);
                     
                 }} />
-                <EditIcon className="w-[20px] h-[20px] cursor-pointer" onClick={()=>{
+                <EditIcon className="w-[20px] h-[20px] cursor-pointer fill-secondary hover:fill-primary" onClick={()=>{
                       openModal(true);
                     
                 }} />

@@ -21,7 +21,7 @@ export function Section({
     <div
       {...rest}
       className={classNames(
-        "grow flex w-full relative rounded-[.1875rem] overflow-hidden bg-secondary text-secondary",
+        "grow flex w-full relative rounded-[.1875rem] bg-secondary text-secondary",
         className
       )}
     >
@@ -40,7 +40,7 @@ export function Section({
         )}
         <div
           className={classNames(
-            "p-5 xs:p-3 h-[calc(100vh-170px)] overflow-y-auto ease-in-out duration-300",
+            "p-5 xs:p-3 ease-in-out duration-300",
             childernClassName
           )}
         >

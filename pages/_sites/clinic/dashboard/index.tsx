@@ -107,14 +107,14 @@ export default function Dashboard() {
                         className="p-2 "
                       >
 
-                        <Edit width={20} hieght={20} />
+                        <Edit width={20} hieght={20} className="fill-secondary hover:fill-primary" />
                       </button>
                       <button
                         onClick={() => joinBtnHandler(clinic)}
                         className="p-2 pr-0"
                       >
 
-                        <Join width={20} height={20} />
+                        <Join width={20} height={20} className="fill-secondary hover:fill-primary"/>
                       </button>
                     </div>
                   </li>

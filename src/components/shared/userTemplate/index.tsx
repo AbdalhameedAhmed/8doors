@@ -6,6 +6,9 @@ type Props = {
   img?: string | null | undefined;
   className?: string;
   circleClassName?: string;
+  titleStyle?:string
+  textContainer?:string
+  subTitleStyle?:string
 };
 
 export function UserTemplate({
@@ -13,6 +16,9 @@ export function UserTemplate({
   subtitle,
   className = '',
   circleClassName = '',
+  titleStyle="",
+  textContainer="",
+  subTitleStyle="",
   img = null,
 }: Props) {
   return (
@@ -31,12 +37,12 @@ export function UserTemplate({
         {img ? (
           <img className='w-full h-auto' src={img} alt='' />
         ) : (
-          <span className=' text-lg font-medium'>{title?.charAt(0)}</span>
+          <span className=' text-lg font-medium capitalize'>{title?.charAt(0)}</span>
         )}
       </div>
-      <div className='flex flex-col'>
-        {title ? <p className='text-base font-bold'>{title}</p> : null}
-        {subtitle ? <span className='text-normal text-[12px]'>{subtitle}</span> : null}
+      <div className={classNames('flex flex-col',textContainer)}>
+        {title ? <p className={classNames('text-base font-bold capitalize',titleStyle)}>{title}</p> : null}
+        {subtitle ? <span className={classNames('text-normal text-[12px] capitalize',subTitleStyle)}>{subtitle}</span> : null}
       </div>
     </div>
   );

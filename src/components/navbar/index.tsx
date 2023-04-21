@@ -7,14 +7,16 @@ import useWindowSize from "hooks/useWindowSize";
 import ThemeSelector from "./themeSelector";
 import IconWithMessage from "components/shared/iconWithMessage";
 import SearchBar from "./SearchBar"
+import ClinicSelector from "./ChooseClinics"
 
 import Bars from "assets/bars.svg";
 import ClosedDoor from "assets/closed-door.svg";
 import OpenDoor from "assets/open-door.svg";
 import SearchIcon from "assets/search.svg"
-import SelectLang from "./SeletLang";
+import SelectLang from "./SelectLang";
 
 type NavbarTypes = {
+  smallView: boolean
   setToggle: Function;
   title?: string;
   showSideHeader?: boolean;
@@ -24,6 +26,7 @@ type NavbarTypes = {
 };
 
 function Navbar({
+  smallView,
   setToggle,
   title = "Title",
   showSideHeader = true,
@@ -34,16 +37,14 @@ function Navbar({
 
   const [message, setMessage] = useState("go to dashboard");
   const [path, setPath] = useState("/dashboard");
-  const [searchBar,openSearchBar] = useState(false)
+  const [searchBar, openSearchBar] = useState(false)
   const { width } = useWindowSize();
   const router = useRouter();
 
   const { asPath } = router;
 
-  const handelSearchBtn = ()=>{
+  const handelSearchBtn = () => {
     openSearchBar(true)
-    console.log(searchBar);
-    
   }
 
   useEffect(() => {
@@ -52,7 +53,7 @@ function Navbar({
     document?.querySelector("html")?.setAttribute("dir", dir);
     document?.querySelector("html")?.setAttribute("lang", lang);
     if (asPath === "/dashboard") {
-      setMessage("Log Out");
+      setMessage("log out");
       setPath("/login");
     }
   }, [asPath, router.locale]);
@@ -60,37 +61,45 @@ function Navbar({
   return (
     <>
       <nav
-        className={"relative top-0 z-20 !bg-white w-full "}
+        className={"fixed top-0 right-0 z-20 bg-transparent transition-all duration-300"}
         style={{
+          width: width < 1184 ? "100%" : smallView ? "calc(100% - 100px)" : "calc(100% - 250px)"
         }}
       >
-        <SearchBar searchBarState={searchBar} changeSearchBarState={openSearchBar}/>
+        <SearchBar searchBarState={searchBar} changeSearchBarState={openSearchBar} />
         <div
           className={classNames(
-            "bg-primary flex justify-between w-full !bg-white items-center px-5 xs:px-3 h-20 z-10 relative",
+            "flex justify-between w-full items-center px-8 xs:px-3 h-20 z-10 relative",
             {
               "right-0": router.locale !== "ar",
               "left-0": router.locale === "ar",
             }
           )}
         >
-          <div className="flex w-full justify-between w-full h-full items-center">
+          <div className="flex w-full justify-between !bg-[rgba(255, 255, 255, 0.8)] backdrop-blur-[6px] w-full h-full items-center">
             <div className="flex gap-5">
               {width <= 1184 && (
-                  <Bars className="h-[20px] w-[30px] !fill-red-500" />
-                
+                <button onClick={() => { setToggle(true) }}>
+                  <Bars className="h-[30px] w-[30px] fill-black fill-secondary hover:fill-primary" />
+                </button>
+
               )}
-              <button onClick={()=>{handelSearchBtn()}}>
-              <SearchIcon className="w-[20px] h-[20px]" />
+              <button onClick={() => { handelSearchBtn() }}>
+                <SearchIcon className="w-[20px] h-[20px] fill-secondary hover:fill-primary" />
               </button>
             </div>
 
-            <div className="flex justify-venter  items-center gap-4">
+            <div className="flex justify-venter  items-center gap-2">
 
-              <SelectLang/>
+              <SelectLang />
+
+              {asPath !== "/dashboard" &&
+
+                <ClinicSelector />
+              }
 
               <ThemeSelector />
-              
+
               <IconWithMessage
                 visibleIcon={<ClosedDoor />}
                 hoverIcon={<OpenDoor />}

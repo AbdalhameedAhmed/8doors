@@ -22,6 +22,7 @@ function BasicLayout({
 }: basicLayoutTypes) {
 
   const [toggle, setToggle] = useState(false);
+  const [smallView, changeSmallView] = React.useState(false)
   const [sidenavItems, changeSideNavItems] = useState<menuItemsType | dashboardItemsType>(mainMenuItems)
   const { width } = useWindowSize();
   const router = useRouter();
@@ -35,19 +36,21 @@ function BasicLayout({
   return (
     <ProtectedRoute>
 
-      <div className="w-screen flex">
+      <div className="w-screen h-screen overflow-hidden flex">
         {
-          <SideNav toggle={toggle} sideNavItems={sidenavItems} setToggle={setToggle} />
+          <SideNav toggle={toggle} sideNavItems={sidenavItems} smallView={smallView} changeSmallView={changeSmallView} setToggle={setToggle} />
         }
         <div
-          className="layout w-full flex-1"
+          className="layout w-full flex-1 overflow-y-auto py-[80px]"
           style={{
             // marginLeft: width > 1184 && router.locale !== "ar" ? "250px" : 0,
             backgroundColor: "#fff",
             // marginRight: width > 1184 && router.locale === "ar" ? "250px" : 0,
           }}
         >
+
           <Navbar
+            smallView={smallView}
             setToggle={setToggle}
             showModal={showModal}
             handelModalState={handelModalState}

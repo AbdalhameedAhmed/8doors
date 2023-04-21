@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 import classNames from "classnames";
 
 import HeightAnimation from "animations/HeightAnimation";
+import useOnClickOutside from "hooks/useOnClickOutside"
+
 
 import Custom from "../../assets/paintbrush-solid.svg";
 import Dark from "../../assets/moon-solid.svg";
@@ -12,7 +14,15 @@ export default function ThemeSelector() {
 
   let [theme, setTheme] = useState("");
   let [menu, openMenu] = useState(false);
-  const ref = useRef(null);
+  const menuRef = React.useRef(null)
+
+
+  const outSideHandler = () => {
+    openMenu(false)
+  }
+
+  useOnClickOutside(menuRef, outSideHandler)
+
 
   useEffect(() => {
     setTheme(localStorage.getItem("theme") || "");
@@ -34,30 +44,42 @@ export default function ThemeSelector() {
   }
 
   return (
-    <div className="relative">
-      <button
-        className="text-white text-lg relative flex items-center"
-        ref={ref}
+    <div className="relative" ref={menuRef}>
+      <div className={classNames("p-1 rounded-full relative w-[45px] h-[45px] flex items-center justify-center hover:bg-layout-secondary", { "bg-layout-secondary": menu })}
         onClick={() => {
           openMenu(!menu);
         }}
-      >
-        {!theme ? (
-          <Light className="w-[20px] fill-secondary box-content " />
-        ) : theme === "dark" ? (
-          <Dark className="w-[20px] fill-secondary box-content " />
-        ) : (
-          <Custom className="w-[20px] fill-secondary box-content " />
-        )}
-      </button>
 
-      <HeightAnimation
-        startanimation={menu}
-        ele={ref}
-        className="absolute shadow-md shadow-black/50 transform transition-75 ease-in overflow-hidden w-[150px] top-[60px] -z-50 -right-[20px] bg-secondary rounded-xl "
       >
-        <ul className="flex flex-col text-secondary py-3" ref={ref}>
-          <li>
+
+        <button
+          className="text-white text-lg relative flex justify-center items-center"
+        >
+          {!theme ? (
+            <Light className="w-[20px] fill-secondary box-content " />
+          ) : theme === "dark" ? (
+            <Dark className="w-[20px] fill-secondary box-content " />
+          ) : (
+            <Custom className="w-[20px] fill-secondary box-content " />
+          )}
+        </button>
+
+        <span className={classNames("absolute z-20 border-[1px] !border-[rgba(145, 158, 171, 0.12)] border-b-transparent transition-all duration-500 border-r-transparent opacity-0 scale-0 origin-[90%_0%]  w-[10px] h-[10px] bg-white rotate-[45deg] -bottom-[6px] right-[15px]", {
+          "scale-100 opacity-100": menu
+        })}
+        ></span>
+
+        <ul className={classNames("absolute top-[42px] rounded-xl right-0 w-[180px] transition-all duration-500 opacity-0 scale-0 origin-[90%_0%] bg-white flex flex-col items-start justify-evenly gap-1 p-2", {
+          "scale-100 opacity-100": menu
+        })}
+          style={{
+            boxShadow: "rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) -20px 20px 40px"
+          }}
+        >
+
+          <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg", {
+            "bg-layout-secondary": !theme
+          })}>
             <button
               className={classNames(
                 "hover:bg-layout-secondary duration-200 w-full text-left px-2",
@@ -69,14 +91,16 @@ export default function ThemeSelector() {
             >
               <Light
                 className={classNames(
-                  "inline-block w-[15px] duration-200 fill-secondary mr-1 box-content p-2 ",
+                  "inline-block w-[15px] duration-200 fill-secondary  box-content p-2 ",
                   { "fill-primary": !theme }
                 )}
               />
               Light
             </button>
           </li>
-          <li>
+          <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg", {
+            "bg-layout-secondary": theme === "dark"
+          })}>
             <button
               className={classNames(
                 "hover:bg-layout-secondary w-full duration-500 text-left px-2",
@@ -88,14 +112,16 @@ export default function ThemeSelector() {
             >
               <Dark
                 className={classNames(
-                  "inline-block w-[15px] fill-secondary duration-200 mr-1 box-content p-2 ",
+                  "inline-block w-[15px] fill-secondary duration-200 box-content p-2 ",
                   { "fill-primary": theme === "dark" }
                 )}
               />
               Dark
             </button>
           </li>
-          <li>
+          <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg", {
+            "bg-layout-secondary": theme === "custom"
+          })}>
             <button
               className={classNames(
                 "hover:bg-layout-secondary w-full duration-200 text-left px-2",
@@ -107,7 +133,7 @@ export default function ThemeSelector() {
             >
               <Custom
                 className={classNames(
-                  "inline-block w-[15px] fill-secondary duration-200 mr-1 box-content p-2 ",
+                  "inline-block w-[15px] fill-secondary duration-200 box-content p-2 ",
                   { "fill-primary": theme === "custom" }
                 )}
               />
@@ -115,7 +141,8 @@ export default function ThemeSelector() {
             </button>
           </li>
         </ul>
-      </HeightAnimation>
+
+      </div>
     </div>
   );
 }

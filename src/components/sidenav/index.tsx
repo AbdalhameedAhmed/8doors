@@ -11,9 +11,9 @@ import LeftArrow from "assets/left-arrow.svg"
 import RightArrow from "assets/right-arrow.svg"
 
 
-function SideNav({ toggle, setToggle, sideNavItems }: SideNavProps) {
+function SideNav({ toggle, setToggle, sideNavItems, smallView, changeSmallView }: SideNavProps) {
 
-  const [smallView, changeSmallView] = React.useState(false)
+  // const [smallView, changeSmallView] = React.useState(false)
   const { width } = useWindowSize();
   const ref = useRef(null);
   useOnClickOutside(ref, () => setToggle(false));
@@ -24,7 +24,7 @@ function SideNav({ toggle, setToggle, sideNavItems }: SideNavProps) {
 
   React.useEffect(() => {
     width < 1184 && changeSmallView(false)
-  }, [width])
+  }, [width, smallView])
 
   return (
     <div
@@ -56,9 +56,9 @@ function SideNav({ toggle, setToggle, sideNavItems }: SideNavProps) {
             <div className="rounded-full ">
               {
                 smallView ? (
-                  <RightArrow className="w-[12px] h-[12px]" />
+                  <RightArrow className="w-[12px] h-[12px] !fill-secondary" />
                 ) : (
-                  <LeftArrow className="w-[12px] h-[12px]" />
+                  <LeftArrow className="w-[12px] h-[12px] !fill-secondary " />
                 )
               }
             </div>

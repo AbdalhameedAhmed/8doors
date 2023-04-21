@@ -33,7 +33,7 @@ const searchHandler = ()=>{
       "scale-y-0 ": !searchBarState
     })} ref={serachBarRef}>
       <div className="flex justify-start gap-2 items-center ">
-      <SearchIcon className="w-[20px] h-[20px]" />
+      <SearchIcon className="w-[20px] h-[20px] fill-secondary" />
       <input type="text" className="w-full bg-transparent focus:outline-none placeholder:text-xl placeholder:font-bold text-xl font-bold " placeholder="Search..." onClick={()=>{searchHandler()}}/>
       </div>
 
