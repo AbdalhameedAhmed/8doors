@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import store,{persistor} from 'redux/store';
+import store, { persistor } from 'redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 
 import { appWithTranslation } from 'next-i18next';
@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.css';
 
 function App({ Component, pageProps }: AppProps) {
-  
+
   const router = useRouter();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}/>
+      <PersistGate persistor={persistor} />
       <ToastContainer />
       <ThemeProvider theme={theme}>
         <Head>
@@ -36,6 +36,7 @@ function App({ Component, pageProps }: AppProps) {
             href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000"
             rel="stylesheet"
           />
+          <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;300;400;500;600;700;800;900" rel="stylesheet" />
         </Head>
         <Component {...pageProps} />
       </ThemeProvider>

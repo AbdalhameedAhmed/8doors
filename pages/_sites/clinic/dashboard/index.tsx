@@ -81,9 +81,9 @@ export default function Dashboard() {
           sectionHeaderBtnVisibility={showAddBtn}
           sectionHeaderBtnHandler={sectionBtnHandler}
           title='Clinics'
-          subtitle='create / choose a clinic'
+          subtitle='create . choose a clinic'
           childernClassName='p-0'
-          className='w-full'
+          className='!w-[90%]'   
         >
           {
             showAddBtn ? (

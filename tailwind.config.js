@@ -9,7 +9,7 @@ module.exports = {
         'display': 'display'
       },
       fontFamily: {
-        cairo: ['Cairo , sans-serif'],
+        cairo: ['Public Sans , sans-serif'],
       },
       colors: {
         layout: {

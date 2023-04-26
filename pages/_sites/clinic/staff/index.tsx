@@ -44,14 +44,15 @@ export default function Staff() {
         <Section
           childernClassName="px-0 py-0 relative"
           sectionHeaderBtnVisibility={true}
-
+          className="!w-[1200px]"
           sectionHeaderBtnTitle="Add staff"
           sectionHeaderBtnHandler={sectionBtnHandler}
           title='Staff'
-          subtitle='create / choose / update a staff'
+          subtitle='Create . Choose . Update a staff'
+          subtitleStyle="ml-0 text-[0.875rem] bold font-[400]"
 
         >
-          <div className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xs:gap-3 p-5 xs:p-3 bg-layout-primary px-20 ">
+          <div className="grid justify-items-center grid-cols-1  sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xs:gap-3 py-5 xs:py-3 bg-layout-primary">
             {data.map((card) => (
               <SecondCard
                 key={card.id}

@@ -6,37 +6,54 @@ type sectionHeaderTypes = {
   title?: string | null | undefined;
   subtitle?: string | null | undefined;
   className?: string;
-  btnTitle?:string
-  showBtn?:boolean;
+  btnTitle?: string
+  deactivatedTitle?: string
+  newSubtitle?: string[]
+  showBtn?: boolean;
+  subtitleStyle?: string
   onClick?: () => void;
 };
 
 export function SectionHeader({
   title,
   subtitle,
-  btnTitle="add",
+  btnTitle = "add",
   showBtn = false,
+  deactivatedTitle = "",
+  subtitleStyle,
+  newSubtitle,
   className = "",
   onClick = () => { },
 }: sectionHeaderTypes) {
 
   return (
     <div
-      className={classNames("p-5 xs:p-3 bg-secondary flex justify-between items-center", className)}
+      className={classNames("py-5 xs:py-3 bg-secondary flex justify-between items-center", className)}
     >
-      <h2 className="section-heaeder relative text-[15px] capitalize text-secondary">
-        <strong className="text-primary leading-5"><span className="text-xl bold mr-2">|</span> {title} </strong>
-        {subtitle?.length && (
-          <small className="block text-secondary normal-case ml-4">{subtitle}</small>
-        )}
-      </h2>
-      {showBtn&& 
-      <div className="mr-1">
-      <CustomBtn className="" onClick={onClick}>
-        {btnTitle}
-      </CustomBtn>
+      <div className="section-heaeder relative text-[15px] capitalize text-secondary">
+        <>
+          <h4 className="text-black text-[1.5rem] font-[700] !mb-2"> {title} </h4>
+          {subtitle?.length && (
+            // <p className={classNames("block text-secondary normal-case", subtitleStyle)}>{subtitle}</p>
+            subtitle.split(".").map((sub, index) => (
+              <>
+                <a key={index} className={classNames("hover:underline cursor-default", subtitleStyle, { "hover:no-underline text-gray-400": subtitle.split(".").length - 1 == index })}>{sub}</a>
+                {
+                  subtitle.split(".").length - 1 !== index &&
+                  <span className="mx-4 w-[4px] inline-block h-[4px] rounded-full bg-black"></span>
+                }
+              </>
+            ))
+          )}
+        </>
       </div>
-      }
+      {/* {showBtn &&
+        <div className="mr-1">
+          <CustomBtn className="" onClick={onClick}>
+            {btnTitle}
+          </CustomBtn>
+        </div>
+      } */}
     </div>
   );
 }

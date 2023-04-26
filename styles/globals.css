@@ -59,7 +59,7 @@
     --background-tertiary: #f4f6f9 ; /*important*/
   }
   html {
-    font-family: Cairo;
+    font-family: "Public Sans" ;
   }
 }
 .signin-signout-input {
@@ -305,15 +305,15 @@ ul {
  .fc-popover {
    z-index: 40 !important;
   }
-  .fc-header-toolbar{
+  /* .fc-header-toolbar{
     position: absolute;
     width: calc(100% - 55px);
     background-color: white;
     z-index: 10;
     padding-bottom: 25px;
     top: 68px;
-  }
-  @media only screen and (min-width:450px) and (max-width:639px){
+  } */
+  /* @media only screen and (min-width:450px) and (max-width:639px){
 
     .fc-header-toolbar{
       display: flex;
@@ -328,5 +328,5 @@ ul {
       width: 100%;
       text-align: center;
     }
-  }
+  } */
 /*end calendar style */
