@@ -50,15 +50,15 @@ export default function SelectLang() {
   return (
     <div ref={menuRef}>
 
-      <div className={classNames("p-1 rounded-full relative w-[45px] h-[45px] mr-2 flex items-center justify-center hover:bg-layout-secondary", { "bg-layout-secondary": subMenu })}
+      <div className={classNames("p-1 rounded-full relative w-[45px] h-[45px] mr-1 flex items-center justify-center hover:bg-layout-secondary", { "bg-layout-secondary": subMenu })}
         onClick={() => {
           menuHandler()
         }}>
-          
-          <div>
-        {
-          flagChange(lang)
-        }
+
+        <div>
+          {
+            flagChange(lang)
+          }
         </div>
 
         <span className={classNames("absolute z-20 border-[1px] !border-[rgba(145, 158, 171, 0.12)] border-b-transparent transition-all duration-500 border-r-transparent opacity-0 scale-0 origin-[90%_0%]  w-[10px] h-[10px] bg-white rotate-[45deg] -bottom-[6px] right-[15px]", {
@@ -69,9 +69,9 @@ export default function SelectLang() {
         <ul className={classNames("absolute top-[42px] rounded-xl right-0 w-[180px] transition-all duration-500 opacity-0 scale-0 origin-[90%_0%] bg-white flex flex-col items-start justify-evenly gap-1 p-2", {
           "scale-100 opacity-100": subMenu
         })}
-        style={{
-          boxShadow: "rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) -20px 20px 40px"
-        }}
+          style={{
+            boxShadow: "rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) -20px 20px 40px"
+          }}
         >
           <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg", {
             "bg-layout-secondary": lang == "En"

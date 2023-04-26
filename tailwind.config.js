@@ -3,6 +3,10 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: "class",
   theme: {
+    fontSize: {
+      "custom": "0.875rem"
+    }
+    ,
     extend: {
       transitionProperty: {
         'height': 'height',

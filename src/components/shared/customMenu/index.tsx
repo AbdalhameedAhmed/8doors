@@ -9,21 +9,25 @@ type customMenuType = {
   icon: React.ReactNode;
   children: React.ReactNode
   containerStyle?:string
+  whenMenuOpened?:()=>void
+  clickOutSide?:()=>void
 }
 
 
 
-export default function CustomMenu({ children, icon,containerStyle }: customMenuType) {
+export default function CustomMenu({ children, icon,containerStyle,whenMenuOpened = () => {} ,clickOutSide=()=>{}}: customMenuType) {
 
   const [subMenu, openSubMenu] = React.useState(false)
   const menuRef = React.useRef(null)
 
   const menuHandler = () => {
     openSubMenu(!subMenu)
+    whenMenuOpened()
   }
 
   const clickOutsideHandler = () => {
     openSubMenu(false)
+    clickOutSide()
   }
 
   useOnClickOutside(menuRef, clickOutsideHandler)

@@ -8,6 +8,7 @@ import ThemeSelector from "./themeSelector";
 import IconWithMessage from "components/shared/iconWithMessage";
 import SearchBar from "./SearchBar"
 import ClinicSelector from "./ChooseClinics"
+import USerICon from "./UserIcon"
 
 import Bars from "assets/bars.svg";
 import ClosedDoor from "assets/closed-door.svg";
@@ -100,12 +101,7 @@ function Navbar({
 
               <ThemeSelector />
 
-              <IconWithMessage
-                visibleIcon={<ClosedDoor />}
-                hoverIcon={<OpenDoor />}
-                message={message}
-                goto={path}
-              />
+              <USerICon/>
             </div>
           </div>
         </div>
