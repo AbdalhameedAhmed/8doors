@@ -7,6 +7,7 @@ import SideNav from "components/sidenav";
 import useWindowSize from "hooks/useWindowSize";
 import { mainMenuItems, menuItemsType } from "components/sidenav/utils"
 import { dashboardItems, dashboardItemsType } from "components/sidenav/dashboardUtils"
+import ThemeSettings from "components/themeSettings"
 import { basicLayoutTypes } from "types/basicLayoutTypes"
 
 const ProtectedRoute = dynamic(() => import("components/protectedRoute"), {
@@ -36,15 +37,15 @@ function BasicLayout({
   return (
     <ProtectedRoute>
 
-      <div className="w-screen h-screen overflow-hidden flex">
+      <ThemeSettings />
+      <div className="w-screen h-screen overflow-hidden bg-primary flex">
         {
           <SideNav toggle={toggle} sideNavItems={sidenavItems} smallView={smallView} changeSmallView={changeSmallView} setToggle={setToggle} />
         }
         <div
-          className="layout w-full flex-1 overflow-y-auto py-[80px]"
+          className="layout w-full flex-1 overflow-y-auto py-[80px] bg-primary"
           style={{
             // marginLeft: width > 1184 && router.locale !== "ar" ? "250px" : 0,
-            backgroundColor: "#fff",
             // marginRight: width > 1184 && router.locale === "ar" ? "250px" : 0,
           }}
         >

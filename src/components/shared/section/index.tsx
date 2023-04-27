@@ -23,7 +23,7 @@ export function Section({
     <div
       {...rest}
       className={classNames(
-        "relative rounded-[.1875rem] w-full px-8 mx-auto bg-secondary text-secondary",
+        "relative rounded-[.1875rem] w-full px-8 mx-auto bg-primary text-secondary",
         className
       )}
     >

@@ -29,7 +29,7 @@ function SideNav({ toggle, setToggle, sideNavItems, smallView, changeSmallView }
   return (
     <div
       className={classNames(
-        "sidenav bg-secondary !z-30 ease-in-out duration-300 border-r border-[rgba(145, 158, 171, 0.24)] border-dashed",
+        "sidenav bg-primary !z-30 ease-in-out duration-300 border-r-[1px] border-main-border border-dashed",
       )}
       ref={ref}
       style={{
@@ -47,18 +47,18 @@ function SideNav({ toggle, setToggle, sideNavItems, smallView, changeSmallView }
 
           <p className={classNames("text-logo text-4xl font-bold transition-all duration-300", { "!text-[20px]": smallView })}>8doors</p>
 
-          <button className=" absolute right-[0px] top-1/2 translate-x-1/2 -translate-y-1/2 border border-[rgba(145, 158, 171, 0.24)] border-dashed rounded-full flex items-center justify-center z-10 w-[30px] h-[30px] bg-[#ffffff82] backdrop-blur-[5px]" onClick={() => { smallViewHandler() }}
+          <button className=" absolute right-[0px] top-1/2 translate-x-1/2 -translate-y-1/2 border-[1px] border-main-border border-dashed rounded-full flex items-center justify-center z-10 w-[25px] h-[25px] bg-blurred backdrop-blur-[5px]" onClick={() => { smallViewHandler() }}
             style={{
               display: width > 1184 ? "flex" : "none",
             }}
           >
 
-            <div className="rounded-full ">
+            <div className="rounded-full">
               {
                 smallView ? (
-                  <RightArrow className="w-[12px] h-[12px] !fill-secondary" />
+                  <RightArrow className="w-[12px] h-[12px] [&_path]:!stroke-primary" />
                 ) : (
-                  <LeftArrow className="w-[12px] h-[12px] !fill-secondary " />
+                  <LeftArrow className="w-[12px] h-[12px] [&_path]:!stroke-primary" />
                 )
               }
             </div>

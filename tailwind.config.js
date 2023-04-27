@@ -3,11 +3,12 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: "class",
   theme: {
-    fontSize: {
-      "custom": "0.875rem"
-    }
-    ,
+
+
     extend: {
+      fontSize: {
+        "custom": "0.875rem"
+      },
       transitionProperty: {
         'height': 'height',
         'display': 'display'
@@ -20,7 +21,12 @@ module.exports = {
           primary: "var(--layout-primary)",
           secondary: "var(--layout-secondary)"
         },
-
+        theme: {
+          primary: "var(--theme-primary)",
+          secondary: "var(--theme-secondary)"
+        },
+        gray: "#637381",
+        "main-border": "rgba(145, 158, 171, 0.24)"
 
       },
       textColor: {
@@ -30,20 +36,27 @@ module.exports = {
         calendar: "var(--calendar-text)"
       },
       fill: {
-        primary: 'var(--text-primary)',
+        primary: 'var(--theme-primary)',
         secondary: "#637381",
 
       },
+      stroke: {
+        primary: "var(--stroke-primary)",
+
+      }
+      ,
       placeholderColor: {
         secondary: "var(--text-secondary)",
       },
       backgroundColor: {
         primary: 'var(--background-primary)',
         secondary: 'var(--background-secondary)',
-        active: "var(--bg-active)"
+        active: "var(--bg-active)",
+        blurred: "var(--bg-blurred)",
+        "blurred-secondary": "var(--bg-blurred-secondary)"
       },
       backgroundImage: {
-        doctor: "url('../src/assets/mainBg.jpg')"
+        doctor: "url('../src/assets/mainBg.jpg')",
       },
       keyframes: {
         wiggle: {

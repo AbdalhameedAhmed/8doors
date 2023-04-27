@@ -5,14 +5,11 @@ import classNames from "classnames";
 
 import useWindowSize from "hooks/useWindowSize";
 import ThemeSelector from "./themeSelector";
-import IconWithMessage from "components/shared/iconWithMessage";
 import SearchBar from "./SearchBar"
 import ClinicSelector from "./ChooseClinics"
 import USerICon from "./UserIcon"
 
 import Bars from "assets/bars.svg";
-import ClosedDoor from "assets/closed-door.svg";
-import OpenDoor from "assets/open-door.svg";
 import SearchIcon from "assets/search.svg"
 import SelectLang from "./SelectLang";
 
@@ -86,7 +83,7 @@ function Navbar({
 
               )}
               <button onClick={() => { handelSearchBtn() }}>
-                <SearchIcon className="w-[20px] h-[20px] fill-secondary hover:fill-primary" />
+                <SearchIcon className="w-[20px] h-[20px] [&_path]:fill-secondary [&_path]-hover:fill-primary" />
               </button>
             </div>
 
@@ -99,9 +96,7 @@ function Navbar({
                 <ClinicSelector />
               }
 
-              <ThemeSelector />
-
-              <USerICon/>
+              <USerICon />
             </div>
           </div>
         </div>

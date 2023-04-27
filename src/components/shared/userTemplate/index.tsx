@@ -30,14 +30,14 @@ export function UserTemplate({
     >
       <div
         className={classNames(
-          'flex justify-center items-center bg-layout-secondary border-2 border-white rounded-full !w-[50px] !h-[50px]',
+          'flex justify-center items-center bg-theme-secondary border-2 border-white rounded-full !w-[50px] !h-[50px]',
           circleClassName
         )}
       >
         {img ? (
           <img className='w-full h-auto' src={img} alt='' />
         ) : (
-          <span className=' text-lg font-medium capitalize'>{title?.charAt(0)}</span>
+          <span className=' text-lg font-medium capitalize text-black'>{title?.charAt(0)}</span>
         )}
       </div>
       <div className={classNames('flex flex-col',textContainer)}>

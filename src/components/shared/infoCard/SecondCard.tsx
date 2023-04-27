@@ -2,9 +2,6 @@ import React from "react";
 
 import useOnClickOutside from "hooks/useOnClickOutside";
 
-import doctorAvatar from "assets/doc2.jpg";
-import Email from "assets/EmailIcon.svg";
-import Telephone from "assets/telephone.svg";
 import EditIcon from "assets/pen-to-square-solid.svg"
 import Trash from "assets/trash-solid.svg"
 import Facebook from "assets/facebook-176-svgrepo-com.svg"
@@ -29,10 +26,6 @@ export default function SecondCard({ data, openModal, openConfirmModal }: any) {
         ref={ref}
         key={data.id}
       >
-
-
-
-
 
         <div className="h-[56%] relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[rgba(22,28,36,0.64)] -z-10">
           <img src={data.img} alt="" className="h-full w-full" />
@@ -61,15 +54,14 @@ export default function SecondCard({ data, openModal, openConfirmModal }: any) {
 
         </div>
 
-        <div className="h-[55%] bg-white relative ">
+        <div className="h-[55%] bg-secondary relative ">
 
           <div className="rounded-full flex justify-center items-center absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-0  ">
             <img src={data.avatar} className="h-[70px] w-[70px] rounded-full" />
           </div>
 
-          <div className="-z-10 h-[70px] w-[160px] flex justify-center items-center absolute left-1/2 -translate-x-1/2 -top-[40px]  ">
-            <img src="https://minimals.cc/assets/shape_avatar.svg" className="h-full w-full rounded-full" />
-          </div>
+          <span className="avatar-shape -z-10  h-[70px] w-[160px] bg-secondary absolute left-1/2 -translate-x-1/2 -top-[41px]  ">
+          </span>
 
           <div className="mt-12 text-center">
             <p className="font-bold text-md mb-1 mt-[48px]">{data.name}</p>
@@ -120,19 +112,6 @@ export default function SecondCard({ data, openModal, openConfirmModal }: any) {
           </div>
 
         </div>
-        {/* card footer */}
-        {/* <div className="flex justify-between items-center w-full p-4 self-end">
-          <div className="info">
-            <h2 className="text-sm">
-              <Email className="w-[20px] h-[20px] inline-block mr-1" />
-              {data.email}
-            </h2>
-            <h2 className="text-sm mt-1">
-              <Telephone className="w-[20px] h-[20px] inline-block mr-1" />
-              {data.phone}
-            </h2>
-          </div>
-        </div> */}
       </div>
     )
   );

@@ -28,11 +28,11 @@ export function SectionHeader({
 
   return (
     <div
-      className={classNames("py-5 xs:py-3 bg-secondary flex justify-between items-center", className)}
+      className={classNames("py-5 xs:py-3 bg-primary flex justify-between items-center", className)}
     >
       <div className="section-heaeder relative text-[15px] capitalize text-secondary">
         <>
-          <h4 className="text-black text-[1.5rem] font-[700] !mb-2"> {title} </h4>
+          <h4 className="text-primary text-[1.5rem] font-[700] !mb-2"> {title} </h4>
           {subtitle?.length && (
             // <p className={classNames("block text-secondary normal-case", subtitleStyle)}>{subtitle}</p>
             subtitle.split(".").map((sub, index) => (

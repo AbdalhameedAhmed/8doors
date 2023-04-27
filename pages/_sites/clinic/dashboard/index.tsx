@@ -91,7 +91,7 @@ export default function Dashboard() {
                 {clinics?.map((clinic) => (
                   <li
                     key={clinic.id}
-                    className='border-b last:border-0 flex px-5 xs:px-3 py-[10px] justify-between items-center bg-layout-primary hover:bg-layout-secondary ease-in-out duration-150'
+                    className='border-b border-main-border border-dashed last:border-0 flex px-5 xs:px-3 py-[10px] justify-between items-center bg-layout-primary hover:bg-layout-secondary ease-in-out duration-150'
                   >
                     <UserTemplate
                       title={clinic.clinicName}

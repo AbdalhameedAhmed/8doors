@@ -27,7 +27,7 @@ export default function MenuItem({
   removeIcon = false,
   rightIcon = <React.Fragment />,
   children = <React.Fragment />,
-  activeStyle = "font-bold !text-active bg-layout-secondary [&_svg]:fill-primary ",
+  activeStyle = "font-bold !text-theme-primary bg-theme-secondary [&_svg]:fill-primary ",
   onClick = () => { },
   liStyles="",
   smallView = false,

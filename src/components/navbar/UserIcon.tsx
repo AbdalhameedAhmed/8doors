@@ -32,29 +32,29 @@ export default function UserIcon() {
   }
 
   return (
-    <CustomMenu icon={icon} whenMenuOpened={changeLayout} containerStyle="!p-2 w-[200px]" clickOutSide={clickOutSide} >
+    <CustomMenu icon={icon} iconContainer="!block" whenMenuOpened={changeLayout} containerStyle="!p-2 w-[200px]" clickOutSide={clickOutSide} >
       <>
         <div className="px-3 py-2 text-custom">
-          <p className="font-[600]">Username</p>
-          <p className="text-[rgb(99,115,129)]">Email</p>
+          <p className="font-[600] text-primary">Username</p>
+          <p className="text-[rgb(99,115,129)] text-secondary">Email</p>
 
         </div>
         <ul>
-          <div className="py-2 border-t-[1px] border-b-[1px] border-dashed">
+          <div className="py-2 border-t-[1px] border-b-[1px] border-dashed border-[rgba(145,158,171,0.24)]">
             <li className="cursor-pointer p-2 w-full hover:bg-[rgba(145,158,171,0.08)] text-custom rounded-md font-[400] ">
-              <p>
+              <p className="text-primary">
 
                 Home
               </p>
             </li>
             <li className="cursor-pointer p-2 w-full hover:bg-[rgba(145,158,171,0.08)] text-custom rounded-md font-[400] ">
-              <p>
+              <p className="text-primary">
 
                 Profile
               </p>
             </li>
             <li className="cursor-pointer p-2 w-full hover:bg-[rgba(145,158,171,0.08)] text-custom rounded-md font-[400] ">
-              <p>
+              <p className="text-primary">
 
                 Settings
               </p>
@@ -67,7 +67,7 @@ export default function UserIcon() {
                 goto("/dashboard")
               }}
             >
-              <p>
+              <p className="text-primary">
 
                 Go to dashboard
               </p>
@@ -77,7 +77,7 @@ export default function UserIcon() {
                 goto("/login")
               }}
             >
-              <p>
+              <p className="text-primary">
 
                 Logout
               </p>
