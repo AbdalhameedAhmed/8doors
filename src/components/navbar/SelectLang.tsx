@@ -61,7 +61,7 @@ export default function SelectLang() {
           }
         </div>
 
-        <span className={classNames("absolute z-20 border-[1px] !border-main-border border-b-transparent transition-all duration-500 border-r-transparent opacity-0 scale-0 origin-[90%_0%]  w-[10px] h-[10px] bg-secondary rotate-[45deg] -bottom-[6px] right-[15px]", {
+        <span className={classNames("absolute z-20 border-[1px] !border-main-border !border-b-transparent transition-all duration-500 !border-r-transparent opacity-0 scale-0 origin-[90%_0%]  w-[10px] h-[10px] bg-secondary rotate-[45deg] -bottom-[6px] right-[15px]", {
           "scale-100 opacity-100": subMenu
         })}
         ></span>

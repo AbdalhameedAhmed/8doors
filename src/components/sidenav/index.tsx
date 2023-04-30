@@ -44,8 +44,15 @@ function SideNav({ toggle, setToggle, sideNavItems, smallView, changeSmallView }
       >
 
         <div className={`w-full flex flex-col items-center justify-evenly border-b-1 h-[80px] relative border-white mb-3`}>
+          {
+            !smallView ? (
+              <p className={classNames("text-logo text-4xl font-bold transition-all duration-300")}>8doors</p>
 
-          <p className={classNames("text-logo text-4xl font-bold transition-all duration-300", { "!text-[20px]": smallView })}>8doors</p>
+            ) : (
+              <p className={classNames("text-logo text-2xl font-bold transition-all duration-300")}>8D</p>
+
+            )
+          }
 
           <button className=" absolute right-[0px] top-1/2 translate-x-1/2 -translate-y-1/2 border-[1px] border-main-border border-dashed rounded-full flex items-center justify-center z-10 w-[25px] h-[25px] bg-blurred backdrop-blur-[5px]" onClick={() => { smallViewHandler() }}
             style={{

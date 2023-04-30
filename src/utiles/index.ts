@@ -1,8 +1,10 @@
 export function removeDashAndCapitalize(str: string) {
-  return str
+  let result = str
     .split('/')
-    .join('')
-    .replace(/-(\w)/g, (match, char) => char.toUpperCase());
+    .join(' ')
+    .replace(/-(\w)/g, (match, char) => ' ' + char.toUpperCase())
+    .trim();
+  return result.charAt(0).toUpperCase() + result.slice(1);
 }
 
 export function extractLastWordFromUrl(url: string) {

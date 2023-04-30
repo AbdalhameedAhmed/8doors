@@ -2,7 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { Page, Section } from "components/shared";
-import InfoCard from "components/shared/infoCard";
 import SecondCard from "components/shared/infoCard/SecondCard";
 
 import { removeDashAndCapitalize } from "utiles"

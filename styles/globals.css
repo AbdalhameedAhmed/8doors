@@ -28,7 +28,7 @@
     --theme-secondary: rgb(215, 242, 228);
     --stroke-primary: #637381;
     --bg-blurred: #ffffff82;
-    --bg-blurred-secondary:rgba(255, 255, 255, 0.9);
+    --bg-blurred-secondary: rgba(255, 255, 255, 0.9);
 
     --icons-secondary: ;
     --text-primary: black; /*important*/
@@ -50,7 +50,7 @@
     --text-active: #38bdf8; /*important*/
     --calendar-text: white;
     --bg-blurred: rgb(0 0 0 / 24%);
-    --bg-blurred-secondary:#161c24;
+    --bg-blurred-secondary: rgba(22, 28, 36, 0.9);
     --background-primary: #161c24; /*important*/
     --background-secondary: #212b36; /*important*/
     --layout-primary: #161c24; /*important*/
@@ -283,6 +283,24 @@ ul {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+.scrollbar-custom {
+  overflow: overlay;
+}
+.scrollbar-custom::-webkit-scrollbar {
+  width: 10px;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--background-secondary);
+  opacity: 0 !important;
+  border: 2px solid var(--background-secondary);
+}
+.scrollbar-custom:hover::-webkit-scrollbar-thumb {
+  background-color: #b4bcc3;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 /* scroll bar styles End */
 
 /* start modal */
@@ -338,3 +356,15 @@ ul {
 }
 
 /* End staff */
+
+/* start login */
+.login-layout {
+  background: linear-gradient(
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.9)
+      )
+      center center / cover no-repeat,
+    url(../src/assets/overlay_2.jpg);
+}
+
+/* End login */

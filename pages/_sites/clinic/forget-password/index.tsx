@@ -18,7 +18,7 @@ function ForgetPassword() {
     document.title = removeDashAndCapitalize(router.asPath)
   }, [router.asPath])
   return (
-    <SignInSignOutLayout type="SIGN IN" signOnClick={() => router.push('/login')}>
+    <SignInSignOutLayout title='Welcome To 8doors' type="SIGN IN" signOnClick={() => router.push('/login')}>
       <ForgetPasswordContainer />
     </SignInSignOutLayout>
   );

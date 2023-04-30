@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import store, { persistor } from 'redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
+import ThemeSettings from "components/themeSettings"
 
 import { appWithTranslation } from 'next-i18next';
 import Head from 'next/head';
@@ -38,6 +39,8 @@ function App({ Component, pageProps }: AppProps) {
           />
           <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;300;400;500;600;700;800;900" rel="stylesheet" />
         </Head>
+        <ThemeSettings/>
+
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>

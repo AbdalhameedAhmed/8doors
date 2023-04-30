@@ -18,7 +18,7 @@ export default function SignIn() {
     document.title = removeDashAndCapitalize(router.asPath)
   }, [])
   return (
-    <SignInSignOutLayout type="SIGN UP" signOnClick={() => router.push('/signup')}>
+    <SignInSignOutLayout title='Hi, Welcome back' signOnClick={() => router.push('/signup')}>
       <SignInContainer />
     </SignInSignOutLayout>
   );

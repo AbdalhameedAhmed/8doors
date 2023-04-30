@@ -3,22 +3,25 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
-import classNames from "classnames";
 import { Form, Field } from "react-final-form";
 import { useDispatch } from "react-redux";
 
 import LoginInput from "./LoginInput";
 import PasswordInput from "./PasswordInput";
-import CustomBtn from "components/shared/button/CustomBtn";
 import { LoginFormData } from "types";
 import { addUser } from "redux/slices/auth"
 import { useLoginMutation } from "redux/services/clinic/auth"
 import useToast from "hooks/useToast";
 
-import Logo from "../../assets/logo.svg";
+import FireIcon from "assets/ic_firebase.png";
+import Twitter from "assets/twitter.svg"
+import Github from "assets/github.svg"
+import Google from "assets/google.svg"
+
+
 
 export default function SignIn() {
-const [error,activeError] = React.useState(false)
+  const [error, activeError] = React.useState(false)
   const { t } = useTranslation("common");
   const [postData] = useLoginMutation()
   const dispatch = useDispatch()
@@ -40,9 +43,10 @@ const [error,activeError] = React.useState(false)
 
   return (
     <>
-      <div className={`self-center px-10 py-10 w-96 bg-[rgba(0,0,0,0.1)] rounded`}>
-        <div className="flex  align-center justify-center">
-          <Logo style={{ height: 65, width: 65 }} />
+      <div className={`self-start w-full px-[64px] xs:!w-[448px] xs:px-0 sm:!w-[448px] sm:px-0 md:!w-[448px] md:px-0`}>
+        <div className="flex flex-col align-start justify-center relative">
+          <p className="text-primary text-[1.5rem] font-[700]">Sign in to 8doors</p>
+          <p className="text-custom mt-4">New user?  <Link href="/signup" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Create an account</Link></p>
         </div>
         <h1 className="text-center text-3xl my-2 text-white">
           {" "}
@@ -64,7 +68,7 @@ const [error,activeError] = React.useState(false)
             return errors;
           }}
 
-          render={({ handleSubmit,submitting }) => (
+          render={({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
               <Field name="username">
                 {({ input, meta }) => (
@@ -72,15 +76,12 @@ const [error,activeError] = React.useState(false)
                     <LoginInput
                       label=""
                       placeholder={"Email"}
-                      className={classNames(
-                        `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error && error }
-                      )}
                       error={meta.error}
                       errorActive={error}
                       type="text"
                       {...input}
                     />
+
 
                   </>
                 )}
@@ -90,10 +91,6 @@ const [error,activeError] = React.useState(false)
                   <>
                     <PasswordInput
                       placeholder={"Password"}
-                      className={classNames(
-                        `signin-signout-input w-full rounded-lg `,
-                        { "!border-red-500": meta.error && error }
-                      )}
                       errorActive={error}
                       error={meta.error}
                       {...input}
@@ -101,23 +98,40 @@ const [error,activeError] = React.useState(false)
                   </>
                 )}
               </Field>
-              <CustomBtn
-                fit={true}
-                type="submit"
-                disabled={submitting}
-                className="py-4 mt-8 bg-sky-500/100"
-                onClick={()=>{activeError(true)}}
-              >
-                {t("signin.login")}
-              </CustomBtn>
-              <p className="mt-3 text-sm text-white text-center">
+              <p className="mt-3 text-sm text-black text-right">
                 <Link href="/forget-password">
-                  <u>{" " + t("signin.forgetPassword")}</u>
+                  <u>Forgot password?</u>
                 </Link>
               </p>
+              <button
+
+                type="submit"
+                disabled={submitting}
+                className="inline-block w-full mt-4 rounded-lg py-3 px-[22px] bg-[#212B36] text-white"
+                onClick={() => { activeError(true) }}
+              >
+                {t("signin.login")}
+              </button>
             </form>
           )}
         ></Form>
+        <div className="flex items-center justify-center gap-3 p-8 mt-8 border-t-[1px] border-dashed border-main-border relative before:content-['OR'] before:absolute before:left-1/2 before:-translate-x-1/2 before:text-[0.75rem] before:top-0 before:-translate-y-1/2 before:text-gray">
+          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
+
+            <Google className="w-[20px] ml-[1px] h-[20px] fill-[#DF3E30]" />
+          </button>
+          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
+
+            <Github className="w-[20px] ml-[1px] h-[20px] fill-[#212B36]" />
+          </button>
+
+          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
+
+            <Twitter className="w-[20px] ml-[1px] h-[20px] fill-[#1C9CEA] " />
+          </button>
+
+        </div>
+
       </div>
     </>
   );

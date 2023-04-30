@@ -14,12 +14,13 @@ export const getServerSideProps = async ({ locale }: any) => ({
 
 export default function Signup() {
   const router = useRouter();
-  React.useEffect(()=>{
+  React.useEffect(() => {
     document.title = removeDashAndCapitalize(router.asPath)
-  },[router.asPath])
-  
+  }, [router.asPath])
+
   return (
-    <SignInSignOutLayout type="SIGN IN" signOnClick={() => router.push('/login')}>
+    <SignInSignOutLayout title="Manage the job more effectively with 8doors
+    " type="SIGN IN" signOnClick={() => router.push('/login')}>
       <SignUpContainer />
     </SignInSignOutLayout>
   );

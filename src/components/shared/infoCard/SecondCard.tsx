@@ -60,7 +60,7 @@ export default function SecondCard({ data, openModal, openConfirmModal }: any) {
             <img src={data.avatar} className="h-[70px] w-[70px] rounded-full" />
           </div>
 
-          <span className="avatar-shape -z-10  h-[70px] w-[160px] bg-secondary absolute left-1/2 -translate-x-1/2 -top-[41px]  ">
+          <span className="avatar-shape -z-10  h-[70px] w-[160px] bg-secondary absolute left-1/2 -translate-x-1/2 -top-[40px]  ">
           </span>
 
           <div className="mt-12 text-center">

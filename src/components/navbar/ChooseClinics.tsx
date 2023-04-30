@@ -44,7 +44,7 @@ export default function ChooseClinic() {
   const icon = (<ClinicIcon className="w-[20px] h-[20px]" />)
   return (
 
-    <CustomMenu icon={icon} containerStyle="max-h-[277px]">
+    <CustomMenu icon={icon} containerStyle="max-h-[264px]">
       <ul className={classNames("w-full max-h-full  flex flex-col items-start justify-evenly gap-1 "
       )}
       >
@@ -62,9 +62,9 @@ export default function ChooseClinic() {
                 subtitle={clinic.address}
                 img={clinic.img}
                 textContainer="justify-between h-[40px]"
-                titleStyle="text-[14px] "
+                titleStyle="!text-[13px] "
                 subTitleStyle="text-[12px]"
-                circleClassName="!w-[40px] !h-[40px]"
+                circleClassName="!w-[39px] !h-[39px] border-none"
                 className="gap-4"
               />
             </div>

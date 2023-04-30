@@ -3,13 +3,18 @@ import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import OpacityForm from "components/shared/opacityForm"
-import { formValdate } from "./formValidate"
-import { inputInfo } from "types/opacityFormTypes"
+import { Form, Field } from "react-final-form";
+
 import { useSignupMutation } from "redux/services/signup"
 import useToast from "hooks/useToast"
+import FloatingInput from "./FloatingInput";
+import PasswordInput from "./PasswordInput";
 
-import Logo from "assets/logo.svg";
+import Twitter from "assets/twitter.svg"
+import Github from "assets/github.svg"
+import Google from "assets/google.svg"
+import { formValdate } from "./formValidate";
+
 
 function SignUp() {
 
@@ -17,6 +22,7 @@ function SignUp() {
   const router = useRouter();
   const [signup] = useSignupMutation()
   const addToast = useToast()
+  const [error, activeError] = React.useState(false)
 
   const onSubmit = async (values: Record<string, any>) => {
 
@@ -28,60 +34,114 @@ function SignUp() {
       })
   };
 
-  let inputsData: inputInfo[] = [
-    {
-      name: "username",
-      placeholder: "Username",
-      type: "text",
-      value: ""
-    },
-    {
-      name: "email",
-      placeholder: "Email",
-      type: "text",
-      value: ""
-    },
-    {
-      name: "password",
-      placeholder: "Password",
-      type: "password",
-      value: ""
-    },
-    {
-      name: "confirm",
-      placeholder: "Confirm password",
-      type: "password",
-      value: ""
-    }
-  ]
-
-
   return (
     <>
-      <div className="self-center p-10 w-96 bg-[rgb(0,0,0,0.1)] rounded">
-        <div className="flex  align-center justify-center">
-          <Logo style={{ height: 65, width: 65 }} />
+      <div className={`self-start w-full px-[64px] xs:!w-[448px] xs:px-0 sm:!w-[448px] sm:px-0 md:!w-[448px] md:px-0`}>
+        <div className="flex flex-col align-start justify-center mb-[40px] relative">
+          <p className="text-primary text-[1.5rem] font-[700]">Get started</p>
+          <p className="text-custom mt-4">Already have an account?  <Link href="/login" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Sign in</Link></p>
         </div>
-        <h1 className="text-center text-3xl my-2 text-white">
-          {" "}
-          {t("signup.signup")}{" "}
-        </h1>
-        <h4 className="text-white text-center mb-8">Register new membership</h4>
-        <OpacityForm
-          inputsData={inputsData}
-          formValidate={formValdate}
-          formSubmit={onSubmit}
-          inputContainerStyle="!px-0"
-          inputStyle={"!bg-transparent placeholder:text-white !text-white !border-[rgba(222, 221, 221, 0.913)] focus:!border-white focus:!ring-0 !py-[10px] !px-[18px] !border-[1px] "}
-          fitSubmitBtn={true}
-          submitBtnContainer="!p-0 !border-none"
-          submitBtnStyle="!mr-0 !mb-4" />
-        <p className="my-2 text-sm text-white text-center flex justify-center">
-          <Link href="/login">
-            <b>{t("signup.alreadyHaveAccount") + " "}</b>
-          </Link>
-        </p>
+
+
+        <Form
+          onSubmit={onSubmit}
+
+          validate={(values): Record<string, string> => formValdate(values)
+          }
+
+          render={({ handleSubmit, submitting, values, errors }) => (
+            <form onSubmit={handleSubmit}>
+              <div className="flex flex-wrap items-center justify-center w-full gap-5">
+
+                <Field name="username">
+                  {({ input, meta }) => (
+                    <>
+                      <FloatingInput
+                        label=""
+                        placeholder={"Username"}
+                        error={meta.error}
+                        errorActive={error}
+                        type="text"
+                        {...input}
+                      />
+
+
+                    </>
+                  )}
+                </Field>
+                <Field name="email">
+                  {({ input, meta }) => (
+                    <>
+                      <FloatingInput
+                        label=""
+                        placeholder={"Email"}
+                        error={meta.error}
+                        errorActive={error}
+                        type="text"
+                        {...input}
+                      />
+
+
+                    </>
+                  )}
+                </Field>
+                <Field name="password">
+                  {({ input, meta }) => (
+                    <>
+                      <PasswordInput
+                        placeholder={"Password"}
+                        errorActive={error}
+                        error={meta.error}
+                        {...input}
+                      />
+                    </>
+                  )}
+                </Field>
+                <Field name="confirm">
+                  {({ input, meta }) => (
+                    <>
+                      <PasswordInput
+                        placeholder={"Confirm"}
+                        errorActive={error}
+                        error={meta.error}
+                        {...input}
+                      />
+                    </>
+                  )}
+                </Field>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="inline-block w-full rounded-lg py-3 px-[22px] bg-[#212B36] text-white"
+                  onClick={() => {
+                    activeError(true); console.log("values is", values, errors)
+                  }}
+                >
+                  Create account
+                </button>
+              </div>
+            </form>
+          )}
+        ></Form>
+        <div className="flex items-center justify-center gap-3 p-8 mt-8 border-t-[1px] border-dashed border-main-border relative before:content-['OR'] before:absolute before:left-1/2 before:-translate-x-1/2 before:text-[0.75rem] before:top-0 before:-translate-y-1/2 before:text-gray">
+          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
+
+            <Google className="w-[20px] ml-[1px] h-[20px] fill-[#DF3E30]" />
+          </button>
+          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
+
+            <Github className="w-[20px] ml-[1px] h-[20px] fill-[#212B36]" />
+          </button>
+
+          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
+
+            <Twitter className="w-[20px] ml-[1px] h-[20px] fill-[#1C9CEA] " />
+          </button>
+
+        </div>
+
       </div>
+
     </>
   );
 }

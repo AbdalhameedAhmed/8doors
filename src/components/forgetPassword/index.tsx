@@ -1,36 +1,87 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Form, Field } from "react-final-form";
+import Link from "next/link";
 
+import FloatingInput from 'components/shared/floatingInput/FloatingInput';
 import { CustomInput } from 'components/shared';
+import Lock from "assets/lock-security-open-svgrepo-com.svg"
+import LeftIcon from "assets/left-arrow.svg"
 
-import Logo from '../../assets/logo.svg';
 
 function Index() {
   const { t } = useTranslation('common');
+  const [error, activeError] = React.useState(false)
 
+
+  const onSubmit = () => {
+    console.log("done");
+
+  }
   return (
-    <div className="self-center px-10 py-10 w-96">
-      <div className="flex  align-center justify-center">
-        <Logo style={{ height: 65, width: 65 }} />
+    <div className={`self-start w-full px-[64px] xs:!w-[448px] xs:px-0 sm:!w-[448px] sm:px-0 md:!w-[448px] md:px-0`}>
+      <div className="flex flex-col items-center justify-center relative">
+        <Lock className="w-[100px] h-[100px] mb-[40px]" />
+        <p className="text-primary text-[1.5rem] font-[700]">Forgot your password?</p>
+        <p className="text-custom mt-4 px-8 text-center text-gray">Please enter the email address associated with your account and We will email you a link to reset your password.</p>
       </div>
-      <h1 className="text-center text-white text-[1.57em]">Forgot Password?</h1>
-      <h4 className="text-white text-center">
-        Enter your e-mail address below to reset your password.
-      </h4>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <CustomInput
-          placeholder="Enter Email"
-          label={''}
-          className={`signin-signout-input w-full rounded-lg`}
-        />
+      <h1 className="text-center text-3xl my-2 text-white">
+        {" "}
+        {t("signin.login")}
+      </h1>
 
-        <button className="mt-8 w-full text-white p-4 bg-sky-500/100 rounded-lg">
-          {t('signup.signup')}
-        </button>
-        <p className="my-2 text-sm text-white text-center flex justify-center">
-          <b>Need Help?</b>
-        </p>
-      </form>
+      <Form
+        onSubmit={onSubmit}
+
+        validate={(values): Record<string, string> => {
+          const errors: Record<string, string> = {};
+
+          if (!values.username) {
+            errors.username = "This field is required";
+          }
+          if (!values.password) {
+            errors.password = "This field is required";
+          }
+          return errors;
+        }}
+
+        render={({ handleSubmit, submitting }) => (
+          <form onSubmit={handleSubmit}>
+            <Field name="username">
+              {({ input, meta }) => (
+                <>
+                  <FloatingInput
+                    label=""
+                    placeholder={"Email"}
+                    error={meta.error}
+                    errorActive={error}
+                    type="text"
+                    {...input}
+                  />
+
+
+                </>
+              )}
+            </Field>
+            <button
+
+              type="submit"
+              disabled={submitting}
+              className="inline-block w-full mt-6 rounded-lg py-3 px-[22px] bg-[#212B36] text-white"
+              onClick={() => { activeError(true) }}
+            >
+              {t("signin.login")}
+            </button>
+          </form>
+        )}
+      ></Form>
+      <p className="mt-3 text-sm text-black flex items-center justify-center mt-6  text-right hover:underline">
+        <Link href="/login">
+          <LeftIcon className="w-[7px] h-[7px] inline-block mb-[2px] mr-[2px]"/>
+           Return to sign in
+        </Link>
+      </p>
+
     </div>
   );
 }

@@ -1,8 +1,8 @@
-function formValdate(values: Record<string, any>):Record<string,string> {
+function formValdate(values: Record<string, any>): Record<string, string> {
 
     const errors: Record<string, string> = {};
     const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    
+
     if (!values.username) {
         errors.username = "This field is required";
     }

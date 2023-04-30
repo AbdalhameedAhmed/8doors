@@ -32,7 +32,7 @@ export default function UserIcon() {
   }
 
   return (
-    <CustomMenu icon={icon} iconContainer="!block" whenMenuOpened={changeLayout} containerStyle="!p-2 w-[200px]" clickOutSide={clickOutSide} >
+    <CustomMenu icon={icon} iconContainer="!block hover:!bg-transparent" whenMenuOpened={changeLayout} containerStyle="!p-2 w-[200px]"  clickOutSide={clickOutSide} >
       <>
         <div className="px-3 py-2 text-custom">
           <p className="font-[600] text-primary">Username</p>

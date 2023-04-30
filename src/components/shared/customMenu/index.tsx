@@ -40,11 +40,11 @@ export default function CustomMenu({ children, icon, containerStyle, whenMenuOpe
       ref={menuRef}
     >
       {icon}
-      <span className={classNames("absolute z-20 border-[1px] !border-main-border border-b-transparent transition-all duration-500 border-r-transparent opacity-0 scale-0 origin-[90%_0%]  w-[10px] h-[10px] bg-secondary rotate-[45deg] -bottom-[6px] right-[15px]", {
+      <span className={classNames("absolute z-20 border-[1px] !border-main-border !border-b-transparent transition-all duration-500 !border-r-transparent opacity-0 scale-0 origin-[90%_0%]  w-[10px] h-[10px] bg-secondary rotate-[45deg] -bottom-[6px] right-[15px]", {
         "scale-100 opacity-100": subMenu
       })}
       ></span>
-      <div className={classNames("absolute top-[42px] shadow-lg bg-white rounded-xl right-0 w-[220px] transition-all duration-500 opacity-0 scale-0 origin-[90%_0%] max-h-[300px] overflow-y-scroll snap-y snap-center bg-secondary scrollbar-hide p-3", {
+      <div className={classNames("absolute top-[42px] shadow-lg bg-white rounded-xl right-0 w-[220px] transition-all duration-500 opacity-0 scale-0 origin-[90%_0%] max-h-[300px] overflow-y-scroll snap-y snap-center bg-secondary scrollbar-custom p-3", {
         "scale-100 opacity-100": subMenu
       }, containerStyle)}
         style={{

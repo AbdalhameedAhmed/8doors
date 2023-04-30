@@ -1,5 +1,6 @@
 import Document, { Html, Main, NextScript, Head } from 'next/document';
 
+
 async function getInitialProps(ctx: any) {
   const initialProps = await Document.getInitialProps(ctx);
   return { ...initialProps, locale: ctx?.locale || 'en' };

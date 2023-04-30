@@ -56,6 +56,8 @@ export default function ThemeSettings() {
         }}
         onClick={() => {
           openMenu()
+          console.log("done");
+          
         }}
       >
         <span className="px-[10.5px] py-[4.5px] rounded-[10px] bg-theme-primary relative before:absolute before:content-[''] before:right-[3px] before:top-1/2 before:-translate-y-1/2 before:w-[5px] before:h-[5px] before:rounded-full before:bg-theme-secondary "></span>
