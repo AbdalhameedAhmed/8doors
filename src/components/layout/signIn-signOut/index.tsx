@@ -28,7 +28,7 @@ function SignInSignOutLayout({ type = 'SIGN UP', children, title, signOnClick = 
         </div>
       </div>
 
-      <div className='w-[480px] pt-[240px] xs:py-[120px] sm:py-[120px] md:py-[120px]  flex justify-center items-center xs:w-full sm:w-full md:w-full'>
+      <div className='w-[480px] pt-[240px] xs:py-[120px] sm:py-[120px] md:py-[120px]  flex justify-center items-center xs:w-full bg-primary sm:w-full md:w-full'>
         {children}
       </div>
 

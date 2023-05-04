@@ -39,7 +39,7 @@ function SignUp() {
       <div className={`self-start w-full px-[64px] xs:!w-[448px] xs:px-0 sm:!w-[448px] sm:px-0 md:!w-[448px] md:px-0`}>
         <div className="flex flex-col align-start justify-center mb-[40px] relative">
           <p className="text-primary text-[1.5rem] font-[700]">Get started</p>
-          <p className="text-custom mt-4">Already have an account?  <Link href="/login" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Sign in</Link></p>
+          <p className="text-custom mt-4 text-primary">Already have an account?  <Link href="/login" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Sign in</Link></p>
         </div>
 
 
@@ -112,7 +112,7 @@ function SignUp() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-block w-full rounded-lg py-3 px-[22px] bg-[#212B36] text-white"
+                  className="inline-block w-full rounded-lg py-3 px-[22px] bg-[#212B36] dark:bg-white text-white dark:text-black"
                   onClick={() => {
                     activeError(true); console.log("values is", values, errors)
                   }}
@@ -130,7 +130,7 @@ function SignUp() {
           </button>
           <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
 
-            <Github className="w-[20px] ml-[1px] h-[20px] fill-[#212B36]" />
+            <Github className="w-[20px] ml-[1px] h-[20px] fill-[#212B36] dark:fill-white" />
           </button>
 
           <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">

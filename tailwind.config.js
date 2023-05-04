@@ -57,6 +57,7 @@ module.exports = {
       },
       backgroundImage: {
         doctor: "url('../src/assets/mainBg.jpg')",
+        "landing-search": "url('../src/assets/search-bg.png')"
       },
       keyframes: {
         wiggle: {

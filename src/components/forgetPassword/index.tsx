@@ -23,13 +23,8 @@ function Index() {
       <div className="flex flex-col items-center justify-center relative">
         <Lock className="w-[100px] h-[100px] mb-[40px]" />
         <p className="text-primary text-[1.5rem] font-[700]">Forgot your password?</p>
-        <p className="text-custom mt-4 px-8 text-center text-gray">Please enter the email address associated with your account and We will email you a link to reset your password.</p>
+        <p className="text-custom mt-4 px-8 text-center text-gray mb-[40px]">Please enter the email address associated with your account and We will email you a link to reset your password.</p>
       </div>
-      <h1 className="text-center text-3xl my-2 text-white">
-        {" "}
-        {t("signin.login")}
-      </h1>
-
       <Form
         onSubmit={onSubmit}
 
@@ -67,7 +62,7 @@ function Index() {
 
               type="submit"
               disabled={submitting}
-              className="inline-block w-full mt-6 rounded-lg py-3 px-[22px] bg-[#212B36] text-white"
+              className="inline-block w-full mt-6 rounded-lg py-3 px-[22px] bg-[#212B36] dark:bg-white text-white dark:text-black"
               onClick={() => { activeError(true) }}
             >
               {t("signin.login")}
@@ -75,10 +70,10 @@ function Index() {
           </form>
         )}
       ></Form>
-      <p className="mt-3 text-sm text-black flex items-center justify-center mt-6  text-right hover:underline">
+      <p className="mt-6 text-sm text-primary flex items-center justify-center mt-6  text-right hover:underline">
         <Link href="/login">
-          <LeftIcon className="w-[7px] h-[7px] inline-block mb-[2px] mr-[2px]"/>
-           Return to sign in
+          <LeftIcon className="w-[7px] h-[7px] inline-block mb-[2px] mr-[2px]" />
+          Return to sign in
         </Link>
       </p>
 

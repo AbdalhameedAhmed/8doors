@@ -1,0 +1,382 @@
+.sectionSearch {
+  background: #f9f9f9 url(../../../../assets//search-bg.png) no-repeat bottom
+    center;
+  min-height: 450px;
+  background-size: 100% auto;
+  position: relative;
+  background-blend-mode: Darken;
+  padding: 80px 0;
+}
+
+.bannerWrapper {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.searchBox form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.searchLocation {
+  -ms-flex: 0 0 240px;
+  flex: 0 0 240px;
+  margin-right: 12px;
+  position: relative;
+  width: 240px;
+}
+
+.formControl::-webkit-input-placeholder {
+  color: #858585;
+  font-size: 14px;
+}
+.formControl::-moz-placeholder {
+  color: #858585;
+  font-size: 14px;
+}
+.formControl:-ms-input-placeholder {
+  color: #858585;
+  font-size: 14px;
+}
+.formControl::-ms-input-placeholder {
+  color: #858585;
+  font-size: 14px;
+}
+.formControl::placeholder {
+  color: #858585;
+  font-size: 14px;
+}
+.form-group {
+  margin-bottom: 1rem;
+  position: relative;
+}
+.formControl[type='file'] {
+  min-height: auto;
+}
+
+.formControl:focus {
+  border-color: #bbb;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.searchBox .formControl {
+  border: 1px solid #ccc;
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
+  border-radius: 5px;
+  padding-left: 35px;
+}
+.formControl {
+  border: 1px solid #c4c4c4;
+  color: #000;
+  font-size: 15px;
+  min-height: 46px;
+  padding: 6px 15px;
+}
+.searchInfo {
+  -ms-flex: 0 0 490px;
+  flex: 0 0 490px;
+  margin-right: 12px;
+  position: relative;
+  width: 490px;
+}
+
+.searchBtn {
+  width: 46px;
+  -ms-flex: 0 0 46px;
+  flex: 0 0 46px;
+  height: 46px;
+}
+
+.searchBtn span {
+  display: none;
+  font-weight: 500;
+}
+
+.searchBtn span {
+  display: inline-block;
+  margin-left: 5px;
+  text-transform: uppercase;
+}
+
+.btnPrimary {
+  background-color: #09e5ab;
+  border: 1px solid #09e5ab;
+}
+.btnPrimary:hover,
+.btnPrimary:focus,
+.btnPrimary.active,
+.btnPrimary:active,
+.open > .dropdown-toggle.btnPrimary {
+  background-color: #10defd;
+  border: 1px solid #10defd;
+}
+.btnPrimary.active.focus,
+.btnPrimary.active:focus,
+.btnPrimary.active:hover,
+.btnPrimary.focus:active,
+.btnPrimary:active:focus,
+.btnPrimary:active:hover,
+.open > .dropdown-toggle.btnPrimary.focus,
+.open > .dropdown-toggle.btnPrimary:focus,
+.open > .dropdown-toggle.btnPrimary:hover {
+  background-color: #10defd;
+  border: 1px solid #10defd;
+}
+.btnPrimary.active:not(:disabled):not(.disabled),
+.btnPrimary:active:not(:disabled):not(.disabled),
+.show > .btnPrimary.dropdown-toggle {
+  background-color: #10defd;
+  border-color: #10defd;
+  color: #fff;
+}
+.btnPrimary.active:focus:not(:disabled):not(.disabled),
+.btnPrimary:active:focus:not(:disabled):not(.disabled),
+.show > .btnPrimary.dropdown-toggle:focus {
+  box-shadow: unset;
+}
+.btnPrimary.disabled,
+.btnPrimary:disabled {
+  background-color: #0071dc;
+  border-color: #0071dc;
+  color: #fff;
+}
+.btn-secondary.active:focus:not(:disabled):not(.disabled),
+.btn-secondary:active:focus:not(:disabled):not(.disabled),
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: unset;
+}
+
+.headerNav {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fff;
+  border: 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  position: relative;
+  height: 85px;
+  padding: 0 30px;
+  margin-bottom: 0;
+}
+.mobileBtn {
+  display: none;
+  margin-right: 30px;
+}
+
+.barIcon {
+  display: inline-block;
+  width: 31px;
+}
+.menuHeader {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fff;
+  height: 60px;
+  padding: 0 20px;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  display: none;
+}
+.mainNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cardSectionImage {
+  vertical-align: middle;
+  border-radius: 0.25rem;
+  transition: all 2000ms cubic-bezier(.19,1,.22,1) 0ms;
+}
+
+.doctorBookCardContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  border-radius: 0.25rem;
+}
+.tileCardContent1{
+  background: rgb(0, 0, 0);
+  background: rgba(13, 13, 13, 0.33);
+}
+
+.tileCardContent1Div{
+  width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.bookBtn1 {
+  background-color: #0de0fe;
+  border: 2px solid #0de0fe;
+  box-shadow: inset 0 0 0 0 #01cae4;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  padding: 6px 10px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+
+
+@media only screen and (max-width: 1199.98px) {
+  .containerFluid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media only screen and (max-width: 991.98px) {
+  .bannerWrapper {
+    max-width: 720px;
+  }
+  .searchInfo {
+    -ms-flex: 0 0 180px;
+    flex: 0 0 180px;
+    width: 180px;
+  }
+
+  .searchLocation {
+    -ms-flex: 0 0 240px;
+    flex: 0 0 240px;
+    margin-right: 12px;
+    position: relative;
+    width: 240px;
+  }
+  .mobileBtn {
+    display: inline-block;
+  }
+  .mainMenuWrapper {
+    order: 3;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1060;
+    transform: translateX(-260px);
+    transition: all 0.4s;
+    background-color: #0071dc;
+  }
+  .menuHeader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .mainNav {
+    padding: 0;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  .mainNav li {
+    display: none;
+    position: relative;
+  }
+}
+.homeTitleSection {
+  background-color: #f8f9fa;
+  padding: 80px 0;
+}
+.doctorBookCard {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 3px 20px #0000000b;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .searchBox form {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-clip: border-box;
+  }
+  .searchInfo {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  .searchBtn {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    min-height: 46px;
+    width: 100%;
+  }
+  .searchLocation {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .searchBox form {
+    display: block;
+  }
+  .searchLocation {
+    width: 100%;
+    -ms-flex: none;
+    flex: none;
+  }
+  .searchInfo {
+    width: 100%;
+    -ms-flex: none;
+    flex: none;
+  }
+  .searchLocation {
+    width: 100%;
+    -ms-flex: none;
+    flex: none;
+  }
+  .headerNav {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .mobileBtn {
+    left: 0;
+    margin-right: 0;
+    padding: 0 15px;
+    position: absolute;
+    z-index: 99;
+  }
+}

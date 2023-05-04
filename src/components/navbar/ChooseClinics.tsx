@@ -44,7 +44,9 @@ export default function ChooseClinic() {
   const icon = (<ClinicIcon className="w-[20px] h-[20px]" />)
   return (
 
-    <CustomMenu icon={icon} containerStyle="max-h-[264px]">
+    <CustomMenu icon={icon} style={{
+      maxHeight: "264px"
+    }}>
       <ul className={classNames("w-full max-h-full  flex flex-col items-start justify-evenly gap-1 "
       )}
       >

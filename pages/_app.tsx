@@ -15,6 +15,7 @@ import { theme } from '../theme/index';
 
 import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.css';
+// import "./bootstrap.min.css"
 
 function App({ Component, pageProps }: AppProps) {
 
@@ -37,10 +38,9 @@ function App({ Component, pageProps }: AppProps) {
             href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000"
             rel="stylesheet"
           />
-          <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;300;400;500;600;700;800;900" rel="stylesheet" />
         </Head>
-        <ThemeSettings/>
-
+        {/* <ThemeSettings/> */}
+        
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>

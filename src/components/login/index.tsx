@@ -44,15 +44,10 @@ export default function SignIn() {
   return (
     <>
       <div className={`self-start w-full px-[64px] xs:!w-[448px] xs:px-0 sm:!w-[448px] sm:px-0 md:!w-[448px] md:px-0`}>
-        <div className="flex flex-col align-start justify-center relative">
+        <div className="flex flex-col align-start justify-center relative mb-[80px]">
           <p className="text-primary text-[1.5rem] font-[700]">Sign in to 8doors</p>
-          <p className="text-custom mt-4">New user?  <Link href="/signup" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Create an account</Link></p>
+          <p className="text-custom text-primary mt-4">New user?  <Link href="/signup" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Create an account</Link></p>
         </div>
-        <h1 className="text-center text-3xl my-2 text-white">
-          {" "}
-          {t("signin.login")}
-        </h1>
-
         <Form
           onSubmit={onSubmit}
 
@@ -98,7 +93,7 @@ export default function SignIn() {
                   </>
                 )}
               </Field>
-              <p className="mt-3 text-sm text-black text-right">
+              <p className="mt-3 text-sm text-primary text-right">
                 <Link href="/forget-password">
                   <u>Forgot password?</u>
                 </Link>
@@ -107,7 +102,7 @@ export default function SignIn() {
 
                 type="submit"
                 disabled={submitting}
-                className="inline-block w-full mt-4 rounded-lg py-3 px-[22px] bg-[#212B36] text-white"
+                className="inline-block w-full mt-4 rounded-lg py-3 px-[22px] bg-[#212B36] dark:bg-white dark:text-black text-white"
                 onClick={() => { activeError(true) }}
               >
                 {t("signin.login")}
@@ -122,7 +117,7 @@ export default function SignIn() {
           </button>
           <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
 
-            <Github className="w-[20px] ml-[1px] h-[20px] fill-[#212B36]" />
+            <Github className="w-[20px] ml-[1px] h-[20px] fill-[#212B36] dark:fill-white" />
           </button>
 
           <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
