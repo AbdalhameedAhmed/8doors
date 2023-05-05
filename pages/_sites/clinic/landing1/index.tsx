@@ -1,8 +1,9 @@
 import Hero from "components/sites/clinic/landing/hero";
-import Script from "next/script";
 import Navbar from "components/sites/clinic/landing/Navbar"
 import Slide from "components/sites/clinic/landing/Slide"
 import BookOutDoctor from "components/sites/clinic/landing/BookOutDoctor"
+import CardsSection from "components/sites/clinic/landing/CardsSection";
+import ContactUs from "components/sites/clinic/landing/ContactUs";
 
 
 import Head from "next/head";
@@ -20,7 +21,9 @@ export default function Landing1() {
 
       <Navbar />
       <Hero />
+      <CardsSection/>
       <Slide />
+      <ContactUs/>
       <BookOutDoctor />
       <Footer />
 

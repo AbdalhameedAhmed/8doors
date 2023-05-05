@@ -1,42 +1,48 @@
+
+import styles from "./footer.module.css"
 import classNames from "classnames";
 import Facebook from "assets/facebook-176-svgrepo-com.svg"
 import Twitter from "assets/twitter.svg"
 import LinkedIn from "assets/linkedin-in.svg"
 import Instagram from "assets/square-instagram.svg"
+import Github from "assets/github.svg"
 import DoubleRightArrow from "assets/angles-right-solid.svg"
+import Location from "assets/location-dot-solid.svg"
+import Phone from "assets/phone-solid.svg"
+import Mail from "assets/envelope-regular.svg"
 export default function Footer() {
 
 
   return (
-    <footer className="footer text-white">
+    <footer className={`${styles.footer} text-white`}>
 
-      <div className="footer-top aos aos-init aos-animate" data-aos="fade-up">
+      <div className={`${styles.footerTop}`} data-aos="fade-up">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-3 col-md-6">
 
-              <div className="footer-widget footer-about">
-                <div className="footer-logo">
+              <div className={`${styles.footerWidget} ${styles.footerAbout}`}>
+                <div className={`${styles.footerLogo}`}>
                   <p className={classNames("text-logo text-4xl font-bold transition-all duration-300 inline-block")}>8doors</p>
                 </div>
-                <div className="footer-about-content">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                  <div className="social-icon">
+                <div className={`${styles.footerAboutContent}`}>
+                  <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  <div className={`${styles.socialIcon}`}>
                     <ul>
                       <li>
-                        <a href="#" target="_blank"><i className="fab fa-facebook-f"></i> </a>
+                        <a href="#" target="_blank"><Facebook className="w-[20px] h-[20px] [&_path]:fill-white" /> </a>
                       </li>
                       <li>
-                        <a href="#" target="_blank"><i className="fab fa-twitter"></i> </a>
+                        <a href="#" target="_blank"><Twitter className="w-[20px] h-[20px] [&_path]:fill-white" /> </a>
                       </li>
                       <li>
-                        <a href="#" target="_blank"><i className="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><LinkedIn className="w-[20px] h-[20px] [&_path]:fill-white" /></a>
                       </li>
                       <li>
-                        <a href="#" target="_blank"><i className="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><Instagram className="w-[20px] h-[20px] [&_path]:fill-white" /></a>
                       </li>
                       <li>
-                        <a href="#" target="_blank"><i className="fab fa-dribbble"></i> </a>
+                        <a href="#" target="_blank"><Github className="w-[20px] h-[20px] [&_path]:fill-white" /> </a>
                       </li>
                     </ul>
                   </div>
@@ -46,8 +52,8 @@ export default function Footer() {
             </div>
             <div className="col-lg-3 col-md-6">
 
-              <div className="footer-widget footer-menu">
-                <h2 className="footer-title">For Patients</h2>
+              <div className={`${styles.footerWidget} ${styles.footerMenu}`}>
+                <h2 className={`${styles.footerTitle}`}>For Patients</h2>
                 <ul>
                   <li className="flex items-center justify-start">
                     <DoubleRightArrow className="w-[15px] mr-2 fill-white" />
@@ -77,8 +83,8 @@ export default function Footer() {
             </div>
             <div className="col-lg-3 col-md-6">
 
-              <div className="footer-widget footer-menu">
-                <h2 className="footer-title">For Doctors</h2>
+              <div className={`${styles.footerWidget} ${styles.footerMenu}`}>
+                <h2 className={`${styles.footerTitle}`}>For Doctors</h2>
                 <ul>
                   <li className="flex items-center justify-start">
                     <DoubleRightArrow className="w-[15px] mr-2 fill-white" />
@@ -107,21 +113,25 @@ export default function Footer() {
             </div>
             <div className="col-lg-3 col-md-6">
 
-              <div className="footer-widget footer-contact">
-                <h2 className="footer-title">Contact Us</h2>
-                <div className="footer-contact-info">
-                  <div className="footer-address">
-                    <span><i className="fas fa-map-marker-alt"></i></span>
+              <div className={`${styles.footerWidget} footer-contact`}>
+                <h2 className={`${styles.footerTitle}`}>Contact Us</h2>
+                <div className={`${styles.footerContactInfo}`}>
+                  <div className={`${styles.footerAddress} flex items-center gap-2 mb-[15px]`}>
+                    <Location className="w-[20px] h-[20px] fill-white" />
                     <p> 3556 Beech Street, San Francisco,<br /> California, CA 94108 </p>
                   </div>
-                  <p>
-                    <i className="fas fa-phone-alt"></i>
-                    +1 315 369 5943
-                  </p>
-                  <p className="mb-0">
-                    <i className="fas fa-envelope"></i>
-                    doccure@example.com
-                  </p>
+                  <div className={`${styles.footerAddress} flex items-center gap-2 mb-[15px]`}>
+                    <Phone className="w-[15px] h-[15px] fill-white" />
+                    <p>
+                      +1 315 369 5943
+                    </p>
+                  </div>
+                  <div className={`${styles.footerAddress} flex items-center gap-2 mb-[15px]`}>
+                    <Mail className="w-[18px] h-[18px] fill-white" />
+                    <p className="mb-0">
+                      doccure@example.com
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -131,20 +141,20 @@ export default function Footer() {
       </div>
 
 
-      <div className="footer-bottom">
+      <div className={`${styles.footerBottom}`}>
         <div className="container-fluid">
 
           <div className="copyright">
             <div className="row">
               <div className="col-md-6 col-lg-6">
-                <div className="copyright-text">
+                <div className={`${styles.copyrightText}`}>
                   <p className="mb-0">© 2022 Doccure. All rights reserved.</p>
                 </div>
               </div>
               <div className="col-md-6 col-lg-6">
 
                 <div className="copyright-menu">
-                  <ul className="policy-menu">
+                  <ul className={`${styles.policyMenu}`}>
                     <li><a href="term-condition.html">Terms and Conditions</a></li>
                     <li><a href="privacy-policy.html">Policy</a></li>
                   </ul>

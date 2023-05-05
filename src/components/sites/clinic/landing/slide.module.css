@@ -1,0 +1,195 @@
+.sectionHeader {
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sectionHeader p {
+  color: #757575;
+  font-size: 16px;
+  margin-bottom: 0;
+  margin-top: 15px;
+}
+
+
+.specialitiesSlider .slickSlide {
+  display: block;
+  padding: 0 12px;
+  margin-left: 0;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.specialitiesSlider .slickSlide {
+  display: block;
+  padding: 0 12px;
+  margin-left: 0;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+.specialitiesSlider .slickDots {
+  margin-top: 44px;
+  position: unset;
+}
+
+.slickSlider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slickSlider .slickTrack,
+.slickSlider .slickList {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slickInitialized .slickSlide {
+  display: block;
+}
+.slickSlide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+[dir='rtl'] .slickSlide {
+  float: right;
+}
+.slickSlide img {
+  display: block;
+}
+
+.slickSlide.dragging img {
+  pointer-events: none;
+}
+.speicalityItem p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 30px 0 0;
+}
+
+
+.speicalityImg {
+  position: relative;
+  height: 150px;
+  box-shadow: 2px 2px 13px rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+  width: 150px;
+  background: #fff;
+}
+.speicalityImg img {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.speicalityImg span {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  box-shadow: 1px 6px 14px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 5px;
+  background-color: #fff;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+}
+.speicalityImg span i {
+  font-size: 15px;
+  color: #0de0fe;
+}
+.slickDots li{
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 5px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.slickDots {
+  position: absolute;
+  bottom: -25px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.slickDots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 5px;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: #c0c0c0;
+}
+
+.slickList {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.slickList:focus {
+  outline: none;
+}
+.slickList.dragging {
+  cursor: pointer;
+}
+
+.slickTrack {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.slickTrack:before,
+.slickTrack:after {
+  display: table;
+  content: '';
+}
+.slickTrack:after {
+  clear: both;
+}
+
+.speicalityItem p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 30px 0 0;
+}

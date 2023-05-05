@@ -1,0 +1,307 @@
+.sectionHeader {
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sectionHeader p {
+  color: #757575;
+  font-size: 16px;
+  margin-bottom: 0;
+  margin-top: 15px;
+}
+
+.sectionDoctor {
+  background-color: #f8f9fa;
+  padding: 80px 0;
+}
+
+.sectionDoctor .profileWidget {
+  box-shadow: 2px 2px 13px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+}
+
+.aboutContent p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  margin: 0;
+}
+.aboutContent p + p {
+  margin-top: 20px;
+}
+.aboutContent a {
+  background-color: #0de0fe;
+  box-shadow: inset 0 0 0 0 #01cae4;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 30px;
+  min-width: 150px;
+  padding: 15px 20px;
+  text-align: center;
+}
+.aboutContent a:hover,
+.aboutContent a:focus {
+  background-color: #01cae4;
+  border-color: #01cae4;
+  color: #fff;
+  box-shadow: inset 0 50px 0 0 #01cae4;
+}
+.slickSlider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slickPrev,
+.slickNext,
+.pharmacy-home-slider .swiper-button-prev,
+.pharmacy-home-slider .swiper-button-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  box-shadow: 1px 6px 14px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: #fff;
+  z-index: 9999;
+}
+.slickPrev:hover,
+.slickPrev:focus,
+.slickNext:hover,
+.slickNext:focus {
+  background-color: #0de0fe;
+  color: #fff;
+  opacity: 1;
+}
+.slickPrev:hover:before,
+.slickPrev:focus:before,
+.slickNext:hover:before,
+.slickNext:focus:before {
+  color: #fff;
+  opacity: 1;
+}
+.slickPrev.slick-disabled:before,
+.slickNext.slick-disabled:before {
+  opacity: 0.25;
+}
+.slickPrev:before,
+.slickNext:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  color: #383838;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slickPrev {
+  left: 0;
+  z-index: 1;
+}
+
+
+
+.slickInitialized .slickSlide {
+  display: block;
+}
+.doctorSlider .slickSlide {
+  display: block;
+  margin-left: 0;
+  padding: 10px;
+  width: 280px;
+}
+
+
+.slickSlider .slickTrack,
+.slickSlider .slickList {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slickList {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.slickList:focus {
+  outline: none;
+}
+.slickList.dragging {
+  cursor: pointer;
+}
+
+.sectionDoctor .profileWidget {
+  box-shadow: 2px 2px 13px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+}
+
+.profileWidget {
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  padding: 15px;
+}
+
+.profileWidget .favBtn {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  border-radius: 3px;
+  color: #2e3842;
+  -webkit-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 99;
+}
+
+.profileWidget p.speciality {
+  font-size: 14px;
+  color: #4f4f4f;
+  margin-bottom: 5px;
+  min-height: 40px;
+}
+.profileWidget .rating {
+  color: #757575;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+
+.viewBtn {
+  color: #0de0fe;
+  font-size: 13px;
+  border: 2px solid #0de0fe;
+  box-shadow: inset 0 0 0 0 #0de0fe;
+  background: #fff;
+  text-align: center;
+  display: block;
+  font-weight: 500;
+  padding: 6px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.viewBtn:hover,
+.viewBtn:focus {
+  background: #0de0fe;
+  box-shadow: inset 0 50px 0 0 #0de0fe;
+  color: #fff;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.bookBtn {
+  background-color: #0de0fe;
+  border: 2px solid #0de0fe;
+  box-shadow: inset 0 0 0 0 #fff;
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+  display: block;
+  font-weight: 500;
+  padding: 6px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.bookBtn:hover,
+.bookBtn:focus {
+  background-color: #fff;
+  box-shadow: inset 0 50px 0 0 #fff;
+  color: #0de0fe;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.proContent {
+  padding: 20px 0 0;
+  position: relative;
+}
+
+.proContent .title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #0168b3;
+}
+
+.availableInfo {
+  font-size: 13px;
+  color: #757575;
+  font-weight: 400;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+.availableInfo li + li {
+  margin-top: 5px;
+}
+.profileWidget .rating {
+  color: #757575;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.profileWidget p.speciality {
+  font-size: 14px;
+  color: #4f4f4f;
+  margin-bottom: 5px;
+  min-height: 40px;
+}

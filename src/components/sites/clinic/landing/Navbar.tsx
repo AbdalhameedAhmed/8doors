@@ -43,9 +43,9 @@ function Navbar() {
             <Bars className="w-[30px] h-[30px]" />
             <i className="fa-solid fa-bars"></i>
           </button>
-          <p className={classNames("text-logo text-4xl font-bold transition-all duration-300")}>8doors</p>
+          <p className={classNames("text-logo text-4xl font-bold transition-all pb-2 duration-300")}>8doors</p>
 
-          <ul ref={menuRef} className={classNames("flex items-center gap-4 h-full", { "fixed left-0 top-0 h-screen w-[250px] transition duration-300 flex-col overflow-auto scrollbar-hide z-50 scale-x-0 !items-start origin-[0%_100%] bg-[#0071dc] text-white fill-white": width < 950, "scale-x-100 !gap-[0px]": width < 950 && openMenu })}>
+          <ul ref={menuRef} className={classNames("flex items-center gap-8 h-full", { "fixed left-0 top-0 h-screen w-[250px] transition duration-300 flex-col overflow-auto scrollbar-hide z-50 scale-x-0 !items-start origin-[0%_100%] bg-[#0071dc] text-white fill-white": width < 950, "scale-x-100 !gap-[0px]": width < 950 && openMenu })}>
             <div className="bg-white w-full text-center">
               <p className={classNames("text-logo text-4xl font-bold transition-all duration-300 py-4", { "hidden": width > 950 })}>8doors</p>
 

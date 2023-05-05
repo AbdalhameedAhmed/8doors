@@ -1,7 +1,8 @@
 import React from "react"
 
-import RightIcon from "assets/angle-right-solid.svg"
+import styles from "./bookOurDoctor.module.css"
 
+import RightIcon from "assets/angle-right-solid.svg"
 import DoctorImg1 from "assets/doctor-01.jpg"
 import DoctorImg2 from "assets/doctor-02.jpg"
 import DoctorImg3 from "assets/doctor-03.jpg"
@@ -53,51 +54,51 @@ export default function BookOutDoctor() {
   }
 
   return (
-    <section className="section section-doctor py-[80px]">
+    <section className={`section ${styles.sectionDoctor} py-[80px]`}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-4">
-            <div className="section-header aos aos-init aos-animate" data-aos="fade-up">
+            <div className={`${styles.sectionHeader}`} data-aos="fade-up">
               <h2 className="text-[40px] font-[600]">Book Our Doctor</h2>
               <p className="">Lorem Ipsum is simply dummy text </p>
             </div>
-            <div className="about-content mb-[30px]" data-aos="fade-up">
+            <div className={`${styles.aboutContent} mb-[30px]`} data-aos="fade-up">
               <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
               <p>web page editors now use Lorem Ipsum as their default model text, and a search for &rsquo;lorem ipsum&rsquo; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>
               <a href="javascript:;">Read More..</a>
             </div>
           </div>
           <div className="col-lg-8">
-            <div className="doctor-slider slider aos slick-initialized slick-slider aos-init aos-animate" data-aos="fade-up">
-              <button className="slick-prev slick-arrow !flex !justify-center !items-center" aria-label="Previous" type="button" onClick={() => { scrollLeft() }}><RightIcon className="w-[20px] h-[20px] rotate-180" /></button><div className="slick-list draggable">
+            <div className={`${styles.doctorSlider} slider ${styles.slickInitialized} ${styles.slickSlider}`} data-aos="fade-up">
+              <button className={`${styles.slickPrev} slick-arrow !flex !justify-center !items-center`} aria-label="Previous" type="button" onClick={() => { scrollLeft() }}><RightIcon className="w-[20px] h-[20px] rotate-180" /></button><div className={`${styles.slickList} draggable`}>
                 <div className="overflow-x-hidden flex !snap-x	snap-mandatory scroll-smooth transition-all duration-500" style={{ opacity: "1" }}
                   id="scroll"
                 >
-                  <div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
+                  <div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
                     <div>
-                      <div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                      <div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                         <div className="doc-img">
                           <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                             <img className="img-fluid" alt="User Image" src={DoctorImg1.src} />
                           </a>
-                          <a href="javascript:void(0)" className="fav-btn" tabIndex={-1}>
+                          <a href="javascript:void(0)" className={`${styles.favBtn}`} tabIndex={-1}>
                             <i className="far fa-bookmark"></i>
                           </a>
                         </div>
-                        <div className="pro-content">
-                          <h3 className="title">
+                        <div className={`${styles.proContent}`}>
+                          <h3 className={`${styles.title}`}>
                             <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Paul Richard</a>
                             <i className="fas fa-check-circle verified"></i>
                           </h3>
-                          <p className="speciality">MBBS, MD - Dermatology , Venereology &amp; Lepros</p>
-                          <div className="rating !flex !items-center">
+                          <p className={`${styles.speciality}`}>MBBS, MD - Dermatology , Venereology &amp; Lepros</p>
+                          <div className={`${styles.rating} !flex !items-center`}>
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(49)</span>
                           </div>
-                          <ul className="available-info !mb-[10px]">
+                          <ul className={`${styles.availableInfo} !mb-[10px]`}>
                             <li>
                               <i className="fas fa-map-marker-alt"></i> California, USA
                             </li>
@@ -111,17 +112,17 @@ export default function BookOutDoctor() {
                           </ul>
                           <div className="row row-sm">
                             <div className="col-6">
-                              <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                              <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                             </div>
                             <div className="col-6">
-                              <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                              <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="slick-slide shrink-0 !snap-center !snap-center" data-slick-index="0" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  <div className={`${styles.slickSlide} shrink-0 !snap-center !snap-center`} data-slick-index="0" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg2.src} />
@@ -130,13 +131,13 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Ruby Perrin</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MDS - Periodontology and Oral Implantology, BDS</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
@@ -144,7 +145,7 @@ export default function BookOutDoctor() {
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />
                         <span className="d-inline-block average-rating">(17)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Florida, USA
                         </li>
@@ -158,10 +159,10 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
@@ -169,9 +170,9 @@ export default function BookOutDoctor() {
                   </div>
                   </div>
 
-                  <div className="slick-slide shrink-0 !snap-center slick-current slick-active !snap-center" data-slick-index="1" aria-hidden="false">
+                  <div className={`${styles.slickSlide} shrink-0 !snap-center slick-current !snap-center`} data-slick-index="1" aria-hidden="false">
                     <div>
-                      <div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                      <div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                         <div className="doc-img">
                           <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={0}>
                             <img className="img-fluid" alt="User Image" src={DoctorImg3.src} />
@@ -180,20 +181,20 @@ export default function BookOutDoctor() {
                             <i className="far fa-bookmark"></i>
                           </a>
                         </div>
-                        <div className="pro-content">
-                          <h3 className="title">
+                        <div className={`${styles.proContent}`}>
+                          <h3 className={`${styles.title}`}>
                             <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={0}>Darren Elder</a>
                             <i className="fas fa-check-circle verified"></i>
                           </h3>
-                          <p className="speciality">BDS, MDS - Oral &amp; Maxillofacial Surgery</p>
-                          <div className="rating !flex !items-center">
+                          <p className={`${styles.speciality}`}>BDS, MDS - Oral &amp; Maxillofacial Surgery</p>
+                          <div className={`${styles.rating} !flex !items-center`}>
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                             <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(35)</span>
                           </div>
-                          <ul className="available-info !mb-[10px]">
+                          <ul className={`${styles.availableInfo} !mb-[10px]`}>
                             <li>
                               <i className="fas fa-map-marker-alt"></i> Newyork, USA
                             </li>
@@ -207,17 +208,17 @@ export default function BookOutDoctor() {
                           </ul>
                           <div className="row row-sm">
                             <div className="col-6">
-                              <a href="doctor-profile.html" className="btn view-btn" tabIndex={0}>View Profile</a>
+                              <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={0}>View Profile</a>
                             </div>
                             <div className="col-6">
-                              <a href="booking.html" className="btn book-btn" tabIndex={0}>Book Now</a>
+                              <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={0}>Book Now</a>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="slick-slide shrink-0 !snap-center" data-slick-index="2" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  <div className={`${styles.slickSlide} shrink-0 !snap-center`} data-slick-index="2" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg4.src} />
@@ -226,20 +227,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Deborah Angel</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - General Medicine, DNB - Cardiology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(27)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Georgia, USA
                         </li>
@@ -253,14 +254,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center" data-slick-index="3" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center`} data-slick-index="3" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg5.src} />
@@ -269,20 +270,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Sofia Brient</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MS - General Surgery, MCh - Urology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(4)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Louisiana, USA
                         </li>
@@ -296,14 +297,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center" data-slick-index="4" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center`} data-slick-index="4" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg6.src} />
@@ -312,13 +313,13 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Marvin Campbell</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
@@ -342,14 +343,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center" data-slick-index="5" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center`} data-slick-index="5" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg7.src} />
@@ -358,20 +359,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Katharine Berthold</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />   <span className="d-inline-block average-rating">(52)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Texas, USA
                         </li>
@@ -385,14 +386,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center" data-slick-index="6" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center`} data-slick-index="6" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg8.src} />
@@ -401,20 +402,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Linda Tobin</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - General Medicine, DM - Neurology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(43)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Kansas, USA
                         </li>
@@ -428,14 +429,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center" data-slick-index="7" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center`} data-slick-index="7" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg9.src} />
@@ -444,20 +445,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Paul Richard</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - Dermatology , Venereology &amp; Lepros</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - Dermatology , Venereology &amp; Lepros</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(49)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> California, USA
                         </li>
@@ -471,14 +472,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="8" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="8" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg10.src} />
@@ -487,13 +488,13 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Ruby Perrin</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MDS - Periodontology and Oral Implantology, BDS</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
@@ -501,7 +502,7 @@ export default function BookOutDoctor() {
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />
                         <span className="d-inline-block average-rating">(17)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Florida, USA
                         </li>
@@ -515,14 +516,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="9" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="9" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg11.src} />
@@ -531,20 +532,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Darren Elder</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">BDS, MDS - Oral &amp; Maxillofacial Surgery</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>BDS, MDS - Oral &amp; Maxillofacial Surgery</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(35)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Newyork, USA
                         </li>
@@ -558,14 +559,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="10" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="10" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg12.src} />
@@ -574,20 +575,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Deborah Angel</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - General Medicine, DNB - Cardiology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(27)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Georgia, USA
                         </li>
@@ -601,14 +602,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="11" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="11" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg13.src} />
@@ -617,20 +618,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Sofia Brient</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MS - General Surgery, MCh - Urology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(4)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Louisiana, USA
                         </li>
@@ -644,14 +645,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="12" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="12" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg14.src} />
@@ -660,20 +661,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Marvin Campbell</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(66)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Michigan, USA
                         </li>
@@ -687,14 +688,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="13" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="13" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg15.src} />
@@ -703,20 +704,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Katharine Berthold</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(52)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Texas, USA
                         </li>
@@ -730,14 +731,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="14" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="14" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg16.src} />
@@ -746,20 +747,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Linda Tobin</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - General Medicine, DM - Neurology</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(43)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Kansas, USA
                         </li>
@@ -773,14 +774,14 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
-                  </div></div></div><div className="slick-slide shrink-0 !snap-center slick-cloned !snap-center" data-slick-index="15" id="" aria-hidden="true" tabIndex={-1}><div><div className="profile-widget" style={{ width: "100%", display: "inline-block" }}>
+                  </div></div></div><div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="15" id="" aria-hidden="true" tabIndex={-1}><div><div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
                     <div className="doc-img">
                       <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>
                         <img className="img-fluid" alt="User Image" src={DoctorImg1.src} />
@@ -789,20 +790,20 @@ export default function BookOutDoctor() {
                         <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div className="pro-content">
-                      <h3 className="title">
+                    <div className={`${styles.proContent}`}>
+                      <h3 className={`${styles.title}`}>
                         <a href="doctor-profile.html" className="text-[#2E3842] hover:text-[#09dca4]" tabIndex={-1}>Paul Richard</a>
                         <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p className="speciality">MBBS, MD - Dermatology , Venereology &amp; Lepros</p>
-                      <div className="rating !flex !items-center">
+                      <p className={`${styles.speciality}`}>MBBS, MD - Dermatology , Venereology &amp; Lepros</p>
+                      <div className={`${styles.rating} !flex !items-center`}>
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#f4c150]" />
                         <Star className="w-[15px] mr-1 h-[15px] inline fill-[#dedfe0]" />                  <span className="d-inline-block average-rating">(49)</span>
                       </div>
-                      <ul className="available-info !mb-[10px]">
+                      <ul className={`${styles.availableInfo} !mb-[10px]`}>
                         <li>
                           <i className="fas fa-map-marker-alt"></i> California, USA
                         </li>
@@ -816,10 +817,10 @@ export default function BookOutDoctor() {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn" tabIndex={-1}>View Profile</a>
+                          <a href="doctor-profile.html" className={`btn ${styles.viewBtn}`} tabIndex={-1}>View Profile</a>
                         </div>
                         <div className="col-6">
-                          <a href="booking.html" className="btn book-btn" tabIndex={-1}>Book Now</a>
+                          <a href="booking.html" className={`btn ${styles.bookBtn}`} tabIndex={-1}>Book Now</a>
                         </div>
                       </div>
                     </div>
@@ -828,7 +829,7 @@ export default function BookOutDoctor() {
                   </div>
                 </div>
               </div>
-              <button className="slick-next slick-arrow right-0 !flex !justify-center !items-center" aria-label="Next" type="button" onClick={() => { scrollRight() }}><RightIcon className="w-[20px] h-[20px] " /></button>
+              <button className={`${styles.slickNext} slick-arrow right-0 !flex !justify-center !items-center`} aria-label="Next" type="button" onClick={() => { scrollRight() }}><RightIcon className="w-[20px] h-[20px] " /></button>
             </div>
           </div>
         </div>

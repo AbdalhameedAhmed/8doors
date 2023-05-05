@@ -1,0 +1,149 @@
+.newsLetterBg {
+  font-family: 'IBM Plex Sans', sans-serif;
+  padding: 130px 0 80px;
+  background-color: #fff;
+}
+
+
+
+.newsLetterBg .newsBg {
+  background: url(../../../../assets/news-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+}
+
+
+.newsBg .newsLeft {
+  margin: auto;
+}
+
+
+.newsBg .newsLeft  > div {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.newsBg .newsLeft h2 {
+  font-weight: 700;
+  font-size: 44px;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+
+.newsBg .newsLeft p {
+  font-weight: 500;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+
+.newsBg .newsLeft > div {
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.newsBg .newsLeft .formGroup {
+  margin-bottom: 0;
+}
+
+.newsBg .newsLeft .formControl {
+  width: 350px;
+  min-height: 50px;
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.newsBg .newsLeft .btn {
+  font-weight: 700;
+  font-size: 18px;
+  color: #0071DC;
+  min-width: 180px;
+  height: 50px;
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  box-shadow: inset 0 0 0 0 #0071dc;
+  border-radius: 8px;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.newsBg .newsImg {
+  margin-top: -80px;
+}
+
+
+@media (min-width: 1400px){
+
+  .container {
+    max-width: 1320px;
+  }
+}
+@media only screen and (max-width: 1200px){
+  
+  .newsBg .newsLeft .formControl {
+    width: 290px;
+  }
+}
+@media only screen and (max-width: 991.98px){
+  
+  .newsLetterBg {
+    padding: 40px 0 40px;
+  }
+  .newsLetterBg .newsBg {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .newsBg .newsLeft h2 {
+    font-size: 36px;
+  }
+  .newsImg {
+    display: none;
+  }
+}
+@media only screen and (max-width: 767.98px){
+  
+  .newsBg .newsLeft h2 {
+    font-size: 1.875rem;
+  }
+  .newsBg .newsLeft p {
+    font-size: 15px;
+  }
+  .newsBg .newsLeft .formControl {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  @media only screen and (max-width: 575.98px) {
+  }
+  
+  .newsBg .newsLeft > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .newsBg .newsLeft h2 {
+    font-size: 1.5rem;
+  }
+  .newsBg .newsLeft p {
+    font-size: 14px;
+  }
+  .newsBg .newsLeft > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .newsBg .newsLeft .formControl {
+    min-height: 46px;
+  }
+  .newsBg .newsLeft .btn {
+      font-size: 15px;
+      color: #0071DC;
+      min-width: 160px;
+      height: 46px;
+  }
+}

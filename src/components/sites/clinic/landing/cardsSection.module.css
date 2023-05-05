@@ -1,0 +1,68 @@
+.homeTitleSection {
+  background-color: #f8f9fa;
+  padding: 80px 0;
+}
+
+.doctorBookCard {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 3px 20px #0000000b;
+  overflow: hidden;
+}
+
+.cardSectionImage {
+  vertical-align: middle;
+  border-radius: 0.25rem;
+  transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+}
+
+.doctorBookCardContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  border-radius: 0.25rem;
+}
+
+.tileCardContent1 {
+  background: rgb(0, 0, 0);
+  background: rgba(13, 13, 13, 0.33);
+}
+
+.tileCardContent1Div {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.bookBtn1 {
+  background-color: #0de0fe;
+  border: 2px solid #0de0fe;
+  box-shadow: inset 0 0 0 0 #01cae4;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  padding: 6px 10px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .card {
+    margin-bottom: 20px;
+  }
+}
