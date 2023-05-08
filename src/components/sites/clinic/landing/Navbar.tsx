@@ -7,7 +7,12 @@ import useWindowSize from "hooks/useWindowSize";
 import Hospital from "assets/hospital-svgrepo-com.svg"
 import useOnClickOutside from "hooks/useOnClickOutside";
 import CollapsedMenu from "./CollapsedMenu";
-function Navbar() {
+
+type navbarTypes = {
+  direction?:"ltr" | "rtl" 
+}
+
+function Navbar({direction="ltr"}:navbarTypes) {
 
   const [openMenu, isMenuOpen] = React.useState(false)
   const { width } = useWindowSize()
@@ -31,7 +36,10 @@ function Navbar() {
   return (
     <>
 
-      <nav className={classNames(" w-full w-full flex justify-between items-center px-8 h-[85px]",)}>
+      <nav className={classNames(" w-full w-full flex justify-between items-center px-8 h-[85px]",)}
+      style={{
+        direction:direction
+      }}>
         <div className={classNames("fixed top-0 left-0 h-screen w-screen bg-[rgba(0,0,0,0.6)] hidden -z-10", { "!z-40 !block": openMenu })}>
         </div>
 

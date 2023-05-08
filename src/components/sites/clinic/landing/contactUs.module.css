@@ -4,8 +4,6 @@
   background-color: #fff;
 }
 
-
-
 .newsLetterBg .newsBg {
   background: url(../../../../assets/news-bg.png);
   background-size: cover;
@@ -14,13 +12,11 @@
   border-radius: 5px;
 }
 
-
 .newsBg .newsLeft {
   margin: auto;
 }
 
-
-.newsBg .newsLeft  > div {
+.newsBg .newsLeft > div {
   padding-left: 60px;
   padding-right: 60px;
 }
@@ -28,72 +24,86 @@
 .newsBg .newsLeft h2 {
   font-weight: 700;
   font-size: 44px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 10px;
 }
-
 
 .newsBg .newsLeft p {
   font-weight: 500;
   font-size: 18px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
-
 .newsBg .newsLeft > div {
-    padding-left: 60px;
-    padding-right: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .newsBg .newsLeft .formGroup {
   margin-bottom: 0;
 }
 
+.formControl {
+  border: 1px solid #c4c4c4;
+  color: #000;
+  font-size: 15px;
+  min-height: 46px;
+  padding: 6px 15px;
+}
+
 .newsBg .newsLeft .formControl {
   width: 350px;
   min-height: 50px;
-  background: #FFFFFF;
-  border: 1px solid #FFFFFF;
+  background: #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   display: inline-block;
+}
+
+.formControl:focus {
+  border-color: #bbb;
+  box-shadow: none;
+  outline: 0 none;
 }
 
 .newsBg .newsLeft .btn {
   font-weight: 700;
   font-size: 18px;
-  color: #0071DC;
+  color: #0de0fe;
   min-width: 180px;
   height: 50px;
-  background: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  box-shadow: inset 0 0 0 0 #0071dc;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  box-shadow: inset 0 0 0 0 #0de0fe;
   border-radius: 8px;
   -webkit-transition: 0.7s;
   -moz-transition: 0.7s;
   -o-transition: 0.7s;
   transition: 0.7s;
 }
+.newsBg .newsLeft .btn:hover {
+  background: #0de0fe;
+  box-shadow: inset 0 50px 0 0 #0de0fe;
+  color: #fff;
+  transition: all 0.5s;
+}
 
 .newsBg .newsImg {
   margin-top: -80px;
 }
 
-
-@media (min-width: 1400px){
-
+@media (min-width: 1400px) {
   .container {
     max-width: 1320px;
   }
 }
-@media only screen and (max-width: 1200px){
-  
+@media only screen and (max-width: 1200px) {
   .newsBg .newsLeft .formControl {
     width: 290px;
   }
 }
-@media only screen and (max-width: 991.98px){
-  
+@media only screen and (max-width: 991.98px) {
   .newsLetterBg {
     padding: 40px 0 40px;
   }
@@ -108,8 +118,7 @@
     display: none;
   }
 }
-@media only screen and (max-width: 767.98px){
-  
+@media only screen and (max-width: 767.98px) {
   .newsBg .newsLeft h2 {
     font-size: 1.875rem;
   }
@@ -122,7 +131,7 @@
   }
   @media only screen and (max-width: 575.98px) {
   }
-  
+
   .newsBg .newsLeft > div {
     padding-left: 15px;
     padding-right: 15px;
@@ -141,9 +150,9 @@
     min-height: 46px;
   }
   .newsBg .newsLeft .btn {
-      font-size: 15px;
-      color: #0071DC;
-      min-width: 160px;
-      height: 46px;
+    font-size: 15px;
+    color: #0071dc;
+    min-width: 160px;
+    height: 46px;
   }
 }

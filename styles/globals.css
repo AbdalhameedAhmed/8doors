@@ -81,6 +81,14 @@
     font-family: 'Public Sans';
   }
 }
+
+.pageDirection {
+  direction: rtl;
+}
+/* body::-webkit-scrollbar {
+  left: 0 !important;
+} */
+
 .container-fluid {
   padding-left: 30px;
   padding-right: 30px;
@@ -305,15 +313,16 @@ ul {
   width: 10px;
 }
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: var(--background-secondary);
+  background-color: transparent;
   opacity: 0 !important;
-  border: 2px solid var(--background-secondary);
+  border: 2px solid transparent;
 }
 .showScroll::-webkit-scrollbar-thumb {
   background-color: #b4bcc3 !important;
 }
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background-color: #b4bcc3 !important;
+  border: 2px solid transparent !important;
 }
 .scrollbar-custom::-webkit-scrollbar-track {
   background-color: transparent;
@@ -423,14 +432,9 @@ a.header-login:hover {
   transition: all 0.5s;
 }
 
-
-
-
 .slick-loading .slick-track {
   visibility: hidden;
 }
-
-
 
 .slick-prev,
 .slick-next,
@@ -493,8 +497,6 @@ a.header-login:hover {
   left: 0;
   z-index: 1;
 }
-
-
 
 .slick-dots li,
 .pharmacy-home-slider .swiper-pagination-bullet {
@@ -562,11 +564,6 @@ a.header-login:hover {
   color: #0071dc;
 }
 
-
-
-
-
-
 .doc-img img {
   border-radius: 4px;
   -webkit-transform: translateZ(0);
@@ -609,13 +606,4 @@ a.header-login:hover {
   z-index: 1;
 }
 
-
-
-
-
 /* Footer */
-
-
-
-
-

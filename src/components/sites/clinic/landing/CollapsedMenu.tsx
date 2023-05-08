@@ -41,7 +41,7 @@ export default function CollapsedMenu({ items }: { items: types }) {
         ></span>
         {
           items.subMenuItems.map((item, index) => (
-            <li key={index} className={classNames("border-b-[1px] group-hover:text-black hover:pl-[20px] transition-all duration-300 hover:!text-theme-primary border-[rgb(240,240,240)] w-full px-[15px] py-[10px] text-[14px]", { "mx-auto px-[15px] py-[20px] text-white": width < 950 })} style={{
+            <li key={index} className={classNames("border-b-[1px] group-hover:text-black w-full hover:pl-[20px] transition-all duration-300 hover:!text-theme-primary border-[rgb(240,240,240)] px-[15px] py-[10px] text-[14px]", { "mx-auto     !px-[30px] py-[20px] text-white": width < 950 })} style={{
             }}>
               {item}
             </li>

@@ -1,11 +1,16 @@
 import styles from "./contactUs.module.css"
 import doctor from "assets/news-img.png"
 
-export default function ContactUs() {
+type contactTypes = {
+  direction?:"ltr" | "rtl"
+} 
+export default function ContactUs({direction="ltr"}:contactTypes) {
 
 
   return (
-    <section className={`${styles.newsLetterBg}`}>
+    <section className={`${styles.newsLetterBg}`} style={{
+      direction:direction
+    }}>
       <div className={`container ${styles.container}`}>
         <div className={`${styles.newsBg}`}>
           <div className="row">

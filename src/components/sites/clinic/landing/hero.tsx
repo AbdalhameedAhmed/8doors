@@ -1,15 +1,18 @@
 import SearchICon from "assets/search.svg"
+import Location from "assets/location-dot-solid.svg"
 
 import styles from "./hero.module.css"
 
-
-export default function Hero() {
+type heroTypes = {
+  direction?:"ltr" | "rtl" 
+}
+export default function Hero({direction="ltr"}:heroTypes) {
 
   return (
     <>
-
-
-      <section className={`section section-search ${styles.sectionSearch}`}>
+      <section className={`section section-search ${styles.sectionSearch}`} style={{
+        direction:direction
+      }}>
         <div className={`container-fluid ${styles.containerFluid}`}>
           <div className={`banner-wrapper ${styles.bannerWrapper}`}>
             <div className="banner-header text-center aos aos-init aos-animate" data-aos="fade-up">
@@ -19,11 +22,13 @@ export default function Hero() {
 
             <div className={`search-box aos aos-init aos-animate ${styles.searchBox} `} data-aos="fade-up">
               <form action="https://doccure.dreamguystech.com/html/template/search.html" className="justify-center">
-                <div className={`form-group search-location ${styles.searchLocation}`}>
+                <div className={`form-group relative search-location ${styles.searchLocation}`}>
+                  <Location className="w-[20px] h-[20px]  absolute top-[23px] left-[10px] -translate-y-1/2 [&_path]:fill-[#ccc] inline" />
                   <input type="text" className={`form-control ${styles.formControl}`} placeholder="Search Location" />
                   <span className="form-text">Based on your Location</span>
                 </div>
-                <div className={`form-group search-info ${styles.searchInfo}`}>
+                <div className={`form-group relative search-info ${styles.searchInfo}`}>
+                  <SearchICon className="w-[20px] h-[20px]  absolute top-[23px] left-[10px] -translate-y-1/2 [&_path]:fill-[#ccc] inline" />
                   <input type="text" className={`form-control ${styles.formControl}`} placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc" />
                   <span className="form-text">Ex : Dental or Sugar Check up etc</span>
                 </div>
@@ -36,7 +41,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-    
+
 
     </>
   )

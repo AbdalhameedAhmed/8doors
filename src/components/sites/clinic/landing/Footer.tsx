@@ -10,11 +10,16 @@ import DoubleRightArrow from "assets/angles-right-solid.svg"
 import Location from "assets/location-dot-solid.svg"
 import Phone from "assets/phone-solid.svg"
 import Mail from "assets/envelope-regular.svg"
-export default function Footer() {
+type footerTypes = {
+  direction?:"ltr"|"rtl"
+}
+export default function Footer({direction="ltr"}:footerTypes) {
 
 
   return (
-    <footer className={`${styles.footer} text-white`}>
+    <footer className={`${styles.footer} text-white`} style={{
+      direction
+    }}>
 
       <div className={`${styles.footerTop}`} data-aos="fade-up">
         <div className="container-fluid">

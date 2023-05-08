@@ -10,8 +10,14 @@ import classNames from "classnames"
 
 
 
-
-export default function Slide() {
+type slideTypes = {
+  title?:string;
+  subTitle?:string;
+  sectionStyle?:string
+  fullSpace?:boolean
+  direction?:"rtl" | "ltr"
+}
+export default function Slide({title,subTitle,sectionStyle,fullSpace=false , direction="ltr"}:slideTypes) {
   let [translateRange, changeTranslateRange] = React.useState(-194)
   let [activeBtn, changeActiveBtn] = React.useState(1)
 
@@ -23,17 +29,19 @@ export default function Slide() {
 
 
   return (
-    <section className={`section py-[80px]`}>
+    <section className={`section py-[80px] ${sectionStyle}`}>
       <div className={`container-fluid `}>
-        <div className={`${styles.sectionHeader} text-center`} data-aos="fade-up">
-          <h2 className="text-[40px] font-[600] mb-2">Clinic and Specialities</h2>
-          <p className="text-[#393939] mt-[15px] mx-auto leading-[1.42] max-w-[600px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div className={`${styles.sectionHeader} text-center`} data-aos="fade-up" style={{
+      direction:direction
+    }}>
+          <h2 className="text-[40px] font-[600] mb-2">{title}</h2>
+          <p className="text-[#393939] mt-[15px] mx-auto leading-[1.42] max-w-[600px]">{subTitle}</p>
         </div>
-        <div className="row justify-content-center">
-          <div className="col-md-9" data-aos="fade-up">
+        <div className={`${!fullSpace&&"row justify-content-center"}`}>
+          <div className={`${!fullSpace&&"col-md-9"}`} data-aos="fade-up">
 
-            <div className={`${styles.specialitiesSlider} slider ${styles.slickInitialized} ${styles.slickSlider} `}><div className={`${styles.slickList} draggable`}>
-              <div className={`${styles.slickTrack} transition-all duration-500`} style={{ opacity: "1", width: "25000px", transform: `translate3d(${translateRange}px, 0px, 0px)` }}><div className={`${styles.slickSlide} slick-cloned`} data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
+            <div className={`${styles.specialitiesSlider} slider ${styles.slickInitialized} ${styles.slickSlider}`}><div className={`${styles.slickList} draggable`}>
+              <div className={`${styles.slickTrack} transition-all duration-500`} style={{ opacity: "1", width: "25000px", transform: `translate3d(${translateRange}px, 0px, 0px)` ,direction:direction}}><div className={`${styles.slickSlide} slick-cloned`} data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
                 <div>
                   <div className={`${styles.speicalityItem} text-center`} style={{ width: "100%", display: "inline-block" }}>
                     <div className={`${styles.speicalityImg}`}>
@@ -143,7 +151,9 @@ export default function Slide() {
                 </div>
               </div>
             </div>
-              <ul className={`${styles.slickDots} !mt-[40px]`} role="tablist">
+              <ul className={`${styles.slickDots} !mt-[40px]`} role="tablist" style={{
+      direction:direction
+    }}>
                 <li className="" role="presentation">
                   <button onClick={() => { handelSlider(1, -194) }} className={classNames({ "!bg-[#0de0fe]": activeBtn === 1 })} type="button" role="tab" id="slickSlide-control00" aria-controls="slick-slide00" aria-label="1 of 5" tabIndex={-1}>1
                   </button>
