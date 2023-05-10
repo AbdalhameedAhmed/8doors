@@ -1,0 +1,160 @@
+
+
+
+.content {
+    padding: 50px 0;
+}
+
+
+
+.loginRight {
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    padding: 25px;
+}
+
+.loginHeader {
+    margin-bottom: 20px;
+}
+
+.loginHeader h3 {
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+
+.loginHeader h3 a {
+    color: #0de0fe;
+    float: right;
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.formFocus {
+    height: 50px;
+    position: relative;
+}
+
+.formGroup {
+    margin-bottom: 1.25rem;
+}
+
+
+.formControl {
+    border: 1px solid #C4C4C4;
+    color: #000;
+    font-size: 15px;
+    min-height: 46px;
+    padding: 6px 15px;
+}
+
+.formFocus .formControl {
+    height: 50px;
+    padding: 21px 12px 6px;
+    border-radius: 5px;
+}
+
+.formFocus .focusLabel {
+    font-size: 14px;
+    font-weight: 400;
+    pointer-events: none;
+    position: absolute;
+    -webkit-transform: translate3d(0, 22px, 0) scale(1);
+    -ms-transform: translate3d(0, 22px, 0) scale(1);
+    -o-transform: translate3d(0, 22px, 0) scale(1);
+    transform: translate3d(0, 22px, 0) scale(1);
+    transform-origin: left top;
+    transition: 240ms;
+    left: 12px;
+    top: -9px;
+    z-index: 1;
+    color: #b8b8b8;
+    margin-bottom: 0;
+}
+.forgotLink {
+    color: #3d3d3d;
+    display: inline-block;
+    font-size: 13px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.loginBtn {
+    font-size: 18px;
+    font-weight: 500;
+}
+.loginBtnPrimary {
+    background-color: #09e5ab;
+    border: 1px solid #09e5ab;
+}
+.loginOr {
+    color: #d4d4d4;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    position: relative;
+}
+.loginOr span:first-child {
+    background-color: #e5e5e5;
+    height: 1px;
+    margin-bottom: 0;
+    margin-top: 0;
+    display: block;
+}
+.loginOr span:last-child {
+    background-color: #fff;
+    display: block;
+    left: 50%;
+    margin-left: -20px;
+    position: absolute;
+    text-align: center;
+    top: -3px;
+    width: 42px;
+}
+.btnFacebook {
+    background-color: #3a559f;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 12px;
+}
+.btnGoogle {
+    background-color: #dd4b39;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 12px;
+}
+
+
+
+
+@media only screen and (max-width: 767.98px){
+     .content {
+        padding: 15px 0;
+    }
+
+    .loginRight {
+        margin: 0 15px;
+        padding: 15px;
+    }
+    .loginBtn {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 479px){
+    
+        .loginHeader h3 {
+            text-align: center;
+        }
+        .loginHeader h3 a {
+            color: #0de0fe;
+            float: none;
+            font-size: 15px;
+            margin-top: 10px;
+            text-align: center;
+            display: block;
+        }
+        
+    }

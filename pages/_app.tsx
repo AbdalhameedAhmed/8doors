@@ -21,12 +21,12 @@ function App({ Component, pageProps }: AppProps) {
 
   const router = useRouter();
 
-  useEffect(() => {
-    let dir = router.locale == 'ar' ? 'rtl' : 'ltr';
-    let lang = router.locale == 'ar' ? 'ar' : 'en';
-    document?.querySelector('html')?.setAttribute('dir', dir);
-    document?.querySelector('html')?.setAttribute('lang', lang);
-  }, [router.locale]);
+  // useEffect(() => {
+  //   let dir = router.locale == 'ar' ? 'rtl' : 'ltr';
+  //   let lang = router.locale == 'ar' ? 'ar' : 'en';
+  //   document?.querySelector('html')?.setAttribute('dir', dir);
+  //   document?.querySelector('html')?.setAttribute('lang', lang);
+  // }, [router.locale]);
 
   return (
     <Provider store={store}>

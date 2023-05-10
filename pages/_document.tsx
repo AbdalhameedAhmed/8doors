@@ -9,7 +9,7 @@ async function getInitialProps(ctx: any) {
 function MyDocument({ props }: any) {
   
   return (
-    <Html dir={props?.locale === 'ar' ? 'rtl' : 'ltr'} lang={props?.locale}>
+    <Html dir='ltr'>
       <Head></Head>
       <body>
         <Main />
@@ -21,3 +21,5 @@ function MyDocument({ props }: any) {
 }
 
 export default MyDocument;
+
+// dir={props?.locale === 'ar' ? 'rtl' : 'ltr'} lang={props?.locale}

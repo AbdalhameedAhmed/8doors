@@ -9,10 +9,10 @@ import useOnClickOutside from "hooks/useOnClickOutside";
 import CollapsedMenu from "./CollapsedMenu";
 
 type navbarTypes = {
-  direction?:"ltr" | "rtl" 
+  direction?: "ltr" | "rtl"
 }
 
-function Navbar({direction="ltr"}:navbarTypes) {
+function Navbar({ direction = "ltr" }: navbarTypes) {
 
   const [openMenu, isMenuOpen] = React.useState(false)
   const { width } = useWindowSize()
@@ -20,7 +20,6 @@ function Navbar({direction="ltr"}:navbarTypes) {
 
   const handelMenuOpen = () => {
     isMenuOpen(!openMenu)
-    console.log(openMenu);
 
   }
 
@@ -36,10 +35,10 @@ function Navbar({direction="ltr"}:navbarTypes) {
   return (
     <>
 
-      <nav className={classNames(" w-full w-full flex justify-between items-center px-8 h-[85px]",)}
-      style={{
-        direction:direction
-      }}>
+      <nav className={classNames(" w-full w-full flex justify-between items-center px-8 h-[85px] relative",)}
+        style={{
+          direction: direction
+        }}>
         <div className={classNames("fixed top-0 left-0 h-screen w-screen bg-[rgba(0,0,0,0.6)] hidden -z-10", { "!z-40 !block": openMenu })}>
         </div>
 
@@ -47,27 +46,27 @@ function Navbar({direction="ltr"}:navbarTypes) {
 
 
         <div className="flex items-center justify-start h-full">
-          <button onClick={handelMenuOpen} className={classNames("text-3xl mr-8", { "hidden": width > 950,"mr-0 ml-8":direction==="rtl" })}>
+          <button onClick={handelMenuOpen} className={classNames("text-3xl mr-8", { "hidden": width > 950, "mr-0 ml-8": direction === "rtl" })}>
             <Bars className="w-[30px] h-[30px]" />
           </button>
           <p className={classNames("text-logo text-4xl font-bold transition-all pb-2 duration-300")}>8doors</p>
 
-          <ul ref={menuRef} className={classNames("flex items-center gap-8 h-full", { "fixed left-0 top-0 h-screen w-[250px] transition duration-300 flex-col overflow-auto scrollbar-hide z-50 scale-x-0 !items-start origin-[0%_100%] bg-[#0071dc] text-white fill-white !gap-[0px]": width < 950, "scale-x-100": width < 950 && openMenu,"!left-auto !right-0 origin-[100%_100%]":width < 950 &&direction==="rtl" })}>
+          <ul ref={menuRef} className={classNames("flex items-center gap-8 h-full", { "fixed left-0 top-0 h-screen w-[250px] transition duration-300 flex-col overflow-auto scrollbar-hide z-50 scale-x-0 !items-start origin-[0%_100%] bg-[#0071dc] text-white fill-white !gap-[0px]": width < 950, "scale-x-100": width < 950 && openMenu, "!left-auto !right-0 origin-[100%_100%]": width < 950 && direction === "rtl" })}>
             <div className="bg-white w-full text-center">
               <p className={classNames("text-logo text-4xl font-bold transition-all duration-300 py-4", { "hidden": width > 950 })}>8doors</p>
 
             </div>
-            <CollapsedMenu items={{ mainItem: "Home", subMenuItems: ["Home", "Home2", "Home3", "Home4", "Home5", "Home6", "Home7", "Home8", "Home9", "Home10", "Home11", "Home12", "Home13", "Home14", "Home15"] }} />
-            <CollapsedMenu items={{ mainItem: "Doctors", subMenuItems: ["Doctor Dashboard", "Appointments", "Schedule Timing", "Patients List", "Patients Profile", "Chat", "Invoices", "Profile Settings", "Reviews", "Doctor Register", "Blog"] }} />
-            <CollapsedMenu items={{ mainItem: "Patients", subMenuItems: ["Doctors", "Search Doctor", "Doctor Profile", "Booking", "Checkout", "Booking Success", "Patient Dashboard", "Favourites", "Chat", "Profile Settings", "Change Password"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Home", subMenuItems: ["Home", "Home2", "Home3", "Home4", "Home5", "Home6", "Home7", "Home8", "Home9", "Home10", "Home11", "Home12", "Home13", "Home14", "Home15"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Doctors", subMenuItems: ["Doctor Dashboard", "Appointments", "Schedule Timing", "Patients List", "Patients Profile", "Chat", "Invoices", "Profile Settings", "Reviews", "Doctor Register", "Blog"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Patients", subMenuItems: ["Doctors", "Search Doctor", "Doctor Profile", "Booking", "Checkout", "Booking Success", "Patient Dashboard", "Favourites", "Chat", "Profile Settings", "Change Password"] }} />
 
-            <CollapsedMenu items={{ mainItem: "Pharmacy", subMenuItems: ["Pharmacy", "Pharmacy Details", "Pharmacy Search", "Product", "Product Description", "Cart", "Product Checkout", "Payment Success", "Pharmacy Register"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Pharmacy", subMenuItems: ["Pharmacy", "Pharmacy Details", "Pharmacy Search", "Product", "Product Description", "Cart", "Product Checkout", "Payment Success", "Pharmacy Register"] }} />
 
-            <CollapsedMenu items={{ mainItem: "Pages", subMenuItems: ["Video Call", "Video Call", "Search Doctors", "Calendar", "Doctor Onboarding", "Patient Onboarding", "Components", "Invoices", "Starter Page", "About Us", "Contact Us", "Login", "Register", "Forgot Password"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Pages", subMenuItems: ["Video Call", "Video Call", "Search Doctors", "Calendar", "Doctor Onboarding", "Patient Onboarding", "Components", "Invoices", "Starter Page", "About Us", "Contact Us", "Login", "Register", "Forgot Password"] }} />
 
-            <CollapsedMenu items={{ mainItem: "Blog", subMenuItems: ["Blog List", "Blog Grid", "Blog Details"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Blog", subMenuItems: ["Blog List", "Blog Grid", "Blog Details"] }} />
 
-            <CollapsedMenu items={{ mainItem: "Admin", subMenuItems: ["Admin", "Pharmacy Admin"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Admin", subMenuItems: ["Admin", "Pharmacy Admin"] }} />
 
           </ul>
         </div>

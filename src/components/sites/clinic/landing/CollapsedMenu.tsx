@@ -6,11 +6,11 @@ import DownIcon from "assets/angle-down-solid.svg"
 
 import useWindowSize from "hooks/useWindowSize";
 
-interface types {
-  mainItem: string;
-  subMenuItems: string[];
+type types = {
+  items: { mainItem: string, subMenuItems: string[] }
+  direction?: "ltr" | "rtl"
 }
-export default function CollapsedMenu({ items }: { items: types }) {
+export default function CollapsedMenu({ items, direction = "ltr" }: types) {
   const { width } = useWindowSize()
   const [menu, openMenu] = React.useState(false)
   const [ulHeight, changeUlHeight] = React.useState(0)
@@ -29,7 +29,7 @@ export default function CollapsedMenu({ items }: { items: types }) {
     >
       <li className={classNames("flex relative items-center border-b-[1px] border-white gap-1", { "!justify-between w-full px-[20px] py-[15px]": width < 950 })}>
         {items.mainItem}
-        <DownIcon className="w-[15px] ml-2 h-[15px] group-hover:fill-primary mt-[5px]" />
+        <DownIcon className={`w-[15px] ${direction === "ltr" ? "ml-2" : "mr-2"} h-[15px] group-hover:fill-primary mt-[5px]`} />
       </li>
       <ul ref={ulRef} className={classNames("absolute top-[85px] -left-[0px] z-50 flex flex-col bg-white w-[200px] translate-y-[40px] opacity-0 transition-all duration-300 -z-10 group-hover:!translate-y-0 group-hover:!z-10 group-hover:!opacity-100", { "relative opacity-100 translate-y-0 text-black group-hover:text-black w-full top-0 overflow-hidden bg-transparent": width < 950, "p-0": width < 950 && !menu, "!m-0 !w-full": width < 950 && menu })} style={{
         boxShadow: width > 950 ? "0 0 3px rgb(0 0 0 / 10%)" : "",
