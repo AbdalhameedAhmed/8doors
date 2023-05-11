@@ -5,9 +5,12 @@ import Link from "next/link"
 import DownIcon from "assets/angle-down-solid.svg"
 
 import useWindowSize from "hooks/useWindowSize";
+import { isTemplateSpan } from "typescript";
+import { useRouter } from "next/router";
+
 
 type types = {
-  items: { mainItem: string, subMenuItems: string[] }
+  items: { mainItem: string, subMenuItems: ({ title: string, path: string } | string)[] | string[] }
   direction?: "ltr" | "rtl"
 }
 export default function CollapsedMenu({ items, direction = "ltr" }: types) {
@@ -15,12 +18,14 @@ export default function CollapsedMenu({ items, direction = "ltr" }: types) {
   const [menu, openMenu] = React.useState(false)
   const [ulHeight, changeUlHeight] = React.useState(0)
   const ulRef = React.useRef(null)
-
+  const router = useRouter()
   const handelMenuOpen = () => {
     openMenu(!menu)
 
   }
-
+const handelClick = (path:string)=>{
+  router.push(path)
+}
   return (
     <a className={classNames("hover:text-theme-primary cursor-pointer relative group h-full flex items-center justify-center", { "w-full h-auto !block": width < 950 })}
       onClick={() => {
@@ -41,11 +46,13 @@ export default function CollapsedMenu({ items, direction = "ltr" }: types) {
         ></span>
         {
           items.subMenuItems.map((item, index) => (
-            <li key={index} className={classNames("border-b-[1px] group-hover:text-black w-full hover:pl-[20px] transition-all duration-300 hover:!text-theme-primary border-[rgb(240,240,240)] px-[15px] py-[10px] text-[14px]", { "mx-auto     !px-[30px] py-[20px] text-white": width < 950 })} style={{
-            }}>
-              {item}
+
+            <li key={index} onClick={()=>{handelClick(item.path ? item.path : "/landing1")}} className={classNames("border-b-[1px] group-hover:text-black w-full hover:pl-[20px] transition-all duration-300 hover:!text-theme-primary border-[rgb(240,240,240)] px-[15px] py-[10px] text-[14px]", { "mx-auto    !px-[30px] py-[20px] text-white": width < 950 })} >
+
+              {item.title ? item.title : item}
             </li>
-          ))
+          )
+          )
         }
       </ul>
     </a>

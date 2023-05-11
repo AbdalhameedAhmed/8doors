@@ -13,7 +13,7 @@ import ArFlag from "assets/ic_flag_sa.svg"
 
 export default function SelectLang() {
   const [subMenu, openSubMenu] = React.useState(false)
-  const [lang, changeLang] = React.useState("En")
+  const [lang, changeLang] = React.useState("en")
   const menuRef = React.useRef(null)
 
 
@@ -26,6 +26,8 @@ export default function SelectLang() {
 
   }
   const changeLangHandler = (langName: string) => {
+    document?.querySelector('html')?.setAttribute('dir', langName==="ar"?"rtl":"ltr");
+    document?.querySelector('html')?.setAttribute('lang', langName);
     changeLang(langName)
   }
 
@@ -34,15 +36,15 @@ export default function SelectLang() {
   const flagChange = (langName: string) => {
 
     switch (langName) {
-      case "En":
+      case "en":
         return (<EnFlag className="duration-300 hover:scale-105" />)
-      case "Fr":
+      case "fr":
         return (<FrFlag className="duration-300 hover:scale-105" />)
-      case "Cn":
+      case "cn":
         return (<CnFlag className="duration-300 hover:scale-105" />)
-      case "Vn":
+      case "vn":
         return (<VnFlag className="duration-300 hover:scale-105" />)
-      case "Ar":
+      case "ar":
         return (<ArFlag className="duration-300 hover:scale-105" />)
     }
   }
@@ -74,28 +76,28 @@ export default function SelectLang() {
           }}
         >
           <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg text-primary", {
-            "bg-layout-secondary": lang == "En"
-          })} onClick={() => { changeLangHandler("En") }}>
+            "bg-layout-secondary": lang == "en"
+          })} onClick={() => { changeLangHandler("en") }}>
             <EnFlag />
             English</li>
           <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg text-primary", {
-            "bg-layout-secondary": lang == "Fr"
-          })} onClick={() => { changeLangHandler("Fr") }}>
+            "bg-layout-secondary": lang == "fr"
+          })} onClick={() => { changeLangHandler("fr") }}>
             <FrFlag />
             France</li>
           <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg text-primary", {
-            "bg-layout-secondary": lang == "Cn"
-          })} onClick={() => { changeLangHandler("Cn") }}>
+            "bg-layout-secondary": lang == "cn"
+          })} onClick={() => { changeLangHandler("cn") }}>
             <CnFlag />
             Chinese</li>
           <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg text-primary", {
-            "bg-layout-secondary": lang == "Vn"
-          })} onClick={() => { changeLangHandler("Vn") }}>
+            "bg-layout-secondary": lang == "vn"
+          })} onClick={() => { changeLangHandler("vn") }}>
             <VnFlag />
             Vietnamese</li>
           <li className={classNames("flex gap-4 hover:bg-layout-secondary w-full p-1 cursor-pointer items-center rounded-lg text-primary", {
-            "bg-layout-secondary": lang == "Ar"
-          })} onClick={() => { changeLangHandler("Ar") }}>
+            "bg-layout-secondary": lang == "ar"
+          })} onClick={() => { changeLangHandler("ar") }}>
             <ArFlag />
             Arabic</li>
 

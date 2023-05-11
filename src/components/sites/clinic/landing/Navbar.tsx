@@ -56,13 +56,13 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
               <p className={classNames("text-logo text-4xl font-bold transition-all duration-300 py-4", { "hidden": width > 950 })}>8doors</p>
 
             </div>
-            <CollapsedMenu direction={direction} items={{ mainItem: "Home", subMenuItems: ["Home", "Home2", "Home3", "Home4", "Home5", "Home6", "Home7", "Home8", "Home9", "Home10", "Home11", "Home12", "Home13", "Home14", "Home15"] }} />
-            <CollapsedMenu direction={direction} items={{ mainItem: "Doctors", subMenuItems: ["Doctor Dashboard", "Appointments", "Schedule Timing", "Patients List", "Patients Profile", "Chat", "Invoices", "Profile Settings", "Reviews", "Doctor Register", "Blog"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Home", subMenuItems: [{title:"Home",path:"/landing1"},{title:"Home2",path:"/"},{title:"Home3",path:"/"},{title:"Home4",path:"/"},{title:"Home5",path:"/"},{title:"Home6",path:"/"},{title:"Home7",path:"/"},{title:"Home8",path:"/"},{title:"Home9",path:"/"},{title:"Home10",path:"/"},{title:"Home11",path:"/"},{title:"Home12",path:"/"},{title:"Home13",path:"/"},{title:"Home14",path:"/"},{title:"Home15",path:"/"}] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Doctors", subMenuItems: [{title:"Doctor Dashboard",path:"/doctor-dashboard"}, "Appointments", "Schedule Timing", "Patients List", "Patients Profile", "Chat", "Invoices", "Profile Settings", "Reviews", "Doctor Register", "Blog"] }} />
             <CollapsedMenu direction={direction} items={{ mainItem: "Patients", subMenuItems: ["Doctors", "Search Doctor", "Doctor Profile", "Booking", "Checkout", "Booking Success", "Patient Dashboard", "Favourites", "Chat", "Profile Settings", "Change Password"] }} />
 
             <CollapsedMenu direction={direction} items={{ mainItem: "Pharmacy", subMenuItems: ["Pharmacy", "Pharmacy Details", "Pharmacy Search", "Product", "Product Description", "Cart", "Product Checkout", "Payment Success", "Pharmacy Register"] }} />
 
-            <CollapsedMenu direction={direction} items={{ mainItem: "Pages", subMenuItems: ["Video Call", "Video Call", "Search Doctors", "Calendar", "Doctor Onboarding", "Patient Onboarding", "Components", "Invoices", "Starter Page", "About Us", "Contact Us", "Login", "Register", "Forgot Password"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Pages", subMenuItems: ["Video Call", "Video Call", "Search Doctors", "Calendar", "Doctor Onboarding", "Patient Onboarding", "Components", "Invoices", "Starter Page", "About Us", "Contact Us", "Login", {title:"Register",path:"/register"}, "Forgot Password"] }} />
 
             <CollapsedMenu direction={direction} items={{ mainItem: "Blog", subMenuItems: ["Blog List", "Blog Grid", "Blog Details"] }} />
 
@@ -82,7 +82,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
             </div>
           </div>
           <button className="nav-item">
-            <a className="nav-link header-login btn-one-light" href="login.html">login / Signup </a>
+            <a className="nav-link header-login btn-one-light" href="/login">login / Signup </a>
           </button>
         </div>
 

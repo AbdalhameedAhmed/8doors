@@ -1,0 +1,116 @@
+.profileSidebar {
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.widgetProfile {
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
+
+.widgetProfile .profileInfoWidget {
+  display: block;
+  text-align: center;
+}
+
+.widgetProfile .profileInfoWidget .bookingDocImg {
+  display: inline-block;
+  margin: 0 0 15px;
+  width: auto;
+  padding: 8px;
+  background-color: #f7f7f7;
+  border-radius: 50%;
+}
+.widgetProfile .profileInfoWidget .bookingDocImg img {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+.profileDetInfo{
+  overflow: hidden;
+}
+.profileDetInfo h3 {
+  font-size: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.patientDetails h5 {
+  color: #757575;
+  font-size: 13px;
+  font-weight: normal;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboardMenu ul {
+  color: #757575;
+  font-size: 14px;
+  line-height: 17px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+}
+
+
+.dashboardMenu > ul > li {
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  line-height: inherit;
+
+}
+.dashboardMenu > ul > li > a {
+  color: #757575;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+}
+.dashboardMenu > ul > li > a span {
+  margin-top: 1px;
+}
+
+.dashboardMenu > ul > li:hover > a, .dashboardMenu > ul > li.active > a {
+  color: #0de0fe;
+}
+
+ .dashboardMenu > ul > li > a svg{
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  display: inline-block;
+  fill: #757575;
+} 
+.dashboardMenu > ul > li:hover > a svg{
+  fill: #0de0fe;
+}
+.dashboardMenu > ul > li:hover > a, .dashboardMenu > ul > li.active > a svg {
+  fill: #0de0fe;
+}
+
+.unreadMsg {
+  background-color: #09e5ab;
+  border-radius: 2px;
+  color: #272b41;
+  font-size: 10px;
+  font-style: normal;
+  padding: 0 5px;
+  position: absolute;
+  right: 20px;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media only screen and (max-width: 767.98px) {
+  .profileSidebar {
+    margin-bottom: 20px;
+  }
+}

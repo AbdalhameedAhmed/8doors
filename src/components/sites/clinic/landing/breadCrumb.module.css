@@ -1,0 +1,37 @@
+.breadcrumbBar {
+  background-color: #15558d;
+  padding: 15px 0;
+}
+
+.pageBreadcrumb ol {
+  background-color: transparent;
+  font-size: 12px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+.pageBreadcrumb ol li a {
+  color: #fff;
+}
+
+.breadcrumbBar .breadcrumbTitle {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 5px 0 0;
+}
+@media only screen and (max-width: 767.98px) {
+  .breadcrumbBar {
+    height: auto;
+  }
+  .breadcrumbBar .breadcrumbTitle {
+    font-size: 18px;
+  }
+}

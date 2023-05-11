@@ -16,7 +16,7 @@ import { removeDashAndCapitalize } from "utiles";
 export default function Landing1() {
 
   const [thumb, setShowThumb] = React.useState(false)
-  const [direction,changeDirection] = React.useState<"ltr"|"rtl">("ltr")
+  const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const router = useRouter();
   let slideTitle = "Clinic and Specialities"
   let slideSubTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -27,7 +27,7 @@ export default function Landing1() {
     const element = event.target as HTMLDivElement;
     if (element.scrollHeight > element.clientHeight) {
       setShowThumb(true);
-      setTimeout(() => setShowThumb(false), 2000);
+      setTimeout(() => setShowThumb(false), 500);
     }
   }
 
@@ -35,14 +35,14 @@ export default function Landing1() {
 
     let htmlDir = document.querySelector("html")?.getAttribute("dir")
 
-    if(htmlDir === "rtl" || htmlDir==="ltr") {
+    if (htmlDir === "rtl" || htmlDir === "ltr") {
       changeDirection(htmlDir)
     }
 
     document.title = removeDashAndCapitalize(router.asPath)
 
   }, [router.asPath, thumb])
-  
+
   return (
     <div className={classNames("scrollbar-custom overflow-y-auto h-screen", { "showScroll": thumb })} onScroll={(event) => { handleScroll(event) }}>
       <Head>
@@ -51,14 +51,14 @@ export default function Landing1() {
       </Head>
       <LandingLayout>
 
-      <Hero direction={direction}/>
+        <Hero direction={direction} />
 
-      <CardsSection direction={direction}/>
-      <Slide title={slideTitle} subTitle={slideSubTitle} direction={direction}/>
-      <BookOutDoctor direction={direction}/>
-      <AvailabeFeatures />
-      <ContactUs direction={direction}/>
-      <Blogs direction={direction} />
+        <CardsSection direction={direction} />
+        <Slide title={slideTitle} subTitle={slideSubTitle} direction={direction} />
+        <BookOutDoctor direction={direction} />
+        <AvailabeFeatures />
+        <ContactUs direction={direction} />
+        <Blogs direction={direction} />
       </LandingLayout>
 
 

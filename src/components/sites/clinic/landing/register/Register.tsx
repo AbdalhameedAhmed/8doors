@@ -3,7 +3,7 @@ import styles from "./register.module.css"
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import Doctor from "assets/addDoctor.jpg"
 import Pharmacist from "assets/addPharmacist.jpg"
-import Patient from "assets/addPatient.jpg"
+import Patient from "assets/registerPatient.jpg"
 
 export default function Register() {
     let [activeImage, changeActiveImage] = React.useState(Patient.src)
