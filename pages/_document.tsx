@@ -9,7 +9,7 @@ async function getInitialProps(ctx: any) {
 function MyDocument({ props }: any) {
   
   return (
-    <Html dir='ltr'>
+    <Html>
       <Head></Head>
       <body>
         <Main />

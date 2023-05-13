@@ -2,6 +2,7 @@ import SearchICon from "assets/search.svg"
 import Location from "assets/location-dot-solid.svg"
 
 import styles from "./hero.module.css"
+import classNames from "classnames"
 
 type heroTypes = {
   direction?:"ltr" | "rtl" 
@@ -32,7 +33,7 @@ export default function Hero({direction="ltr"}:heroTypes) {
                   <input type="text" className={`form-control ${styles.formControl}`} placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc" />
                   <span className="form-text">Ex : Dental or Sugar Check up etc</span>
                 </div>
-                <button type="submit" className={`btn btn-primary search-btn mt-0 ${styles.searchBtn} ${styles.btnPrimary}`}>
+                <button type="submit" className={classNames(`btn btn-primary search-btn mt-0 ${styles.searchBtn} ${styles.btnPrimary}`,{"mr-3":direction==="rtl"})}>
                   <SearchICon className="w-[20px] h-[20px] my-[8px] [&_path]:fill-white inline" />
                   <span>Search</span></button>
               </form>

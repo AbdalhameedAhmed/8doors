@@ -22,9 +22,20 @@ function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
+    let storagedLang = localStorage.getItem("lang")
+    let storagedDir = localStorage.getItem("dir")
+ 
+
     
-    document?.querySelector('html')?.setAttribute('dir', "ltr");
-    document?.querySelector('html')?.setAttribute('lang', "en");
+    storagedLang
+    ? document?.querySelector('html')?.setAttribute('lang', storagedLang)
+    :document?.querySelector('html')?.setAttribute('lang', "en");
+
+
+    storagedDir
+    ? document?.querySelector('html')?.setAttribute('dir', storagedDir)
+    :document?.querySelector('html')?.setAttribute('dir', "ltr");
+    
   }, [router.locale]);
 
   return (

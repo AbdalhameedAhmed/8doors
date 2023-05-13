@@ -62,7 +62,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
 
             <CollapsedMenu direction={direction} items={{ mainItem: "Pharmacy", subMenuItems: ["Pharmacy", "Pharmacy Details", "Pharmacy Search", "Product", "Product Description", "Cart", "Product Checkout", "Payment Success", "Pharmacy Register"] }} />
 
-            <CollapsedMenu direction={direction} items={{ mainItem: "Pages", subMenuItems: ["Video Call", "Video Call", "Search Doctors", "Calendar", "Doctor Onboarding", "Patient Onboarding", "Components", "Invoices", "Starter Page", "About Us", "Contact Us", "Login", {title:"Register",path:"/register"}, "Forgot Password"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Pages", subMenuItems: ["Video Call", "Video Call", "Search Doctors", "Calendar", {title:"Doctor Onboarding",path:"/doctor-onboarding"},{title:"Patient Onboarding",path:"/patient-onboarding"}, "Components", "Invoices", "Starter Page", "About Us", "Contact Us", "Login", {title:"Register",path:"/register"}, "Forgot Password"] }} />
 
             <CollapsedMenu direction={direction} items={{ mainItem: "Blog", subMenuItems: ["Blog List", "Blog Grid", "Blog Details"] }} />
 

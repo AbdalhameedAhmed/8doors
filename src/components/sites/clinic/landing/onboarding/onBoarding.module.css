@@ -1,0 +1,323 @@
+.onBoardWrapper {
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.leftPanel {
+  background-color: #0c4f8a;
+  width: 25%;
+  padding: 45px;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.onboardImg {
+  /* padding: 70px 0px 20px 0px; */
+  animation: mymove 1s ease-in-out infinite alternate;
+  text-align: center;
+  width: 240px;
+  /* margin: auto; */
+}
+
+.onboardImg img {
+  animation: imageAnimation 2000ms infinite;
+  display: flex;
+}
+
+.onboardingSlider {
+  margin-top: 10px;
+}
+
+.rightPanel {
+  width: 75%;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  flex-wrap: wrap;
+}
+
+.rightPanelTitle {
+  background: #0c4f8a;
+  padding: 10px;
+  display: none;
+}
+.onBoardWizard {
+  position: sticky;
+  top: 65px;
+}
+
+.onBoardWizard ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.onBoardWizard ul li {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #f4f4f4;
+  box-shadow: 0px 4px 4px rgb(212 237 255 / 25%);
+  border-radius: 4px;
+  padding: 13px 5px 13px 8px;
+  margin-bottom: 18px;
+  transition: 0.1s ease-out;
+  cursor: pointer;
+}
+
+.onboardingProgress.active {
+  background: #10916f;
+  color: #fff;
+}
+
+.onboardingProgress {
+  margin-right: 20px;
+  min-width: 35px;
+  height: 35px;
+  background: #f4f4f4;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+}
+
+.onboardingList h6 {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.onboardingList p {
+  font-weight: 300;
+  font-size: 13px;
+  color: #585858;
+  margin-bottom: 0px;
+}
+
+.onboardingContentBox.contentWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 580px;
+}
+
+.onboardingContentBox {
+  margin-top: 20px;
+  padding: 50px;
+  background: #ffffff;
+  box-shadow: 0px 24px 24px rgb(212 237 255 / 30%);
+  border-radius: 4px;
+  border: 1px solid #e6e9f4;
+}
+
+.onboardingTitle h2 {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.onboardingTitle h2 span {
+  color: #ff0202;
+}
+
+.onboardingTitle h6 {
+  font-weight: 400;
+  font-size: 15px;
+  color: #585858;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+.formGroup {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+.formFocus {
+  height: 50px;
+  position: relative;
+}
+
+.formFocus .focusLabel {
+  font-size: 14px;
+  font-weight: 400;
+  pointer-events: none;
+  position: absolute;
+  -webkit-transform: translate3d(0, 22px, 0) scale(1);
+  -ms-transform: translate3d(0, 22px, 0) scale(1);
+  -o-transform: translate3d(0, 22px, 0) scale(1);
+  transform: translate3d(0, 22px, 0) scale(1);
+  transform-origin: left top;
+  transition: 240ms;
+  left: 12px;
+  top: -9px;
+  z-index: 1;
+  color: #b8b8b8;
+  margin-bottom: 0;
+}
+
+.passcodeWrap.formFocus .focusLabel {
+  top: -4px;
+  color: #585858;
+}
+
+.formFocus .focusLabel span {
+  color: #f0142f;
+}
+
+.passcodeWrap input,
+.passcodeWrap select,
+.passcodeWrap textarea {
+  background-color: #f5f6fa;
+  border: 1px solid #e6e9f4;
+  border-radius: 5px;
+  width: 60px;
+  height: 54px;
+  text-align: center;
+  color: #354052;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 23px;
+}
+.formFocus .formControl {
+  height: 50px;
+  padding: 21px 12px 6px;
+  border-radius: 5px;
+}
+
+.passcodeWrapMailBox input {
+  width: 100%;
+  text-align: unset;
+  font-size: 14px;
+  height: 54px;
+}
+.onboardingBtn a {
+  background: #09e5ab;
+  border-radius: 6px;
+  padding: 15px 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+  border: 1px solid #09e5ab;
+  transition: all 0.5s;
+}
+.onboardingBtn a:hover {
+  box-shadow: inset 0 60px 0 0 #10916f;
+  border-color: #10916f;
+}
+
+.passcodeWrap input:focus {
+  color: #354052;
+  border-color: #09e5ab;
+  background-color: #fff;
+  outline: none;
+}
+
+@media only screen and (max-width: 991.98px) {
+  .onBoardWrapper {
+    height: auto;
+  }
+  .leftPanel {
+    display: none;
+  }
+  .rightPanel {
+    width: 100%;
+    height: auto;
+    padding: 0px;
+  }
+  .rightPanelTitle {
+    display: block;
+  }
+  .onBoardWizard {
+    padding-top: 25px;
+    top: 50px;
+  }
+  .onboardingList h6 {
+    font-size: 15px;
+  }
+  .onboardingList p {
+    font-size: 13px;
+  }
+  .onboardingContentBox {
+    padding: 30px;
+    margin-top: 0px;
+  }
+  .onboardingContentBox.contentWrap {
+    min-height: auto;
+  }
+  .onboardingTitle h2 {
+    font-weight: 450;
+    font-size: 22px;
+  }
+  .onboardingTitle h6 {
+    font-size: 14px;
+  }
+  .passcodeWrap.formFocus .focusLabel {
+    top: -8px;
+  }
+  .passcodeWrapMailBox input {
+    font-size: 14px;
+    height: 50px;
+  }
+  .passcodeWrap input {
+    width: 77px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .onBoardWizard {
+    padding-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .onBoardWizard {
+    padding-left: 0px;
+  }
+  .onboardingContentBox {
+    padding: 20px;
+  }
+  .onboardingTitle {
+    text-align: center;
+  }
+  .onboardingTitle h2 {
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .onboardingTitle h6 {
+    font-size: 14px;
+  }
+  .passcodeWrap.formFocus .focusLabel {
+    top: -9px;
+  }
+  .passcodeWrap input {
+    width: 48px;
+    height: 43px;
+    font-size: 19px;
+    font-weight: 400;
+  }
+  .passcodeWrapMailBox input {
+    font-size: 10px;
+    height: 40px;
+  }
+}
+@keyframes imageAnimation {
+  0% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(2px);
+  }
+}

@@ -6,7 +6,6 @@
 }
 
 
-
 .loginRight {
     background-color: #fff;
     border: 1px solid #f0f0f0;
@@ -71,6 +70,44 @@
     z-index: 1;
     color: #b8b8b8;
     margin-bottom: 0;
+}
+.selectRegisterType{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    
+}
+.selectRegisterType .registerOption{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.selectRegisterType .registerOption input{
+    display: none;
+}
+.selectRegisterType .registerOption label{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 24px rgb(194 194 194 / 25%);
+    border-radius: 5px;
+    padding: 28px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    border: 1px solid transparent;
+    transition-duration:300ms ;
+}
+.selectRegisterType .registerOption input:checked+label {
+    background-color:rgba(212, 237, 255, 0.25) ;
+    border-color: #0de0fe;
+}
+.selectRegisterType .registerOption input:checked+label span {
+    
+}
+.selectRegisterType .registerOption label span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 .forgotLink {
     color: #3d3d3d;

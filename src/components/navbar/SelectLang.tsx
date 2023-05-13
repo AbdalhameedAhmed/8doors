@@ -26,8 +26,11 @@ export default function SelectLang() {
 
   }
   const changeLangHandler = (langName: string) => {
-    document?.querySelector('html')?.setAttribute('dir', langName==="ar"?"rtl":"ltr");
+    localStorage.setItem("lang", langName)
+    localStorage.setItem("dir", langName === "ar" ? "rtl" : "ltr")
     document?.querySelector('html')?.setAttribute('lang', langName);
+    document?.querySelector('html')?.setAttribute('dir', langName === "ar" ? "rtl" : "ltr");
+
     changeLang(langName)
   }
 

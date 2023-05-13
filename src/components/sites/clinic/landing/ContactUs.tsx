@@ -1,5 +1,6 @@
 import styles from "./contactUs.module.css"
 import doctor from "assets/news-img.png"
+import classNames from "classnames"
 
 type contactTypes = {
   direction?:"ltr" | "rtl"
@@ -22,7 +23,7 @@ export default function ContactUs({direction="ltr"}:contactTypes) {
               <div>
                 <form>
                   <div className={`${styles.formGroup}`}>
-                    <input type="text" className={`${styles.formControl} me-2`} placeholder="Enter Your Email Address" />
+                    <input type="text" className={classNames(`${styles.formControl} me-2`,{"ms-2":direction==="rtl"})} placeholder="Enter Your Email Address" />
                     <button type="submit" className={`${styles.btn}`}>Subscribe</button>
                   </div>
                 </form>

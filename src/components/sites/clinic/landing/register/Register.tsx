@@ -43,20 +43,23 @@ export default function Register() {
                                             <div className={`${styles.formGroup} ${styles.formFocus} `}>
                                                 <FloatingInput placeholder="Your Email Address" name="email" inputStyle="!p-2" placeholderStyles="bg-white z-0" />
                                             </div>
-                                            <div className="flex flex-wrap gap-x-4 gap-x-2 mb-[1.25rem]">
-                                                <div className="flex items-center">
-                                                    <input id="default-radio-2" type="radio" value="" onChange={() => { handelChangeImage(Patient.src) }} name="default-radio" defaultChecked className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600" />
-                                                    <label htmlFor="default-radio-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Patient</label>
-                                                </div>
-                                                <div className="flex items-center">
-                                                    <input id="default-radio-1" type="radio" value="" onChange={() => { handelChangeImage(Doctor.src) }} name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600" />
-                                                    <label htmlFor="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor</label>
-                                                </div>
-                                                <div className="flex items-center">
-                                                    <input id="default-radio-3" type="radio" value="" onChange={() => { handelChangeImage(Pharmacist.src) }} name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600" />
-                                                    <label htmlFor="default-radio-3" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">pharmacist</label>
-                                                </div>
+                                            <div className={`row ${styles.selectRegisterType}`}>
+                                                <div className={`col-4 ${styles.registerOption}`}>
 
+                                                    <input id="default-radio-4" type="radio" value="" onChange={() => { handelChangeImage(Patient.src) }} name="default-radio" defaultChecked className="hidden peer" />
+                                                    <label htmlFor="default-radio-4"><span>Patient</span></label>
+
+                                                </div>
+                                                <div className={`col-4 ${styles.registerOption}`}>
+
+                                                    <input id="default-radio-6" type="radio" value="" onChange={() => { handelChangeImage(Doctor.src) }} name="default-radio" className="hidden peer" />
+                                                    <label htmlFor="default-radio-6"><span> Doctor </span></label>
+
+                                                </div>
+                                                <div className={`col-4 ${styles.registerOption}`}>
+                                                    <input id="default-radio-5" type="radio" value="" onChange={() => { handelChangeImage(Pharmacist.src) }} name="default-radio"  className="hidden peer" />
+                                                    <label htmlFor="default-radio-5" className=""><span>Pharmacist</span></label>
+                                                </div>
                                             </div>
                                             <div className="text-end">
                                                 <a className={`${styles.forgotLink} hover:text-[#09dca4]`} href="login.html">Already have an account?</a>

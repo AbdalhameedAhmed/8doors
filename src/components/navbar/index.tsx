@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import classNames from "classnames";
 
 import useWindowSize from "hooks/useWindowSize";
-import ThemeSelector from "./themeSelector";
 import SearchBar from "./SearchBar"
 import ClinicSelector from "./ChooseClinics"
 import USerICon from "./UserIcon"
