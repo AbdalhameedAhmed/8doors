@@ -219,13 +219,49 @@
   background-color: #fff;
   outline: none;
 }
+.owlDots {
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+}
+.owlDots .owlDot.active span {
+  background-color: #fff;
+  width: 50px;
+  border-radius: 50px;
+}
 
+.owlDots .owlDot.active span, .owlDots .owlDot:hover span {
+  background: #00825B;
+}
+.owlDots .owlDot span {
+  width: 28px;
+  height: 6px;
+  margin: 5px 3px 0;
+  background: #F3F3F3;
+  display: block;
+  -webkit-backface-visibility: visible;
+  transition: opacity .2s ease;
+  border-radius: 30px;
+  position: relative;
+}
+.owlDots .owlDot.active span {
+  background-color: #fff;
+  width: 50px;
+  border-radius: 50px;
+}
+.owlDots .owlDot span {
+  background-color: #09E5AB;
+  width: 15px;
+  height: 6px;
+  border-radius: 50px;
+  transition: .5s all;
+}
 @media only screen and (max-width: 991.98px) {
   .onBoardWrapper {
     height: auto;
   }
   .leftPanel {
-    display: none;
+    display: none !important;
   }
   .rightPanel {
     width: 100%;

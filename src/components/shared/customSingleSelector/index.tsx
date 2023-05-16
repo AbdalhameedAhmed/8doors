@@ -27,7 +27,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
         }}
         {...input}
       >
-        <p ref={ref}>{placeholder}</p>
+        <p ref={ref} className="text-sm">{placeholder}</p>
         <AngleDown width={13} height={13} />
       </div>
       <div
@@ -50,7 +50,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
               onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
                 changeActiveLi(index)
                 ref.current.innerHTML = item
-                input.onChange(item);
+                // input.onChange(item);
 
                 if (activeLi == index) {
                   (ele.target as HTMLElement).classList.add("!bg-primary")

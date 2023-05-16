@@ -1,9 +1,12 @@
-import React from "react"
+import React, { FormEvent } from "react"
+import { useRouter } from "next/router"
 import styles from "./register.module.css"
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import Doctor from "assets/addDoctor.jpg"
 import Pharmacist from "assets/addPharmacist.jpg"
 import Patient from "assets/registerPatient.jpg"
+import { addUserInfo } from "redux/slices/landing/userRegisterInfo"
+import { useDispatch } from "react-redux"
 
 export default function Register() {
     let [activeImage, changeActiveImage] = React.useState(Patient.src)
@@ -11,7 +14,19 @@ export default function Register() {
     let handelChangeImage = (imageSrc: string) => {
         changeActiveImage(imageSrc)
     }
+    const dispatch = useDispatch()
+    const router = useRouter()
 
+    const submitForm = (formInfo:FormEvent<HTMLFormElement>)=>{
+        formInfo.preventDefault()
+        console.log(formInfo.target[0].value);
+        console.log(formInfo.target[1].value);
+        console.log(formInfo.target[2].value);
+        dispatch(addUserInfo({name:formInfo.target[0].value,mobile:formInfo.target[1].value,email:formInfo.target[2].value}))
+        router.push("/patient-onboarding")
+
+        
+    }
 
     return (
         <>
@@ -32,7 +47,7 @@ export default function Register() {
                                             <h3>Register</h3>
                                         </div>
 
-                                        <form action="https://doccure.dreamguystech.com/html/template/onboarding-email.html">
+                                        <form onSubmit={(eve)=>{submitForm(eve)}}>
                                             <div className={`${styles.formGroup} ${styles.formFocus} `}>
                                                 <FloatingInput placeholder="Name" name="name" inputStyle="!p-2" placeholderStyles="bg-white z-0" />
                                             </div>

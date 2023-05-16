@@ -1,7 +1,7 @@
 export type singleSelectorTypes = {
   placeholder: string;
   options: string[];
-  input: any;
+  input?: any;
   inputStyle?: string;
   menuStyle?: string;
   dirtyFields?: any;

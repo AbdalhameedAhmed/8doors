@@ -9,22 +9,19 @@ import LandingLayout from "components/layout/landingLayout"
 import DoctorDashboardContainer from "components/sites/clinic/landing/dashboard";
 import classNames from "classnames";
 
-import DoctorImage from "assets/doctor-thumb-02.jpg"
+import patientImage from "assets/dashboard/patient.jpg"
 import ColumnsIcon from "assets/dashboard/table-columns-solid.svg"
-import CalendarIcon from "assets/calendar-check-solid.svg"
-import UserInjuredIcon from "assets/dashboard/user-injured-solid.svg"
-import HourGlassIcon from "assets/dashboard/hourglass-start-solid.svg"
-import ClockIcon from "assets/dashboard/clock-solid.svg"
-import FileIcon from "assets/dashboard/file-invoice-solid.svg"
-import FileDollarIcon from "assets/dashboard/file-invoice-dollar-solid.svg"
-import StartIcon from "assets/star-solid.svg"
 import MessageIcon from "assets/dashboard/comments-solid.svg"
 import USerGearIcon from "assets/dashboard/user-gear-solid.svg"
-import ShareICon from "assets/dashboard/share-nodes-solid.svg"
 import LockIcon from "assets/dashboard/lock-solid.svg"
 import Logout from "assets/dashboard/right-from-bracket-solid.svg"
+import BookMark from "assets/dashboard/bookmark-solid.svg"
+import UsersIcon from "assets/dashboard/users-solid.svg"
+import WaveFileIcon from "assets/dashboard/file-waveform-solid.svg"
+import LitIcon from "assets/dashboard/rectangle-list-solid.svg"
+import ClipboardIcon   from "assets/dashboard/clipboard-solid.svg"
 
-export default function DoctorDashboard() {
+export default function IndividualDashboard() {
   const pageRef = React.useRef(null)
   const router = useRouter()
   const doctorItems = [
@@ -33,35 +30,29 @@ export default function DoctorDashboard() {
       icon:<ColumnsIcon/>
     },
     {
-      title:"Appointments",
-      icon:<CalendarIcon />
+      title:"Favourites",
+      icon:<BookMark />
     },{
-      title:"My Patients",
-      icon:  <UserInjuredIcon />
-    },{
-      title:"Schedule Timings",
-      icon: <HourGlassIcon />
-    },{
-      title:"Available Timings",
-      icon:<ClockIcon />
-    },{
-      title:"Invoices",
-      icon: <FileIcon />
-    },{
-      title:"Accounts",
-      icon:  <FileDollarIcon />
-    },{
-      title:"Reviews",
-      icon: <StartIcon />
+      title:"Dependent",
+      icon:  <UsersIcon />
     },{
       title:"Message",
-      icon:<MessageIcon />
+      icon: <MessageIcon />
+    },{
+      title:"Accounts",
+      icon:  <WaveFileIcon />
+    },{
+      title:"Orders",
+      icon: <LitIcon />
+    },{
+      title:"Add Medical Records",
+      icon:<ClipboardIcon />
+    },{
+      title:"Medical Details",
+      icon:<WaveFileIcon />
     },{
       title:"Profile Settings",
       icon:  <USerGearIcon />
-    },{
-      title:"Social Media",
-      icon:<ShareICon />
     },{
       title:"Change Password",
       icon:<LockIcon />
@@ -71,7 +62,8 @@ export default function DoctorDashboard() {
     },
   ]
 
-  const userInfo ={image:DoctorImage,name:"Dr. Darren Elder",moreInfo:"BDS, MDS - Oral &amp; Maxillofacial Surgery"}
+  const userInfo ={image:patientImage,name:"Richard Wilson",moreInfo:" 24 Jul 1983, 38 years",location:"Newyork, USA"}
+
   useRemoveScroll(pageRef)
 
   React.useEffect(() => {
@@ -99,7 +91,7 @@ export default function DoctorDashboard() {
       
 
       <LandingLayout showBreadCrumb={true} >
-        <DoctorDashboardContainer items={doctorItems} userInfo={userInfo}/>
+        <DoctorDashboardContainer userInfo={userInfo} items={doctorItems}/>
       </LandingLayout>
     </div>
   )

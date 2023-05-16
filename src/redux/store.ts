@@ -10,6 +10,7 @@ import { deleteClinic } from 'redux/services/clinic/deleteClinic';
 import { updateClinic } from 'redux/services/clinic/updateClinic';
 import { changePassword } from 'redux/services/clinic/changePassword';
 import activeClinicReducer from 'redux/slices/clinic/activeClinic';
+import userRegisterInfoReducer from "redux/slices/landing/userRegisterInfo"
 import authReducer from 'redux/slices/auth';
 
 const persistConfig = {
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   [getClinics.reducerPath]: getClinics.reducer,
   auth: authReducer,
   activeClinic: activeClinicReducer,
+  userInfo:userRegisterInfoReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

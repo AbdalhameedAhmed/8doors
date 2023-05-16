@@ -3,22 +3,15 @@ import React from "react"
 import styles from "./dashboard.module.css"
 
 import DoctorImage from "assets/doctor-thumb-02.jpg"
-import ColumnsIcon from "assets/doctorDashboard/table-columns-solid.svg"
-import CalendarIcon from "assets/calendar-check-solid.svg"
-import UserInjuredIcon from "assets/doctorDashboard/user-injured-solid.svg"
-import HourGlassIcon from "assets/doctorDashboard/hourglass-start-solid.svg"
-import ClockIcon from "assets/doctorDashboard/clock-solid.svg"
-import FileIcon from "assets/doctorDashboard/file-invoice-solid.svg"
-import FileDollarIcon from "assets/doctorDashboard/file-invoice-dollar-solid.svg"
-import StartIcon from "assets/star-solid.svg"
-import MessageIcon from "assets/doctorDashboard/comments-solid.svg"
-import USerGearIcon from "assets/doctorDashboard/user-gear-solid.svg"
-import ShareICon from "assets/doctorDashboard/share-nodes-solid.svg"
-import LockIcon from "assets/doctorDashboard/lock-solid.svg"
-import Logout from "assets/doctorDashboard/right-from-bracket-solid.svg"
-import classNames from "classnames"
 
-export default function SideNav() {
+import classNames from "classnames"
+import { ImageProps } from "theme-ui"
+
+type sideNavTypes = {
+items:{  title:string, icon:React.ReactNode}[]
+userInfo:{image:ImageProps,name:string,moreInfo:string,location?:string}
+}
+export default function SideNav({items,userInfo}:sideNavTypes) {
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
@@ -47,12 +40,13 @@ export default function SideNav() {
         <div className={`${styles.widgetProfile}`}>
           <div className={`${styles.profileInfoWidget}`}>
             <a href="#" className={`${styles.bookingDocImg}`}>
-              <img src={DoctorImage.src} alt="User Image" />
+              <img src={userInfo.image.src} alt="User Image" />
             </a>
             <div className={`${styles.profileDetInfo}`}>
-              <h3>Dr. Darren Elder</h3>
+              <h3>{userInfo.name}</h3>
               <div className={`${styles.patientDetails}`}>
-                <h5 className="mb-0">BDS, MDS - Oral &amp; Maxillofacial Surgery</h5>
+                <h5 className="mb-0">{userInfo.moreInfo}</h5>
+                <h5 className="mb-0">{userInfo.location}</h5>
               </div>
             </div>
           </div>
@@ -60,85 +54,19 @@ export default function SideNav() {
         <div className="dashboard-widget">
           <nav className={`${styles.dashboardMenu}`}>
             <ul>
-              <li className={`${styles.active}`}>
-                <a href="doctor-dashboard.html">
-                  <ColumnsIcon />
-                  <span>Dashboard</span>
-                </a>
-              </li>
-              <li>
-                <a href="appointments.html">
-                  <CalendarIcon />
-                  <span>Appointments</span>
-                </a>
-              </li>
-              <li>
-                <a href="my-patients.html">
-                  <UserInjuredIcon />
-                  <span>My Patients</span>
-                </a>
-              </li>
-              <li>
-                <a href="schedule-timings.html">
-                  <HourGlassIcon />
-                  <span>Schedule Timings</span>
-                </a>
-              </li>
-              <li>
-                <a href="available-timings.html">
-                  <ClockIcon />
-                  <span>Available Timings</span>
-                </a>
-              </li>
-              <li>
-                <a href="invoices.html">
-                  <FileIcon />
-                  <span>Invoices</span>
-                </a>
-              </li>
-              <li>
-                <a href="accounts.html">
-                  <FileDollarIcon />
-                  <span>Accounts</span>
-                </a>
-              </li>
-              <li>
-                <a href="reviews.html">
-                  <StartIcon />
-                  <span>Reviews</span>
-                </a>
-              </li>
-              <li>
-                <a href="chat-doctor.html">
-                  <MessageIcon />
-                  <span>Message</span>
-                  <small className={`${styles.unreadMsg}`}>23</small>
-                </a>
-              </li>
-              <li>
-                <a href="doctor-profile-settings.html">
-                  <USerGearIcon />
-                  <span>Profile Settings</span>
-                </a>
-              </li>
-              <li>
-                <a href="social-media.html">
-                  <ShareICon />
-                  <span>Social Media</span>
-                </a>
-              </li>
-              <li>
-                <a href="doctor-change-password.html">
-                  <LockIcon />
-                  <span>Change Password</span>
-                </a>
-              </li>
-              <li>
-                <a href="index.html">
-                  <Logout />
-                  <span>Logout</span>
-                </a>
-              </li>
+              {
+                items.map((item,index)=>(
+                  <li key={index} className={`${index===0&&styles.active}`}>
+                  <a href="doctor-dashboard.html">
+                    {
+                      item.icon
+                    }
+                    <span>{item.title}</span>
+                  </a>
+                </li>    
+                ))
+              }
+             
             </ul>
           </nav>
         </div>

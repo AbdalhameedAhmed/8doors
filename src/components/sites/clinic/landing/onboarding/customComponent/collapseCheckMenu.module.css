@@ -1,0 +1,81 @@
+.formGroup {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+.pregnantCol .rememberMeCol {
+  color: #000;
+  font-size: 16px;
+}
+
+.pregnantCol .customCheck .checkmark {
+  height: 25px;
+  width: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: -10px;
+  position: absolute;
+  border: 1px solid #228FE0;
+  background-color: #fff;
+  border-radius: 3px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.pregnantCol .customCheck .checkmark::after {
+  left: 10px;
+  top: 3px;
+}
+
+
+.customCheck {
+  color: #666;
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  font-size: .9375rem;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  top: -6px;
+}
+.customCheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+.checkmark svg {
+  width: 12px;
+  opacity: 0;
+  fill: white;
+}
+
+.customCheck input:checked ~ .checkmark svg {
+  opacity: 1;
+}
+.customCheck input:checked ~ .checkmark {
+  background-color: #228FE0;
+}
+.customCheck input:checked ~ .checkmark:after {
+  display: block;
+}
+.customCheck .checkmark::after {
+  color: #fff;
+}
+
+.customCheck .checkmark::after {
+  position: absolute;
+  display: none;
+  left: 2px;
+  top: 0;
+  color: #0de0fe;
+}

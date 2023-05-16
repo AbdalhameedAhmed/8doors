@@ -1,0 +1,351 @@
+.onboardingContentBox.contentWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 580px;
+}
+
+.onboardingContentBox {
+  margin-top: 20px;
+  padding: 50px;
+  background: #FFFFFF;
+  box-shadow: 0px 24px 24px rgb(212 237 255 / 30%);
+  border-radius: 4px;
+  border: 1px solid #E6E9F4;
+}
+
+
+.onboardingTitle h2 {
+  font-weight: 450;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.onboardingTitle h2 span {
+  color: #ff0202;
+}
+
+.onboardingTitle h6 {
+  font-weight: 400;
+  font-size: 14px;
+  color: #585858;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.formGroup {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+.formFocus {
+  height: 50px;
+  position: relative;
+}
+.passcodeWrap input,
+.passcodeWrap select,
+.passcodeWrap textarea {
+  background-color: #f5f6fa;
+  border: 1px solid #e6e9f4;
+  border-radius: 5px;
+  width: 60px;
+  height: 54px;
+  text-align: center;
+  color: #354052;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 23px;
+}
+/* Start step One form */
+.passcodeWrapMailBox input {
+  width: 100%;
+  text-align: unset;
+  font-size: 14px;
+  height: 54px;
+}
+.passcodeWrap input:focus {
+  color: #354052;
+  border-color: #09e5ab;
+  background-color: #fff;
+  outline: none;
+}
+
+.relativeForm {
+  position: relative;
+  background: #F5F6FA;
+  border: 1px solid #E6E9F4;
+  border-radius: 5px;
+  min-height: 54px;
+  padding: 6px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.relativeFileUpload {
+  color: #000;
+  padding: 11px 35px;
+  font-size: 14px;
+  margin-bottom: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 4px;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  transition: 0.7s;
+  background: #EEEEEE;
+  border-radius: 4px;
+}
+
+.relativeFileUpload:hover {
+  color: #fff;
+  background: #bdb8b8;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.relativeFileUpload input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: #fff;
+    cursor: inherit;
+    display: block;
+}
+
+.onboardingBtn button {
+  background: #09e5ab;
+  border-radius: 6px;
+  padding: 15px 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+  border: 1px solid #09e5ab;
+  transition: all 0.5s;
+}
+.onboardingBtn button:hover {
+  box-shadow: inset 0 60px 0 0 #10916f;
+  border-color: #10916f;
+}
+
+/* start OTP Form */
+
+.passcodewrap input {
+  background-color: #F5F6FA;
+  border: 1px solid #E6E9F4;
+  border-radius: 5px;
+  width: 60px;
+  height: 54px;
+  text-align: center;
+  color: #354052;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 23px;
+}
+
+.passcodewrap input:focus {
+  color: #354052;
+  border-color: #09E5AB;
+  background-color: #fff;
+  outline: none;
+}
+.otpResend {
+  padding-top: 30px;
+  display: flex;
+  position: relative;
+}
+/* End OTP form */
+
+
+/* End step one form */
+
+/* Start step two form */
+
+.onboardingContents {
+  display: flex;
+  justify-content: center;
+}
+
+.uploadPic.patientPhotoUpload {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 265px;
+  height: 235px;
+  background: #F5F6FA;
+  border: none;
+}
+
+.uploadPic img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.uploadPatientPic {
+  padding: 10px 0px 30px 0px;
+}
+
+.uploadPatientBtn {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.picUploadBtn {
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #F4F4F4;
+  box-shadow: 0px 4px 10px rgb(225 225 225 / 25%);
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  max-width: 475px;
+  text-align: center;
+  margin: auto;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadPatientBtn:hover .picUploadBtn,.picUploadBtn:hover {
+  color: #09E5AB; 
+}
+
+.picUploadBtn svg {
+  width: 14px;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.uploadPatientBtn:hover .picUploadBtn svg,.picUploadBtn:hover svg {
+  fill: #09E5AB; 
+}
+.uploadPatientPic input[type="file"] {
+  opacity: 0;
+  max-width: 468px;
+  min-height: 60px;
+  cursor: pointer;
+  top: 0px;
+  left: 87px;
+  position: absolute;
+}
+
+.onboardingBtn.PersonalizeBtn {
+  margin-top: 30px;
+}
+/* End step two form */
+
+
+/* Start step three form */
+
+
+
+
+.loginHeader {
+  margin-bottom: 20px;
+}
+
+.selectGenderOption {
+  display: flex;
+}
+
+.selectGenderOption [type="radio"]:checked, .selectGenderOption [type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+
+.selectGenderOption label {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 24px rgb(194 194 194 / 25%);
+  border-radius: 5px;
+  padding: 28px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.selectGenderOption [type="radio"]:checked + label:after, .selectGenderOption [type="radio"]:not(:checked) + label:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(212, 237, 255, 0.25);
+  border: 2px solid #228FE0;
+  box-shadow: 0px 4px 24px rgb(34 143 224 / 4%);
+  border-radius: 5px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border: 2px solid #0de0fe;
+}
+.selectGenderOption [type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+}
+
+.selectGenderOption label span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.selectGenderOption label svg {
+  width: 12px;
+  display: inline-block;
+}
+
+
+
+/* End step three form */
+
+
+
+
+@media only screen and (max-width: 991.98px) {
+  .onboardingContentBox {
+    padding: 30px;
+  }    
+  .onboardingContentBox.contentWrap {
+    min-height: auto;
+  }
+  .passcodeWrap.formFocus .focusLabel {
+    top: -8px;
+  }
+  .passcodeWrapMailBox input {
+    font-size: 14px;
+    height: 50px;
+  }
+  .passcodeWrap input {
+    width: 77px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  
+  .onboardingContentBox {
+    padding: 20px;
+  }
+  .onboardingTitle {
+    text-align: center;
+  }
+  .onboardingTitle h2 {
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .onboardingTitle h6 {
+    font-size: 14px;
+}
+}
