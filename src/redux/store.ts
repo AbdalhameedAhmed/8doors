@@ -12,6 +12,7 @@ import { changePassword } from 'redux/services/clinic/changePassword';
 import activeClinicReducer from 'redux/slices/clinic/activeClinic';
 import userRegisterInfoReducer from "redux/slices/landing/userRegisterInfo"
 import authReducer from 'redux/slices/auth';
+import openToastSlice from "redux/slices/toast/openToast"
 
 const persistConfig = {
   key: 'root',
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   [getClinics.reducerPath]: getClinics.reducer,
   auth: authReducer,
   activeClinic: activeClinicReducer,
-  userInfo:userRegisterInfoReducer
+  userInfo: userRegisterInfoReducer,
+  toastInfo: openToastSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

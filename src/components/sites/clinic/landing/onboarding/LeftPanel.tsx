@@ -6,13 +6,11 @@ import { useEffect } from "react";
 
 export default function LeftPanel() {
   const [preScrollNum, changePreScrollNum] = React.useState(null)
-  const [span,activeSpan] = React.useState(0)
+  const [span, activeSpan] = React.useState(0)
   function scrollLeft() {
     const scrollSection = document.querySelector("#sideScroll");
-    console.log(preScrollNum === scrollSection?.scrollLeft);
-    console.log(preScrollNum);
 
-    if ( scrollSection?.scrollLeft > 500) {
+    if (scrollSection?.scrollLeft > 500) {
       scrollSection!.scrollLeft = 0;
       changePreScrollNum(null)
       console.log("done");
@@ -20,11 +18,9 @@ export default function LeftPanel() {
 
     } else {
       scrollSection!.scrollLeft += 300;
-      activeSpan(span+1)
+      activeSpan(span + 1)
     }
     changePreScrollNum(scrollSection?.scrollLeft)
-
-    console.log(scrollSection?.scrollLeft);
   }
 
   useEffect(() => {
@@ -79,7 +75,7 @@ export default function LeftPanel() {
           </div>
 
         </div>
-        <div className={`${styles.owlDots}`}><button role="button" className={`${styles.owlDot} ${span===0 && styles.active}`}><span></span></button><button role="button" className={`${styles.owlDot} ${span===1 && styles.active}`}><span></span></button><button role="button" className={`${styles.owlDot} ${span===2 && styles.active}`}><span></span></button></div>
+        <div className={`${styles.owlDots}`}><button role="button" className={`${styles.owlDot} ${span === 0 && styles.active}`}><span></span></button><button role="button" className={`${styles.owlDot} ${span === 1 && styles.active}`}><span></span></button><button role="button" className={`${styles.owlDot} ${span === 2 && styles.active}`}><span></span></button></div>
       </div>
     </div>
   )

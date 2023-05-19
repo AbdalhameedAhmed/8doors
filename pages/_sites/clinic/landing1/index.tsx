@@ -54,7 +54,7 @@ export default function Landing1() {
         <CardsSection direction={direction} />
         <Slide title={slideTitle} subTitle={slideSubTitle} direction={direction} />
         <BookOutDoctor direction={direction} />
-        <AvailabeFeatures />
+        <AvailabeFeatures direction={direction} />
         <ContactUs direction={direction} />
         <Blogs direction={direction} />
       </LandingLayout>

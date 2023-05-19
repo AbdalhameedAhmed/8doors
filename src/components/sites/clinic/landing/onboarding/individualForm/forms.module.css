@@ -52,7 +52,6 @@
   color: #354052;
   font-size: 20px;
   font-weight: 500;
-  margin-right: 23px;
 }
 /* Start step One form */
 .passcodeWrapMailBox input {
@@ -224,6 +223,7 @@
   width: 14px;
   display: inline-block;
   margin-right: 0.5rem;
+  margin-left:0.5rem;
 }
 
 .uploadPatientBtn:hover .picUploadBtn svg,.picUploadBtn:hover svg {
@@ -308,6 +308,43 @@
 
 /* End step three form */
 
+/* start Modal Body */
+
+.modHeader {
+    border-bottom: none;
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+.modBody h2 {
+    font-weight: 500;
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.modBody p {
+  font-size: 16px;
+  max-width: 280px;
+  margin: auto;
+}
+
+.modBody p {
+  font-weight: 400;
+  font-size: 15px;
+  color: #585858;
+}
+
+
+.modFooter {
+    border-top: none;
+    padding: 0.75rem 0rem 2rem 0rem;
+}
+.modFooter {
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+}
+
+/* End Modal Body */
 
 
 
@@ -328,9 +365,22 @@
   .passcodeWrap input {
     width: 77px;
     height: 50px;
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 14px;
   }
+  .modHeader {
+    padding: 5px;
+  }
+  .modBody {
+  padding: 5px;
+  }
+  .modBody h2 {
+    font-size: 20px;
+}
+.modFooter {
+  border-top: none;
+  padding: 2px 0px 5px 0px;
+}
+
 }
 
 @media only screen and (max-width: 575.98px) {
@@ -347,5 +397,14 @@
   }
   .onboardingTitle h6 {
     font-size: 14px;
+  }
+
+  .modBody h2 {
+  font-size: 18px;
+  }
+  .modFooter .onboardingBtn button {
+  padding: 10px 30px;
+  font-size: 14px;
+  margin-top: 15px;
 }
 }

@@ -7,25 +7,23 @@ import Pharmacist from "assets/addPharmacist.jpg"
 import Patient from "assets/registerPatient.jpg"
 import { addUserInfo } from "redux/slices/landing/userRegisterInfo"
 import { useDispatch } from "react-redux"
+import useCustomToast from "hooks/useCustomToast"
 
 export default function Register() {
     let [activeImage, changeActiveImage] = React.useState(Patient.src)
 
     let handelChangeImage = (imageSrc: string) => {
         changeActiveImage(imageSrc)
+        customToast("error", "Test me please", true)
     }
+    const customToast = useCustomToast()
     const dispatch = useDispatch()
     const router = useRouter()
 
-    const submitForm = (formInfo:FormEvent<HTMLFormElement>)=>{
+    const submitForm = (formInfo: FormEvent<HTMLFormElement>) => {
         formInfo.preventDefault()
-        console.log(formInfo.target[0].value);
-        console.log(formInfo.target[1].value);
-        console.log(formInfo.target[2].value);
-        dispatch(addUserInfo({name:formInfo.target[0].value,mobile:formInfo.target[1].value,email:formInfo.target[2].value}))
+        dispatch(addUserInfo({ name: formInfo.target[0].value, mobile: formInfo.target[1].value, email: formInfo.target[2].value }))
         router.push("/patient-onboarding")
-
-        
     }
 
     return (
@@ -47,7 +45,7 @@ export default function Register() {
                                             <h3>Register</h3>
                                         </div>
 
-                                        <form onSubmit={(eve)=>{submitForm(eve)}}>
+                                        <form onSubmit={(eve) => { submitForm(eve) }}>
                                             <div className={`${styles.formGroup} ${styles.formFocus} `}>
                                                 <FloatingInput placeholder="Name" name="name" inputStyle="!p-2" placeholderStyles="bg-white z-0" />
                                             </div>
@@ -72,7 +70,7 @@ export default function Register() {
 
                                                 </div>
                                                 <div className={`col-4 ${styles.registerOption}`}>
-                                                    <input id="default-radio-5" type="radio" value="" onChange={() => { handelChangeImage(Pharmacist.src) }} name="default-radio"  className="hidden peer" />
+                                                    <input id="default-radio-5" type="radio" value="" onChange={() => { handelChangeImage(Pharmacist.src) }} name="default-radio" className="hidden peer" />
                                                     <label htmlFor="default-radio-5" className=""><span>Pharmacist</span></label>
                                                 </div>
                                             </div>

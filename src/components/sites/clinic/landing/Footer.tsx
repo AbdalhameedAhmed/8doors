@@ -11,9 +11,9 @@ import Location from "assets/location-dot-solid.svg"
 import Phone from "assets/phone-solid.svg"
 import Mail from "assets/envelope-regular.svg"
 type footerTypes = {
-  direction?:"ltr"|"rtl"
+  direction?: "ltr" | "rtl"
 }
-export default function Footer({direction="ltr"}:footerTypes) {
+export default function Footer({ direction = "ltr" }: footerTypes) {
 
 
   return (
@@ -34,19 +34,19 @@ export default function Footer({direction="ltr"}:footerTypes) {
                   <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                   <div className={`${styles.socialIcon}`}>
                     <ul>
-                      <li className={`${direction==="rtl"&&"!ml-[15px]"}`}>
+                      <li className={`${direction === "rtl" && "!ml-[15px]"}`}>
                         <a href="#" target="_blank"><Facebook className="w-[20px] h-[20px] [&_path]:fill-white" /> </a>
                       </li>
-                      <li className={`${direction==="rtl"&&"!ml-[15px]"}`}>
+                      <li className={`${direction === "rtl" && "!ml-[15px]"}`}>
                         <a href="#" target="_blank"><Twitter className="w-[20px] h-[20px] [&_path]:fill-white" /> </a>
                       </li>
-                      <li className={`${direction==="rtl"&&"!ml-[15px]"}`}>
+                      <li className={`${direction === "rtl" && "!ml-[15px]"}`}>
                         <a href="#" target="_blank"><LinkedIn className="w-[20px] h-[20px] [&_path]:fill-white" /></a>
                       </li>
-                      <li className={`${direction==="rtl"&&"!ml-[15px]"}`}>
+                      <li className={`${direction === "rtl" && "!ml-[15px]"}`}>
                         <a href="#" target="_blank"><Instagram className="w-[20px] h-[20px] [&_path]:fill-white" /></a>
                       </li>
-                      <li className={`${direction==="rtl"&&"!ml-[15px]"}`}>
+                      <li className={`${direction === "rtl" && "!ml-[15px]"}`}>
                         <a href="#" target="_blank"><Github className="w-[20px] h-[20px] [&_path]:fill-white" /> </a>
                       </li>
                     </ul>
@@ -61,25 +61,25 @@ export default function Footer({direction="ltr"}:footerTypes) {
                 <h2 className={`${styles.footerTitle}`}>For Patients</h2>
                 <ul>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
-                    <a href="search.html" className="!p-0 before:!hidden hover:ml-2">
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
+                    <a href="search.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
                       Search for Doctors</a></li>
                   <li className="flex items-center justify-start">
 
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
-                    <a href="login.html" className="!p-0 before:!hidden hover:ml-2">
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
+                    <a href="login.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
                       Login</a></li>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
-                    <a href="register.html" className="!p-0 before:!hidden hover:ml-2">
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
+                    <a href="register.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
                       Register</a></li>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
-                    <a href="booking.html" className="!p-0 before:!hidden hover:ml-2">
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
+                    <a href="booking.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
                       Booking</a></li>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
-                    <a href="patient-dashboard.html" className="!p-0 before:!hidden hover:ml-2">
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
+                    <a href="patient-dashboard.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
 
                       Patient Dashboard</a></li>
                 </ul>
@@ -92,26 +92,26 @@ export default function Footer({direction="ltr"}:footerTypes) {
                 <h2 className={`${styles.footerTitle}`}>For Doctors</h2>
                 <ul>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
 
-                    <a href="appointments.html" className="!p-0 before:!hidden hover:ml-2">Appointments</a></li>
+                    <a href="appointments.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Appointments</a></li>
 
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
 
-                    <a href="chat.html" className="!p-0 before:!hidden hover:ml-2">Chat</a></li>
+                    <a href="chat.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Chat</a></li>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
 
-                    <a href="login.html" className="!p-0 before:!hidden hover:ml-2">Login</a></li>
+                    <a href="login.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Login</a></li>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
 
-                    <a href="doctor-register.html" className="!p-0 before:!hidden hover:ml-2">Register</a></li>
+                    <a href="doctor-register.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Register</a></li>
                   <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction==="rtl"?"m-2":"mr-2"} fill-white`} />
+                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
 
-                    <a href="doctor-dashboard.html" className="!p-0 before:!hidden hover:ml-2">Doctor Dashboard</a></li>
+                    <a href="doctor-dashboard.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Doctor Dashboard</a></li>
                 </ul>
               </div>
 
@@ -159,7 +159,7 @@ export default function Footer({direction="ltr"}:footerTypes) {
               <div className="col-md-6 col-lg-6">
 
                 <div className="copyright-menu">
-                  <ul className={`${styles.policyMenu} ${direction==="rtl"&&"!text-left"}`}>
+                  <ul className={`${styles.policyMenu} ${direction === "rtl" && "!text-left"}`}>
                     <li><a href="term-condition.html">Terms and Conditions</a></li>
                     <li><a href="privacy-policy.html">Policy</a></li>
                   </ul>

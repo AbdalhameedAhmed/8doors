@@ -7,15 +7,16 @@ import FloatingInput from "components/shared/floatingInput/FloatingInput"
 
 
 type createPasswordTypes = {
-  activeItem:number
-  changeActiveItem:Dispatch<SetStateAction<number>>
+  activeItem: number
+  changeActiveItem: Dispatch<SetStateAction<number>>
+  changeModalState: Dispatch<SetStateAction<boolean>>
 }
 
 
-export default function CreatePassword({changeActiveItem,activeItem}:createPasswordTypes) {
+export default function CreatePassword({ changeActiveItem, activeItem, changeModalState }: createPasswordTypes) {
 
-  const handelChangeForm = ()=>{
-    changeActiveItem(activeItem+1)
+  const handelChangeForm = () => {
+    changeModalState(true)
   }
 
 
@@ -31,14 +32,14 @@ export default function CreatePassword({changeActiveItem,activeItem}:createPassw
             <div className="col-lg-12">
               <div className={`${styles.formGroup} pass-group`}>
 
-              <FloatingInput placeholder="Enter new password" name="password" type={"password"} inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                <FloatingInput placeholder="Enter new password" name="password" type={"password"} inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
               </div>
 
             </div>
             <div className="col-lg-12">
-              <div className="form-group">
+              <div className={`${styles.formGroup}`}>
 
-              <FloatingInput placeholder="Enter confirm password" name="confirm Password" type={"password"} inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                <FloatingInput placeholder="Enter confirm password" name="confirm Password" type={"password"} inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
               </div>
             </div>
           </div>

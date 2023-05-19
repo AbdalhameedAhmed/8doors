@@ -1,4 +1,4 @@
-import React,{Dispatch, SetStateAction } from "react"
+import React, { Dispatch, SetStateAction } from "react"
 
 
 import CameraImg from "assets/patientOnBoarding/up-cam.png"
@@ -9,15 +9,16 @@ import styles from "./forms.module.css"
 
 
 type stepTwoTypes = {
-  activeItem:number
-  changeActiveItem:Dispatch<SetStateAction<number>>
+  activeItem: number
+  changeActiveItem: Dispatch<SetStateAction<number>>
+  direction: "ltr" | "rtl"
 }
 
-export default function StepTwo({changeActiveItem,activeItem}:stepTwoTypes) {
-  const [activeImg,changeActiveImg] = React.useState(CameraImg.src)
+export default function StepTwo({ changeActiveItem, activeItem, direction }: stepTwoTypes) {
+  const [activeImg, changeActiveImg] = React.useState(CameraImg.src)
 
-  const handelChangeForm = ()=>{
-    changeActiveItem(activeItem+1)
+  const handelChangeForm = () => {
+    changeActiveItem(activeItem + 1)
   }
 
 
@@ -40,11 +41,11 @@ export default function StepTwo({changeActiveItem,activeItem}:stepTwoTypes) {
             <div className="col-lg-12">
               <div className={`${styles.uploadPatientPic}`}>
                 <div className={`${styles.uploadPatientBtn}`}>
-                  <a className={`${styles.picUploadBtn}`}><UploadIcon/>Upload images</a>
-                  <input type="file" id="imgInp" onChange={(ev)=>{changeActiveImg(ev.target.value)}}/>
+                  <a className={`${styles.picUploadBtn}`}><UploadIcon />Upload images</a>
+                  <input type="file" id="imgInp" onChange={(ev) => { changeActiveImg(ev.target.value) }} />
                 </div>
                 <div>
-                  <a className={`${styles.picUploadBtn}`}><CameraIcon/>Take a photo</a>
+                  <a className={`${styles.picUploadBtn}`}><CameraIcon />Take a photo</a>
                 </div>
               </div>
             </div>

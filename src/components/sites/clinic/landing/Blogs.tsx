@@ -10,14 +10,14 @@ import BlogIcon3 from "assets/doctor-thumb-03.jpg"
 import BlogIcon4 from "assets/doctor-thumb-04.jpg"
 
 type blogTypes = {
-  direction?:"ltr" | "rtl"
+  direction?: "ltr" | "rtl"
 }
-export default function Blogs({direction="ltr"}:blogTypes) {
+export default function Blogs({ direction = "ltr" }: blogTypes) {
 
 
 
   return (
-    <section className={`section ${styles.sectionBlogs} `} style={{direction:direction}}>
+    <section className={`section ${styles.sectionBlogs} `} style={{ direction: direction }}>
       <div className="container-fluid">
 
         <div className={`${styles.sectionHeader} text-center`} data-aos="fade-up">
@@ -34,9 +34,9 @@ export default function Blogs({direction="ltr"}:blogTypes) {
               </div>
               <div className={`${styles.blogContent}`}>
                 <ul className={`${styles.entryMeta} ${styles.metaItem}`}>
-                  <li className={`${direction==="rtl"&&"m-0 !ml-[15px]"}`}>
+                  <li classNam className={`${direction === "rtl" && "!ml-[15px] !mr-0"}`} e={`${direction === "rtl" && "m-0 !ml-[15px]"}`}>
                     <div className={`${styles.postAuthor}`}>
-                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon1.src} alt="Post Author" className={`${direction==="rtl"&&"m-0 !ml-[5px]"}`} /> <span>Dr. Ruby Perrin</span></a>
+                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon1.src} alt="Post Author" className={`${direction === "rtl" && "m-0 !ml-[5px]"}`} /> <span>Dr. Ruby Perrin</span></a>
                     </div>
                   </li>
                   <li><i className="far fa-clock"></i> 4 Dec 2019</li>
@@ -55,9 +55,9 @@ export default function Blogs({direction="ltr"}:blogTypes) {
               </div>
               <div className={`${styles.blogContent}`}>
                 <ul className={`${styles.entryMeta} ${styles.metaItem}`}>
-                  <li>
+                  <li className={`${direction === "rtl" && "!ml-[15px] !mr-0"}`}>
                     <div className={`${styles.postAuthor}`}>
-                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon2.src} alt="Post Author" /> <span>Dr. Darren Elder</span></a>
+                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon2.src} alt="Post Author" className={`${direction === "rtl" && "!mr-0 !ml-[5px]"}`} /> <span>Dr. Darren Elder</span></a>
                     </div>
                   </li>
                   <li><i className="far fa-clock"></i> 3 Dec 2019</li>
@@ -76,9 +76,9 @@ export default function Blogs({direction="ltr"}:blogTypes) {
               </div>
               <div className={`${styles.blogContent}`}>
                 <ul className={`${styles.entryMeta} ${styles.metaItem}`}>
-                  <li>
+                  <li className={`${direction === "rtl" && "!ml-[15px] !mr-0"}`}>
                     <div className={`${styles.postAuthor}`}>
-                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon3.src} alt="Post Author" /> <span>Dr. Deborah Angel</span></a>
+                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon3.src} alt="Post Author" className={`${direction === "rtl" && "!mr-0 !ml-[5px]"}`} /> <span>Dr. Deborah Angel</span></a>
                     </div>
                   </li>
                   <li><i className="far fa-clock"></i> 3 Dec 2019</li>
@@ -97,9 +97,9 @@ export default function Blogs({direction="ltr"}:blogTypes) {
               </div>
               <div className={`${styles.blogContent}`}>
                 <ul className={`${styles.entryMeta} ${styles.metaItem}`}>
-                  <li>
+                  <li className={`${direction === "rtl" && "!ml-[15px] !mr-0"}`}>
                     <div className={`${styles.postAuthor}`}>
-                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon4.src} alt="Post Author" /> <span>Dr. Sofia Brient</span></a>
+                      <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon4.src} alt="Post Author" className={`${direction === "rtl" && "!mr-0 !ml-[5px]"}`} /> <span>Dr. Sofia Brient</span></a>
                     </div>
                   </li>
                   <li><i className="far fa-clock"></i> 2 Dec 2019</li>

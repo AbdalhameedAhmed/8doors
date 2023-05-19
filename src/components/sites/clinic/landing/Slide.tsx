@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Specialities1 from "assets/specialities-01.png"
 import Specialities2 from "assets/specialities-02.png"
 import Specialities3 from "assets/specialities-03.png"
@@ -11,19 +11,30 @@ import classNames from "classnames"
 
 
 type slideTypes = {
-  title?:string;
-  subTitle?:string;
-  sectionStyle?:string
-  fullSpace?:boolean
-  direction?:"rtl" | "ltr"
+  title?: string;
+  subTitle?: string;
+  sectionStyle?: string
+  fullSpace?: boolean
+  direction: "rtl" | "ltr"
 }
-export default function Slide({title,subTitle,sectionStyle,fullSpace=false , direction="ltr"}:slideTypes) {
+export default function Slide({ title, subTitle, sectionStyle, fullSpace = false, direction }: slideTypes) {
   let [translateRange, changeTranslateRange] = React.useState(-194)
   let [activeBtn, changeActiveBtn] = React.useState(1)
+  console.log(direction, "dofsdfksd");
+  useEffect(() => {
+
+    if (direction === "rtl") {
+      changeTranslateRange(0)
+    }
+  }, [direction])
 
   const handelSlider = (index: number, range: number) => {
+    if (direction == "rtl") {
+      changeTranslateRange(-range)
+    } else {
+      changeTranslateRange(range)
+    }
     changeActiveBtn(index)
-    changeTranslateRange(range)
   }
 
 
@@ -32,16 +43,16 @@ export default function Slide({title,subTitle,sectionStyle,fullSpace=false , dir
     <section className={`section py-[80px] ${sectionStyle}`}>
       <div className={`container-fluid `}>
         <div className={`${styles.sectionHeader} text-center`} data-aos="fade-up" style={{
-      direction:direction
-    }}>
+          direction: direction
+        }}>
           <h2 className="text-[40px] font-[600] mb-2">{title}</h2>
           <p className="text-[#393939] mt-[15px] mx-auto leading-[1.42] max-w-[600px]">{subTitle}</p>
         </div>
-        <div className={`${!fullSpace&&"row justify-content-center"}`}>
-          <div className={`${!fullSpace&&"col-md-9"}`} data-aos="fade-up">
+        <div className={`${!fullSpace && "row justify-content-center"}`}>
+          <div className={`${!fullSpace && "col-md-9"}`} data-aos="fade-up">
 
             <div className={`${styles.specialitiesSlider} slider ${styles.slickInitialized} ${styles.slickSlider}`}><div className={`${styles.slickList} draggable`}>
-              <div className={`${styles.slickTrack} transition-all duration-500`} style={{ opacity: "1", width: "25000px", transform: `translate3d(${translateRange}px, 0px, 0px)` ,direction:direction}}><div className={`${styles.slickSlide} slick-cloned`} data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
+              <div className={`${styles.slickTrack} transition-all duration-500`} style={{ opacity: "1", width: "25000px", transform: `translate3d(${translateRange}px, 0px, 0px)`, direction: direction }}><div className={`${styles.slickSlide} slick-cloned`} data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
                 <div>
                   <div className={`${styles.speicalityItem} text-center`} style={{ width: "100%", display: "inline-block" }}>
                     <div className={`${styles.speicalityImg}`}>
@@ -152,8 +163,8 @@ export default function Slide({title,subTitle,sectionStyle,fullSpace=false , dir
               </div>
             </div>
               <ul className={`${styles.slickDots} !mt-[40px]`} role="tablist" style={{
-      direction:direction
-    }}>
+                direction: direction
+              }}>
                 <li className="" role="presentation">
                   <button onClick={() => { handelSlider(1, -194) }} className={classNames({ "!bg-[#0de0fe]": activeBtn === 1 })} type="button" role="tab" id="slickSlide-control00" aria-controls="slick-slide00" aria-label="1 of 5" tabIndex={-1}>1
                   </button>

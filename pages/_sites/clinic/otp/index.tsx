@@ -1,29 +1,37 @@
 import React from "react"
 import Head from "next/head";
-import Register from "components/sites/clinic/landing/register/Register";
 
-import LandingLayout from "components/layout/landingLayout"
 import classNames from "classnames";
 import useRemoveScroll from "hooks/useRemoveScroll";
 
-import { ToastContext } from "context/toastContext"
-export default function RegisterPage() {
-    const { toastInfo, setToastInfo } = React.useContext(ToastContext)
-    const pageRef = React.useRef(null)
+import LandingLayout from "components/layout/landingLayout";
 
-    useRemoveScroll(pageRef)
+import OtpPage from "components/sites/clinic/otp"
+import BreadCrumb from "components/sites/clinic/landing/BreadCrumb"
+import useCustomToast from "hooks/useCustomToast"
 
-    console.log("Hellooooooooooooo", toastInfo);
+export default function Otp() {
+    const ref = React.useRef(null)
+    const customToast = useCustomToast()
+    const handelBtn = () => {
+        customToast("success", "Hello otp", true, true)
+        console.log("done");
+
+    }
+
+    useRemoveScroll(ref)
 
 
     return (
-        <div ref={pageRef} className={classNames("overflow-y-auto h-screen")}>
+        <div ref={ref} className={classNames("overflow-y-auto h-screen")} >
             <Head>
                 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;300;400;500;600;700;800;900" rel="stylesheet" />
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
             </Head>
+
             <LandingLayout>
-                <Register />
+                <BreadCrumb />
+                <OtpPage onSuccess={handelBtn} />
             </LandingLayout>
         </div>
     )

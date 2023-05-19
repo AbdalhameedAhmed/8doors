@@ -11,8 +11,8 @@ type ProtectedRouteTypes = {
 
 export default function ProtectedRoute({ children }: ProtectedRouteTypes) {
 
-    const token = useSelector(state=>(state as rootState).auth.user.token)
+    const token = useSelector(state => (state as rootState).auth.user.token)
 
-    
-    return token  ? <>{children}</> : <RedirectPage />
+
+    return token ? <>{children}</> : <RedirectPage />
 }

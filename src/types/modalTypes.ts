@@ -1,7 +1,8 @@
 export type modaltypes = {
   openModal: boolean;
   changeModalState: Function;
-  title: string;
+  title?: string;
   children?: React.ReactNode;
   onModalClose?: Function;
+  layoutColor?: string;
 };

@@ -7,14 +7,15 @@ import RightPanel from "./RightPanel"
 import { Dispatch, SetStateAction } from "react"
 
 type onBoardingTypes = {
-  boardingList: { itemTitle: string, itemSubtitle: string,formComponent:React.ReactNode |React.ReactNode[] }[];
-  activeItem:number
-  changeActiveItem:Dispatch<SetStateAction<number>>;
-  nestedActiveForm:number
-  changeNestedActiveForm:Dispatch<SetStateAction<number>>
+  boardingList: { itemTitle: string, itemSubtitle: string, formComponent: React.ReactNode | React.ReactNode[] }[];
+  activeItem: number
+  changeActiveItem: Dispatch<SetStateAction<number>>;
+  nestedActiveForm: number
+  changeNestedActiveForm: Dispatch<SetStateAction<number>>
+  direction: "ltr" | "rtl"
 }
 
-export default function onBoarding({boardingList,activeItem=0,changeActiveItem,nestedActiveForm,changeNestedActiveForm}:onBoardingTypes) {
+export default function onBoarding({ boardingList, activeItem = 0, changeActiveItem, nestedActiveForm, changeNestedActiveForm, direction }: onBoardingTypes) {
 
 
 
@@ -23,8 +24,8 @@ export default function onBoarding({boardingList,activeItem=0,changeActiveItem,n
 
       <LeftPanel />
 
-     <RightPanel boardingList={boardingList} activeItem={activeItem} nestedActiveForm={nestedActiveForm} changeActiveItem={changeActiveItem} changeNestedActiveForm={changeNestedActiveForm}/>
-     
+      <RightPanel direction={direction} boardingList={boardingList} activeItem={activeItem} nestedActiveForm={nestedActiveForm} changeActiveItem={changeActiveItem} changeNestedActiveForm={changeNestedActiveForm} />
+
     </div>
   )
 }

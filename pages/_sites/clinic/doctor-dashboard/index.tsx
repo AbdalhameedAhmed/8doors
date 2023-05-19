@@ -25,62 +25,63 @@ import LockIcon from "assets/dashboard/lock-solid.svg"
 import Logout from "assets/dashboard/right-from-bracket-solid.svg"
 
 export default function DoctorDashboard() {
+  const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const pageRef = React.useRef(null)
   const router = useRouter()
   const doctorItems = [
     {
-      title:"Dashboard",
-      icon:<ColumnsIcon/>
+      title: "Dashboard",
+      icon: <ColumnsIcon />
     },
     {
-      title:"Appointments",
-      icon:<CalendarIcon />
-    },{
-      title:"My Patients",
-      icon:  <UserInjuredIcon />
-    },{
-      title:"Schedule Timings",
+      title: "Appointments",
+      icon: <CalendarIcon />
+    }, {
+      title: "My Patients",
+      icon: <UserInjuredIcon />
+    }, {
+      title: "Schedule Timings",
       icon: <HourGlassIcon />
-    },{
-      title:"Available Timings",
-      icon:<ClockIcon />
-    },{
-      title:"Invoices",
+    }, {
+      title: "Available Timings",
+      icon: <ClockIcon />
+    }, {
+      title: "Invoices",
       icon: <FileIcon />
-    },{
-      title:"Accounts",
-      icon:  <FileDollarIcon />
-    },{
-      title:"Reviews",
+    }, {
+      title: "Accounts",
+      icon: <FileDollarIcon />
+    }, {
+      title: "Reviews",
       icon: <StartIcon />
-    },{
-      title:"Message",
-      icon:<MessageIcon />
-    },{
-      title:"Profile Settings",
-      icon:  <USerGearIcon />
-    },{
-      title:"Social Media",
-      icon:<ShareICon />
-    },{
-      title:"Change Password",
-      icon:<LockIcon />
-    },{
-      title:"Logout",
+    }, {
+      title: "Message",
+      icon: <MessageIcon />
+    }, {
+      title: "Profile Settings",
+      icon: <USerGearIcon />
+    }, {
+      title: "Social Media",
+      icon: <ShareICon />
+    }, {
+      title: "Change Password",
+      icon: <LockIcon />
+    }, {
+      title: "Logout",
       icon: <Logout />
     },
   ]
 
-  const userInfo ={image:DoctorImage,name:"Dr. Darren Elder",moreInfo:"BDS, MDS - Oral &amp; Maxillofacial Surgery"}
+  const userInfo = { image: DoctorImage, name: "Dr. Darren Elder", moreInfo: "BDS, MDS - Oral &amp; Maxillofacial Surgery" }
   useRemoveScroll(pageRef)
 
   React.useEffect(() => {
 
-    // let htmlDir = document.querySelector("html")?.getAttribute("dir")
+    let htmlDir = document.querySelector("html")?.getAttribute("dir")
 
-    // if (htmlDir === "rtl" || htmlDir === "ltr") {
-    //   changeDirection(htmlDir)
-    // }
+    if (htmlDir === "rtl" || htmlDir === "ltr") {
+      changeDirection(htmlDir)
+    }
 
     document.title = removeDashAndCapitalize(router.asPath)
 
@@ -96,10 +97,10 @@ export default function DoctorDashboard() {
         <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;300;400;500;600;700;800;900" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
       </Head>
-      
+
 
       <LandingLayout showBreadCrumb={true} >
-        <DoctorDashboardContainer items={doctorItems} userInfo={userInfo}/>
+        <DoctorDashboardContainer direction={direction} items={doctorItems} userInfo={userInfo} />
       </LandingLayout>
     </div>
   )

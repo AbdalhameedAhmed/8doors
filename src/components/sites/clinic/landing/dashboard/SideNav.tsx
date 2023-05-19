@@ -8,10 +8,11 @@ import classNames from "classnames"
 import { ImageProps } from "theme-ui"
 
 type sideNavTypes = {
-items:{  title:string, icon:React.ReactNode}[]
-userInfo:{image:ImageProps,name:string,moreInfo:string,location?:string}
+  items: { title: string, icon: React.ReactNode }[]
+  userInfo: { image: ImageProps, name: string, moreInfo: string, location?: string }
+  direction: "ltr" | "rtl"
 }
-export default function SideNav({items,userInfo}:sideNavTypes) {
+export default function SideNav({ items, userInfo, direction }: sideNavTypes) {
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
@@ -55,18 +56,18 @@ export default function SideNav({items,userInfo}:sideNavTypes) {
           <nav className={`${styles.dashboardMenu}`}>
             <ul>
               {
-                items.map((item,index)=>(
-                  <li key={index} className={`${index===0&&styles.active}`}>
-                  <a href="doctor-dashboard.html">
-                    {
-                      item.icon
-                    }
-                    <span>{item.title}</span>
-                  </a>
-                </li>    
+                items.map((item, index) => (
+                  <li key={index} className={`${index === 0 && styles.active}`}>
+                    <a href="doctor-dashboard.html">
+                      {
+                        item.icon
+                      }
+                      <span className={`${direction === "ltr" ? "ml-[10px]" : "mr-[10px]"}`}>{item.title}</span>
+                    </a>
+                  </li>
                 ))
               }
-             
+
             </ul>
           </nav>
         </div>

@@ -9,22 +9,35 @@ import AngleDown from "assets/angle-down-solid.svg";
 export default function CustomSingleSelector(props: singleSelectorTypes) {
 
   const { input, containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched } = props
+  const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
 
   let [menu, openMenu] = React.useState(false);
   let [activeLi, changeActiveLi] = React.useState<null | number>(null)
   let ref = React.useRef<HTMLDivElement>(null!);
-  
+
+  React.useEffect(() => {
+
+    let htmlDir = document.querySelector("html")?.getAttribute("dir")
+
+    if (htmlDir === "rtl" || htmlDir === "ltr") {
+      changeDirection(htmlDir)
+    }
+
+  }, [])
+
   return (
     <div className={classNames(containerStyle)}>
       <div
         className={classNames(
           "cursor-pointer flex justify-between items-center options-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
-          { "border-sky-500": menu, "border-b-transparent": menu, "rounded-b-none": menu, "mt-4": menu, "ring-sky-500": menu, "ring-1": menu }, inputStyle
+          { "border-sky-500": menu, "border-b-transparent": menu, "rounded-b-none": menu, "mt-4": menu, "ring-sky-500": menu, "ring-1": menu, "flex-row-reverse": direction }, inputStyle
         )}
+
         onClick={() => {
           openMenu(!menu);
           console.log(ref.current.parentElement?.classList.contains("!relative"));
         }}
+
         {...input}
       >
         <p ref={ref} className="text-sm">{placeholder}</p>
