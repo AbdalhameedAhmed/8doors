@@ -4,7 +4,7 @@ import styles from "./onBoarding.module.css"
 import useRemoveScroll from "hooks/useRemoveScroll";
 
 type rightPanelTypes = {
-  boardingList: { itemTitle: string, itemSubtitle: string, formComponent: React.ReactNode | React.ReactNode[] }[];
+  boardingList: { itemTitle: string, itemSubtitle: string, formComponent?: React.ReactNode | React.ReactNode[] }[];
   activeItem: number;
   changeActiveItem: Dispatch<SetStateAction<number>>;
   nestedActiveForm: number;

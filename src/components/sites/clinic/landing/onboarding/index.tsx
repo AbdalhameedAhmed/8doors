@@ -7,7 +7,7 @@ import RightPanel from "./RightPanel"
 import { Dispatch, SetStateAction } from "react"
 
 type onBoardingTypes = {
-  boardingList: { itemTitle: string, itemSubtitle: string, formComponent: React.ReactNode | React.ReactNode[] }[];
+  boardingList: { itemTitle: string, itemSubtitle: string, formComponent?: React.ReactNode | React.ReactNode[] }[];
   activeItem: number
   changeActiveItem: Dispatch<SetStateAction<number>>;
   nestedActiveForm: number
@@ -22,7 +22,7 @@ export default function onBoarding({ boardingList, activeItem = 0, changeActiveI
   return (
     <div className={`${styles.onBoardWrapper}`}>
 
-      <LeftPanel />
+      <LeftPanel direction={direction} />
 
       <RightPanel direction={direction} boardingList={boardingList} activeItem={activeItem} nestedActiveForm={nestedActiveForm} changeActiveItem={changeActiveItem} changeNestedActiveForm={changeNestedActiveForm} />
 

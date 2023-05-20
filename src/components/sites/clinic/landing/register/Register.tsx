@@ -14,7 +14,7 @@ export default function Register() {
 
     let handelChangeImage = (imageSrc: string) => {
         changeActiveImage(imageSrc)
-        customToast("error", "Test me please", true)
+        customToast("info", "Test me please", false)
     }
     const customToast = useCustomToast()
     const dispatch = useDispatch()

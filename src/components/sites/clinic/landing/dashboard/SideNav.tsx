@@ -27,6 +27,7 @@ export default function SideNav({ items, userInfo, direction }: sideNavTypes) {
       changeScrollDirection(scrollDirection)
     };
 
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -36,7 +37,7 @@ export default function SideNav({ items, userInfo, direction }: sideNavTypes) {
 
 
   return (
-    <div className={classNames("col-md-5 col-lg-4 col-xl-3 !sticky top-[1.5rem] transition-all duration-300", { "-top-[2.5rem]": scrollDirection === "down" })} style={{ overflow: "visible", boxSizing: "border-box", minHeight: "1px" }}>
+    <div className={classNames("col-md-5 col-lg-4 col-xl-3 !sticky top-[1.5rem] transition-all duration-300", { "": scrollDirection === "down" })} style={{ overflow: "visible", boxSizing: "border-box", minHeight: "1px" }}>
       <div style={{ paddingTop: "0px", paddingBottom: "1px", position: "static", transform: "none", top: " 0px", left: "30px" }}><div className={`${styles.profileSidebar}`}>
         <div className={`${styles.widgetProfile}`}>
           <div className={`${styles.profileInfoWidget}`}>

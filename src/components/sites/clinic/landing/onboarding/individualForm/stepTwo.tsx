@@ -11,7 +11,7 @@ import styles from "./forms.module.css"
 type stepTwoTypes = {
   activeItem: number
   changeActiveItem: Dispatch<SetStateAction<number>>
-  direction: "ltr" | "rtl"
+  direction?: "ltr" | "rtl"
 }
 
 export default function StepTwo({ changeActiveItem, activeItem, direction }: stepTwoTypes) {

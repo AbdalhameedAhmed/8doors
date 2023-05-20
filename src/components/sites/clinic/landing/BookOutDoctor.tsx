@@ -24,21 +24,21 @@ import Star from "assets/star-solid.svg"
 
 
 type BookTypes = {
-  direction?:"ltr" | "rtl"
+  direction?: "ltr" | "rtl"
 }
 
-export default function BookOutDoctor({direction="ltr"}:BookTypes) {
+export default function BookOutDoctor({ direction = "ltr" }: BookTypes) {
   const [slideRange, changeSlideRange] = React.useState(-280)
 
   function scrollLeft() {
     const scrollSection = document.querySelector("#scroll");
-    console.log(scrollSection);
+
 
     scrollSection!.scrollLeft -= 300;
   }
   function scrollRight() {
     const scrollSection = document.querySelector("#scroll");
-    console.log(scrollSection);
+
 
     scrollSection!.scrollLeft += 300;
   }
@@ -56,8 +56,8 @@ export default function BookOutDoctor({direction="ltr"}:BookTypes) {
   }
 
   return (
-    <section className={`section ${styles.sectionDoctor} py-[80px]`}style={{
-      direction:direction
+    <section className={`section ${styles.sectionDoctor} py-[80px]`} style={{
+      direction: direction
     }}>
       <div className="container-fluid">
         <div className="row">

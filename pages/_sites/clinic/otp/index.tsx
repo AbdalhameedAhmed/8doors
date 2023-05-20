@@ -15,7 +15,7 @@ export default function Otp() {
     const customToast = useCustomToast()
     const handelBtn = () => {
         customToast("success", "Hello otp", true, true)
-        console.log("done");
+
 
     }
 

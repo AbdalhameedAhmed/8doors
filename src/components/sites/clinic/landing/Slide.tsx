@@ -20,7 +20,7 @@ type slideTypes = {
 export default function Slide({ title, subTitle, sectionStyle, fullSpace = false, direction }: slideTypes) {
   let [translateRange, changeTranslateRange] = React.useState(-194)
   let [activeBtn, changeActiveBtn] = React.useState(1)
-  console.log(direction, "dofsdfksd");
+
   useEffect(() => {
 
     if (direction === "rtl") {

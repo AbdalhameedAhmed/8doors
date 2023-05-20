@@ -114,7 +114,7 @@ function SignUp() {
                   disabled={submitting}
                   className="inline-block w-full rounded-lg py-3 px-[22px] bg-[#212B36] dark:bg-white text-white dark:text-black"
                   onClick={() => {
-                    activeError(true); console.log("values is", values, errors)
+                    activeError(true)
                   }}
                 >
                   Create account

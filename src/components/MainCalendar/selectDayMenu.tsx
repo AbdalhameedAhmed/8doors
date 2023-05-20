@@ -57,9 +57,9 @@ export default function SelectDayMenu({
         }
       }
       if (dayData.view.type === "timeGridDay") {
-        console.log("done");
+
         left = dayData.dayEl.firstChild?.firstChild?.firstChild?.getBoundingClientRect().x
-        console.log(left)
+
 
       }
 

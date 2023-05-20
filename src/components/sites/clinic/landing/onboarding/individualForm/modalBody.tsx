@@ -1,6 +1,10 @@
 import SuccessImage from "assets/patientOnBoarding/success-tick.svg"
 import styles from "./forms.module.css"
-export default function ModalBody() {
+
+type modalBodyTypes = {
+    handelFormBtn?:()=>void
+}
+export default function ModalBody({handelFormBtn=()=>{}}:modalBodyTypes) {
 
 
     return (
@@ -14,7 +18,7 @@ export default function ModalBody() {
             </div>
             <div className={`modal-footer id-pop-footer ${styles.modFooter} text-center`}>
                 <div className={`${styles.onboardingBtn}`}>
-                    <button>Continue</button>
+                    <button onClick={()=>{handelFormBtn()}}>Continue</button>
                 </div>
             </div>
         </div>

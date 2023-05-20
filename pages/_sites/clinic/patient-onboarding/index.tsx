@@ -18,10 +18,11 @@ import ModalBody from "components/sites/clinic/landing/onboarding/individualForm
 
 
 import OnBoarding from "components/sites/clinic/landing/onboarding"
+import { rootState } from "redux/store";
 export default function PatientOnBoarding() {
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   let [openModal, changeModalState] = React.useState(false)
-  let userInfo = useSelector(state => state.userInfo)
+  let userInfo = useSelector(state => (state as rootState).userInfo)
   const [activeItem, changeActiveItem] = React.useState(0)
   const [nestedActiveForm, changeNestedActiveForm] = React.useState(0)
   const router = useRouter();
@@ -41,6 +42,10 @@ export default function PatientOnBoarding() {
 
   useRemoveScroll(mainDivRef)
 
+  const handelModalBodyBtn = () => {
+    changeModalState(false)
+    changeActiveItem(activeItem + 1)
+  }
   React.useEffect(() => {
     changeNestedActiveForm(0)
   }, [activeItem])
@@ -62,8 +67,8 @@ export default function PatientOnBoarding() {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
         <title>{removeDashAndCapitalize(router.asPath)}</title>
       </Head>
-      <Modal openModal={openModal} layoutColor="bg-[rgba(0,0,0,0.8)]" changeModalState={changeModalState} onModalClose={() => { changeActiveItem(activeItem + 1) }}>
-        <ModalBody />
+      <Modal openModal={openModal} layoutColor="bg-[rgba(0,0,0,0.8)]" changeModalState={changeModalState} >
+        <ModalBody handelFormBtn={handelModalBodyBtn} />
       </Modal>
       <OnBoarding direction={direction} boardingList={boardingList} activeItem={activeItem} nestedActiveForm={nestedActiveForm} changeActiveItem={changeActiveItem} changeNestedActiveForm={changeNestedActiveForm} />
     </div>

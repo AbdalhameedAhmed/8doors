@@ -6,14 +6,11 @@ import LandingLayout from "components/layout/landingLayout"
 import classNames from "classnames";
 import useRemoveScroll from "hooks/useRemoveScroll";
 
-import { ToastContext } from "context/toastContext"
 export default function RegisterPage() {
-    const { toastInfo, setToastInfo } = React.useContext(ToastContext)
     const pageRef = React.useRef(null)
 
     useRemoveScroll(pageRef)
 
-    console.log("Hellooooooooooooo", toastInfo);
 
 
     return (

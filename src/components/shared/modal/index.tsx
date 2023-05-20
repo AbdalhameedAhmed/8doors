@@ -17,11 +17,10 @@ export default function Modal({
   let [resetForm, setResetForm] = useState(false)
 
   const ref = useRef(null);
-  useOnClickOutside(ref, () => openModal && closeModal());
+  useOnClickOutside(ref, () => openModal && onClickOutsideHandler());
 
-  const closeModal = () => {
+  const onClickOutsideHandler = () => {
     if (openModal) {
-
       changeModalState(false);
       setTimeout(() => {
         onModalClose()
@@ -31,12 +30,21 @@ export default function Modal({
 
     }
   }
+  const closeModal = () => {
+    changeModalState(false);
+    setTimeout(() => {
+      onModalClose()
+      setLayout(false);
+      setResetForm(false)
+    }, 300);
+  }
 
   useEffect(() => {
     if (openModal) {
       setLayout(true)
       setResetForm(true)
     } else {
+
       closeModal()
     }
   }, [openModal]);

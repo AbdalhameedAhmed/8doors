@@ -14,15 +14,13 @@ export default function useCustomToast() {
         newToast.fitScreen = fitScreen
         newToast.isOpen = true
         newToast.underCrumb = underCrumb
-        console.log("loooook", newToast);
+
 
         setToastInfo(newToast)
 
         setTimeout(() => {
-            console.log("doneeeenfkdfk");
             const closeToast = { ...toastInfo }
             closeToast.isOpen = false
-            console.log(closeToast);
 
             setToastInfo(closeToast)
         }, duration)

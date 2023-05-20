@@ -26,7 +26,6 @@ export default function StepOne({ changeActiveItem, direction, activeItem, chang
 
   }, [initialInputValues])
 
-  console.log(initialInputValues);
 
   return (
     <div className={` ${styles.onboardingContentBox} ${styles.contentWrap}`}>

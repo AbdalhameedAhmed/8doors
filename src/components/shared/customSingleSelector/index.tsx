@@ -35,7 +35,6 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
 
         onClick={() => {
           openMenu(!menu);
-          console.log(ref.current.parentElement?.classList.contains("!relative"));
         }}
 
         {...input}
@@ -55,7 +54,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
           menuStyle
         )}
       >
-        <ul className="w-full">
+        <ul className={classNames("w-full", { "text-left": direction === "rtl" })}>
           {options.map((item: string, index: number) => (
             <li
               key={index}

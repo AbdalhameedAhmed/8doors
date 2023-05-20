@@ -3,24 +3,25 @@ import styles from "./onBoarding.module.css"
 import SideImg from "assets/doctorOnBoarding/onb-slide-img.png"
 import Image from "next/image"
 import { useEffect } from "react";
-
-export default function LeftPanel() {
-  const [preScrollNum, changePreScrollNum] = React.useState(null)
+type LeftPanelTypes = {
+  direction: "ltr" | "rtl"
+}
+export default function LeftPanel({ direction }: LeftPanelTypes) {
+  const [preScrollNum, changePreScrollNum] = React.useState<null | number>(null)
   const [span, activeSpan] = React.useState(0)
   function scrollLeft() {
     const scrollSection = document.querySelector("#sideScroll");
 
-    if (scrollSection?.scrollLeft > 500) {
+    if ((scrollSection as HTMLElement).scrollLeft > 500 || (scrollSection as HTMLElement).scrollLeft < -500) {
       scrollSection!.scrollLeft = 0;
       changePreScrollNum(null)
-      console.log("done");
       activeSpan(0)
 
     } else {
-      scrollSection!.scrollLeft += 300;
+      direction === "ltr" ? scrollSection!.scrollLeft += 300 : scrollSection!.scrollLeft -= 300;
       activeSpan(span + 1)
     }
-    changePreScrollNum(scrollSection?.scrollLeft)
+    changePreScrollNum((scrollSection as HTMLElement).scrollLeft)
   }
 
   useEffect(() => {
@@ -28,9 +29,9 @@ export default function LeftPanel() {
       scrollLeft()
     }, 5000)
 
-
     return () => clearInterval(intervalId);
-  }, [preScrollNum])
+
+  }, [preScrollNum, direction])
 
 
   return (

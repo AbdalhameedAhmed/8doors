@@ -7,7 +7,6 @@ export default function CustomToast() {
     const { toastInfo } = React.useContext(ToastContext)
 
 
-    console.log(toastInfo.underCrumb, "toskgfsk");
 
     React.useEffect(() => {
         openToast(toastInfo.isOpen)
