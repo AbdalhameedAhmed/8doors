@@ -3,10 +3,6 @@ import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import store, { persistor } from 'redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
-import ThemeSettings from "components/themeSettings"
-
-import { ToastContext } from "context/toastContext"
-
 import { appWithTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { ToastContainer } from 'react-toastify'
@@ -15,7 +11,7 @@ import { useRouter } from 'next/router';
 import { ThemeProvider } from 'theme-ui';
 import { theme } from '../theme/index';
 import CustomToast from "components/customToast"
-
+import {ToastContextProvider} from "context/toastContext"
 import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.css';
 // import "./bootstrap.min.css"
@@ -23,14 +19,7 @@ import '../styles/globals.css';
 
 function App({ Component, pageProps }: AppProps) {
 
-  const [toastInfo, setToastInfo] = useState({
-    isOpen: false,
-    message: "Add your info",
-    type: "success",
-    fitScreen: false,
-    underCrumb: false
 
-  })
 
   const router = useRouter();
 
@@ -53,7 +42,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <ToastContext.Provider value={{ toastInfo, setToastInfo }}>
+      <ToastContextProvider>
 
         <PersistGate persistor={persistor} />
         <ToastContainer />
@@ -69,7 +58,7 @@ function App({ Component, pageProps }: AppProps) {
 
           <Component {...pageProps} />
         </ThemeProvider>
-      </ToastContext.Provider>
+      </ToastContextProvider>
     </Provider>
   );
 }
