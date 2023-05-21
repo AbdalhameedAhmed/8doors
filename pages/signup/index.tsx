@@ -20,7 +20,7 @@ export default function Signup() {
 
   return (
     <SignInSignOutLayout title="Manage the job more effectively with 8doors
-    " type="SIGN IN" signOnClick={() => router.push('/login')}>
+    " type="SIGN IN" >
       <SignUpContainer />
     </SignInSignOutLayout>
   );

@@ -9,7 +9,7 @@ import Doctor from "assets/undraw_doctor_kw5l.png"
 
 interface signinSignoutTypes {
   children?: React.ReactNode;
-  title: string
+  title?: string
   type?: 'SIGN UP' | 'SIGN IN';
   cardContainerStyle?: string;
 }

@@ -21,9 +21,16 @@ export default function Register() {
     const router = useRouter()
 
     const submitForm = (formInfo: FormEvent<HTMLFormElement>) => {
+
+        const target = formInfo.target as HTMLFormElement;
+        const name = (target[0] as HTMLInputElement).value;
+        const mobile = (target[1] as HTMLInputElement).value;
+        const email = (target[2] as HTMLInputElement).value;
+
         formInfo.preventDefault()
-        dispatch(addUserInfo({ name: formInfo.target[0].value, mobile: formInfo.target[1].value, email: formInfo.target[2].value }))
+        dispatch(addUserInfo({ name, mobile, email }));
         router.push("/patient-onboarding")
+
     }
 
     return (

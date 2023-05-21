@@ -14,7 +14,7 @@ function ResetPassword() {
   },[router.asPath])
   
   return (
-    <SignInSignOutLayout type="SIGN IN" signOnClick={() => router.push('/login')}>
+    <SignInSignOutLayout type="SIGN IN" >
       <ResetPasswordContainer />
     </SignInSignOutLayout>
   );

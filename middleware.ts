@@ -22,8 +22,12 @@ export default function middleware(req: NextRequest) {
   if (pathname.startsWith(`/_sites`)) {
     return new Response(null, { status: 404 });
   }
-  if (
-    !pathname.includes('.') && // exclude all files in the public folder
+
+  if (!pathname.includes('_sites') && !hostname?.includes('clinic')) {
+    return NextResponse.rewrite(`${origin}${pathname}`);
+  }
+
+  if (!pathname.includes('.') && // exclude all files in the public folder
     !pathname.startsWith('/api') // exclude all API routes
   ) {
     // rewrite to the current hostname under the pages/sites folder
