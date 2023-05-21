@@ -30,7 +30,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
       <div
         className={classNames(
           "cursor-pointer flex justify-between items-center options-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
-          { "border-sky-500": menu, "border-b-transparent": menu, "rounded-b-none": menu, "mt-4": menu, "ring-sky-500": menu, "ring-1": menu, "flex-row-reverse": direction }, inputStyle
+          { "border-sky-500": menu, "border-b-transparent": menu, "rounded-b-none": menu, "mt-4": menu, "ring-sky-500": menu, "ring-1": menu, "flex-row-reverse": direction==="rtl" }, inputStyle
         )}
 
         onClick={() => {
