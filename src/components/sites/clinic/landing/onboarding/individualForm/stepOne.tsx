@@ -8,7 +8,7 @@ type stepOneTypes = {
   nestedActiveForm: number
   changeActiveItem: Dispatch<SetStateAction<number>>
   changeNestedActiveForm: Dispatch<SetStateAction<number>>
-  initialInputValues: { name?: string, mobile?: string, email?: string }
+  initialInputValues: { name?: string|undefined, mobile?: string|undefined, email?: string|undefined }
   direction: "rtl" | "ltr"
 }
 

@@ -31,7 +31,7 @@ export default function Footer({ direction = "ltr" }: footerTypes) {
                   <p className={classNames("text-logo text-4xl font-bold transition-all duration-300 inline-block")}>8doors</p>
                 </div>
                 <div className={`${styles.footerAboutContent}`}>
-                  <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  <p className="mb-4 w-3/4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                   <div className={`${styles.socialIcon}`}>
                     <ul>
                       <li className={`${direction === "rtl" && "!ml-[15px]"}`}>

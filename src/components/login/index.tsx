@@ -4,24 +4,30 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 import { Form, Field } from "react-final-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import LoginInput from "./LoginInput";
 import PasswordInput from "./PasswordInput";
+import { formValdate } from "./formValidate";
 import { LoginFormData } from "types";
 import { addUser } from "redux/slices/auth"
 import { useLoginMutation } from "redux/services/clinic/auth"
 import useToast from "hooks/useToast";
+import { toSubDomain } from "utiles";
+
 
 import FireIcon from "assets/ic_firebase.png";
 import Twitter from "assets/twitter.svg"
 import Github from "assets/github.svg"
 import Google from "assets/google.svg"
+import { rootState } from "redux/store";
 
 
 
 export default function SignIn() {
   const [error, activeError] = React.useState(false)
+  const token = useSelector(state => (state as rootState).auth.user.token)
+
   const { t } = useTranslation("common");
   const [postData] = useLoginMutation()
   const dispatch = useDispatch()
@@ -33,7 +39,11 @@ export default function SignIn() {
     await postData({ username: values.username, password: values.password }).unwrap()
       .then((res) => {
         dispatch(addUser(res))
-        router.push("/dashboard")
+        localStorage.setItem("token", res.token)
+        // router.push(toSubDomain("clinic", `dashboard?token=${res.token}`))
+        router.push("/")
+
+
       })
       .catch(() => {
         addToast("error", "Username or password is wrong")
@@ -51,17 +61,7 @@ export default function SignIn() {
         <Form
           onSubmit={onSubmit}
 
-          validate={(values): Record<string, string> => {
-            const errors: Record<string, string> = {};
-
-            if (!values.username) {
-              errors.username = "This field is required";
-            }
-            if (!values.password) {
-              errors.password = "This field is required";
-            }
-            return errors;
-          }}
+          validate={(values): Record<string, string> => formValdate(values)}
 
           render={({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
@@ -71,6 +71,7 @@ export default function SignIn() {
                     <LoginInput
                       label=""
                       placeholder={"Email"}
+                      inputStyle="focus:border-floating-border"
                       error={meta.error}
                       errorActive={error}
                       type="text"
@@ -86,6 +87,7 @@ export default function SignIn() {
                   <>
                     <PasswordInput
                       placeholder={"Password"}
+                      inputStyle="focus:border-floating-border"
                       errorActive={error}
                       error={meta.error}
                       {...input}

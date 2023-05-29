@@ -11,7 +11,7 @@ import { useGetClinicsQuery } from "redux/services/clinic/addAndGetClinics"
 import { useDeleteClinicMutation } from 'redux/services/clinic/deleteClinic';
 import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
 import { rootState } from "redux/store"
-import { removeDashAndCapitalize } from "utiles"
+import { removeDashAndCapitalize, removeQueryParams } from "utiles"
 import useToast from 'hooks/useToast';
 
 import Edit from "assets/pen-to-square-solid.svg"
@@ -41,7 +41,7 @@ export default function Dashboard() {
     setModal(!modal)
 
   }
-
+    
   const joinBtnHandler = (clinic: clinicData) => {
     router.push('/clinic-dashboard');
     dispatch(changeActiveClinic(clinic))
@@ -63,6 +63,7 @@ export default function Dashboard() {
     !(clinics == undefined || clinics.length) ? changeBtnState(false) : changeBtnState(true)
     refetch()
   }, [clinics, apiClinicsData, router.asPath, refetch,activeClinic])
+  
 
   return (
     <>

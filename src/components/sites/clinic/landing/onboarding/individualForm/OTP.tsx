@@ -3,9 +3,10 @@ import { useRef, useEffect } from 'react';
 interface OtpInputProps {
   length: number;
   onChange: (otp: string) => void;
+  inputStyle?:string
 }
 
-export default function OtpInput({ length, onChange }: OtpInputProps) {
+export default function OtpInput({ length, onChange,inputStyle }: OtpInputProps) {
   const inputsRef = useRef<HTMLInputElement[]>([]);
   const handleChange = (index: number, value: string) => {
     const otp = inputsRef.current
@@ -32,6 +33,7 @@ export default function OtpInput({ length, onChange }: OtpInputProps) {
           key={index}
           type="text"
           maxLength={1}
+          className={inputStyle}
           ref={ref => inputsRef.current[index] = ref}
           onChange={event => handleChange(index, event.target.value)}
           onKeyDown={event => handleKeyDown(index, event)}

@@ -26,7 +26,8 @@ module.exports = {
           secondary: "var(--theme-secondary)"
         },
         gray: "#637381",
-        "main-border": "rgba(145, 158, 171, 0.24)"
+        "main-border": "rgba(145, 158, 171, 0.24)",
+        "floating-border":"#09e5ab"
 
       },
       textColor: {

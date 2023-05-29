@@ -27,7 +27,7 @@ function App({ Component, pageProps }: AppProps) {
     let storagedLang = localStorage.getItem("lang")
     let storagedDir = localStorage.getItem("dir")
 
-
+    
 
     storagedLang
       ? document?.querySelector('html')?.setAttribute('lang', storagedLang)

@@ -17,7 +17,7 @@ import LandingLayout from "components/layout/landingLayout";
 import Blogs from "components/sites/clinic/landing/Blogs";
 
 
-export default function Landing1() {
+export default function Index() {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const router = useRouter();
@@ -47,7 +47,7 @@ export default function Landing1() {
         <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;300;400;500;600;700;800;900" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
       </Head>
-      <LandingLayout>
+      <LandingLayout uncompletedInfo={true}>
 
         <Hero direction={direction} />
 

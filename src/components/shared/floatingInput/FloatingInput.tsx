@@ -29,7 +29,7 @@ export default function FloatingInput({
 }: LoginInputTypes) {
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mb-6">
 
       <div className="relative">
         <input type={props.type} name={props.name} id={props.name} placeholder=" " className={classNames("block p-4 w-full text-gray-900 dark:text-white bg-transparent rounded-lg border-[1px] border-gray-300 dark:border-[#3D464F] appearance-none hover:border-[rgb(118,118,118)] dark:hover:border-white dark:focus:border-white focus:border-[rgb(118,118,118)] focus:outline-none focus:ring-0 peer", { "!border-red-500": error && errorActive }, inputStyle)} {...props} />

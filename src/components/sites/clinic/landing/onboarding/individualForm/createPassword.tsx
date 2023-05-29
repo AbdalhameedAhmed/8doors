@@ -31,15 +31,19 @@ export default function CreatePassword({ changeActiveItem, activeItem, changeMod
           <div className="row">
             <div className="col-lg-12">
               <div className={`${styles.formGroup} pass-group`}>
+              <div className={`input-placeholder ${styles.formFocus} ${styles.passcodeWrap} mail-box`}>
 
                 <FloatingInput placeholder="Enter new password" name="password" type={"password"} inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                </div>
               </div>
 
             </div>
             <div className="col-lg-12">
               <div className={`${styles.formGroup}`}>
+              <div className={`input-placeholder ${styles.formFocus} ${styles.passcodeWrap} mail-box`}>
 
                 <FloatingInput placeholder="Enter confirm password" name="confirm Password" type={"password"} inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                </div>
               </div>
             </div>
           </div>

@@ -14,6 +14,7 @@ const nextConfig = {
       },
     ];
   },
+  documentDomain: "localhost:3000",
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

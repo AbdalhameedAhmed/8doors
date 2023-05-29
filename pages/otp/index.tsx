@@ -8,15 +8,14 @@ import LandingLayout from "components/layout/landingLayout";
 
 import OtpPage from "components/sites/clinic/otp"
 import BreadCrumb from "components/sites/clinic/landing/BreadCrumb"
-import useCustomToast from "hooks/useCustomToast"
+import { useRouter } from "next/router";
 
 export default function Otp() {
     const ref = React.useRef(null)
-    const customToast = useCustomToast()
+    const router = useRouter()
+
     const handelBtn = () => {
-        customToast("success", "Hello otp", true, true)
-
-
+        router.push("/")
     }
 
     useRemoveScroll(ref)

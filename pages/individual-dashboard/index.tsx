@@ -6,7 +6,7 @@ import useRemoveScroll from "hooks/useRemoveScroll";
 import { removeDashAndCapitalize } from "utiles"
 
 import LandingLayout from "components/layout/landingLayout"
-import DoctorDashboardContainer from "components/sites/clinic/landing/dashboard";
+import DashboardContent from "components/sites/clinic/landing/dashboard";
 import classNames from "classnames";
 
 import patientImage from "assets/dashboard/patient.jpg"
@@ -20,8 +20,13 @@ import UsersIcon from "assets/dashboard/users-solid.svg"
 import WaveFileIcon from "assets/dashboard/file-waveform-solid.svg"
 import LitIcon from "assets/dashboard/rectangle-list-solid.svg"
 import ClipboardIcon from "assets/dashboard/clipboard-solid.svg"
+import IdIcon from "assets/dashboard/id-card-solid.svg"
+import UserInfo from "components/sites/clinic/landing/dashboard/individualCards/profileSettings/userInfo";
+import IdInfo from "components/sites/clinic/landing/dashboard/individualCards/idInformation"
+
 
 export default function IndividualDashboard() {
+  const [activeItem,setActiveItem] = React.useState(0)
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const pageRef = React.useRef(null)
   const router = useRouter()
@@ -53,7 +58,12 @@ export default function IndividualDashboard() {
       icon: <WaveFileIcon />
     }, {
       title: "Profile Settings",
-      icon: <USerGearIcon />
+      icon: <USerGearIcon />,
+      component:<UserInfo key={0} />
+    }, {
+      title: "Id information",
+      icon: <IdIcon />,
+      component:<IdInfo key={0} direction={direction}/>
     }, {
       title: "Change Password",
       icon: <LockIcon />
@@ -77,7 +87,7 @@ export default function IndividualDashboard() {
 
     document.title = removeDashAndCapitalize(router.asPath)
 
-  }, [router.asPath])
+  }, [router.asPath,activeItem])
 
 
 
@@ -92,7 +102,7 @@ export default function IndividualDashboard() {
 
 
       <LandingLayout showBreadCrumb={true} >
-        <DoctorDashboardContainer direction={direction} userInfo={userInfo} items={doctorItems} />
+        <DashboardContent direction={direction} userInfo={userInfo} items={doctorItems} activeItem={activeItem} setActiveItem={setActiveItem} />
       </LandingLayout>
     </div>
   )

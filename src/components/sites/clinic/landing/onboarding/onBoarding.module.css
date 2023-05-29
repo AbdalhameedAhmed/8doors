@@ -18,15 +18,13 @@
 
 .onboardImg {
   /* padding: 70px 0px 20px 0px; */
-  animation: mymove 1s ease-in-out infinite alternate;
   text-align: center;
   width: 240px;
   /* margin: auto; */
 }
 
 .onboardImg img {
-  animation: imageAnimation 2000ms infinite;
-  display: flex;
+  /* animation: imageAnimation 2000ms infinite; */
 }
 
 .onboardingSlider {

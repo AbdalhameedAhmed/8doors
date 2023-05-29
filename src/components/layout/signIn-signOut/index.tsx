@@ -28,7 +28,7 @@ function SignInSignOutLayout({ type = 'SIGN UP', children, title, cardContainerS
         </div>
       </div>
 
-      <div className={classNames('w-[480px] pt-[240px] xs:py-[120px] sm:py-[120px] md:py-[120px]  flex justify-center items-center xs:w-full bg-primary sm:w-full md:w-full', cardContainerStyle)}>
+      <div className={classNames('w-[600px] px-[60px] pt-[240px] xs:py-[120px] sm:py-[120px] md:py-[120px]  flex justify-center items-center xs:w-full bg-primary sm:w-full md:w-full', cardContainerStyle)}>
         {children}
       </div>
 

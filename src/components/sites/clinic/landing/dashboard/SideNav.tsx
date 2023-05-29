@@ -1,8 +1,9 @@
-import React from "react"
+import React, { Dispatch, SetStateAction } from "react"
 
 import styles from "./dashboard.module.css"
 
-import DoctorImage from "assets/doctor-thumb-02.jpg"
+import NoUser from "assets/dashboard/blank-profile-picture-973460_1280.webp"
+import UploadIcon from "assets/dashboard/upload-solid.svg"
 
 import classNames from "classnames"
 import { ImageProps } from "theme-ui"
@@ -11,13 +12,18 @@ type sideNavTypes = {
   items: { title: string, icon: React.ReactNode }[]
   userInfo: { image: ImageProps, name: string, moreInfo: string, location?: string }
   direction: "ltr" | "rtl"
+  setActiveItem: Dispatch<SetStateAction<number>>
+  activeItem: number
 }
-export default function SideNav({ items, userInfo, direction }: sideNavTypes) {
+export default function SideNav({ items, userInfo, direction, activeItem, setActiveItem }: sideNavTypes) {
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
 
 
+  const handelLiClick = (index: number) => {
+    setActiveItem(index)
+  }
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -41,9 +47,18 @@ export default function SideNav({ items, userInfo, direction }: sideNavTypes) {
       <div style={{ paddingTop: "0px", paddingBottom: "1px", position: "static", transform: "none", top: " 0px", left: "30px" }}><div className={`${styles.profileSidebar}`}>
         <div className={`${styles.widgetProfile}`}>
           <div className={`${styles.profileInfoWidget}`}>
-            <a href="#" className={`${styles.bookingDocImg}`}>
-              <img src={userInfo.image.src} alt="User Image" />
-            </a>
+
+            <div className={`${styles.bookingDocImg}`}>
+              <img src={userInfo.image ? userInfo.image.src : NoUser.src} alt="User Image" />
+              <div className={`${styles.uploadPhoto} cursor-pointer`}>
+                <input type="file" className="cursor-pointer"/>
+                <span>
+                  <UploadIcon/> 
+                  Upload</span>
+              </div>
+            </div>
+
+
             <div className={`${styles.profileDetInfo}`}>
               <h3>{userInfo.name}</h3>
               <div className={`${styles.patientDetails}`}>
@@ -58,13 +73,13 @@ export default function SideNav({ items, userInfo, direction }: sideNavTypes) {
             <ul>
               {
                 items.map((item, index) => (
-                  <li key={index} className={`${index === 0 && styles.active}`}>
-                    <a href="doctor-dashboard.html">
+                  <li key={index} onClick={() => { handelLiClick(index) }} className={`${index === activeItem && styles.active}`}>
+                    <p>
                       {
                         item.icon
                       }
                       <span className={`${direction === "ltr" ? "ml-[10px]" : "mr-[10px]"}`}>{item.title}</span>
-                    </a>
+                    </p>
                   </li>
                 ))
               }

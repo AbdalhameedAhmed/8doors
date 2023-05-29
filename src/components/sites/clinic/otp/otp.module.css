@@ -1,7 +1,13 @@
+.otpContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .onboardingContentBox.contentWrap {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     min-height: 580px;
     width: fit-content;
   }
@@ -10,9 +16,9 @@
     margin-top: 20px;
     padding: 50px;
     background: #FFFFFF;
-    box-shadow: 0px 24px 24px rgb(212 237 255 / 30%);
-    border-radius: 4px;
-    border: 1px solid #E6E9F4;
+    /* box-shadow: 0px 24px 24px rgb(212 237 255 / 30%); */
+    /* border-radius: 4px; */
+    /* border: 1px solid #E6E9F4; */
   }
   
 
@@ -79,12 +85,16 @@
     .onboardingContentBox {
       padding: 30px;
     }    
-   
+    .otpImage{
+      display: none;
+    }
     
 }
 
 @media only screen and (max-width: 575.98px) {
-  
+  .otpContainer{
+    flex-direction: column;
+  }
     .onboardingContentBox {
       padding: 20px;
     }

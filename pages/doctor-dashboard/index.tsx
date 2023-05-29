@@ -26,6 +26,7 @@ import Logout from "assets/dashboard/right-from-bracket-solid.svg"
 
 export default function DoctorDashboard() {
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
+  const [activeItem,setActiveItem] = React.useState(0)
   const pageRef = React.useRef(null)
   const router = useRouter()
   const doctorItems = [
@@ -100,7 +101,7 @@ export default function DoctorDashboard() {
 
 
       <LandingLayout showBreadCrumb={true} >
-        <DoctorDashboardContainer direction={direction} items={doctorItems} userInfo={userInfo} />
+        <DoctorDashboardContainer direction={direction} activeItem={activeItem} setActiveItem={setActiveItem} items={doctorItems} userInfo={userInfo} />
       </LandingLayout>
     </div>
   )

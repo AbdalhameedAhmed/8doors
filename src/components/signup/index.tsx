@@ -60,6 +60,7 @@ function SignUp() {
                         label=""
                         placeholder={"Username"}
                         error={meta.error}
+                        inputStyle="focus:border-floating-border"
                         errorActive={error}
                         type="text"
                         {...input}
@@ -76,6 +77,7 @@ function SignUp() {
                         label=""
                         placeholder={"Email"}
                         error={meta.error}
+                        inputStyle="focus:border-floating-border"
                         errorActive={error}
                         type="text"
                         {...input}
@@ -91,6 +93,7 @@ function SignUp() {
                       <PasswordInput
                         placeholder={"Password"}
                         errorActive={error}
+                        inputStyle="focus:border-floating-border"
                         error={meta.error}
                         {...input}
                       />
@@ -103,6 +106,7 @@ function SignUp() {
                       <PasswordInput
                         placeholder={"Confirm"}
                         errorActive={error}
+                        inputStyle="focus:border-floating-border"
                         error={meta.error}
                         {...input}
                       />

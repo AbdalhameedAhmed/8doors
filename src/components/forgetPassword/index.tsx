@@ -9,7 +9,7 @@ import Lock from "assets/lock-security-open-svgrepo-com.svg"
 import LeftIcon from "assets/left-arrow.svg"
 
 
-function Index() {
+export default function ForgetPassword() {
   const { t } = useTranslation('common');
   const [error, activeError] = React.useState(false)
 
@@ -49,6 +49,7 @@ function Index() {
                     label=""
                     placeholder={"Email"}
                     error={meta.error}
+                    inputStyle="focus:border-floating-border"
                     errorActive={error}
                     type="text"
                     {...input}
@@ -81,4 +82,3 @@ function Index() {
   );
 }
 
-export default Index;

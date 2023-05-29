@@ -25,11 +25,52 @@
   padding: 8px;
   background-color: #f7f7f7;
   border-radius: 50%;
+  position: relative;
+  overflow: hidden;
 }
 .widgetProfile .profileInfoWidget .bookingDocImg img {
   border-radius: 50%;
   height: 120px;
   width: 120px;
+}
+.widgetProfile .profileInfoWidget .bookingDocImg .uploadPhoto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: none;
+}
+.widgetProfile .profileInfoWidget .bookingDocImg:hover .uploadPhoto {
+  display: block;
+}
+.widgetProfile .profileInfoWidget .bookingDocImg .uploadPhoto input {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.widgetProfile .profileInfoWidget .bookingDocImg .uploadPhoto span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+
+}
+.widgetProfile .profileInfoWidget .bookingDocImg .uploadPhoto span svg {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 2px;
 }
 .profileDetInfo{
   overflow: hidden;
@@ -66,32 +107,32 @@
   border-bottom: 1px solid #f0f0f0;
   position: relative;
   line-height: inherit;
-
+  cursor: pointer;
 }
-.dashboardMenu > ul > li > a {
+.dashboardMenu > ul > li > p {
   color: #757575;
   display: flex;
   align-items: center;
   padding: 16px 20px;
 }
-.dashboardMenu > ul > li > a span {
+.dashboardMenu > ul > li > p span {
   margin-top: 1px;
 }
 
-.dashboardMenu > ul > li:hover > a, .dashboardMenu > ul > li.active > a {
+.dashboardMenu > ul > li:hover > p, .dashboardMenu > ul > li.active > p {
   color: #0de0fe;
 }
 
- .dashboardMenu > ul > li > a svg{
+ .dashboardMenu > ul > li > p svg{
   width: 16px;
   height: 16px;
   display: inline-block;
   fill: #757575;
 } 
-.dashboardMenu > ul > li:hover > a svg{
+.dashboardMenu > ul > li:hover > p svg{
   fill: #0de0fe;
 }
-.dashboardMenu > ul > li:hover > a, .dashboardMenu > ul > li.active > a svg {
+.dashboardMenu > ul > li:hover > p, .dashboardMenu > ul > li.active > p svg {
   fill: #0de0fe;
 }
 

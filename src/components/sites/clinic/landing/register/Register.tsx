@@ -29,7 +29,7 @@ export default function Register() {
 
         formInfo.preventDefault()
         dispatch(addUserInfo({ name, mobile, email }));
-        router.push("/patient-onboarding")
+        router.push("/otp")
 
     }
 
@@ -54,14 +54,14 @@ export default function Register() {
 
                                         <form onSubmit={(eve) => { submitForm(eve) }}>
                                             <div className={`${styles.formGroup} ${styles.formFocus} `}>
-                                                <FloatingInput placeholder="Name" name="name" inputStyle="!p-2" placeholderStyles="bg-white z-0" />
+                                                <FloatingInput placeholder="Name" name="name" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0" />
                                             </div>
                                             <div className={`${styles.formGroup} ${styles.formFocus}`}>
-                                                <FloatingInput placeholder="Mobile Number" name="mobile" inputStyle="!p-2" placeholderStyles="bg-white z-0" />
+                                                <FloatingInput placeholder="Mobile Number" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" name="mobile" placeholderStyles="!bg-[#F5F6FA] z-0" />
 
                                             </div>
                                             <div className={`${styles.formGroup} ${styles.formFocus} `}>
-                                                <FloatingInput placeholder="Your Email Address" name="email" inputStyle="!p-2" placeholderStyles="bg-white z-0" />
+                                                <FloatingInput placeholder="Your Email Address" name="email" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0" />
                                             </div>
                                             <div className={`row ${styles.selectRegisterType}`}>
                                                 <div className={`col-4 ${styles.registerOption}`}>
@@ -85,18 +85,6 @@ export default function Register() {
                                                 <a className={`${styles.forgotLink} hover:text-[#09dca4]`} href="login.html">Already have an account?</a>
                                             </div>
                                             <button className={`btn btn-primary w-100 btn-lg ${styles.loginBtn} ${styles.loginBtnPrimary} hover:bg-[#10DEFD] hover:border-[#10DEFD]`} type="submit">Signup</button>
-                                            <div className={`${styles.loginOr}`}>
-                                                <span></span>
-                                                <span>or</span>
-                                            </div>
-                                            <div className="row form-row social-login">
-                                                <div className="col-6">
-                                                    <a href="#" className={`btn ${styles.btnFacebook} w-100 hover:text-white`}><i className="fab fa-facebook-f me-1"></i> Login</a>
-                                                </div>
-                                                <div className="col-6">
-                                                    <a href="#" className={`btn ${styles.btnGoogle} w-100 hover:text-white`}><i className="fab fa-google me-1"></i> Login</a>
-                                                </div>
-                                            </div>
                                         </form>
 
                                     </div>

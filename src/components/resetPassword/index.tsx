@@ -3,85 +3,79 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import classNames from "classnames";
 
-import { CustomInput } from "components/shared";
-import CustomBtn from "components/shared/button/CustomBtn";
+import { formValdate } from "./formValidate";
+import FloatingInput from "components/shared/floatingInput/FloatingInput";
 
-import Logo from "../../assets/logo.svg";
+import Link from "next/link";
 
-function index() {
+export default function ResetPassword() {
+  const [error, activeError] = React.useState(false)
+
   const onSubmit = async (values: any) => {
-
     window.alert("done");
 
   };
 
   return (
-    <div className="self-center px-10 py-10 w-96">
-      <div className="flex  align-center justify-center">
-        <Logo style={{ height: 65, width: 65 }} />
-      </div>
-      <h1 className="text-[1.57em] text-white text-center">Forgot Password?</h1>
-      <h4 className="text-white text-center">Enter your new password.</h4>
-      <Form
-        onSubmit={onSubmit}
-        validate={(values) => {
-          const errors: any = {};
-          if (!values.password) {
-            errors.password = "This field is required";
-          }
-          if (!values.confirm) {
-            errors.confirm = "This field is required";
-          } else if (values.password !== values.confirm) {
-            errors.confirm = "Must Match";
-          }
+    <>
+      <div className={`self-start w-full px-[64px] xs:!w-[448px] xs:px-0 sm:!w-[448px] sm:px-0 md:!w-[448px] md:px-0`}>
+        <div className="flex flex-col align-start justify-center mb-[40px] relative">
+          <p className="text-primary text-[1.5rem] font-[700]">Reset password</p>
+          <p className="text-custom mt-4 text-primary">Already have an account?  <Link href="/login" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Sign in</Link></p>
+        </div>
 
-          return errors;
-        }}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <Field name="password">
-              {({ input, meta }) => (
-                <CustomInput
-                  placeholder="Enter New Password"
-                  label={""}
-                  className={classNames(
-                    `signin-signout-input w-full rounded-lg `,
-                    { "!border-red-500": meta.error && meta.touched }
-                  )}
-                  type="password"
-                  error={meta.error}
-                  touched={meta.touched}
-                  {...input}
-                />
-              )}
-            </Field>
-            <Field name="confirm">
-              {({ input, meta }) => (
-                <CustomInput
-                  placeholder="Confirm new password"
-                  label={""}
-                  className={classNames(
-                    `signin-signout-input w-full rounded-lg `,
-                    { "!border-red-500": meta.error && meta.touched }
-                  )}
-                  type="password"
-                  error={meta.error}
-                  touched={meta.touched}
-                  {...input}
-                />
-              )}
-            </Field>
-            <CustomBtn fit={true} type="submit" className="py-4 mt-8 bg-sky-500/100">
-              Change password
-            </CustomBtn>
-            <p className="my-2 text-sm text-white text-center flex justify-center">
-              <b>Need Help?</b>
-            </p>
-          </form>
-        )}
-      ></Form>
-    </div>
+        <Form
+          onSubmit={onSubmit}
+          validate={(values): Record<string, string> => formValdate(values)}
+          render={({ handleSubmit, submitting }) => (
+            <form onSubmit={handleSubmit}>
+              <Field name="password">
+                {({ input, meta }) => (
+                  <FloatingInput
+                    placeholder="New password"
+                    type="password"
+                    inputStyle="focus:border-floating-border"
+                    errorActive={error}
+                    error={meta.error}
+                    {...input}
+                  />
+                )}
+              </Field>
+              <Field name="confirm">
+                {({ input, meta }) => (
+                  <FloatingInput
+                    placeholder="Confirm new password"
+                    inputStyle="focus:border-floating-border"
+                    type="password"
+                    errorActive={error}
+                    error={meta.error}
+                    {...input}
+                  />
+                )}
+              </Field>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="inline-block w-full rounded-lg py-3 px-[22px] bg-[#212B36] dark:bg-white text-white dark:text-black"
+                onClick={() => { activeError(true) }}
+              >
+                Create account
+              </button>
+              <p className="my-2 text-sm text-white text-center flex justify-center">
+                <b>Need Help?</b>
+              </p>
+            </form>
+          )}
+        ></Form>
+
+
+
+      </div>
+
+    </>
   );
 }
 
-export default index;
+
+
+

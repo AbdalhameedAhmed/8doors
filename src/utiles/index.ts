@@ -12,3 +12,22 @@ export function extractLastWordFromUrl(url: string) {
   const lastPart = parts[parts.length - 1];
   return lastPart.charAt(0).toUpperCase() + lastPart.slice(1);
 }
+
+export function toSubDomain (subDomain:string,path:string){
+  let domain = process.env.NEXT_PUBLIC_WEB_DOMAIN
+  console.log(domain);
+  
+
+
+  return `http://${subDomain&&subDomain+"."}${domain}/${path}`
+}
+
+export function removeQueryParams(url:string) {
+  const index = url.indexOf('?');
+  
+  if (index === -1) {
+    return url;
+  }
+  
+  return url.substring(0, index);
+}

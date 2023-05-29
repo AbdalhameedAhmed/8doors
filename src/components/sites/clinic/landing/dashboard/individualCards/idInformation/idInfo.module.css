@@ -1,0 +1,97 @@
+
+.infoCard {
+  border: 1px solid #f0f0f0;
+  margin-bottom: 1.875rem;
+}
+
+.infoCardBody {
+  padding: 1.5rem;
+}
+
+.infoGroup {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+
+.relativeForm {
+  position: relative;
+  border: 1px solid #E6E9F4;
+  border-radius: 5px;
+  min-height: 54px;
+  padding: 6px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.relativeFileUpload {
+  color: #000;
+  padding: 11px 35px;
+  font-size: 14px;
+  margin-bottom: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 4px;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  transition: 0.7s;
+  background: #F5F6FA;
+  border-radius: 4px;
+}
+
+.relativeFileUpload:hover {
+  color: #fff;
+  background: #bdb8b8;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.relativeFileUpload input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: #fff;
+    cursor: inherit;
+    display: block;
+}
+
+.submitSection button {
+  padding: 12px 30px;
+  font-weight: 600;
+  font-size: 16px;
+  min-width: 120px;
+  background-color: #09e5ab;
+  border: 1px solid #09e5ab;
+}
+
+.submitSection button:hover,.submitSection button:focus{
+  background-color: #10DEFD;
+  border: 1px solid #10DEFD;
+  box-shadow: none;
+}
+.submitSection button:focus {
+  outline: none;
+}
+
+.loginOr {
+  color: #d4d4d4;
+  margin-bottom: 1.25rem;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: relative;
+}
+.loginOr span:first-child {
+  background-color: #e5e5e5;
+  height: 1px;
+  margin-bottom: 0;
+  margin-top: 0;
+  display: block;
+}

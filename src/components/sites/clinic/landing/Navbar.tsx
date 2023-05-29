@@ -1,13 +1,11 @@
 import React from "react"
 import classNames from "classnames";
-import Link from "next/link";
 import Bars from "assets/bars.svg"
-import DownIcon from "assets/angle-down-solid.svg"
 import useWindowSize from "hooks/useWindowSize";
 import Hospital from "assets/hospital-svgrepo-com.svg"
 import useOnClickOutside from "hooks/useOnClickOutside";
 import CollapsedMenu from "./CollapsedMenu";
-
+import Link from "next/link";
 type navbarTypes = {
   direction?: "ltr" | "rtl"
 }
@@ -56,9 +54,9 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
               <p className={classNames("text-logo text-4xl font-bold transition-all duration-300 py-4", { "hidden": width > 950 })}>8doors</p>
 
             </div>
-            <CollapsedMenu direction={direction} items={{ mainItem: "Home", subMenuItems: [{ title: "Home", path: "/landing" }, { title: "Home2", path: "/" }, { title: "Home3", path: "/" }, { title: "Home4", path: "/" }, { title: "Home5", path: "/" }, { title: "Home6", path: "/" }, { title: "Home7", path: "/" }, { title: "Home8", path: "/" }, { title: "Home9", path: "/" }, { title: "Home10", path: "/" }, { title: "Home11", path: "/" }, { title: "Home12", path: "/" }, { title: "Home13", path: "/" }, { title: "Home14", path: "/" }, { title: "Home15", path: "/" }] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Home", subMenuItems: [{ title: "Home", path: "/" }, { title: "Home2", path: "/" }, { title: "Home3", path: "/" }, { title: "Home4", path: "/" }, { title: "Home5", path: "/" }, { title: "Home6", path: "/" }, { title: "Home7", path: "/" }, { title: "Home8", path: "/" }, { title: "Home9", path: "/" }, { title: "Home10", path: "/" }, { title: "Home11", path: "/" }, { title: "Home12", path: "/" }, { title: "Home13", path: "/" }, { title: "Home14", path: "/" }, { title: "Home15", path: "/" }] }} />
             <CollapsedMenu direction={direction} items={{ mainItem: "Doctors", subMenuItems: [{ title: "Doctor Dashboard", path: "/doctor-dashboard" }, "Appointments", "Schedule Timing", "Patients List", "Patients Profile", "Chat", "Invoices", "Profile Settings", "Reviews", "Doctor Register", "Blog"] }} />
-            <CollapsedMenu direction={direction} items={{ mainItem: "Patients", subMenuItems: ["Doctors", "Search Doctor", "Doctor Profile", "Booking", "Checkout", "Booking Success", { title: "Patient Dashboard", path: "/individual-dashboard" }, "Favourites", "Chat", "Profile Settings", "Change Password"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Patients", subMenuItems: ["Doctors", "Search Doctor", "Doctor Profile", "Booking", "Checkout", "Booking Success", { title: "Patient Dashboard", path:"/individual-dashboard" }, "Favourites", "Chat", "Profile Settings", "Change Password"] }} />
 
             <CollapsedMenu direction={direction} items={{ mainItem: "Pharmacy", subMenuItems: ["Pharmacy", "Pharmacy Details", "Pharmacy Search", "Product", "Product Description", "Cart", "Product Checkout", "Payment Success", "Pharmacy Register"] }} />
 
@@ -82,7 +80,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
             </div>
           </div>
           <button className="nav-item">
-            <a className="nav-link header-login btn-one-light" href="/login">login / Signup </a>
+            <Link className="nav-link header-login btn-one-light" href="/login">login / Signup </Link>
           </button>
         </div>
 

@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import CustomBtn from "components/shared/button/CustomBtn";
 import SignInSignOutLayout from 'components/layout/signIn-signOut';
+import { toSubDomain } from 'utiles';
 
 import Logo from "assets/logo.svg";
 
@@ -30,7 +31,7 @@ export default function RedirectPage() {
                 <div className="text-center">
                     <p className="text-5xl mt-4 mb-2">oops</p>
                     <p className="text-2xl">you don&apos;t sign in yet</p>
-                    <Link href="/login">
+                    <Link href={toSubDomain("","login")}>
                         <button
 
                             type="submit"

@@ -52,18 +52,18 @@ export default function StepThree({changeActiveItem,activeItem}:stepThreeTypes) 
             <div className="row">
               <div className="col-lg-12">
                 <div className={`${styles.formGroup}`}>
-                  <FloatingInput type={"text"} placeholder="Your weight" name="weight" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                  <FloatingInput type={"text"} placeholder="Your weight" name="weight" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
                 </div>
               </div>
       
               <div className="col-lg-12">
                 <div className={`${styles.formGroup}`}>
-                  <FloatingInput type={"text"} placeholder="Your height" name="height" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />                </div>
+                  <FloatingInput type={"text"} placeholder="Your height" name="height" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" /></div>
               </div>
          
               <div className="col-lg-12">
                 <div className={`${styles.formGroup}`}>
-                  <FloatingInput type={"text"} placeholder="age" name="age" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                  <FloatingInput type={"text"} placeholder="age" name="age" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
                 </div>
               </div>
               <div className="col-lg-12">
@@ -73,22 +73,22 @@ export default function StepThree({changeActiveItem,activeItem}:stepThreeTypes) 
               </div>
               <div className="col-lg-12">
                 <div className={`${styles.formGroup}`}>
-                  <FloatingInput type={"text"} placeholder="Heart rate" name="HeartRate" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                  <FloatingInput type={"text"} placeholder="Heart rate" name="HeartRate" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className={`${styles.formGroup}`}>
-                  <FloatingInput type={"text"} placeholder="Blood pressure" name="BloodPressure" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                  <FloatingInput type={"text"} placeholder="Blood pressure" name="BloodPressure" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className={`${styles.formGroup}`}>
-                  <FloatingInput placeholder="Glucose Level" name="Glucose" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                  <FloatingInput placeholder="Glucose Level" name="Glucose" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className={`${styles.formGroup}`}>
-                  <FloatingInput type={"text"} placeholder="Allergies" name="Allergies" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
+                  <FloatingInput type={"text"} placeholder="Allergies" name="Allergies" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" />
                 </div>
               </div>
               <div className="col-lg-12">

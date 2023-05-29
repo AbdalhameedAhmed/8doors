@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./onBoarding.module.css"
-import SideImg from "assets/doctorOnBoarding/onb-slide-img.png"
+import SideImg from "assets/doctorOnBoarding/SideImg.png"
 import Image from "next/image"
 import { useEffect } from "react";
 type LeftPanelTypes = {
@@ -9,7 +9,7 @@ type LeftPanelTypes = {
 export default function LeftPanel({ direction }: LeftPanelTypes) {
   const [preScrollNum, changePreScrollNum] = React.useState<null | number>(null)
   const [span, activeSpan] = React.useState(0)
-  function scrollLeft() {
+  const scrollLeft = () => {
     const scrollSection = document.querySelector("#sideScroll");
 
     if ((scrollSection as HTMLElement).scrollLeft > 500 || (scrollSection as HTMLElement).scrollLeft < -500) {
@@ -32,6 +32,7 @@ export default function LeftPanel({ direction }: LeftPanelTypes) {
     return () => clearInterval(intervalId);
 
   }, [preScrollNum, direction])
+  
 
 
   return (
@@ -42,11 +43,11 @@ export default function LeftPanel({ direction }: LeftPanelTypes) {
         </a>
       </div>
       <div className={`${styles.onboardImg}`}>
-        <img src="/onb-slide-img.png" width={500} height={650} alt="left side image" />
+        <img src={SideImg.src} alt="left side image" />
       </div>
       <div>
 
-        <div className="text-center overflow-x-hidden flex !snap-x max-w-[250px]snap-mandatory scroll-smooth transition-all duration-500 mb-4" id="sideScroll">
+        <div className="text-center overflow-x-hidden flex !snap-x max-w-[250px] snap-mandatory scroll-smooth transition-all duration-500 mb-4" id="sideScroll">
 
           <div className="shrink-0 !snap-center max-w-full">
 

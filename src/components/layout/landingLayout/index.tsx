@@ -3,12 +3,14 @@ import React from "react"
 import Navbar from "components/sites/clinic/landing/Navbar"
 import Footer from "components/sites/clinic/landing/Footer"
 import BreadCrumb from "components/sites/clinic/landing/BreadCrumb"
+import UncompletedInfo from "components/sites/clinic/landing/uncompletedInfo" 
 
 type LandingLayoutTypes = {
-  children: React.ReactNode
-  showBreadCrumb?: boolean
+  children: React.ReactNode;
+  showBreadCrumb?: boolean;
+  uncompletedInfo?:boolean
 }
-export default function LandingLayout({ children, showBreadCrumb = false }: LandingLayoutTypes) {
+export default function LandingLayout({ children, showBreadCrumb = false,uncompletedInfo=false }: LandingLayoutTypes) {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
 
@@ -30,6 +32,7 @@ export default function LandingLayout({ children, showBreadCrumb = false }: Land
     <>
       <Navbar direction={direction} />
       {showBreadCrumb && <BreadCrumb />}
+      {uncompletedInfo && <UncompletedInfo/>}
       {children}
       <Footer direction={direction} />
     </>

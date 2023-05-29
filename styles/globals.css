@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@fontsource/inter/latin.css";
+@import "@fontsource/inter/latin-ext.css";
+
 @layer components {
   .card {
     background-color: theme('colors.white');
@@ -77,11 +80,12 @@
     --background-secondary: white; /*important*/
     --background-tertiary: #f4f6f9; /*important*/
   }
-  html {
-    font-family: 'Public Sans';
-  }
+  
 }
-
+body,
+html {
+  font-family: "Inter" !important;
+}
 .pageDirection {
   direction: rtl;
 }
