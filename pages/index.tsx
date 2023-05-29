@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import { useSelector } from "react-redux";
 
 import useRemoveScroll from "hooks/useRemoveScroll";
 import { removeDashAndCapitalize } from "utiles";
@@ -15,12 +16,14 @@ import ContactUs from "components/sites/clinic/landing/ContactUs";
 import AvailabeFeatures from "components/sites/clinic/landing/AvailabeFeatures";
 import LandingLayout from "components/layout/landingLayout";
 import Blogs from "components/sites/clinic/landing/Blogs";
+import { rootState } from "redux/store";
 
 
 export default function Index() {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const router = useRouter();
+  const {user} = useSelector(state=>(state as rootState).auth)
   const ref = React.useRef(null)
   let slideTitle = "Clinic and Specialities"
   let slideSubTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -40,6 +43,12 @@ export default function Index() {
     document.title = removeDashAndCapitalize(router.asPath)
 
   }, [router.asPath])
+  React.useEffect(()=>{
+    if(user.mobileVerified===false){
+      router.push("/otp")
+    }
+
+  },[])
 
   return (
     <div ref={ref} className={classNames("overflow-y-auto h-screen")} >

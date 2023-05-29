@@ -97,6 +97,13 @@ html {
   padding-left: 30px;
   padding-right: 30px;
 }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: none;
+  -webkit-text-fill-color: inherit;
+  background-color: transparent !important;
+}
+
 @media only screen and (max-width: 991.98px) {
   .onBoarding.container {
     max-width: 100%;

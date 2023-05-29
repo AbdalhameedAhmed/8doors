@@ -4,6 +4,7 @@ import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 
 import { Login } from 'redux/services/clinic/auth';
+import { Otp } from './services/clinic/otp';
 import { addClinic, getClinics } from 'redux/services/clinic/addAndGetClinics';
 import { signup } from 'redux/services/signup';
 import { deleteClinic } from 'redux/services/clinic/deleteClinic';
@@ -20,6 +21,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   [Login.reducerPath]: Login.reducer,
+  [Otp.reducerPath]:Otp.reducer,
   [getClinics.reducerPath]: getClinics.reducer,
   auth: authReducer,
   activeClinic: activeClinicReducer,
@@ -37,6 +39,7 @@ const middleware: Middleware[] = [
   changePassword.middleware,
   deleteClinic.middleware,
   updateClinic.middleware,
+  Otp.middleware
 ];
 const store = configureStore({
   reducer: persistedReducer,

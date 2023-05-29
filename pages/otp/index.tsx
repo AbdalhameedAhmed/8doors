@@ -14,9 +14,7 @@ export default function Otp() {
     const ref = React.useRef(null)
     const router = useRouter()
 
-    const handelBtn = () => {
-        router.push("/")
-    }
+    
 
     useRemoveScroll(ref)
 
@@ -30,7 +28,7 @@ export default function Otp() {
 
             <LandingLayout>
                 <BreadCrumb />
-                <OtpPage onSuccess={handelBtn} />
+                <OtpPage/>
             </LandingLayout>
         </div>
     )

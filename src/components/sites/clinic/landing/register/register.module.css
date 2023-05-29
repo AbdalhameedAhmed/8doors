@@ -31,7 +31,6 @@
 }
 
 .formFocus {
-    height: 50px;
     position: relative;
 }
 
@@ -124,6 +123,11 @@
 .loginBtnPrimary {
     background-color: #09e5ab;
     border: 1px solid #09e5ab;
+}
+.loginBtnPrimary:hover,.loginBtnPrimary:focus {
+    background-color: #10DEFD;
+    border-color: #10DEFD;
+    box-shadow: none;
 }
 
 

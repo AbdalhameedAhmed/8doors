@@ -7,7 +7,7 @@ export const signup = createApi({
   endpoints: (builder) => ({
     signup: builder.mutation({
       query: (data) => ({
-        url: `/v1/account/register`,
+        url: `account/register`,
         method: 'post',
         body: data,
       }),

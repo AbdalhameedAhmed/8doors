@@ -4,17 +4,16 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { customBaseQuery } from "./customBaseQuery"
 
 interface LoginResponse {
-  mobileVerified: boolean;
   token: string;
 }
 
-export const Login = createApi({
-  reducerPath: "token",
+export const Otp = createApi({
+  reducerPath: "otp",
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
-    Login: builder.mutation({
+    Otp: builder.mutation({
       query: (data) => ({
-        url: `/authenticate`,
+        url: `/account/otp`,
         method: "post",
         body: data
       }),
@@ -26,4 +25,4 @@ export const Login = createApi({
   }),
 });
 
-export const { useLoginMutation } = Login
+export const { useOtpMutation } = Otp

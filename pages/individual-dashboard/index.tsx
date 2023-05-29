@@ -26,7 +26,7 @@ import IdInfo from "components/sites/clinic/landing/dashboard/individualCards/id
 
 
 export default function IndividualDashboard() {
-  const [activeItem,setActiveItem] = React.useState(0)
+  const [activeItem,setActiveItem] = React.useState(8)
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const pageRef = React.useRef(null)
   const router = useRouter()
