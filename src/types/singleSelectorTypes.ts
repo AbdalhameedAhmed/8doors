@@ -8,5 +8,6 @@ export type singleSelectorTypes = {
   error?: string | number | any;
   touched?: string | number | any;
   containerStyle?: string;
-  errorActive?: string;
+  errorActive?: boolean;
+  floatMenu?:boolean
 };

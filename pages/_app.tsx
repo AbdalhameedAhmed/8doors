@@ -12,9 +12,13 @@ import { ThemeProvider } from 'theme-ui';
 import { theme } from '../theme/index';
 import CustomToast from "components/customToast"
 import {ToastContextProvider} from "context/toastContext"
+// import "../styles/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap-grid.css"
+import "bootstrap/dist/css/bootstrap-utilities.css"
+
+// import "bootstrap/dist/css/bootstrap-utilities.min.css"
 import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.css';
-// import "./bootstrap.min.css"
 
 
 function App({ Component, pageProps }: AppProps) {
@@ -28,7 +32,6 @@ function App({ Component, pageProps }: AppProps) {
     let storagedDir = localStorage.getItem("dir")
 
     
-
     storagedLang
       ? document?.querySelector('html')?.setAttribute('lang', storagedLang)
       : document?.querySelector('html')?.setAttribute('lang', "en");

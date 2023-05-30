@@ -1,101 +1,274 @@
+import React from "react"
 import styles from "./profileSettings.module.css"
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import CustomSingleSelector from "components/shared/customSingleSelector"
-import { Dispatch, SetStateAction } from "react"
+import { Form, Field } from "react-final-form"
+import { formValdate } from "./formValidate";
 
 
 
 export default function UserInfo() {
 
+  const [error, activeError] = React.useState(false)
+
+  const onSubmit = (values: Record<string, any>) => {
+    console.log(values);
+
+  }
+
   return (
     <div className={`card ${styles.infoCard}`}>
       <div className={`card-body ${styles.infoCardBody}`}>
-        <form>
-          <div className="row form-row">
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
-                <FloatingInput placeholder="First name" name="firstName" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
-            </div>
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
-                <FloatingInput placeholder="Last name" name="LastName" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
-            </div>
+        <Form
+          onSubmit={onSubmit}
 
-            <div className="col-12 col-md-6">
+          validate={(values): Record<string, string> => formValdate(values)
+          }
 
-              <div className={`form-group ${styles.infoGroup}`}>
+          render={({ handleSubmit, submitting, values, errors }) => (
+            <form onSubmit={handleSubmit}>
 
-                <FloatingInput placeholder="Email" name="email" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
 
-            </div>
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
+              <div className="row form-row">
+                <Field name="firstName">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="First name"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
 
-                <FloatingInput placeholder="Mobile" name="mobile" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <Field name="lastName">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="Last name"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
 
-            </div>
-            <div className={`${styles.loginOr}`}>
-              <span></span>
-            </div>
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
-                <FloatingInput placeholder="Date of birth" name="date" type={"date"} inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
-            </div>
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <Field name="email" defaultValue={"any@gmail.com"}>
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="Email"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            disabled
+                            {...input}
+
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <Field name="mobile">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="Mobile"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
+
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+
+                <div className={`${styles.loginOr}`}>
+                  <span></span>
+                </div>
+
+                <Field name="date" type="date">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="Date of birth"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
+
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+
+                <Field name="bloodType">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                        <CustomSingleSelector 
+                        floatMenu={true} 
+                        placeholder="Blood Group" 
+                        error={meta.error}
+                        errorActive={error}
+                        options={["A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+"]} 
+                        inputStyle="!p-4 !bg-white !shadow-none !mt-0 !text-[rgba(107,114,128)] focus:!bg-white  h-[58px]"
+                        input={input}
+                        />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <div className={`${styles.loginOr}`}>
+                  <span></span>
+                </div>
+                <Field name="country">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="Country"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
+
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
                 
-                <CustomSingleSelector placeholder="Blood Group" options={["A-", "A+", "B-", "B+", "AB-","AB+","O-","O+"]} inputStyle="!p-4 !bg-white !shadow-none !mt-0 !text-[rgba(107,114,128)] h-[58px]"/>
+                <Field name="state">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="State"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
 
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <Field name="city">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="City"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
+
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <Field name="address">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="Address"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
+
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <Field name="zipCode">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <FloatingInput
+                            placeholder="Zip Code"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
+                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            error={meta.error}
+                            errorActive={error}
+                            type="text"
+                            {...input}
+
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                
               </div>
-            </div>
-            <div className={`${styles.loginOr}`}>
-              <span></span>
-            </div>
-            
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
+        <div className={`${styles.submitSection} text-right`}>
+          <button type="submit" className="btn btn-primary submit-btn"onClick={()=>{activeError(true);console.log(values);
+          }}>Save Changes</button>
+        </div>
+            </form>
+          )}
+        ></Form>
 
-                <FloatingInput placeholder="City" name="city" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
-
-            </div>
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
-                <FloatingInput placeholder="State" name="state" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-
-              </div>
-
-            </div>
-            <div className="col-12">
-              <div className={`form-group ${styles.infoGroup}`}>
-
-                <FloatingInput placeholder="Address" name="address" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
-
-            </div>
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
-
-                <FloatingInput placeholder="Zip Code" name="zipCode" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
-
-            </div>
-            <div className="col-12 col-md-6">
-              <div className={`form-group ${styles.infoGroup}`}>
-
-                <FloatingInput placeholder="Country" name="country" inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border" placeholderStyles="!bg-white peer-focus:!bg-white z-0" />
-              </div>
-            </div>
-          </div>
-        </form>
-          <div className={`${styles.submitSection} text-right`}>
-            <button type="submit" className="btn btn-primary submit-btn">Save Changes</button>
-          </div>
 
       </div>
     </div>

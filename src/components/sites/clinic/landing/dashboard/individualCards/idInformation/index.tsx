@@ -20,8 +20,8 @@ export default function IdInfo({ direction }: idInfoType) {
         <form>
           <div className="row form-row w-full gap-8">
 
-            <UploadImage direction={direction} defaultImageSrc={IdFrontSide.src} />
-            <UploadImage direction={direction} defaultImageSrc={IdBackSide.src} />
+            <UploadImage name="frontImage" direction={direction} defaultImageSrc={IdFrontSide.src} />
+            <UploadImage name="backImage" direction={direction} defaultImageSrc={IdBackSide.src} />
 
 
         <div className={`${styles.submitSection} offset-8 text-right pr-[84px] col-3`}>

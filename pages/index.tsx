@@ -40,7 +40,7 @@ export default function Index() {
       changeDirection(htmlDir)
     }
 
-    document.title = removeDashAndCapitalize(router.asPath)
+    document.title = "Landing"
 
   }, [router.asPath])
   React.useEffect(()=>{

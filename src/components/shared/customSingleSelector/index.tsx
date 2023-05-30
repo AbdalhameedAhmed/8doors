@@ -8,7 +8,7 @@ import AngleDown from "assets/angle-down-solid.svg";
 
 export default function CustomSingleSelector(props: singleSelectorTypes) {
 
-  const { input, containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched } = props
+  const { input, containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched,floatMenu=false } = props
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
 
   let [menu, openMenu] = React.useState(false);
@@ -30,7 +30,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
       <div
         className={classNames(
           "cursor-pointer flex justify-between items-center options-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
-          { "border-sky-500": menu, "border-b-transparent": menu, "rounded-b-none": menu, "mt-4": menu, "ring-sky-500": menu, "ring-1": menu, "flex-row-reverse": direction==="rtl" }, inputStyle
+          { "!border-red-500":error&&errorActive,"mt-4 !border-b-transparent rounded-b-none": menu,"!border-floating-border":menu&&!error,"flex-row-reverse": direction==="rtl" }, inputStyle
         )}
 
         onClick={() => {
@@ -49,7 +49,8 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
             "!max-h-[200px]": menu,
             "!overflow-y-auto": menu,
             "!border-transparent": !menu,
-            "mb-4": menu
+            "mb-4": menu,
+            "absolute top-[58px] left-0 w-full z-20 bg-white":floatMenu,
           },
           menuStyle
         )}
@@ -62,7 +63,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
               onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
                 changeActiveLi(index)
                 ref.current.innerHTML = item
-                // input.onChange(item);
+                input.onChange(item);
 
                 if (activeLi == index) {
                   (ele.target as HTMLElement).classList.add("!bg-primary")
@@ -75,7 +76,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
           ))}
         </ul>
       </div>
-      {error && touched && errorActive === "gender" && <p className={`text-red-500 text-sm mt-2`}>{error}</p>}
+      {error && errorActive && <p className={`text-red-500 text-sm mt-2`}>{error}</p>}
     </div>
 
   );

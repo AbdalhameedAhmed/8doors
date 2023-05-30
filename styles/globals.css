@@ -94,8 +94,8 @@ html {
 } */
 
 .container-fluid {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
 }
 
 input:-webkit-autofill {
@@ -615,8 +615,8 @@ a.header-login:hover {
   position: relative;
 }
 .container-fluid {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
 }
 .slick-prev {
   left: 0;
