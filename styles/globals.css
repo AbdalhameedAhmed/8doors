@@ -84,7 +84,7 @@
 }
 body,
 html {
-  font-family: "Inter" !important;
+  /* font-family: "Inter" !important; */
 }
 .pageDirection {
   direction: rtl;

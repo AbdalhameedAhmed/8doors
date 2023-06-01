@@ -2,6 +2,7 @@ function formValdate(values: Record<string, any>): Record<string, string> {
 
     const errors: Record<string, string> = {};
     const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const validPhone = /^\d{11}$/
 
     if (!values.username) {
         errors.username = "This field is required";
@@ -16,6 +17,8 @@ function formValdate(values: Record<string, any>): Record<string, string> {
     }
     if(!values.phoneNumber){
         errors.phoneNumber = "This field is required";
+    }else if (!values.phoneNumber.match(validPhone)){
+        errors.phoneNumber = "Mobile number should be 11 numbers"
     }
     if (!values.confirm) {
         errors.confirm = "This field is required";

@@ -14,6 +14,12 @@ const nextConfig = {
       },
     ];
   },
+  fonts: [
+    {
+      family: 'Inter',
+      weight: 400,
+      style: 'normal',
+    }],
   documentDomain: "localhost:3000",
   webpack(config) {
     config.module.rules.push({

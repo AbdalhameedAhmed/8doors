@@ -14,7 +14,7 @@ import CustomToast from "components/customToast"
 import {ToastContextProvider} from "context/toastContext"
 // import "../styles/bootstrap.min.css"
 import "bootstrap/dist/css/bootstrap-grid.css"
-import "bootstrap/dist/css/bootstrap-utilities.css"
+// import "bootstrap/dist/css/bootstrap-utilities.css"
 
 // import "bootstrap/dist/css/bootstrap-utilities.min.css"
 import 'react-toastify/dist/ReactToastify.css'

@@ -90,7 +90,7 @@ export default function UserInfo() {
                     </>
                   )}
                 </Field>
-                <Field name="mobile">
+                <Field name="mobile" defaultValue="12345678912">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">
@@ -102,6 +102,7 @@ export default function UserInfo() {
                             error={meta.error}
                             errorActive={error}
                             type="text"
+                            disabled
                             {...input}
 
                           />
@@ -163,16 +164,15 @@ export default function UserInfo() {
                     <>
                       <div className="col-12 col-md-6">
                         <div className={`form-group ${styles.infoGroup}`}>
-                          <FloatingInput
-                            placeholder="Country"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
-                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
-                            error={meta.error}
-                            errorActive={error}
-                            type="text"
-                            {...input}
-
-                          />
+                        <CustomSingleSelector 
+                        floatMenu={true} 
+                        placeholder="Counter" 
+                        error={meta.error}
+                        errorActive={error}
+                        options={["option1", "option2", "option3", "option4"]} 
+                        inputStyle="!p-4 !bg-white !shadow-none !mt-0 !text-[rgba(107,114,128)] focus:!bg-white  h-[58px]"
+                        input={input}
+                        />
                         </div>
                       </div>
                     </>
@@ -184,16 +184,15 @@ export default function UserInfo() {
                     <>
                       <div className="col-12 col-md-6">
                         <div className={`form-group ${styles.infoGroup}`}>
-                          <FloatingInput
-                            placeholder="State"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
-                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
-                            error={meta.error}
-                            errorActive={error}
-                            type="text"
-                            {...input}
-
-                          />
+                        <CustomSingleSelector 
+                        floatMenu={true} 
+                        placeholder="State" 
+                        error={meta.error}
+                        errorActive={error}
+                        options={["option1", "option2", "option3", "option4"]} 
+                        inputStyle="!p-4 !bg-white !shadow-none !mt-0 !text-[rgba(107,114,128)] focus:!bg-white  h-[58px]"
+                        input={input}
+                        />
                         </div>
                       </div>
                     </>
@@ -204,16 +203,16 @@ export default function UserInfo() {
                     <>
                       <div className="col-12">
                         <div className={`form-group ${styles.infoGroup}`}>
-                          <FloatingInput
-                            placeholder="City"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border" 
-                            placeholderStyles="!bg-white peer-focus:!bg-white z-0"
-                            error={meta.error}
-                            errorActive={error}
-                            type="text"
-                            {...input}
-
-                          />
+                        <CustomSingleSelector 
+                        floatMenu={true} 
+                        placeholder="City" 
+                        error={meta.error}
+                        errorActive={error}
+                        options={["option1", "option2", "option3", "option4"]} 
+                        
+                        inputStyle="!p-4 !bg-white !shadow-none !mt-0 !text-[rgba(107,114,128)] focus:!bg-white  h-[58px]"
+                        input={input}
+                        />
                         </div>
                       </div>
                     </>

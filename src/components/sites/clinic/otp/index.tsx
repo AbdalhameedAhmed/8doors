@@ -38,7 +38,7 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                     localStorage.setItem("token", res.token)
                 }
                 // router.push(toSubDomain("clinic", `dashboard?token=${res.token}`))
-                console.log("otp response is",res);
+                console.log("otp response is", res);
 
                 // router.push("/")
 
@@ -57,14 +57,14 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
         <div className="container flex justify-center">
             <form onSubmit={(event) => { handelSubmit(event) }}>
 
-                <div className={`${styles.onboardingContentBox} ${styles.contentWrap} mb-[20px]`}>
-                    <div className="onboard-set">
-                        <div className={`${styles.onboardingTitle}`}>
-                            <h2>Enter 4-digit code sent to your email.</h2>
+                <div className={`${styles.onboardingContentBox} ${styles.contentWrap} shadow mb-[20px]`}>
+                    <h2>Enter 4-digit code sent to your email.</h2>
+                    <div>
+                        {/* <div className={`${styles.onboardingTitle}`}>
                             <h6>We’ve sent it to 8doors@example.com</h6>
-                        </div>
+                        </div> */}
                         <div className={`onboarding-content ${styles.passcodewrap}`}>
-                            <div className="d-flex digit-group">
+                            <div className="flex justify-center gap-[23px] digit-group">
 
                                 {
                                     <OtpInput key={1} length={4} onChange={handleOtpChange} />
@@ -72,11 +72,12 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
                             </div>
                         </div>
-                        <div className={`${styles.otpResend}`}>
+                        {/* <div className={`${styles.otpResend}`}>
                             <a href="#" className="text-danger">Resend OTP</a>
-                        </div>
+                        </div> */}
                     </div>
                     <div className={`${styles.onboardingBtn} text-right`}>
+                        <button className="">Resend OTP</button>
                         <button onClick={() => { onSuccess() }} type="submit">Continue</button>
                     </div>
                 </div>

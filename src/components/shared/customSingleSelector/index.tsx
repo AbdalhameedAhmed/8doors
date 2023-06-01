@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { singleSelectorTypes } from "types/singleSelectorTypes"
 
 import AngleDown from "assets/angle-down-solid.svg";
+import { useOnClickOutside } from "usehooks-ts";
 
 export default function CustomSingleSelector(props: singleSelectorTypes) {
 
@@ -14,6 +15,10 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
   let [menu, openMenu] = React.useState(false);
   let [activeLi, changeActiveLi] = React.useState<null | number>(null)
   let ref = React.useRef<HTMLDivElement>(null!);
+  let selectorRef = React.useRef<HTMLDivElement>(null!);
+
+
+  useOnClickOutside(selectorRef,()=>{openMenu(false)})
 
   React.useEffect(() => {
 
@@ -26,7 +31,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
   }, [])
 
   return (
-    <div className={classNames(containerStyle)}>
+    <div className={classNames(containerStyle)} ref={selectorRef}>
       <div
         className={classNames(
           "cursor-pointer flex justify-between items-center options-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
