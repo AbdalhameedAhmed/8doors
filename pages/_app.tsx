@@ -1,19 +1,19 @@
 import { useEffect, createContext, useState } from 'react';
 import type { AppProps } from 'next/app';
+// import { Inter } from '@next/font/google';
+import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import store, { persistor } from 'redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import { appWithTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { ToastContainer } from 'react-toastify'
-import { useRouter } from 'next/router';
-
 import { ThemeProvider } from 'theme-ui';
 import { theme } from '../theme/index';
 import CustomToast from "components/customToast"
-import {ToastContextProvider} from "context/toastContext"
+import { ToastContextProvider } from "context/toastContext"
 // import "../styles/bootstrap.min.css"
-import "bootstrap/dist/css/bootstrap-grid.css"
+import "../styles/bootstrap-grid.css"
 // import "bootstrap/dist/css/bootstrap-utilities.css"
 
 // import "bootstrap/dist/css/bootstrap-utilities.min.css"
@@ -27,11 +27,12 @@ function App({ Component, pageProps }: AppProps) {
 
   const router = useRouter();
 
+
   useEffect(() => {
     let storagedLang = localStorage.getItem("lang")
     let storagedDir = localStorage.getItem("dir")
 
-    
+
     storagedLang
       ? document?.querySelector('html')?.setAttribute('lang', storagedLang)
       : document?.querySelector('html')?.setAttribute('lang', "en");
@@ -58,8 +59,9 @@ function App({ Component, pageProps }: AppProps) {
             />
           </Head>
           {/* <ThemeSettings/> */}
-
+          {/* <main className={inter.className}> */}
           <Component {...pageProps} />
+          {/* </main> */}
         </ThemeProvider>
       </ToastContextProvider>
     </Provider>

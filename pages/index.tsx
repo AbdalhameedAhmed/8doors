@@ -23,7 +23,7 @@ export default function Index() {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const router = useRouter();
-  const {user} = useSelector(state=>(state as rootState).auth)
+  const { user } = useSelector(state => (state as rootState).auth)
   const ref = React.useRef(null)
   let slideTitle = "Clinic and Specialities"
   let slideSubTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -43,12 +43,7 @@ export default function Index() {
     document.title = "Landing"
 
   }, [router.asPath])
-  React.useEffect(()=>{
-    if(user.mobileVerified===false){
-      router.push("/otp")
-    }
 
-  },[])
 
   return (
     <div ref={ref} className={classNames("overflow-y-auto h-screen")} >
