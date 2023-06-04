@@ -1,3 +1,4 @@
+import React from "react"
 import Link from 'next/link'
 
 import CustomBtn from "components/shared/button/CustomBtn";
@@ -7,7 +8,7 @@ import { toSubDomain } from 'utiles';
 import Logo from "assets/logo.svg";
 
 export default function RedirectPage() {
-
+ 
     return (
 
         <SignInSignOutLayout title="Welcome to 8doors" cardContainerStyle="!p-0">

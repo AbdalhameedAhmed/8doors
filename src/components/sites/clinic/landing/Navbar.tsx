@@ -1,3 +1,4 @@
+
 import React from "react"
 import classNames from "classnames";
 import Bars from "assets/bars.svg"
@@ -6,16 +7,21 @@ import Hospital from "assets/hospital-svgrepo-com.svg"
 import useOnClickOutside from "hooks/useOnClickOutside";
 import CollapsedMenu from "./CollapsedMenu";
 import Link from "next/link";
+import { toSubDomain } from "utiles";
+import {parse} from "cookie"
+import { Router, useRouter } from "next/router";
+import axios from "axios";
 type navbarTypes = {
   direction?: "ltr" | "rtl"
 }
 
 function Navbar({ direction = "ltr" }: navbarTypes) {
-
+  const router = useRouter()
   const [openMenu, isMenuOpen] = React.useState(false)
   const { width } = useWindowSize()
   const menuRef = React.useRef(null)
-
+  const [tokenValue,setTokenValue] = React.useState("")
+  
   const handelMenuOpen = () => {
     isMenuOpen(!openMenu)
 
@@ -26,9 +32,17 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   }
   useOnClickOutside(menuRef, closeMenu)
 
+  const logout = ()=>{
+    axios.post("/api/removeToken")
+    router.push("/login")
+  }
+
   React.useEffect(() => {
     width < 776 && isMenuOpen(false)
   }, [width])
+  React.useEffect(()=>{
+    setTokenValue(parse(document?.cookie).token)
+  },[])
 
   return (
     <>
@@ -47,7 +61,12 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
           <button onClick={handelMenuOpen} className={classNames("text-3xl mr-8", { "hidden": width > 950, "mr-0 ml-8": direction === "rtl" })}>
             <Bars className="w-[30px] h-[30px]" />
           </button>
-          <p className={classNames("text-logo text-4xl font-bold transition-all pb-2 duration-300")}>8doors</p>
+          {/* router.push(toSubDomain("clinic", `/staff?token=${document.cookie} */}
+          <button onClick={()=>{
+            router.push(toSubDomain("clinic", `/redirect?page=staff&token=${parse(document.cookie).token}`))
+          }}>
+            <p className={classNames("text-logo text-4xl font-bold transition-all pb-2 duration-300")}>8doors</p>
+          </button>
 
           <ul ref={menuRef} className={classNames("flex items-center gap-8 h-full", { "fixed left-0 top-0 h-screen w-[250px] transition duration-300 flex-col overflow-auto scrollbar-hide z-50 scale-x-0 !items-start origin-[0%_100%] bg-[#0071dc] text-white fill-white !gap-[0px]": width < 950, "scale-x-100": width < 950 && openMenu, "!left-auto !right-0 origin-[100%_100%]": width < 950 && direction === "rtl" })}>
             <div className="bg-white w-full text-center">
@@ -56,7 +75,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
             </div>
             <CollapsedMenu direction={direction} items={{ mainItem: "Home", subMenuItems: [{ title: "Home", path: "/" }, { title: "Home2", path: "/" }, { title: "Home3", path: "/" }, { title: "Home4", path: "/" }, { title: "Home5", path: "/" }, { title: "Home6", path: "/" }, { title: "Home7", path: "/" }, { title: "Home8", path: "/" }, { title: "Home9", path: "/" }, { title: "Home10", path: "/" }, { title: "Home11", path: "/" }, { title: "Home12", path: "/" }, { title: "Home13", path: "/" }, { title: "Home14", path: "/" }, { title: "Home15", path: "/" }] }} />
             <CollapsedMenu direction={direction} items={{ mainItem: "Doctors", subMenuItems: [{ title: "Doctor Dashboard", path: "/doctor-dashboard" }, "Appointments", "Schedule Timing", "Patients List", "Patients Profile", "Chat", "Invoices", "Profile Settings", "Reviews", "Doctor Register", "Blog"] }} />
-            <CollapsedMenu direction={direction} items={{ mainItem: "Patients", subMenuItems: ["Doctors", "Search Doctor", "Doctor Profile", "Booking", "Checkout", "Booking Success", { title: "Patient Dashboard", path:"/individual-dashboard" }, "Favourites", "Chat", "Profile Settings", "Change Password"] }} />
+            <CollapsedMenu direction={direction} items={{ mainItem: "Patients", subMenuItems: ["Doctors", "Search Doctor", "Doctor Profile", "Booking", "Checkout", "Booking Success", { title: "Patient Dashboard", path: "/individual-dashboard" }, "Favourites", "Chat", "Profile Settings", "Change Password"] }} />
 
             <CollapsedMenu direction={direction} items={{ mainItem: "Pharmacy", subMenuItems: ["Pharmacy", "Pharmacy Details", "Pharmacy Search", "Product", "Product Description", "Cart", "Product Checkout", "Payment Success", "Pharmacy Register"] }} />
 
@@ -79,8 +98,11 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
               <p className="text-[14px]">+1 315 369 5943</p>
             </div>
           </div>
-          <button className="nav-item">
-            <Link className="nav-link header-login btn-one-light" href="/login">login / Signup </Link>
+          <button className="nav-item" onClick={()=>{logout()}}>
+            <p className="nav-link header-login btn-one-light">
+              {
+                tokenValue?"Logout":"login / Signup"
+              }</p>
           </button>
         </div>
 

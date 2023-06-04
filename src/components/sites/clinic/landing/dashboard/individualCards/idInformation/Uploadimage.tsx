@@ -45,7 +45,7 @@ activeError(false)
           File Upload <input name={name} onChange={(e)=>{convertImageToUrl(e)}} type="file" accept=".jpg, .jpeg, .png"/>
         </label>
       </div>
-      <p className={`text-sm mt-2 ${error?"text-red-500":"text-gray"}`}>
+      <p className={`text-[0.775rem] mt-1 ${error?"text-red-500":"text-gray"}`}>
         {
           error ? "Image size too large. Maximum size is 2MB.":"Max Image size: 2MB. Acceptable types: .jpg, .jpeg, .png."
         }

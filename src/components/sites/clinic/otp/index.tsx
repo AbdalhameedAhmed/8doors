@@ -24,11 +24,15 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
     const { user } = useSelector(state => (state as rootState).auth)
     const router = useRouter()
     const addToast = useToast()
-
+        console.log(user);
+        
     const [otp, setOtp] = React.useState('');
     const handleOtpChange = (newOtp: string) => {
         setOtp(newOtp);
     };
+
+
+   
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         await postData({ username: user.username, otpCode: otp }).unwrap()
@@ -36,11 +40,11 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                 dispatch(addUser(res))
                 if (res.token) {
                     localStorage.setItem("token", res.token)
+                    router.push("/")
                 }
                 // router.push(toSubDomain("clinic", `dashboard?token=${res.token}`))
                 console.log("otp response is", res);
 
-                // router.push("/")
 
 
 

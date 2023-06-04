@@ -6,6 +6,7 @@ import classNames from "classnames"
 
 
 import UserImage from "assets/avatar_default.jpg"
+import { toSubDomain } from "utiles"
 
 export default function UserIcon() {
 
@@ -74,7 +75,7 @@ export default function UserIcon() {
             </li>
             <li className="cursor-pointer p-2 w-full hover:bg-[rgba(145,158,171,0.08)] text-custom rounded-md font-[400]"
               onClick={() => {
-                goto("/login")
+                goto(toSubDomain("",""))
               }}
             >
               <p className="text-primary">

@@ -21,6 +21,8 @@ import Github from "assets/github.svg"
 import Google from "assets/google.svg"
 import { rootState } from "redux/store";
 import TestSvg from "assets/addPharmacist.jpg"
+import axios from "axios";
+import cookies from "cookie"
 
 
 
@@ -33,19 +35,30 @@ export default function SignIn() {
   const dispatch = useDispatch()
   const router = useRouter()
   const addToast = useToast()
+  React.useEffect(() => {
+    // console.log(cookies.parse(document.cookie));
+    // console.log(document.cookie);
+
+
+  }, [])
+
 
   const onSubmit = async (values: LoginFormData) => {
 
     await postData({ username: values.username, password: values.password }).unwrap()
       .then((res) => {
         dispatch(addUser(res))
-        if(res.token){
+        if (res.token) {
           localStorage.setItem("token", res.token)
+          axios.post("/api/setToken", { token: res.token })
+        } else {
+          axios.post("/api/setToken", { token: "" })
+
         }
         // router.push(toSubDomain("clinic", `dashboard?token=${res.token}`))
-        if(res.mobileVerified === false){
+        if (res.mobileVerified === false) {
           router.push("/otp")
-        }else {
+        } else {
           router.push("/")
         }
 
