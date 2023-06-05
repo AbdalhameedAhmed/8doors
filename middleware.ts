@@ -3,20 +3,7 @@ import { NextResponse, NextRequest } from 'next/server';
 /**
  * @param req
  */
-function getSubdomain(url: string) {
-  // Extract the hostname from the URL
 
-  // Split the hostname into parts
-  const parts = url.split('.');
-
-  // If there are less than 3 parts, there is no subdomain
-  if (parts.length < 2) {
-    return null;
-  }
-
-  // Otherwise, return the first part as the subdomain
-  return parts[0];
-}
 
 export default function middleware(req: NextRequest, res: NextResponse) {
   const token = req.cookies.get('token');

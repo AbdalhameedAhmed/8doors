@@ -8,6 +8,7 @@ import { Otp } from './services/clinic/otp';
 import { addClinic, getClinics } from 'redux/services/clinic/addAndGetClinics';
 import { signup } from 'redux/services/signup';
 import { deleteClinic } from 'redux/services/clinic/deleteClinic';
+import { getCountries } from './services/lookup/getAllCountries';
 import { updateClinic } from 'redux/services/clinic/updateClinic';
 import { changePassword } from 'redux/services/clinic/changePassword';
 import activeClinicReducer from 'redux/slices/clinic/activeClinic';
@@ -39,7 +40,8 @@ const middleware: Middleware[] = [
   changePassword.middleware,
   deleteClinic.middleware,
   updateClinic.middleware,
-  Otp.middleware
+  Otp.middleware,
+  getCountries.middleware
 ];
 const store = configureStore({
   reducer: persistedReducer,

@@ -2,7 +2,7 @@ import axios from "axios"
 import { useRouter } from "next/router"
 import React from "react"
 import { toSubDomain } from "utiles"
-import SmileFace from "components/spinner/smileFace"
+import SmileFace from "components/spinner/smileFace/smileFace"
 
 export default function Redirect() {
   const router = useRouter()

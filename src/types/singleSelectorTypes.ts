@@ -9,5 +9,6 @@ export type singleSelectorTypes = {
   touched?: string | number | any;
   containerStyle?: string;
   errorActive?: boolean;
+  onActiveLi?:(id:string)=>void
   floatMenu?:boolean
 };

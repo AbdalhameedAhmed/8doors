@@ -9,16 +9,28 @@ import { useOnClickOutside } from "usehooks-ts";
 
 export default function CustomSingleSelector(props: singleSelectorTypes) {
 
-  const { input, containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched,floatMenu=false } = props
+  const { input, containerStyle, placeholder = "select", errorActive, options, inputStyle, menuStyle, error, touched, floatMenu = false,onActiveLi=()=>{} } = props
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
 
   let [menu, openMenu] = React.useState(false);
   let [activeLi, changeActiveLi] = React.useState<null | number>(null)
+  
   let ref = React.useRef<HTMLDivElement>(null!);
   let selectorRef = React.useRef<HTMLDivElement>(null!);
 
 
-  useOnClickOutside(selectorRef,()=>{openMenu(false)})
+  useOnClickOutside(selectorRef, () => { openMenu(false) })
+
+  const handelLiClick = (ele: React.MouseEvent<HTMLLIElement>,index:number,title:string)=>{
+    changeActiveLi(index)
+    ref.current.innerHTML = title
+    input.onChange(title);
+    onActiveLi(title)
+    if (activeLi == index) {
+      (ele.target as HTMLElement).classList.add("!bg-primary")
+    }
+    openMenu(!menu)
+  }
 
   React.useEffect(() => {
 
@@ -35,45 +47,36 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
       <div
         className={classNames(
           "cursor-pointer flex justify-between items-center options-center px-3 py-2 border shadow-sm border-slate-300 placeholder-slate-400 bg-secondary focus:outline-none block w-full rounded-md sm:text-sm",
-          { "!border-red-500":error&&errorActive,"mt-4 !border-b-transparent rounded-b-none": menu,"!border-floating-border":menu&&!error,"flex-row-reverse": direction==="rtl" }, inputStyle
+          { "!border-red-500": error && errorActive, "mt-4 !border-b-transparent rounded-b-none": menu, "!border-floating-border": menu && !error, "flex-row-reverse": direction === "rtl" , "!bg-stone-200 border-stone-200 cursor-not-allowed":!options.length}, inputStyle
         )}
 
         onClick={() => {
-          openMenu(!menu);
+          options.length&&openMenu(!menu);
         }}
 
         {...input}
       >
-        <p ref={ref} className="text-sm">{placeholder}</p>
+        <p ref={ref} className={`text-sm ${activeLi===null&&"!text-[rgba(107,114,128)]"} `}>{placeholder}</p>
         <AngleDown width={13} height={13} />
       </div>
       <div
         className={classNames(
-          "max-h-0 border border-2 rounded  h-auto overflow-y-hidden transition-all duration-500",
+          "max-h-0 border-0 rounded  h-auto overflow-y-hidden transition-all duration-500",
           {
-            "!max-h-[200px]": menu,
-            "!overflow-y-auto": menu,
+            "!max-h-[200px] !border-2 !overflow-y-auto mb-4": menu,
             "!border-transparent": !menu,
-            "mb-4": menu,
-            "absolute top-[58px] left-0 w-full z-20 bg-white":floatMenu,
+            "absolute top-[58px] left-0 w-full z-20 bg-white": floatMenu,
           },
           menuStyle
         )}
       >
         <ul className={classNames("w-full", { "text-left": direction === "rtl" })}>
-          {options.map((item: string, index: number) => (
+          {options&&options.map((item: string, index: number) => (
             <li
               key={index}
-              className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-primary": index == activeLi, "mb-2": !(index == options.length - 1) })}
+              className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-layout-secondary": index == activeLi, "mb-2": !(index == options.length - 1) })}
               onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
-                changeActiveLi(index)
-                ref.current.innerHTML = item
-                input.onChange(item);
-
-                if (activeLi == index) {
-                  (ele.target as HTMLElement).classList.add("!bg-primary")
-                }
-                openMenu(!menu)
+                handelLiClick(ele,index,item)             
               }}
             >
               {item}

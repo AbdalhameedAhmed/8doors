@@ -72,83 +72,6 @@ export default function SignIn() {
 
   return (
     <>
-      {/* <div className={`self-start w-full px-[64px] xs:!w-[448px] xs:px-0 sm:!w-[448px] sm:px-0 md:!w-[448px] md:px-0`}>
-        <div className="flex flex-col align-start justify-center relative mb-[80px]">
-          <p className="text-primary text-[1.5rem] font-[700]">Sign in to 8doors</p>
-          <p className="text-custom text-primary mt-4">New user?  <Link href="/signup" className="cursor-pointer text-theme-primary hover:underline font-[700]"> Create an account</Link></p>
-        </div>
-        <Form
-          onSubmit={onSubmit}
-
-          validate={(values): Record<string, string> => formValdate(values)}
-
-          render={({ handleSubmit, submitting }) => (
-            <form onSubmit={handleSubmit}>
-              <Field name="username">
-                {({ input, meta }) => (
-                  <>
-                    <LoginInput
-                      label=""
-                      placeholder={"Email"}
-                      inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0" 
-                      error={meta.error}
-                      errorActive={error}
-                      type="text"
-                      {...input}
-                    />
-
-
-                  </>
-                )}
-              </Field>
-              <Field name="password">
-                {({ input, meta }) => (
-                  <>
-                    <PasswordInput
-                      placeholder={"Password"}
-                      inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0" 
-                      errorActive={error}
-                      error={meta.error}
-                      {...input}
-                    />
-                  </>
-                )}
-              </Field>
-              <p className="mt-3 text-sm text-primary text-right">
-                <Link href="/forget-password">
-                  <u>Forgot password?</u>
-                </Link>
-              </p>
-              <button
-
-                type="submit"
-                disabled={submitting}
-                className="inline-block w-full mt-4 rounded-lg py-3 px-[22px] bg-[#212B36] dark:bg-white dark:text-black text-white"
-                onClick={() => { activeError(true) }}
-              >
-                {t("signin.login")}
-              </button>
-            </form>
-          )}
-        ></Form>
-        <div className="flex items-center justify-center gap-3 p-8 mt-8 border-t-[1px] border-dashed border-main-border relative before:content-['OR'] before:absolute before:left-1/2 before:-translate-x-1/2 before:text-[0.75rem] before:top-0 before:-translate-y-1/2 before:text-gray">
-          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
-
-            <Google className="w-[20px] ml-[1px] h-[20px] fill-[#DF3E30]" />
-          </button>
-          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
-
-            <Github className="w-[20px] ml-[1px] h-[20px] fill-[#212B36] dark:fill-white" />
-          </button>
-
-          <button className="w-[35px] h-[35px] rounded-full hover:bg-layout-secondary flex items-center justify-center">
-
-            <Twitter className="w-[20px] ml-[1px] h-[20px] fill-[#1C9CEA] " />
-          </button>
-
-        </div>
-
-      </div> */}
       <div className={`${styles.content} py-[50px] relative `} style={{
         minHeight: "414.5px"
       }}>
@@ -206,7 +129,7 @@ export default function SignIn() {
                             )}
                           </Field>
                           <div className="text-end">
-                            <a className={`${styles.forgotLink} hover:text-[#09dca4]`} href="login.html">Forget password?</a>
+                            <Link className={`${styles.forgotLink} hover:text-[#09dca4]`} href="/register">you don&apos;t have an account?</Link>
                           </div>
                           <button
 

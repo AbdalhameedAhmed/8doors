@@ -1,12 +1,14 @@
 import React, { Dispatch, SetStateAction } from "react"
 
 import styles from "./dashboard.module.css"
+import useWindowSize from "hooks/useWindowSize"
 
 import NoUser from "assets/dashboard/blank-profile-picture-973460_1280.webp"
 import UploadIcon from "assets/dashboard/upload-solid.svg"
 
 import classNames from "classnames"
 import { ImageProps } from "theme-ui"
+
 
 type sideNavTypes = {
   items: { title: string, icon: React.ReactNode }[]
@@ -19,6 +21,7 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
+  const {width} = useWindowSize()
 
 
   const handelLiClick = (index: number) => {
@@ -43,7 +46,7 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
 
 
   return (
-    <div className={classNames("col-md-5 col-lg-4 col-xl-3 !sticky top-[1.5rem] transition-all duration-300", { "": scrollDirection === "down" })} style={{ overflow: "visible", boxSizing: "border-box", minHeight: "1px" }}>
+    <div className={classNames(`col-md-5 col-lg-4 col-xl-3 ${width>767&&"!sticky"}  top-[1.5rem] transition-all duration-300`, { "": scrollDirection === "down" })} style={{ overflow: "visible", boxSizing: "border-box", minHeight: "1px" }}>
       <div style={{ paddingTop: "0px", paddingBottom: "1px", position: "static", transform: "none", top: " 0px", left: "30px" }}><div className={`${styles.profileSidebar}`}>
         <div className={`${styles.widgetProfile}`}>
           <div className={`${styles.profileInfoWidget}`}>

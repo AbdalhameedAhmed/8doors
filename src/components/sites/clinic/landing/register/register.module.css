@@ -73,7 +73,7 @@
 .selectRegisterType{
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     
 }
 .selectRegisterType .registerOption{

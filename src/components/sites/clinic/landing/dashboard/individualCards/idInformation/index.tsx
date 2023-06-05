@@ -25,7 +25,7 @@ export default function IdInfo({ direction }: idInfoType) {
 
 
         <div className={`${styles.submitSection} offset-8 text-right pr-[84px] col-3`}>
-          <button type="submit" className="btn btn-primary submit-btn" onClick={() => { btnHandler() }}>Save Changes</button>
+          <button type="submit" className="text-white transition duration-300" onClick={() => { btnHandler() }}>Save Changes</button>
         </div>
           </div>
         </form>

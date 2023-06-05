@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { rootState } from "redux/store";
 import useToast from "hooks/useToast";
+import axios from "axios";
 
 
 
@@ -24,33 +25,31 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
     const { user } = useSelector(state => (state as rootState).auth)
     const router = useRouter()
     const addToast = useToast()
-        console.log(user);
-        
+    console.log(user);
+
     const [otp, setOtp] = React.useState('');
     const handleOtpChange = (newOtp: string) => {
         setOtp(newOtp);
     };
 
 
-   
+
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         await postData({ username: user.username, otpCode: otp }).unwrap()
             .then((res) => {
-                dispatch(addUser(res))
                 if (res.token) {
                     localStorage.setItem("token", res.token)
+                    axios.post("/api/setToken", { token: res.token })
+
                     router.push("/")
                 }
-                // router.push(toSubDomain("clinic", `dashboard?token=${res.token}`))
-                console.log("otp response is", res);
-
-
-
 
             })
-            .catch(() => {
-                addToast("error", "Username or password is wrong")
+            .catch((err) => {
+                console.log(err.data.detail, "&&&&&&&&&&");
+
+                addToast("error", err.data.detail)
             })
 
         console.log("otp is", otp);
