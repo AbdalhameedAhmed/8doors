@@ -21,7 +21,7 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
-  const {width} = useWindowSize()
+  const { width } = useWindowSize()
 
 
   const handelLiClick = (index: number) => {
@@ -46,7 +46,7 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
 
 
   return (
-    <div className={classNames(`col-md-5 col-lg-4 col-xl-3 ${width>767&&"!sticky"}  top-[1.5rem] transition-all duration-300`, { "": scrollDirection === "down" })} style={{ overflow: "visible", boxSizing: "border-box", minHeight: "1px" }}>
+    <div className={classNames(`col-md-5 col-lg-4 col-xl-3 ${width > 767 && "!sticky"}  top-[1.5rem] transition-all duration-300`, { "": scrollDirection === "down" })} style={{ overflow: "visible", boxSizing: "border-box", minHeight: "1px" }}>
       <div style={{ paddingTop: "0px", paddingBottom: "1px", position: "static", transform: "none", top: " 0px", left: "30px" }}><div className={`${styles.profileSidebar}`}>
         <div className={`${styles.widgetProfile}`}>
           <div className={`${styles.profileInfoWidget}`}>
@@ -54,9 +54,9 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
             <div className={`${styles.bookingDocImg}`}>
               <img src={userInfo.image ? userInfo.image.src : NoUser.src} alt="User Image" />
               <div className={`${styles.uploadPhoto} cursor-pointer`}>
-                <input type="file" className="cursor-pointer"/>
+                <input type="file" className="cursor-pointer" />
                 <span>
-                  <UploadIcon/> 
+                  <UploadIcon />
                   Upload</span>
               </div>
             </div>

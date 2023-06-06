@@ -107,7 +107,9 @@
   background-color: #09e5ab;
   border: 1px solid #09e5ab;
 }
-
+.btnPrimary span {
+  display: none;
+}
 .btnPrimary:hover,
 .btnPrimary:focus,
 .btnPrimary.active,
@@ -205,6 +207,10 @@
     flex: 0 0 100%;
     min-height: 46px;
     width: 100%;
+  }
+  .btnPrimary span{
+    display: inline;
+    color: white;
   }
 }
 

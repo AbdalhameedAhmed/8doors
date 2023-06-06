@@ -3,7 +3,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { rootState } from 'redux/store';
 
 export const customBaseQuery = fetchBaseQuery({
-  baseUrl: `http://localhost:9090/api/lookup/v1`,
+  baseUrl: `http://localhost:9094/api/lookup/v1`,
   
 
   prepareHeaders: (headers, { getState }) => {

@@ -5,70 +5,108 @@ import CustomSingleSelector from "components/shared/customSingleSelector"
 import { Form, Field } from "react-final-form"
 import { formValdate } from "./formValidate";
 import { useGetCountriesQuery } from "redux/services/lookup/getAllCountries"
+import { country } from "types/lookupTypes/country"
+import { useGetBloodGroupsQuery } from "redux/services/lookup/getBloodGroup"
+import { bloodType } from "types/lookupTypes/bloodGroups"
+import { singleSelectorTypes } from "types/singleSelectorTypes"
+import { useGetStatesMutation } from "redux/services/lookup/getStates"
+import { state } from "types/lookupTypes/stateType"
+import { useGetCitiesMutation } from "redux/services/lookup/getCities"
+import { city } from "types/lookupTypes/cityType"
 
 
 
 export default function UserInfo() {
 
   const [error, activeError] = React.useState(false)
-  const [countries, setCountries] = React.useState<[] | string[]>([])
-  const [states, setStates] = React.useState<[] | string[]>([])
-  const [cities, setCities] = React.useState<[] | string[]>([])
-  const { data, refetch } = useGetCountriesQuery(null)
+  const [countries, setCountries] = React.useState<[] | singleSelectorTypes["options"]>([])
+  const [bloodGroups, setBloodGroups] = React.useState<[] | singleSelectorTypes["options"]>([])
+  const [states, setStates] = React.useState<[] | singleSelectorTypes["options"]>([])
+  const [cities, setCities] = React.useState<[] | singleSelectorTypes["options"]>([])
+  const { data: backCountries } = useGetCountriesQuery(null)
+  const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
+  const [getAllStates] = useGetStatesMutation()
+  const [getAllCities] = useGetCitiesMutation()
+
   const onSubmit = (values: Record<string, any>) => {
     console.log(values);
 
   }
-  console.log(data);
 
-  const fetchStates = (countryId: string) => {
-    setTimeout(() => {
-      setStates([
-        "Cairo",
-        "Giza",
-        "Alexandria",
-        "Qalyubia",
-        "Dakahlia",
-        "Beheira",
-        "Sohag",
-        "Qena",
-        "Luxor",
-        "Aswan"
-      ])
-    }, 500)
+
+  const fetchStates = (countryId: number) => {
+
+
+    getAllStates({ id: countryId }).unwrap().then(({ data }) => {
+      let allStatesData: singleSelectorTypes["options"] = []
+      data.map((state: state) => {
+
+        let stateData: { id: number, value: string|number , title:string } = { id: state.id, title: state.nameEn, value:state.id }
+
+        allStatesData.push(stateData)
+
+
+      })
+      setStates((allStatesData))
+
+    })
+
   }
-  const fetchCities = (cityId: string) => {
-    setTimeout(() => {
-      setCities([
-        "Giza",
-        "6th of October City",
-        "New Cairo",
-        "Maadi",
-        "Zamalek",
-        "Heliopolis",
-        "Nasr City",
-        "Dokki",
-        "Mohandessin",
-        "Agouza"
-      ])
-    }, 500)
+
+
+  const fetchCities = (stateId: number) => {
+
+    getAllCities({ id: stateId }).unwrap().then(({ data }) => {
+
+      let citiesData: singleSelectorTypes["options"] = []
+      data.map((city: city) => {
+
+        let cityData: { id: number, value: string|number, title:string } = { id: city.id, title: city.nameEn, value:city.id }
+
+        citiesData.push(cityData)
+
+
+      })
+      setCities((citiesData))
+
+    })
+
   }
+
+
   React.useEffect(() => {
-    setTimeout(() => {
-      setCountries([
-        "Egypt",
-        "United States of America (USA)",
-        "United Kingdom (UK)",
-        "Germany",
-        "France",
-        "Italy",
-        "Canada",
-        "Australia",
-        "Japan",
-        "Brazil"
-      ])
-    }, 500)
-  }, [])
+
+    if (backCountries) {
+      let selectorData: singleSelectorTypes["options"] = []
+
+      backCountries.data.map((country: country) => {
+
+        let countryData: { id: number, value: string|number, title:string } = { id: country.id, value: country.id,title:country.nameEn }
+
+        selectorData.push(countryData)
+
+      })
+      setCountries((selectorData))
+    }
+
+  }, [backCountries])
+
+  React.useEffect(() => {
+
+    if (backBloodGroups) {
+      let selectorData: singleSelectorTypes["options"] = []
+
+      backBloodGroups.data.map((bloodType: bloodType) => {
+
+        let bloodData: { id: number, value: string|number, title:string } = { id: bloodType.id, value: bloodType.id, title:bloodType.value }
+
+        selectorData.push(bloodData)
+
+      })
+      setBloodGroups((selectorData))
+    }
+
+  }, [backBloodGroups])
 
   return (
     <div className={`card ${styles.infoCard}`}>
@@ -78,7 +116,8 @@ export default function UserInfo() {
           initialValues={
             {
               firstName: "Abdalhameed",
-              lastName:"Ahmed"
+              lastName: "Ahmed",
+              date:"2023-06-07"
             }
           }
           validate={(values): Record<string, string> => formValdate(values)
@@ -206,7 +245,7 @@ export default function UserInfo() {
                             placeholder="Blood Group"
                             error={meta.error}
                             errorActive={error}
-                            options={["A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+"]}
+                            options={bloodGroups}
                             inputStyle="!p-4 bg-white !shadow-none !mt-0 focus:bg-white  h-[58px]"
                             input={input}
                           />

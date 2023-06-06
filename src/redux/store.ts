@@ -8,11 +8,14 @@ import { Otp } from './services/clinic/otp';
 import { addClinic, getClinics } from 'redux/services/clinic/addAndGetClinics';
 import { signup } from 'redux/services/signup';
 import { deleteClinic } from 'redux/services/clinic/deleteClinic';
-import { getCountries } from './services/lookup/getAllCountries';
 import { updateClinic } from 'redux/services/clinic/updateClinic';
 import { changePassword } from 'redux/services/clinic/changePassword';
+import { getBloodGroups } from './services/lookup/getBloodGroup';
+import { getCountries } from './services/lookup/getAllCountries';
+import { getStates } from './services/lookup/getStates';
+import { getCities } from './services/lookup/getCities';
 import activeClinicReducer from 'redux/slices/clinic/activeClinic';
-import userRegisterInfoReducer from "redux/slices/landing/userRegisterInfo"
+import userRegisterInfoReducer from 'redux/slices/landing/userRegisterInfo';
 import authReducer from 'redux/slices/auth';
 
 const persistConfig = {
@@ -22,8 +25,10 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   [Login.reducerPath]: Login.reducer,
-  [Otp.reducerPath]:Otp.reducer,
+  [Otp.reducerPath]: Otp.reducer,
   [getClinics.reducerPath]: getClinics.reducer,
+  [getBloodGroups.reducerPath]: getBloodGroups.reducer,
+  [getCountries.reducerPath]: getCountries.reducer,
   auth: authReducer,
   activeClinic: activeClinicReducer,
   userInfo: userRegisterInfoReducer,
@@ -41,7 +46,10 @@ const middleware: Middleware[] = [
   deleteClinic.middleware,
   updateClinic.middleware,
   Otp.middleware,
-  getCountries.middleware
+  getBloodGroups.middleware,
+  getCountries.middleware,
+  getStates.middleware,
+  getCities.middleware
 ];
 const store = configureStore({
   reducer: persistedReducer,

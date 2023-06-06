@@ -21,11 +21,11 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
 
   useOnClickOutside(selectorRef, () => { openMenu(false) })
 
-  const handelLiClick = (ele: React.MouseEvent<HTMLLIElement>,index:number,title:string)=>{
+  const handelLiClick = (ele: React.MouseEvent<HTMLLIElement>,index:number,title:string,id:number,value:number|string)=>{
     changeActiveLi(index)
     ref.current.innerHTML = title
-    input.onChange(title);
-    onActiveLi(title)
+    input.onChange(value);
+    onActiveLi(id)
     if (activeLi == index) {
       (ele.target as HTMLElement).classList.add("!bg-primary")
     }
@@ -71,15 +71,15 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
         )}
       >
         <ul className={classNames("w-full", { "text-left": direction === "rtl" })}>
-          {options&&options.map((item: string, index: number) => (
+          {options&&options.map((item, index: number) => (
             <li
-              key={index}
+              key={item?.id}
               className={classNames("px-4 hover:bg-layout-secondary py-2 w-full", { "!bg-layout-secondary": index == activeLi, "mb-2": !(index == options.length - 1) })}
               onClick={(ele: React.MouseEvent<HTMLLIElement>) => {
-                handelLiClick(ele,index,item)             
+                handelLiClick(ele,index,item.title,item.id,item.value)             
               }}
             >
-              {item}
+              {item.title}
             </li>
           ))}
         </ul>

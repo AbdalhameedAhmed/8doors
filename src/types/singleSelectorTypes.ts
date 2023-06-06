@@ -1,6 +1,13 @@
+import { country } from "./lookupTypes/country";
+
 export type singleSelectorTypes = {
   placeholder: string;
-  options: string[];
+  options:{
+    id: number;
+    value: string|number;
+    title:string;
+    [key: string]: any;
+  }[];
   input?: any;
   inputStyle?: string;
   menuStyle?: string;
@@ -9,6 +16,6 @@ export type singleSelectorTypes = {
   touched?: string | number | any;
   containerStyle?: string;
   errorActive?: boolean;
-  onActiveLi?:(id:string)=>void
+  onActiveLi?:(id:number)=>void
   floatMenu?:boolean
 };

@@ -207,7 +207,7 @@ export default function Register() {
                           <button
                             type="submit"
                             disabled={props.submitting}
-                            className="inline-block w-full rounded-lg py-3 px-[22px] bg-[#212B36] dark:bg-white text-white dark:text-black"
+                            className={`btn btn-primary w-100 btn-lg ${styles.loginBtn} ${styles.loginBtnPrimary} hover:bg-[#10DEFD] hover:border-[#10DEFD]`}
                             onClick={() => {
                               activeError(true)
                               console.log(props);

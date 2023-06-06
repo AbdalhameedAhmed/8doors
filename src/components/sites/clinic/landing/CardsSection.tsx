@@ -29,7 +29,7 @@ export default function CardsSection({ direction = "ltr" }: cardsTypes) {
                       <h3 className={`card-title mb-0 text-[1.5rem]`} style={{
                         textShadow: "2px 4px 3px rgb(0 0 0 / 30%)"
                       }}>Visit a Doctor</h3>
-                      <a href="search.html" className={`btn ${styles.bookBtn1} px-3 py-2 mt-3 btn-one-light`}>Book Now</a>
+                      <a href="search.html" className={`btn ${styles.bookBtn1} px-3 py-2 mt-3 btn-one-light w-auto`}>Book Now</a>
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@ export default function CardsSection({ direction = "ltr" }: cardsTypes) {
                       <h3 className={`card-title mb-0 text-[1.5rem]`} style={{
                         textShadow: "2px 4px 3px rgb(0 0 0 / 30%)"
                       }}>Find a Pharmacy</h3>
-                      <a href="pharmacy-search.html" className={`btn ${styles.bookBtn1} px-3 py-2 mt-3 btn-one-light`} >Find Now</a>
+                      <a href="pharmacy-search.html" className={`btn ${styles.bookBtn1} px-3 py-2 mt-3 btn-one-light w-auto`} >Find Now</a>
                     </div>
                   </div>
                 </div>
@@ -55,7 +55,7 @@ export default function CardsSection({ direction = "ltr" }: cardsTypes) {
                       <h3 className={`card-title mb-0 text-[1.5rem]`} style={{
                         textShadow: "2px 4px 3px rgb(0 0 0 / 30%)"
                       }}>Find a Lab</h3>
-                      <a href="javascript:void(0);" className={`btn ${styles.bookBtn1} px-3 py-2 mt-3 btn-one-light`}>Coming Soon</a>
+                      <a href="javascript:void(0);" className={`btn ${styles.bookBtn1} px-3 py-2 mt-3 btn-one-light w-auto`}>Coming Soon</a>
                     </div>
                   </div>
                 </div>
