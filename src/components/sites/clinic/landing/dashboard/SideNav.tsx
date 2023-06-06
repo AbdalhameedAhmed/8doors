@@ -8,6 +8,8 @@ import UploadIcon from "assets/dashboard/upload-solid.svg"
 
 import classNames from "classnames"
 import { ImageProps } from "theme-ui"
+import { ChangeEvent, TargetedEvent } from "preact/compat"
+import { useProfilePicMutation } from "redux/services/patient/profilePic"
 
 
 type sideNavTypes = {
@@ -22,10 +24,25 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
   const { width } = useWindowSize()
+  const [postProfilePic] = useProfilePicMutation()
 
 
   const handelLiClick = (index: number) => {
     setActiveItem(index)
+  }
+
+  const convertImageToUrl = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files?.[0];
+    const formData = new FormData();
+  formData.append('image', file);
+    postProfilePic(formData).unwrap().then((res)=>{
+      console.log("done",res);
+      
+    })
+    console.log(file);
+    
+   
   }
 
   React.useEffect(() => {
@@ -54,7 +71,7 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
             <div className={`${styles.bookingDocImg}`}>
               <img src={userInfo.image ? userInfo.image.src : NoUser.src} alt="User Image" />
               <div className={`${styles.uploadPhoto} cursor-pointer`}>
-                <input type="file" className="cursor-pointer" />
+                <input type="file" name="profilePic" accept=".jpg, .jpeg, .png" onChange={(e) => { convertImageToUrl(e) }} className="cursor-pointer" />
                 <span>
                   <UploadIcon />
                   Upload</span>

@@ -17,6 +17,7 @@ import { getCities } from './services/lookup/getCities';
 import activeClinicReducer from 'redux/slices/clinic/activeClinic';
 import userRegisterInfoReducer from 'redux/slices/landing/userRegisterInfo';
 import authReducer from 'redux/slices/auth';
+import { profilePic } from './services/patient/profilePic';
 
 const persistConfig = {
   key: 'root',
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   [getClinics.reducerPath]: getClinics.reducer,
   [getBloodGroups.reducerPath]: getBloodGroups.reducer,
   [getCountries.reducerPath]: getCountries.reducer,
+  [profilePic.reducerPath]:profilePic.reducer,
   auth: authReducer,
   activeClinic: activeClinicReducer,
   userInfo: userRegisterInfoReducer,
@@ -49,7 +51,8 @@ const middleware: Middleware[] = [
   getBloodGroups.middleware,
   getCountries.middleware,
   getStates.middleware,
-  getCities.middleware
+  getCities.middleware,
+  profilePic.middleware
 ];
 const store = configureStore({
   reducer: persistedReducer,
