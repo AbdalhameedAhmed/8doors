@@ -1,4 +1,5 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { parse } from 'cookie';
 
 import { rootState } from 'redux/store';
 
@@ -8,8 +9,10 @@ export const customBaseQuery = fetchBaseQuery({
 
   prepareHeaders: (headers, { getState }) => {
     // Get the current value of the token from state
-    const token = (getState() as rootState).auth.user.token;
+    const token = parse(document.cookie).token
     // If we have a token, add it to the headers
+    console.log("token from redux",token);
+    
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
     }

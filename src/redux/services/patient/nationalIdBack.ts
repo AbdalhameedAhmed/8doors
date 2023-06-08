@@ -15,7 +15,7 @@ export const nationalIdBack = createApi({
       query: (data) => ({
         url: `/files?file-type=NATIONAL_ID_BACK`,
         method: 'post',
-        body: { file: data },
+        body: data,
       }),
       transformResponse: (response: AxiosResponse<nationalIdBackResponse>) => {
         return response.data;

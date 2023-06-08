@@ -26,12 +26,12 @@ export default function Hero({direction="ltr"}:heroTypes) {
                 <div className={`form-group relative search-location ${styles.searchLocation}`}>
                   <Location className="w-[20px] h-[20px]  absolute top-[23px] left-[10px] -translate-y-1/2 [&_path]:fill-[#ccc] inline" />
                   <input type="text" className={`form-control ${styles.formControl}`} placeholder="Search Location" />
-                  <span className="form-text">Based on your Location</span>
+                  <span className={`${styles.formText}`}>Based on your Location</span>
                 </div>
                 <div className={`form-group relative search-info ${styles.searchInfo}`}>
                   <SearchICon className="w-[20px] h-[20px]  absolute top-[23px] left-[10px] -translate-y-1/2 [&_path]:fill-[#ccc] inline" />
                   <input type="text" className={`form-control ${styles.formControl}`} placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc" />
-                  <span className="form-text">Ex : Dental or Sugar Check up etc</span>
+                  <span className={`${styles.formText}`}>Ex : Dental or Sugar Check up etc</span>
                 </div>
                 <button type="submit" className={classNames(`btn btn-primary search-btn mt-0 ${styles.searchBtn} ${styles.btnPrimary}`,{"mr-3":direction==="rtl"})}>
                   <SearchICon className="w-[20px] h-[20px] my-[8px] [&_path]:fill-white inline" />

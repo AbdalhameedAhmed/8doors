@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react"
+import React, { ChangeEvent, Dispatch, SetStateAction } from "react"
 
 import styles from "./dashboard.module.css"
 import useWindowSize from "hooks/useWindowSize"
@@ -7,19 +7,18 @@ import NoUser from "assets/dashboard/blank-profile-picture-973460_1280.webp"
 import UploadIcon from "assets/dashboard/upload-solid.svg"
 
 import classNames from "classnames"
-import { ImageProps } from "theme-ui"
-import { ChangeEvent, TargetedEvent } from "preact/compat"
 import { useProfilePicMutation } from "redux/services/patient/profilePic"
 
 
 type sideNavTypes = {
   items: { title: string, icon: React.ReactNode }[]
-  userInfo: { image: ImageProps, name: string, moreInfo: string, location?: string }
+  userInfo: { imageUrl: string | undefined, name: string, moreInfo: string, location?: string }
   direction: "ltr" | "rtl"
   setActiveItem: Dispatch<SetStateAction<number>>
-  activeItem: number
+  activeItem: number,
+  refetchProfileData:() => void
 }
-export default function SideNav({ items, userInfo, direction, activeItem, setActiveItem }: sideNavTypes) {
+export default function SideNav({ items, userInfo, direction, activeItem, setActiveItem,refetchProfileData }: sideNavTypes) {
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
@@ -34,15 +33,14 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
   const convertImageToUrl = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
-    const formData = new FormData();
-  formData.append('image', file);
-    postProfilePic(formData).unwrap().then((res)=>{
-      console.log("done",res);
-      
+    if (!file) {
+      return;
+    }
+    const formData = new FormData()
+    formData.append("file", file)
+    postProfilePic(formData).unwrap().then((res) => {
+      refetchProfileData()
     })
-    console.log(file);
-    
-   
   }
 
   React.useEffect(() => {
@@ -69,9 +67,9 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
           <div className={`${styles.profileInfoWidget}`}>
 
             <div className={`${styles.bookingDocImg}`}>
-              <img src={userInfo.image ? userInfo.image.src : NoUser.src} alt="User Image" />
+              <img src={userInfo.imageUrl ? userInfo.imageUrl : NoUser.src} alt="User Image" />
               <div className={`${styles.uploadPhoto} cursor-pointer`}>
-                <input type="file" name="profilePic" accept=".jpg, .jpeg, .png" onChange={(e) => { convertImageToUrl(e) }} className="cursor-pointer" />
+                <input type="file" name="profilePic" accept=".jpg, .jpeg, .png" onChange={convertImageToUrl} className="cursor-pointer" />
                 <span>
                   <UploadIcon />
                   Upload</span>

@@ -13,6 +13,8 @@ import { useGetStatesMutation } from "redux/services/lookup/getStates"
 import { state } from "types/lookupTypes/stateType"
 import { useGetCitiesMutation } from "redux/services/lookup/getCities"
 import { city } from "types/lookupTypes/cityType"
+import { useUpdatePatientDataMutation } from "redux/services/patient/updatePatientData"
+import { patientProfileDataTypes } from "types/patientTypes/patientProfileData"
 
 
 
@@ -27,10 +29,26 @@ export default function UserInfo() {
   const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
   const [getAllStates] = useGetStatesMutation()
   const [getAllCities] = useGetCitiesMutation()
+  const [postPatientData] = useUpdatePatientDataMutation()
 
-  const onSubmit = (values: Record<string, any>) => {
-    console.log(values);
 
+  const onSubmit = (values: patientProfileDataTypes) => {
+
+    const dataForm = {
+      firstName:values.firstName,
+      lastName:values.lastName,
+      date:values.date,
+      bloodGroupId:values.bloodType,
+      countryId:values.country,
+      stateId:values.state,
+      cityId:values.city,
+      addess:values.address
+    } 
+
+    postPatientData(dataForm).unwrap().then(res=>{
+      console.log(res);
+      
+    })
   }
 
 

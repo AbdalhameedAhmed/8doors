@@ -23,7 +23,7 @@ export default function ContactUs({direction="ltr"}:contactTypes) {
               <div>
                 <form>
                   <div className={`${styles.formGroup}`}>
-                    <input type="text" className={classNames(`${styles.formControl} me-2`,{"ms-2":direction==="rtl"})} placeholder="Enter Your Email Address" />
+                    <input type="text" className={classNames(`${styles.formControl} mr-2`,{"ml-2":direction==="rtl"})} placeholder="Enter Your Email Address" />
                     <button type="submit" className={`${styles.btn}`}>Subscribe</button>
                   </div>
                 </form>

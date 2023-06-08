@@ -4,8 +4,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { customBaseQuery } from "./customBaseQuery"
 
 interface profilePicResponse {
-  mobileVerified: boolean;
-  token: string;
+  url:string;
 }
 
 export const profilePic = createApi({
@@ -16,7 +15,7 @@ export const profilePic = createApi({
       query: (data) => ({
         url: `/files?file-type=PROFILE_PIC`,
         method: "post",
-        body: {file:data}
+        body: data
       }),
       transformResponse: (response: AxiosResponse<profilePicResponse>) => {
         return response.data;

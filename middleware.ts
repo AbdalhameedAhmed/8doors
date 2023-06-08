@@ -4,7 +4,6 @@ import { NextResponse, NextRequest } from 'next/server';
  * @param req
  */
 
-
 export default function middleware(req: NextRequest, res: NextResponse) {
   const token = req.cookies.get('token');
 
@@ -14,16 +13,23 @@ export default function middleware(req: NextRequest, res: NextResponse) {
 
   // console.log(token, 'cookie from middleware');
 
-  if(req.url.includes('redirect') && !req.url.includes('token') && !req.url.includes('?ts')){
-    return new Response(null, { status: 404 });    
+  if (
+    req.url.includes('redirect') &&
+    !req.url.includes('token') &&
+    !req.url.includes('?ts')
+  ) {
+    return new Response(null, { status: 404 });
   }
-  
+
   if (token?.value && req.url.includes('otp')) {
     return NextResponse.redirect(`${origin}`);
   }
+
+  if (!token?.value && req.url.includes('individual-dashboard')) {
+    return NextResponse.redirect(`${origin}/login`);
+  }
   // console.log(req.url);
-  
-  
+
   // If localhost, assign the host value manually
   // If prod, get the custom domain/subdomain value by removing the root URL
   // (in the case of "test.vercel.app", "vercel.app" is the root URL)

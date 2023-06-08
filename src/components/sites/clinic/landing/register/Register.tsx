@@ -11,6 +11,8 @@ import { Form, Field } from "react-final-form";
 import useToast from "hooks/useToast"
 import { useSignupMutation } from "redux/services/signup"
 import { formValdate } from "./formValidate";
+import { addUser } from "redux/slices/auth"
+import { useDispatch } from "react-redux"
 
 
 
@@ -20,6 +22,7 @@ export default function Register() {
   const [error, activeError] = React.useState(false)
   const [signup] = useSignupMutation()
   const addToast = useToast()
+  const dispatch = useDispatch()
 
 
   let handelChangeImage = (imageSrc: string) => {
@@ -31,7 +34,8 @@ export default function Register() {
   const onSubmit = async (values: Record<string, any>) => {
 
     await signup({ username: values.username, email: values.email, password: values.password, phoneNumber: values.phoneNumber }).unwrap()
-      .then(() => {
+      .then((res) => {
+        dispatch(addUser(res.data))
         router.push('/otp');
       }).catch(() => {
         addToast("error", "somthing wrong")

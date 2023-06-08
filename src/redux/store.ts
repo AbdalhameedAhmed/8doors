@@ -14,10 +14,15 @@ import { getBloodGroups } from './services/lookup/getBloodGroup';
 import { getCountries } from './services/lookup/getAllCountries';
 import { getStates } from './services/lookup/getStates';
 import { getCities } from './services/lookup/getCities';
+import { getProfileData } from './services/patient/getProfileData';
 import activeClinicReducer from 'redux/slices/clinic/activeClinic';
 import userRegisterInfoReducer from 'redux/slices/landing/userRegisterInfo';
 import authReducer from 'redux/slices/auth';
 import { profilePic } from './services/patient/profilePic';
+import { nationalIdFront } from './services/patient/nationalIdFront';
+import { nationalIdBack } from './services/patient/nationalIdBack';
+import { getNationalIdData } from './services/patient/getNationalIdData';
+import { updatePatientData } from './services/patient/updatePatientData';
 
 const persistConfig = {
   key: 'root',
@@ -30,7 +35,14 @@ const rootReducer = combineReducers({
   [getClinics.reducerPath]: getClinics.reducer,
   [getBloodGroups.reducerPath]: getBloodGroups.reducer,
   [getCountries.reducerPath]: getCountries.reducer,
-  [profilePic.reducerPath]:profilePic.reducer,
+  [getStates.reducerPath]: getStates.reducer,
+  [getCities.reducerPath]: getCities.reducer,
+  [profilePic.reducerPath]: profilePic.reducer,
+  [getProfileData.reducerPath]: getProfileData.reducer,
+  [nationalIdFront.reducerPath]: nationalIdFront.reducer,
+  [nationalIdBack.reducerPath]: nationalIdBack.reducer,
+  [getNationalIdData.reducerPath]: getNationalIdData.reducer,
+  [updatePatientData.reducerPath]: updatePatientData.reducer,
   auth: authReducer,
   activeClinic: activeClinicReducer,
   userInfo: userRegisterInfoReducer,
@@ -52,7 +64,12 @@ const middleware: Middleware[] = [
   getCountries.middleware,
   getStates.middleware,
   getCities.middleware,
-  profilePic.middleware
+  profilePic.middleware,
+  getProfileData.middleware,
+  nationalIdFront.middleware,
+  nationalIdBack.middleware,
+  getNationalIdData.middleware,
+  updatePatientData.middleware,
 ];
 const store = configureStore({
   reducer: persistedReducer,

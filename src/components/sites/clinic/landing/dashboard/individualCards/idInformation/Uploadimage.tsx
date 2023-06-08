@@ -4,19 +4,16 @@ import styles from "./idInfo.module.css"
 
 
 type uploadImageTypes = {
-  defaultImageSrc: string;
+  imageSrc: string;
   direction?: "rtl" | "ltr";
-  input: FieldInputProps<any, HTMLElement>,
+  input: FieldInputProps<any, HTMLElement>;
   fieldError:string
+  activeError:boolean
 }
-export default function UploadImage({ defaultImageSrc, direction, input,fieldError }: uploadImageTypes) {
-  let [idImageSrc, changeIdImageSrc] = React.useState(defaultImageSrc)
+export default function UploadImage({ imageSrc, direction, input,fieldError,activeError:activeFormError }: uploadImageTypes) {
+  let [idImageSrc, changeIdImageSrc] = React.useState(imageSrc)
   let [error, activeError] = React.useState(false)
   let imageSizeLimit = 2097152
-
-
-
-
 
   const convertImageToUrl = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -26,7 +23,7 @@ export default function UploadImage({ defaultImageSrc, direction, input,fieldErr
       if (file?.size > imageSizeLimit) {
         activeError(true)
       } else {
-        input.onChange(target.files)
+        input.onChange(file)
         console.log("files are", target.files);
 
         activeError(false)
@@ -40,11 +37,16 @@ export default function UploadImage({ defaultImageSrc, direction, input,fieldErr
     }
   }
 
+  React.useEffect(()=>{
+    changeIdImageSrc(imageSrc)
+  },[imageSrc])
+  console.log("image value",imageSrc);
+  
   return (
     <div className="col-12 col-md-5 mb-5 flex flex-col gap-4 ">
 
       <div className={`${styles.formGroup}`}>
-        <div className={`${styles.relativeForm} ${direction === "rtl" && "!justify-end"}`}>
+        <div className={`${styles.relativeForm} ${direction === "rtl" && "!justify-end"} ${fieldError&&activeFormError&&"!border-red-500"}`}>
           <span>Upload the front side of your ID</span>
           <label className={`${styles.relativeFileUpload}`}>
             File Upload <input name={input.name} onChange={(e) => { convertImageToUrl(e) }} type="file" accept=".jpg, .jpeg, .png" />

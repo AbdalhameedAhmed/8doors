@@ -8,7 +8,6 @@ import LandingLayout from "components/layout/landingLayout"
 import DashboardContent from "components/sites/clinic/landing/dashboard";
 import classNames from "classnames";
 
-import patientImage from "assets/dashboard/patient.jpg"
 import ColumnsIcon from "assets/dashboard/table-columns-solid.svg"
 import MessageIcon from "assets/dashboard/comments-solid.svg"
 import USerGearIcon from "assets/dashboard/user-gear-solid.svg"
@@ -22,11 +21,15 @@ import ClipboardIcon from "assets/dashboard/clipboard-solid.svg"
 import IdIcon from "assets/dashboard/id-card-solid.svg"
 import UserInfo from "components/sites/clinic/landing/dashboard/individualCards/profileSettings/userInfo";
 import IdInfo from "components/sites/clinic/landing/dashboard/individualCards/idInformation"
+import { useGetProfileDataQuery } from "redux/services/patient/getProfileData";
+
 
 
 export default function IndividualDashboard() {
   const [activeItem,setActiveItem] = React.useState(8)
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
+  const [profileImage,changeProfileImage] = React.useState<undefined|string>(undefined)
+  const {data:profileData,refetch:refetchProfileData} = useGetProfileDataQuery(null)
   const pageRef = React.useRef(null)
   const router = useRouter()
   const doctorItems = [
@@ -72,9 +75,12 @@ export default function IndividualDashboard() {
     },
   ]
 
-  const userInfo = { image: patientImage, name: "Richard Wilson", moreInfo: " 24 Jul 1983, 38 years", location: "Newyork, USA" }
+  const userInfo = { imageUrl: profileImage, name: "Richard Wilson", moreInfo: " 24 Jul 1983, 38 years", location: "Newyork, USA" }
 
   useRemoveScroll(pageRef)
+  
+
+
 
   React.useEffect(() => {
 
@@ -88,7 +94,12 @@ export default function IndividualDashboard() {
 
   }, [router.asPath,activeItem])
 
+React.useEffect(()=>{
+  
+  changeProfileImage(profileData?.data?.imageUrl)
+  console.log("profile data is",profileData);
 
+},[profileData])
 
 
 
@@ -97,7 +108,7 @@ export default function IndividualDashboard() {
 
 
       <LandingLayout showBreadCrumb={true} >
-        <DashboardContent direction={direction} userInfo={userInfo} items={doctorItems} activeItem={activeItem} setActiveItem={setActiveItem} />
+        <DashboardContent direction={direction} refetchProfileData={refetchProfileData} userInfo={userInfo} items={doctorItems} activeItem={activeItem} setActiveItem={setActiveItem} />
       </LandingLayout>
     </div>
   )
