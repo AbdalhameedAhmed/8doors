@@ -9,33 +9,25 @@ function formValdate(values: Record<string, any>): Record<string, string> {
     if (!values.lastName) {
         errors.lastName = "This field is required";
     }
-    if (!values.email) {
-        errors.email = "This field is required";
-    } else if (!values.email.match(validEmail)) {
-        errors.email = "Please include an @ in the email address then add more letters";
+    if (!values.dateOfBirth) {
+        errors.dateOfBirth = "This field is required";
     }
-    if (!values.mobile) {
-        errors.mobile = "This field is required";
+    if (!values.bloodGroupId) {
+        errors.bloodGroupId = "This field is required";
     }
-    if (!values.date) {
-        errors.date = "This field is required";
+    if (!values.countryId) {
+        errors.countryId = "This field is required";
     }
-    if(!values.bloodType){
-        errors.bloodType = "This field is required";
+    if (!values.stateId) {
+        errors.stateId = "This field is required";
     }
-    if(!values.country){
-        errors.country = "This field is required";
+    if (!values.cityId) {
+        errors.cityId = "This field is required";
     }
-    if(!values.state){
-        errors.state = "This field is required";
-    }
-    if(!values.city){
-        errors.city = "This field is required";
-    }
-    if(!values.address){
+    if (!values.address) {
         errors.address = "This field is required";
     }
-    if(!values.zipCode){
+    if (!values.zipCode) {
         errors.zipCode = "This field is required";
     }
     return errors;

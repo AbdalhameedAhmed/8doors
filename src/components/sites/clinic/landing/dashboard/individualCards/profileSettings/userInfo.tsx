@@ -15,6 +15,7 @@ import { useGetCitiesMutation } from "redux/services/lookup/getCities"
 import { city } from "types/lookupTypes/cityType"
 import { useUpdatePatientDataMutation } from "redux/services/patient/updatePatientData"
 import { patientProfileDataTypes } from "types/patientTypes/patientProfileData"
+import { useGetProfileDataQuery } from "redux/services/patient/getProfileData"
 
 
 
@@ -25,29 +26,33 @@ export default function UserInfo() {
   const [bloodGroups, setBloodGroups] = React.useState<[] | singleSelectorTypes["options"]>([])
   const [states, setStates] = React.useState<[] | singleSelectorTypes["options"]>([])
   const [cities, setCities] = React.useState<[] | singleSelectorTypes["options"]>([])
+  const [initialProfileData, setInitialProfileData] = React.useState<null | patientProfileDataTypes>(null)
+  const { data: profileData, refetch: refetchProfileData } = useGetProfileDataQuery(null)
   const { data: backCountries } = useGetCountriesQuery(null)
   const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
   const [getAllStates] = useGetStatesMutation()
   const [getAllCities] = useGetCitiesMutation()
   const [postPatientData] = useUpdatePatientDataMutation()
 
+  console.log("profile is", profileData);
 
   const onSubmit = (values: patientProfileDataTypes) => {
 
     const dataForm = {
-      firstName:values.firstName,
-      lastName:values.lastName,
-      date:values.date,
-      bloodGroupId:values.bloodType,
-      countryId:values.country,
-      stateId:values.state,
-      cityId:values.city,
-      addess:values.address
-    } 
+      firstName: values.firstName,
+      lastName: values.lastName,
+      dateOfBirth: values.dateOfBirth,
+      bloodGroupId: values.bloodGroupId,
+      countryId: values.countryId,
+      stateId: values.stateId,
+      cityId: values.cityId,
+      address: values.address,
+      nationalId: 123456
+    }
 
-    postPatientData(dataForm).unwrap().then(res=>{
+    postPatientData(dataForm).unwrap().then(res => {
       console.log(res);
-      
+      refetchProfileData()
     })
   }
 
@@ -59,7 +64,7 @@ export default function UserInfo() {
       let allStatesData: singleSelectorTypes["options"] = []
       data.map((state: state) => {
 
-        let stateData: { id: number, value: string|number , title:string } = { id: state.id, title: state.nameEn, value:state.id }
+        let stateData: { id: number, value: string | number, title: string } = { id: state.id, title: state.nameEn, value: state.id }
 
         allStatesData.push(stateData)
 
@@ -79,7 +84,7 @@ export default function UserInfo() {
       let citiesData: singleSelectorTypes["options"] = []
       data.map((city: city) => {
 
-        let cityData: { id: number, value: string|number, title:string } = { id: city.id, title: city.nameEn, value:city.id }
+        let cityData: { id: number, value: string | number, title: string } = { id: city.id, title: city.nameEn, value: city.id }
 
         citiesData.push(cityData)
 
@@ -99,7 +104,7 @@ export default function UserInfo() {
 
       backCountries.data.map((country: country) => {
 
-        let countryData: { id: number, value: string|number, title:string } = { id: country.id, value: country.id,title:country.nameEn }
+        let countryData: { id: number, value: string | number, title: string } = { id: country.id, value: country.id, title: country.nameEn }
 
         selectorData.push(countryData)
 
@@ -116,7 +121,7 @@ export default function UserInfo() {
 
       backBloodGroups.data.map((bloodType: bloodType) => {
 
-        let bloodData: { id: number, value: string|number, title:string } = { id: bloodType.id, value: bloodType.id, title:bloodType.value }
+        let bloodData: { id: number, value: string | number, title: string } = { id: bloodType.id, value: bloodType.id, title: bloodType.value }
 
         selectorData.push(bloodData)
 
@@ -126,16 +131,27 @@ export default function UserInfo() {
 
   }, [backBloodGroups])
 
+  React.useEffect(() => {
+    profileData.data && setInitialProfileData(profileData.data)
+
+  }, [profileData])
+
   return (
     <div className={`card ${styles.infoCard}`}>
       <div className={`card-body ${styles.infoCardBody}`}>
         <Form
           onSubmit={onSubmit}
           initialValues={
-            {
-              firstName: "Abdalhameed",
-              lastName: "Ahmed",
-              date:"2023-06-07"
+            initialProfileData && {
+              firstName: initialProfileData.firstName,
+              lastName: initialProfileData.lastName,
+              bloodGroupId: initialProfileData.bloodGroupId,
+              countryId: initialProfileData.countryId,
+              stateId: initialProfileData.stateId,
+              cityId: initialProfileData.cityId,
+              dateOfBirth: initialProfileData.dateOfBirth,
+              address: initialProfileData.address,
+              zipCode: initialProfileData.nationalId
             }
           }
           validate={(values): Record<string, string> => formValdate(values)
@@ -232,7 +248,7 @@ export default function UserInfo() {
                   <span></span>
                 </div>
 
-                <Field name="date" type="date">
+                <Field name="dateOfBirth" type="date">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">
@@ -253,7 +269,7 @@ export default function UserInfo() {
                   )}
                 </Field>
 
-                <Field name="bloodType">
+                <Field name="bloodGroupId">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">
@@ -275,14 +291,14 @@ export default function UserInfo() {
                 <div className={`${styles.loginOr}`}>
                   <span></span>
                 </div>
-                <Field name="country">
+                <Field name="countryId">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">
                         <div className={`form-group ${styles.infoGroup}`}>
                           <CustomSingleSelector
                             floatMenu={true}
-                            placeholder="Counter"
+                            placeholder="Country"
                             error={meta.error}
                             errorActive={error}
                             onActiveLi={fetchStates}
@@ -296,7 +312,7 @@ export default function UserInfo() {
                   )}
                 </Field>
 
-                <Field name="state">
+                <Field name="stateId">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">
@@ -316,7 +332,7 @@ export default function UserInfo() {
                     </>
                   )}
                 </Field>
-                <Field name="city">
+                <Field name="cityId">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12">

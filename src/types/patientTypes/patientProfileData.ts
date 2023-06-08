@@ -1,10 +1,11 @@
 export type patientProfileDataTypes = {
   firstName: string;
   lastName: string;
-  date: string;
-  bloodType: number;
-  country: number;
-  state: number;
-  city: number;
+  dateOfBirth: string;
+  bloodGroupId: number;
+  countryId: number;
+  stateId: number;
+  cityId: number;
   address: string;
+  nationalId:string
 };

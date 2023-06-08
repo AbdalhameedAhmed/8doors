@@ -7,24 +7,25 @@ type uploadImageTypes = {
   imageSrc: string;
   direction?: "rtl" | "ltr";
   input: FieldInputProps<any, HTMLElement>;
-  fieldError:string
-  activeError:boolean
+  fieldError: string
+  activeError: boolean
 }
-export default function UploadImage({ imageSrc, direction, input,fieldError,activeError:activeFormError }: uploadImageTypes) {
+export default function UploadImage({ imageSrc, direction, input, fieldError, activeError: activeFormError }: uploadImageTypes) {
   let [idImageSrc, changeIdImageSrc] = React.useState(imageSrc)
   let [error, activeError] = React.useState(false)
+  let [disabled, isInputDisabled] = React.useState(true)
   let imageSizeLimit = 2097152
 
   const convertImageToUrl = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
-    console.log(file);
     if (file) {
       if (file?.size > imageSizeLimit) {
         activeError(true)
+        isInputDisabled(true)
       } else {
         input.onChange(file)
-        console.log("files are", target.files);
+        isInputDisabled(false)
 
         activeError(false)
         const reader = new FileReader();
@@ -37,16 +38,16 @@ export default function UploadImage({ imageSrc, direction, input,fieldError,acti
     }
   }
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     changeIdImageSrc(imageSrc)
-  },[imageSrc])
-  console.log("image value",imageSrc);
-  
+  }, [imageSrc])
+  console.log("image value", imageSrc);
+
   return (
     <div className="col-12 col-md-5 mb-5 flex flex-col gap-4 ">
 
       <div className={`${styles.formGroup}`}>
-        <div className={`${styles.relativeForm} ${direction === "rtl" && "!justify-end"} ${fieldError&&activeFormError&&"!border-red-500"}`}>
+        <div className={`${styles.relativeForm} ${direction === "rtl" && "!justify-end"} ${disabled && "!bg-stone-200"}`}>
           <span>Upload the front side of your ID</span>
           <label className={`${styles.relativeFileUpload}`}>
             File Upload <input name={input.name} onChange={(e) => { convertImageToUrl(e) }} type="file" accept=".jpg, .jpeg, .png" />
@@ -59,8 +60,8 @@ export default function UploadImage({ imageSrc, direction, input,fieldError,acti
         </p>
       </div>
       <div className="w-full flex justify-center  border-[#E6E9F4] p-[1px] pr-[2px] rounded-2xl">
-        <div className="w-full">
-          <img src={idImageSrc} alt="" className="w-full" />
+        <div className="w-full h-[300px]">
+          <img src={idImageSrc} alt="" className="w-full h-full" />
         </div>
       </div>
     </div>

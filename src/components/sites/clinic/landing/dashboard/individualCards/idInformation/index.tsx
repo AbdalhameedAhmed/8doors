@@ -41,16 +41,20 @@ export default function IdInfo({ direction }: idInfoType) {
 
     frontImageData.append("file", values.frontImage)
     backImageData.append("file", values.backImage)
+    if (values.frontImage) {
 
-    postNationalIdFrontImage(frontImageData).unwrap().then(res => {
-      console.log("friont response", res);
-      refetchNatinalIdData()
-    })
+      postNationalIdFrontImage(frontImageData).unwrap().then(res => {
+        console.log("friont response", res);
+        refetchNatinalIdData()
+      })
+    }
 
-    postNationalIdBackImage(backImageData).unwrap().then(res => {
-      console.log("back response", res);
-      refetchNatinalIdData()
-    })
+    if (values.backImage) {
+      postNationalIdBackImage(backImageData).unwrap().then(res => {
+        console.log("back response", res);
+        refetchNatinalIdData()
+      })
+    }
   }
   React.useEffect(() => {
 

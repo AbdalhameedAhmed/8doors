@@ -23,6 +23,7 @@ import { rootState } from "redux/store";
 import TestSvg from "assets/addPharmacist.jpg"
 import axios from "axios";
 import cookies from "cookie"
+import { toSubDomain } from "utiles";
 
 
 
@@ -44,7 +45,7 @@ export default function SignIn() {
 
 
   const onSubmit = async (values: LoginFormData) => {
-
+    axios.post("/api/auth",{ username: values.username, password: values.password })
     await postData({ username: values.username, password: values.password }).unwrap()
       .then((res) => {
         dispatch(addUser(res))
