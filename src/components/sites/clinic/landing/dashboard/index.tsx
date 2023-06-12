@@ -4,14 +4,14 @@ import SideNav from "./SideNav"
 import { ImageProps } from "theme-ui"
 
 type dashboardTypes = {
-  items: { title: string, icon: React.ReactNode,component?:React.ReactNode }[],
-  userInfo: { imageUrl: string|undefined, name: string, moreInfo: string, location?: string }
+  items: { title: string, icon: React.ReactNode, component?: React.ReactNode }[],
+  userInfo: { imageUrl: string | undefined, name: string, moreInfo: string, location?: string }
   direction: "rtl" | "ltr"
-  activeItem:number
-  setActiveItem:Dispatch<SetStateAction<number>>,
+  activeItem: number
+  setActiveItem: Dispatch<SetStateAction<number>>,
   refetchProfileData: () => void
 }
-export default function DashboardContent({ items, userInfo, direction,setActiveItem,activeItem, refetchProfileData}: dashboardTypes) {
+export default function DashboardContent({ items, userInfo, direction, setActiveItem, activeItem, refetchProfileData }: dashboardTypes) {
 
 
   return (
@@ -19,8 +19,8 @@ export default function DashboardContent({ items, userInfo, direction,setActiveI
       <div className="container-fluid" style={{ transform: "none" }}>
         <div className="row" style={{ transform: "none" }}>
           <SideNav direction={direction} refetchProfileData={refetchProfileData} items={items} userInfo={userInfo} activeItem={activeItem} setActiveItem={setActiveItem} />
-          <div className="col-md-7 col-lg-8 col-xl-9" style={{display:"flex",alignItems:"center"}} >
-          {items[activeItem].component&&items[activeItem].component}
+          <div className="col-md-7 col-lg-8 col-xl-9" style={{ display: "flex", alignItems: "center" }} >
+            {items[activeItem].component && items[activeItem].component}
           </div>
         </div>
       </div>
