@@ -1,9 +1,10 @@
-import React, { FormEvent } from "react"
+import React, { FormEvent, MouseEvent } from "react"
 import styles from "./otp.module.css"
 import OtpInput from "components/sites/clinic/landing/onboarding/individualForm/OTP"
 import OtpImg from "assets/otp/otp2.jpg"
 import { Form } from "react-final-form";
-import { useOtpMutation } from "redux/services/clinic/otp";
+import { useOtpMutation } from "redux/services/patient/otp";
+import { useResendOtpMutation } from "redux/services/patient/resendOtp";
 import { addUser } from "redux/slices/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -20,7 +21,8 @@ type otpTypes = {
 }
 export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
-    const [postData] = useOtpMutation()
+    const [sendOTP] = useOtpMutation()
+    const [resendOTP] = useResendOtpMutation()
     const dispatch = useDispatch()
     const { user } = useSelector(state => (state as rootState).auth)
     const router = useRouter()
@@ -36,7 +38,7 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        await postData({ username: user.username, otpCode: otp }).unwrap()
+        await sendOTP({ username: user.username, otpCode: otp }).unwrap()
             .then((res) => {
                 if (res.token) {
                     localStorage.setItem("token", res.token)
@@ -47,13 +49,26 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
             })
             .catch((err) => {
-                console.log(err.data.detail, "&&&&&&&&&&");
 
                 addToast("error", err.data.detail)
             })
 
         console.log("otp is", otp);
 
+    }
+
+    const handelResendOtp = async (event: MouseEvent) => {
+        event.preventDefault()
+        await resendOTP({ username: user.username }).unwrap()
+            .then((res) => {
+                console.log(res, "resendotp");
+
+            })
+            .catch((err) => {
+                console.log(err);
+
+                addToast("error", err.data.detail)
+            })
     }
 
     return (
@@ -80,7 +95,7 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                         </div> */}
                     </div>
                     <div className={`${styles.onboardingBtn} text-right`}>
-                        <button className="">Resend OTP</button>
+                        <button onClick={(event) => { handelResendOtp(event) }}>Resend OTP</button>
                         <button onClick={() => { onSuccess() }} type="submit">Continue</button>
                     </div>
                 </div>

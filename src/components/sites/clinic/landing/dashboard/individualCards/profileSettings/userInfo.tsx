@@ -16,6 +16,8 @@ import { city } from "types/lookupTypes/cityType"
 import { useUpdatePatientDataMutation } from "redux/services/patient/updatePatientData"
 import { patientProfileDataTypes } from "types/patientTypes/patientProfileData"
 import { useGetProfileDataQuery } from "redux/services/patient/getProfileData"
+import { useSelector } from "react-redux"
+import { rootState } from "redux/store"
 
 
 
@@ -33,8 +35,10 @@ export default function UserInfo() {
   const [getAllStates] = useGetStatesMutation()
   const [getAllCities] = useGetCitiesMutation()
   const [postPatientData] = useUpdatePatientDataMutation()
+  const { user } = useSelector(state => (state as rootState).auth)
 
-  console.log("profile is", profileData);
+
+  console.log("profile is", user);
 
   const onSubmit = (values: patientProfileDataTypes) => {
 
@@ -132,9 +136,14 @@ export default function UserInfo() {
   }, [backBloodGroups])
 
   React.useEffect(() => {
-    profileData.data && setInitialProfileData(profileData.data)
+    profileData?.data && setInitialProfileData(profileData?.data)
 
-  }, [profileData])
+  }, [profileData?.data])
+
+  React.useEffect(() => {
+    refetchProfileData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   return (
     <div className={`card ${styles.infoCard}`}>
@@ -145,6 +154,8 @@ export default function UserInfo() {
             initialProfileData && {
               firstName: initialProfileData.firstName,
               lastName: initialProfileData.lastName,
+              email: user.email,
+              mobile: user.phoneNumber,
               bloodGroupId: initialProfileData.bloodGroupId,
               countryId: initialProfileData.countryId,
               stateId: initialProfileData.stateId,
@@ -202,7 +213,7 @@ export default function UserInfo() {
                     </>
                   )}
                 </Field>
-                <Field name="email" defaultValue={"any@gmail.com"}>
+                <Field name="email">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">
@@ -222,7 +233,7 @@ export default function UserInfo() {
                     </>
                   )}
                 </Field>
-                <Field name="mobile" defaultValue="12345678912">
+                <Field name="mobile">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">

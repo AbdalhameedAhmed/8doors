@@ -1,7 +1,6 @@
 import React from "react"
 import styles from "./onBoarding.module.css"
 import SideImg from "assets/doctorOnBoarding/SideImg.png"
-import Image from "next/image"
 import { useEffect } from "react";
 type LeftPanelTypes = {
   direction: "ltr" | "rtl"
@@ -9,29 +8,31 @@ type LeftPanelTypes = {
 export default function LeftPanel({ direction }: LeftPanelTypes) {
   const [preScrollNum, changePreScrollNum] = React.useState<null | number>(null)
   const [span, activeSpan] = React.useState(0)
-  const scrollLeft = () => {
-    const scrollSection = document.querySelector("#sideScroll");
-
-    if ((scrollSection as HTMLElement).scrollLeft > 500 || (scrollSection as HTMLElement).scrollLeft < -500) {
-      scrollSection!.scrollLeft = 0;
-      changePreScrollNum(null)
-      activeSpan(0)
-
-    } else {
-      direction === "ltr" ? scrollSection!.scrollLeft += 300 : scrollSection!.scrollLeft -= 300;
-      activeSpan(span + 1)
-    }
-    changePreScrollNum((scrollSection as HTMLElement).scrollLeft)
-  }
+  
 
   useEffect(() => {
+    const scrollLeft = () => {
+      const scrollSection = document.querySelector("#sideScroll");
+  
+      if (span >= 2) {
+        scrollSection!.scrollLeft = 0;
+        changePreScrollNum(null)
+        activeSpan(0)
+  
+      } else {
+        direction === "ltr" ? scrollSection!.scrollLeft += 300 : scrollSection!.scrollLeft -= 300;
+        activeSpan(span + 1)
+      }
+      changePreScrollNum((scrollSection as HTMLElement).scrollLeft)
+    }
+
     const intervalId = setInterval(() => {
       scrollLeft()
     }, 5000)
 
     return () => clearInterval(intervalId);
 
-  }, [preScrollNum, direction])
+  }, [preScrollNum, direction, span])
   
 
 

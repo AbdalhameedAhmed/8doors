@@ -37,8 +37,8 @@ export default function Register() {
       .then((res) => {
         dispatch(addUser(res.data))
         router.push('/otp');
-      }).catch(() => {
-        addToast("error", "somthing wrong")
+      }).catch((res) => {
+        addToast("error", res.data?.message)
       })
 
   };
@@ -84,7 +84,7 @@ export default function Register() {
                                     label=""
                                     placeholder={"Username"}
                                     error={meta.error}
-                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
+                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
                                     errorActive={error}
                                     type="text"
                                     {...input}
@@ -104,7 +104,7 @@ export default function Register() {
                                     label=""
                                     placeholder={"Email"}
                                     error={meta.error}
-                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
+                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
                                     errorActive={error}
                                     type="text"
                                     {...input}
@@ -124,7 +124,7 @@ export default function Register() {
                                     label=""
                                     placeholder={"phoneNumber"}
                                     error={meta.error}
-                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
+                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
                                     errorActive={error}
                                     type="text"
                                     {...input}
@@ -143,7 +143,7 @@ export default function Register() {
                                   <FloatingPassword
                                     placeholder={"Password"}
                                     errorActive={error}
-                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
+                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
                                     error={meta.error}
                                     {...input}
                                   />
@@ -159,7 +159,7 @@ export default function Register() {
                                   <FloatingPassword
                                     placeholder={"Confirm"}
                                     errorActive={error}
-                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:!border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
+                                    inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
                                     error={meta.error}
                                     {...input}
                                   />
@@ -173,10 +173,8 @@ export default function Register() {
                               {({ input, meta }) => (
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
-                                    {/* <div className={`${styles.formGroup} ${styles.formFocus} `}> */}
                                     <input name={input.name} defaultChecked id="default-radio-1" type="radio" value="any" onChange={(e) => { input.onChange(e); handelChangeImage(Patient.src) }} className="hidden peer" />
                                     <label htmlFor="default-radio-1"><span>Patient</span></label>
-                                    {/* </div> */}
                                   </div>
                                 </>
                               )}
@@ -186,10 +184,8 @@ export default function Register() {
                               {({ input, meta }) => (
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
-                                    {/* <div className={`${styles.formGroup} ${styles.formFocus} `}> */}
                                     <input name={input.name} id="default-radio-2" type="radio" value={input.value} onChange={(e) => { input.onChange(e); handelChangeImage(Doctor.src) }} className="hidden peer" />
-                                    <label htmlFor="default-radio-2"><span>Patient1</span></label>
-                                    {/* </div> */}
+                                    <label htmlFor="default-radio-2"><span>Doctor</span></label>
                                   </div>
                                 </>
                               )}
@@ -199,10 +195,8 @@ export default function Register() {
                               {({ input, meta }) => (
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
-                                    {/* <div className={`${styles.formGroup} ${styles.formFocus} `}> */}
                                     <input name={input.name} id="default-radio-3" type="radio" value="any" onChange={(e) => { input.onChange(e); handelChangeImage(Pharmacist.src) }} className="hidden peer" />
                                     <label htmlFor="default-radio-3"><span>Pharmacist</span></label>
-                                    {/* </div> */}
                                   </div>
                                 </>
                               )}

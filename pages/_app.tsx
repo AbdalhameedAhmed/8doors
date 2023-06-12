@@ -12,11 +12,8 @@ import { ThemeProvider } from 'theme-ui';
 import { theme } from '../theme/index';
 import CustomToast from "components/customToast"
 import { ToastContextProvider } from "context/toastContext"
-// import "../styles/bootstrap.min.css"
-import "../styles/bootstrap-grid.css"
-// import "bootstrap/dist/css/bootstrap-utilities.css"
 
-// import "bootstrap/dist/css/bootstrap-utilities.min.css"
+import "../styles/bootstrap-grid.css"
 import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.css';
 
@@ -52,12 +49,6 @@ function App({ Component, pageProps }: AppProps) {
         <ToastContainer />
         <CustomToast />
         <ThemeProvider theme={theme}>
-          <Head>
-            <link
-              href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000"
-              rel="stylesheet"
-            />
-          </Head>
           {/* <ThemeSettings/> */}
           {/* <main className={inter.className}> */}
           <Component {...pageProps} />

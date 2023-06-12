@@ -22,6 +22,8 @@ import IdIcon from "assets/dashboard/id-card-solid.svg"
 import UserInfo from "components/sites/clinic/landing/dashboard/individualCards/profileSettings/userInfo";
 import IdInfo from "components/sites/clinic/landing/dashboard/individualCards/idInformation"
 import { useGetProfileDataQuery } from "redux/services/patient/getProfileData";
+import { useSelector } from "react-redux";
+import { rootState } from "redux/store";
 
 
 
@@ -30,6 +32,7 @@ export default function IndividualDashboard() {
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const [profileImage,changeProfileImage] = React.useState<undefined|string>(undefined)
   const {data:profileData,refetch:refetchProfileData} = useGetProfileDataQuery(null)
+
   const pageRef = React.useRef(null)
   const router = useRouter()
   const doctorItems = [

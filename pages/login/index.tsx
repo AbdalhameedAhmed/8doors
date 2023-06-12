@@ -27,7 +27,7 @@ export default function SignIn() {
 
   React.useEffect(() => {
     document.title = removeDashAndCapitalize(router.asPath)
-  }, [])
+  }, [router.asPath])
   return (
     // <SignInSignOutLayout title='Hi, Welcome back'>
     <div ref={pageRef} className={classNames("overflow-y-auto h-screen")}>

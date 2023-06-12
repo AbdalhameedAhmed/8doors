@@ -14,6 +14,8 @@ import { nationalidData } from "types/patientTypes/nationalID";
 import { useNationalIdFrontMutation } from "redux/services/patient/nationalIdFront";
 import { useNationalIdBackMutation } from "redux/services/patient/nationalIdBack";
 import { useGetNationalIdDataQuery } from "redux/services/patient/getNationalIdData";
+import { useSelector } from "react-redux";
+import { rootState } from "redux/store";
 
 
 
@@ -27,12 +29,13 @@ export default function IdInfo({ direction }: idInfoType) {
   const { data: nationalIdData, refetch: refetchNatinalIdData } = useGetNationalIdDataQuery(null)
   const [frontIdImage, setFrontIdImage] = React.useState(IdFrontSide.src)
   const [backIdImage, setBackIdImage] = React.useState(IdBackSide.src)
+  const { user } = useSelector(state => (state as rootState).auth)
+
 
 
   const btnHandler = () => {
     isErrorActive(true)
   }
-  console.log("natinalid", nationalIdData);
 
   const onSubmit = (values: nationalidData) => {
 
@@ -41,6 +44,7 @@ export default function IdInfo({ direction }: idInfoType) {
 
     frontImageData.append("file", values.frontImage)
     backImageData.append("file", values.backImage)
+    
     if (values.frontImage) {
 
       postNationalIdFrontImage(frontImageData).unwrap().then(res => {
@@ -64,6 +68,11 @@ export default function IdInfo({ direction }: idInfoType) {
 
     })
   }, [nationalIdData])
+
+  React.useEffect(() => {
+    refetchNatinalIdData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
   return (
     <div className={`card ${styles.infoCard} w-full`}>
       <div className={`card-body ${styles.infoCardBody} w-full`}>

@@ -34,7 +34,7 @@ export default function Blogs({ direction = "ltr" }: blogTypes) {
               </div>
               <div className={`${styles.blogContent}`}>
                 <ul className={`${styles.entryMeta} ${styles.metaItem}`}>
-                  <li classNam className={`${direction === "rtl" && "!ml-[15px] !mr-0"}`} e={`${direction === "rtl" && "m-0 !ml-[15px]"}`}>
+                  <li className={`${direction === "rtl" && "!ml-[15px] !mr-0"}`} e={`${direction === "rtl" && "m-0 !ml-[15px]"}`}>
                     <div className={`${styles.postAuthor}`}>
                       <a href="doctor-profile.html" className="hover:text-[#20c0f3]"><img src={BlogIcon1.src} alt="Post Author" className={`${direction === "rtl" && "m-0 !ml-[5px]"}`} /> <span>Dr. Ruby Perrin</span></a>
                     </div>
