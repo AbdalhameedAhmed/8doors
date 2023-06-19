@@ -1,5 +1,4 @@
 import React from "react"
-import Head from "next/head";
 import Register from "components/sites/clinic/landing/register/Register";
 
 import LandingLayout from "components/layout/landingLayout"

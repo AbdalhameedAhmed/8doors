@@ -3,8 +3,8 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 
 import { customBaseQuery } from "./customBaseQuery"
 
-interface LoginResponse {
-  token: string;
+interface otpReqType {
+  token:string
 }
 
 export const Otp = createApi({
@@ -17,7 +17,7 @@ export const Otp = createApi({
         method: "post",
         body: data
       }),
-      transformResponse: (response: AxiosResponse<LoginResponse>) => {
+      transformResponse: (response: AxiosResponse<otpReqType>) => {
         return response.data;
       },
 

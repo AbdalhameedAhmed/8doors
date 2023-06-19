@@ -13,12 +13,15 @@ import { useSignupMutation } from "redux/services/signup"
 import { formValdate } from "./formValidate";
 import { addUser } from "redux/slices/auth"
 import { useDispatch } from "react-redux"
+import BtnWithLoader from "components/shared/button/buttonWithLoader"
 
 
 
 
 export default function Register() {
   let [activeImage, changeActiveImage] = React.useState(Patient.src)
+  const [loadingState, changeLoadingState] = React.useState(false)
+
   const [error, activeError] = React.useState(false)
   const [signup] = useSignupMutation()
   const addToast = useToast()
@@ -32,13 +35,17 @@ export default function Register() {
   const router = useRouter()
 
   const onSubmit = async (values: Record<string, any>) => {
+    changeLoadingState(true)
 
     await signup({ username: values.username, email: values.email, password: values.password, phoneNumber: values.phoneNumber }).unwrap()
       .then((res) => {
+        changeLoadingState(false)
         dispatch(addUser(res.data))
         router.push('/otp');
       }).catch((res) => {
-        addToast("error", res.data?.message)
+        changeLoadingState(false)
+
+        addToast("error", res?.data?.message)
       })
 
   };
@@ -202,18 +209,9 @@ export default function Register() {
                               )}
                             </Field>
                           </div>
-                          <button
-                            type="submit"
-                            disabled={props.submitting}
-                            className={`btn btn-primary w-100 btn-lg ${styles.loginBtn} ${styles.loginBtnPrimary} hover:bg-[#10DEFD] hover:border-[#10DEFD]`}
-                            onClick={() => {
-                              activeError(true)
-                              console.log(props);
 
-                            }}
-                          >
-                            Create account
-                          </button>
+                          <BtnWithLoader showSpinner={loadingState} title="Submit" onClick={() => { activeError(true) }} disabled={props.submitting} />
+
                         </form>
                       )}
                     ></Form>

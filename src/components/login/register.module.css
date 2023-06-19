@@ -22,23 +22,7 @@
   margin-top: 2px;
 }
 
-.loginBtn {
-  font-size: 18px;
-  font-weight: 500;
-}
-.loginBtnPrimary {
-  color: white;
-  background-color: #09e5ab;
-  border: 1px solid #09e5ab;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-}
-.loginBtnPrimary:hover,
-.loginBtnPrimary:focus {
-  background-color: #10defd;
-  border-color: #10defd;
-  box-shadow: none;
-}
+
 .forgotLink {
   color: #3d3d3d;
   display: inline-block;
@@ -56,9 +40,7 @@
     margin: 0 15px;
     padding: 15px;
   }
-  .loginBtn {
-    font-size: 16px;
-  }
+
 }
 
 @media only screen and (max-width: 479px) {

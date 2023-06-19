@@ -18,6 +18,8 @@ import { patientProfileDataTypes } from "types/patientTypes/patientProfileData"
 import { useGetProfileDataQuery } from "redux/services/patient/getProfileData"
 import { useSelector } from "react-redux"
 import { rootState } from "redux/store"
+import useToast from "hooks/useToast"
+import BtnWithLoader from "components/shared/button/buttonWithLoader"
 
 
 
@@ -29,6 +31,7 @@ export default function UserInfo() {
   const [states, setStates] = React.useState<[] | singleSelectorTypes["options"]>([])
   const [cities, setCities] = React.useState<[] | singleSelectorTypes["options"]>([])
   const [initialProfileData, setInitialProfileData] = React.useState<null | patientProfileDataTypes>(null)
+  const [loadingState, changeLoadingState] = React.useState(false)
   const { data: profileData, refetch: refetchProfileData } = useGetProfileDataQuery(null)
   const { data: backCountries } = useGetCountriesQuery(null)
   const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
@@ -36,12 +39,13 @@ export default function UserInfo() {
   const [getAllCities] = useGetCitiesMutation()
   const [postPatientData] = useUpdatePatientDataMutation()
   const { user } = useSelector(state => (state as rootState).auth)
+  const addToast = useToast()
 
 
-  console.log("profile is", user);
+  // console.log("profile is", user);
 
   const onSubmit = (values: patientProfileDataTypes) => {
-
+    changeLoadingState(true)
     const dataForm = {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -51,12 +55,16 @@ export default function UserInfo() {
       stateId: values.stateId,
       cityId: values.cityId,
       address: values.address,
-      nationalId: 123456
+      nationalId: values.nationalId
     }
 
     postPatientData(dataForm).unwrap().then(res => {
-      console.log(res);
+      changeLoadingState(false)
+      addToast("success", "Your profile information has been updated successfully!")
       refetchProfileData()
+    }).catch((err) => {
+      changeLoadingState(false)
+      addToast("error", err?.data?.message)
     })
   }
 
@@ -180,7 +188,7 @@ export default function UserInfo() {
                         <div className={`form-group ${styles.infoGroup}`}>
                           <FloatingInput
                             placeholder="First name"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                             error={meta.error}
                             errorActive={error}
@@ -200,7 +208,7 @@ export default function UserInfo() {
                         <div className={`form-group ${styles.infoGroup}`}>
                           <FloatingInput
                             placeholder="Last name"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                             error={meta.error}
                             errorActive={error}
@@ -220,7 +228,7 @@ export default function UserInfo() {
                         <div className={`form-group ${styles.infoGroup}`}>
                           <FloatingInput
                             placeholder="Email"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             error={meta.error}
                             errorActive={error}
                             type="text"
@@ -240,7 +248,7 @@ export default function UserInfo() {
                         <div className={`form-group ${styles.infoGroup}`}>
                           <FloatingInput
                             placeholder="Mobile"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                             error={meta.error}
                             errorActive={error}
@@ -266,7 +274,7 @@ export default function UserInfo() {
                         <div className={`form-group ${styles.infoGroup}`}>
                           <FloatingInput
                             placeholder="Date of birth"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                             error={meta.error}
                             errorActive={error}
@@ -369,7 +377,7 @@ export default function UserInfo() {
                         <div className={`form-group ${styles.infoGroup}`}>
                           <FloatingInput
                             placeholder="Address"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                             error={meta.error}
                             errorActive={error}
@@ -382,14 +390,14 @@ export default function UserInfo() {
                     </>
                   )}
                 </Field>
-                <Field name="zipCode">
+                <Field name="nationalId">
                   {({ input, meta }) => (
                     <>
                       <div className="col-12 col-md-6">
                         <div className={`form-group ${styles.infoGroup}`}>
                           <FloatingInput
-                            placeholder="Zip Code"
-                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:!border-floating-border"
+                            placeholder="National ID"
+                            inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                             error={meta.error}
                             errorActive={error}
@@ -404,10 +412,8 @@ export default function UserInfo() {
                 </Field>
 
               </div>
-              <div className={`${styles.submitSection} text-right`}>
-                <button type="submit" className="text-white duration-300 transition" onClick={() => {
-                  activeError(true); console.log(values);
-                }}>Save Changes</button>
+              <div className={`flex justify-end`}>
+                <BtnWithLoader showSpinner={loadingState} title="Save Changes" fullWidht={false} onClick={() => { activeError(true) }} disabled={submitting} />
               </div>
             </form>
           )}

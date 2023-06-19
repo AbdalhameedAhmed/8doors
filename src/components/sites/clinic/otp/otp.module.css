@@ -1,123 +1,124 @@
-.otpContainer{
+.otpContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .onboardingContentBox.contentWrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 3rem;
-    min-height: 580px;
-    width: fit-content;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+  min-height: 580px;
+  width: fit-content;
+}
+
 .onboardingContentBox {
-    margin-top: 20px;
-    padding: 50px 25px;
-    background: #FFFFFF;
-    /* box-shadow: 0px 24px 24px rgb(212 237 255 / 30%); */
-    border-radius: 4px;
-    border: 1px solid #E6E9F4;
-  }
-  
+  margin-top: 20px;
+  padding: 50px 25px;
+  background: #ffffff;
+  /* box-shadow: 0px 24px 24px rgb(212 237 255 / 30%); */
+  border-radius: 4px;
+  border: 1px solid #e6e9f4;
+}
 
 .passcodewrap input {
-    background-color: #F5F6FA;
-    border: 1px solid #E6E9F4;
-    border-radius: 5px;
-    width: 60px;
-    height: 54px;
-    text-align: center;
-    color: #354052;
-    font-size: 20px;
-    font-weight: 500;
-    /* margin-right: 23px; */
-  }
-  
-.passcodewrap input:focus {
-    color: #354052;
-    border-color: #09E5AB;
-    background-color: #fff;
-    outline: none;
-  }
-.otpResend {
-    padding-top: 30px;
-    display: flex;
-    position: relative;
-  }
+  background-color: #f5f6fa;
+  border: 1px solid #e6e9f4;
+  border-radius: 5px;
+  width: 60px;
+  height: 54px;
+  text-align: center;
+  color: #354052;
+  font-size: 20px;
+  font-weight: 500;
+  /* margin-right: 23px; */
+}
 
-  .onboardingContentBox h2 {
-    font-weight: 700;
-    font-size: 30px;
-    max-width: 450px;
-    line-height: 36.2px;
-  }
-  .onboardingTitle h2 span {
-    color: #ff0202;
-  }
-  
-  .onboardingTitle h6 {
-    font-weight: 400;
-    font-size: 14px;
-    color: #585858;
-    margin-bottom: 25px;
-    line-height: 1.5;
-  }
-  .onboardingBtn {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-  }
-  .onboardingBtn button{
-    border-radius: 6px;
-    width: 120px;
-    height: 50px;
-    /* padding: 15px 50px; */
-    /* color: #fff; */
-    font-weight: 600;
-    font-size: 16px;
-    display: inline-block;
-    border: 1px solid #09e5ab;
-    transition: all 0.5s;
-  }
-  .onboardingBtn button:first-child{
-    /* padding: 15px 20px; */
-    color: #09e5ab;
-    background: white;
-  }
-  .onboardingBtn button:nth-child(2) {
-    color: white;
-    background: #09e5ab;
-  }
-  .onboardingBtn button:hover {
-    box-shadow: inset 0 60px 0 0 #10916f;
-    border-color: #10916f;
-  }
-  .onboardingBtn button:first-child:hover {
-    color: white;
-  }
-  .onboardingBtn.PersonalizeBtn {
-    margin-top: 30px;
-  }
+.passcodewrap input:focus {
+  color: #354052;
+  border-color: #09e5ab;
+  background-color: #fff;
+  outline: none;
+}
+.otpResend {
+  padding-top: 30px;
+  display: flex;
+  position: relative;
+}
+
+.onboardingContentBox h2 {
+  font-weight: 700;
+  font-size: 30px;
+  max-width: 450px;
+  line-height: 36.2px;
+}
+.onboardingTitle h2 span {
+  color: #ff0202;
+}
+
+.onboardingTitle h6 {
+  font-weight: 400;
+  font-size: 14px;
+  color: #585858;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+.onboardingBtn {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+.onboardingBtn button {
+  border-radius: 6px;
+  width: 150px;
+  height: 50px;
+  padding: 0;
+  /* color: #fff; */
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+  border: 1px solid #09e5ab;
+  transition: all 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.onboardingBtn button:first-child {
+  /* padding: 15px 20px; */
+  color: #09e5ab;
+  background: white;
+}
+.onboardingBtn button:nth-child(2) {
+  color: white;
+  background: #09e5ab;
+}
+.onboardingBtn button:hover {
+  box-shadow: inset 0 60px 0 0 #10916f;
+  border-color: #10916f;
+}
+.onboardingBtn button:first-child:hover {
+  color: white;
+}
+.onboardingBtn.PersonalizeBtn {
+  margin-top: 30px;
+}
 @media only screen and (max-width: 991.98px) {
-    .onboardingContentBox {
-      padding: 30px;
-    }    
-    .otpImage{
-      display: none;
-    }
-    
+  .onboardingContentBox {
+    padding: 30px;
+  }
+  .otpImage {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 575.98px) {
-  .otpContainer{
+  .otpContainer {
     flex-direction: column;
   }
-    .onboardingContentBox {
-      padding: 20px;
-    }
+  .onboardingContentBox {
+    padding: 20px;
+  }
   .onboardingTitle {
     text-align: center;
   }
@@ -127,5 +128,5 @@
   }
   .onboardingTitle h6 {
     font-size: 14px;
-}
+  }
 }

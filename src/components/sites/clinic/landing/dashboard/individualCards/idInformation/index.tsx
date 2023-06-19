@@ -16,6 +16,7 @@ import { useNationalIdBackMutation } from "redux/services/patient/nationalIdBack
 import { useGetNationalIdDataQuery } from "redux/services/patient/getNationalIdData";
 import { useSelector } from "react-redux";
 import { rootState } from "redux/store";
+import BtnWithLoader from "components/shared/button/buttonWithLoader";
 
 
 
@@ -24,11 +25,14 @@ type idInfoType = {
 }
 export default function IdInfo({ direction }: idInfoType) {
   const [error, isErrorActive] = React.useState(false)
+  const [loadingState, changeLoadingState] = React.useState(false)
+  const [frontIdImage, setFrontIdImage] = React.useState(IdFrontSide.src)
+  const [backIdImage, setBackIdImage] = React.useState(IdBackSide.src)
+
   const [postNationalIdFrontImage] = useNationalIdFrontMutation()
   const [postNationalIdBackImage] = useNationalIdBackMutation()
   const { data: nationalIdData, refetch: refetchNatinalIdData } = useGetNationalIdDataQuery(null)
-  const [frontIdImage, setFrontIdImage] = React.useState(IdFrontSide.src)
-  const [backIdImage, setBackIdImage] = React.useState(IdBackSide.src)
+
   const { user } = useSelector(state => (state as rootState).auth)
 
 
@@ -38,25 +42,29 @@ export default function IdInfo({ direction }: idInfoType) {
   }
 
   const onSubmit = (values: nationalidData) => {
-
     let frontImageData = new FormData()
     let backImageData = new FormData()
 
     frontImageData.append("file", values.frontImage)
     backImageData.append("file", values.backImage)
-    
-    if (values.frontImage) {
 
+    if (values.frontImage) {
+      changeLoadingState(true)
       postNationalIdFrontImage(frontImageData).unwrap().then(res => {
-        console.log("friont response", res);
+        changeLoadingState(false)
         refetchNatinalIdData()
+      }).catch((err) => {
+        changeLoadingState(false)
       })
     }
 
     if (values.backImage) {
+      changeLoadingState(true)
       postNationalIdBackImage(backImageData).unwrap().then(res => {
-        console.log("back response", res);
+        changeLoadingState(false)
         refetchNatinalIdData()
+      }).catch(err => {
+        changeLoadingState(false)
       })
     }
   }
@@ -71,7 +79,7 @@ export default function IdInfo({ direction }: idInfoType) {
 
   React.useEffect(() => {
     refetchNatinalIdData()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
   return (
     <div className={`card ${styles.infoCard} w-full`}>
@@ -102,8 +110,8 @@ export default function IdInfo({ direction }: idInfoType) {
                 </Field>
 
 
-                <div className={`${styles.submitSection} offset-8 text-right pr-[84px] col-3`}>
-                  <button type="submit" disabled={props.submitting} className="text-white transition duration-300" onClick={() => { btnHandler() }}>Save Changes</button>
+                <div className={`${styles.submitSection} offset-8 flex items-center justify-end pr-[84px] col-3`}>
+                  <BtnWithLoader showSpinner={loadingState} title="Save Changes" fullWidht={false} onClick={() => { btnHandler() }} disabled={props.submitting} />
                 </div>
               </div>
             </form>

@@ -47,7 +47,6 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
 
         if (item.value == input.value) {
           setInitialState(false)
-          console.log(item.title);
           handelLiClick(index, item.title, item.id, item.value)
         }
       })

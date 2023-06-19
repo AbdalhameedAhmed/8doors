@@ -1,12 +1,16 @@
-import { useRef, useEffect } from 'react';
+import classNames from 'classnames';
+import { useRef, useEffect, Dispatch, SetStateAction } from 'react';
 
 interface OtpInputProps {
   length: number;
   onChange: (otp: string) => void;
   inputStyle?:string
+  error:boolean
+  isErrorActive:Dispatch<SetStateAction<boolean>>
 }
 
-export default function OtpInput({ length, onChange,inputStyle }: OtpInputProps) {
+export default function OtpInput({ length, onChange,inputStyle,error,isErrorActive }: OtpInputProps) {
+
   const inputsRef = useRef<HTMLInputElement[]>([]);
   const handleChange = (index: number, value: string) => {
     const otp = inputsRef.current
@@ -14,6 +18,7 @@ export default function OtpInput({ length, onChange,inputStyle }: OtpInputProps)
       .join('')
       .slice(0, length);
     onChange(otp);
+    otp.length === length && isErrorActive(false)
     if (value && index < length - 1) {
       inputsRef.current[index + 1].focus();
     }
@@ -33,8 +38,8 @@ export default function OtpInput({ length, onChange,inputStyle }: OtpInputProps)
           key={index}
           type="text"
           maxLength={1}
-          className={inputStyle}
-          ref={ref => inputsRef.current[index] = ref}
+          ref={ref => inputsRef?.current![index] = ref}
+          className={classNames(inputStyle,{"!border-red-500":!inputsRef?.current[index]?.value&&error})}
           onChange={event => handleChange(index, event.target.value)}
           onKeyDown={event => handleKeyDown(index, event)}
 

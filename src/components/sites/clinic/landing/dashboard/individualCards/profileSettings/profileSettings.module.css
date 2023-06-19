@@ -15,20 +15,6 @@
   position: relative;
 }
 
-.submitSection button {
-  padding: 12px 30px;
-  font-weight: 600;
-  font-size: 16px;
-  min-width: 120px;
-  background-color: #09e5ab;
-  border: 1px solid #09e5ab;
-}
-
-.submitSection button:hover,.submitSection button:focus{
-  background-color: #10DEFD;
-  border: 1px solid #10DEFD;
-  box-shadow: none;
-}
 
 .loginOr {
   color: #d4d4d4;

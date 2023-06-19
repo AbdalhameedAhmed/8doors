@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { rootState } from "redux/store";
 import useToast from "hooks/useToast";
 import axios from "axios";
+import BtnWithLoader from "components/shared/button/buttonWithLoader";
 
 
 
@@ -21,15 +22,20 @@ type otpTypes = {
 }
 export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
+    const [error, isErrorActive] = React.useState(false)
     const [sendOTP] = useOtpMutation()
+    const [submitSpiner, showSubmitSpinar] = React.useState(false)
+    const [resendOTPSpiner, showResendOtpSpiner] = React.useState(false)
     const [resendOTP] = useResendOtpMutation()
     const dispatch = useDispatch()
     const { user } = useSelector(state => (state as rootState).auth)
     const router = useRouter()
     const addToast = useToast()
+    const otpLength = 4
     console.log(user);
 
     const [otp, setOtp] = React.useState('');
+
     const handleOtpChange = (newOtp: string) => {
         setOtp(newOtp);
     };
@@ -38,36 +44,43 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        await sendOTP({ username: user.username, otpCode: otp }).unwrap()
-            .then((res) => {
-                if (res.token) {
-                    localStorage.setItem("token", res.token)
-                    axios.post("/api/setToken", { token: res.token })
+        if (otp.length == otpLength) {
+            showSubmitSpinar(true)
+            await sendOTP({ username: user.username, otpCode: otp }).unwrap()
+                .then((res) => {
+                    showSubmitSpinar(false)
+                    if (res.token) {
+                        localStorage.setItem("token", res.token)
+                        axios.post("/api/setToken", { token: res.token })
 
-                    router.push("/")
-                }
+                        router.push("/")
+                    }
 
-            })
-            .catch((err) => {
-
-                addToast("error", err.data.detail)
-            })
-
-        console.log("otp is", otp);
+                })
+                .catch((err) => {
+                    showSubmitSpinar(false)
+                    addToast("error", err?.data?.detail)
+                })
+        } else {
+            isErrorActive(true)
+        }
 
     }
 
     const handelResendOtp = async (event: MouseEvent) => {
         event.preventDefault()
+        showResendOtpSpiner(true)
         await resendOTP({ username: user.username }).unwrap()
             .then((res) => {
+                // showResendOtpSpiner(false)
                 console.log(res, "resendotp");
 
             })
             .catch((err) => {
                 console.log(err);
+                // showResendOtpSpiner(false)
 
-                addToast("error", err.data.detail)
+                addToast("error", err?.data?.detail)
             })
     }
 
@@ -85,7 +98,7 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                             <div className="flex justify-center gap-[23px] digit-group">
 
                                 {
-                                    <OtpInput key={1} length={4} onChange={handleOtpChange} />
+                                    <OtpInput key={1} length={otpLength} onChange={handleOtpChange} error={error} isErrorActive={isErrorActive} />
                                 }
 
                             </div>
@@ -95,8 +108,8 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                         </div> */}
                     </div>
                     <div className={`${styles.onboardingBtn} text-right`}>
-                        <button onClick={(event) => { handelResendOtp(event) }}>Resend OTP</button>
-                        <button onClick={() => { onSuccess() }} type="submit">Continue</button>
+                        <BtnWithLoader spinerStyles="!border-[#09e5ab]" showSpinner={resendOTPSpiner} title="Resend OTP" fullWidht={false} onClick={(event) => { handelResendOtp(event) }} />
+                        <BtnWithLoader showSpinner={submitSpiner} title="Continue" fullWidht={false} onClick={() => { onSuccess() }} />
                     </div>
                 </div>
             </form>

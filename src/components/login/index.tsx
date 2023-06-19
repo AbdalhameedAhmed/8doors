@@ -20,13 +20,13 @@ import useToast from "hooks/useToast";
 import { rootState } from "redux/store";
 import TestSvg from "assets/addPharmacist.jpg"
 import axios from "axios";
-
+import BtnWithLoader from "components/shared/button/buttonWithLoader";
 
 
 export default function SignIn() {
   const [error, activeError] = React.useState(false)
+  const [loadingState, changeLoadingState] = React.useState(false)
   const token = useSelector(state => (state as rootState).auth.user.token)
-
   const { t } = useTranslation("common");
   const [postData] = useLoginMutation()
   const dispatch = useDispatch()
@@ -41,8 +41,10 @@ export default function SignIn() {
 
 
   const onSubmit = async (values: LoginFormData) => {
-    await postData({ username: values.username, password: values.password }).unwrap()
+    changeLoadingState(true)
+    await postData({ login: values.username, password: values.password }).unwrap()
       .then((res) => {
+        changeLoadingState(false)
         dispatch(addUser(res))
         if (res.token) {
           localStorage.setItem("token", res.token)
@@ -51,7 +53,6 @@ export default function SignIn() {
           axios.post("/api/setToken", { token: "" })
 
         }
-        // router.push(toSubDomain("clinic", `dashboard?token=${res.token}`))
         if (res.mobileVerified === false) {
           router.push("/otp")
         } else {
@@ -60,14 +61,16 @@ export default function SignIn() {
 
 
       })
-      .catch(() => {
-        addToast("error", "Username or password is wrong")
+      .catch((res) => {
+        changeLoadingState(false)
+        addToast("error", res?.data?.detail)
       })
 
   };
 
   return (
     <>
+
       <div className={`${styles.content} py-[50px] relative `} style={{
         minHeight: "414.5px"
       }}>
@@ -97,7 +100,7 @@ export default function SignIn() {
                               <>
                                 <LoginInput
                                   label=""
-                                  placeholder={"Email"}
+                                  placeholder={"Username / Email / Phone number"}
                                   inputStyle={`!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] ${error && meta.error ? "focus:!border-red-500" : "focus:!border-floating-border"}`}
                                   placeholderStyles="!bg-[#F5F6FA] z-0"
                                   error={meta.error}
@@ -124,18 +127,11 @@ export default function SignIn() {
                               </>
                             )}
                           </Field>
-                          <div className="text-end">
+                          <div className="flex items-center justify-between w-full">
+                            <Link className={`${styles.forgotLink} hover:text-[#09dca4]`} href="/forget-password">forgot your password?</Link>
                             <Link className={`${styles.forgotLink} hover:text-[#09dca4]`} href="/register">you don&apos;t have an account?</Link>
                           </div>
-                          <button
-
-                            type="submit"
-                            disabled={submitting}
-                            className={`btn btn-primary w-100 btn-lg ${styles.loginBtn} ${styles.loginBtnPrimary} hover:bg-[#10DEFD] hover:border-[#10DEFD]`}
-                            onClick={() => { activeError(true) }}
-                          >
-                            {t("signin.login")}
-                          </button>
+                          <BtnWithLoader showSpinner={loadingState} title="Login" onClick={() => { activeError(true) }} disabled={submitting} />
 
                         </form>
                       )}

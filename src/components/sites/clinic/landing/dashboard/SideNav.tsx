@@ -16,9 +16,9 @@ type sideNavTypes = {
   direction: "ltr" | "rtl"
   setActiveItem: Dispatch<SetStateAction<number>>
   activeItem: number,
-  refetchProfileData:() => void
+  refetchProfileData: () => void
 }
-export default function SideNav({ items, userInfo, direction, activeItem, setActiveItem,refetchProfileData }: sideNavTypes) {
+export default function SideNav({ items, userInfo, direction, activeItem, setActiveItem, refetchProfileData }: sideNavTypes) {
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
@@ -78,11 +78,15 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
 
 
             <div className={`${styles.profileDetInfo}`}>
-              <h3>{userInfo.name}</h3>
+              {
+                userInfo.name && <h3>{userInfo.name}</h3>
+              }
               <div className={`${styles.patientDetails}`}>
-                <h5 className="mb-0">{userInfo.moreInfo}</h5>
-                <h5 className="mb-0">{userInfo.location}</h5>
+                {
+                  userInfo.moreInfo && <h5 className="mb-0">{userInfo.moreInfo}</h5>
+                }
               </div>
+              <h5 className="mb-0">{userInfo.location}</h5>
             </div>
           </div>
         </div>

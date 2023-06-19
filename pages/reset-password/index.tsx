@@ -1,22 +1,31 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import SignInSignOutLayout from 'components/layout/signIn-signOut';
 import ResetPasswordContainer from 'components/resetPassword';
 import { removeDashAndCapitalize } from 'utiles';
+import LandingLayout from 'components/layout/landingLayout';
+import classNames from 'classnames';
+import useRemoveScroll from 'hooks/useRemoveScroll';
 
 function ResetPassword() {
 
   const router = useRouter();
+  const ref = React.useRef(null)
 
-  React.useEffect(()=>{
+  useRemoveScroll(ref)
+
+
+  React.useEffect(() => {
     document.title = removeDashAndCapitalize(router.asPath)
-  },[router.asPath])
-  
+  }, [router.asPath])
+
   return (
-    <SignInSignOutLayout type="SIGN IN" >
-      <ResetPasswordContainer />
-    </SignInSignOutLayout>
+    <div ref={ref} className={classNames("overflow-y-auto h-screen")} >
+
+      <LandingLayout>
+        <ResetPasswordContainer />
+      </LandingLayout>
+    </div>
   );
 }
 

@@ -1,8 +1,8 @@
 import React from "react"
 
-import Navbar from "components/sites/clinic/landing/Navbar"
-import Footer from "components/sites/clinic/landing/Footer"
-import BreadCrumb from "components/sites/clinic/landing/BreadCrumb"
+import Navbar from "components/sites/clinic/landing/navbar"
+import Footer from "components/sites/clinic/landing/footer"
+import BreadCrumb from "components/sites/clinic/landing/breadCrumb"
 import UncompletedInfo from "components/sites/clinic/landing/uncompletedInfo" 
 
 type LandingLayoutTypes = {

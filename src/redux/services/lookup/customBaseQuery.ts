@@ -11,7 +11,6 @@ export const customBaseQuery = fetchBaseQuery({
     // Get the current value of the token from state
     const token = parse(document.cookie).token
     // If we have a token, add it to the headers
-    console.log("token from redux",token);
     
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);

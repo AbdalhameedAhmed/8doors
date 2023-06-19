@@ -8,7 +8,7 @@ import useOnClickOutside from "hooks/useOnClickOutside";
 import CollapsedMenu from "./CollapsedMenu";
 import Link from "next/link";
 import { toSubDomain } from "utiles";
-import {parse} from "cookie"
+import { parse } from "cookie"
 import { Router, useRouter } from "next/router";
 import axios from "axios";
 type navbarTypes = {
@@ -20,8 +20,8 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   const [openMenu, isMenuOpen] = React.useState(false)
   const { width } = useWindowSize()
   const menuRef = React.useRef(null)
-  const [tokenValue,setTokenValue] = React.useState("")
-  
+  const [tokenValue, setTokenValue] = React.useState("")
+
   const handelMenuOpen = () => {
     isMenuOpen(!openMenu)
 
@@ -32,7 +32,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   }
   useOnClickOutside(menuRef, closeMenu)
 
-  const logout = ()=>{
+  const logout = () => {
     axios.post("/api/removeToken")
     router.push("/login")
   }
@@ -40,9 +40,9 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   React.useEffect(() => {
     width < 776 && isMenuOpen(false)
   }, [width])
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setTokenValue(parse(document?.cookie).token)
-  },[])
+  }, [])
 
   return (
     <>
@@ -62,7 +62,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
             <Bars className="w-[30px] h-[30px]" />
           </button>
           {/* router.push(toSubDomain("clinic", `/staff?token=${document.cookie} */}
-          <button onClick={()=>{
+          <button onClick={() => {
             router.push(toSubDomain("clinic", `/redirect?page=staff&token=${parse(document.cookie).token}`))
           }}>
             <p className={classNames("text-logo text-4xl font-bold transition-all pb-2 duration-300")}>8doors</p>
@@ -98,10 +98,10 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
               <p className="text-[14px]">+1 315 369 5943</p>
             </div>
           </div>
-          <button className="nav-item" onClick={()=>{logout()}}>
+          <button className="nav-item" onClick={() => { logout() }}>
             <p className="nav-link header-login btn-one-light">
               {
-                tokenValue?"Logout":"login / Signup"
+                tokenValue ? "Logout" : "login / Signup"
               }</p>
           </button>
         </div>

@@ -1,33 +1,25 @@
 import React from "react"
-import Head from "next/head";
 
 import { useRouter } from "next/router";
 import classNames from "classnames";
-import { useSelector } from "react-redux";
 
 import useRemoveScroll from "hooks/useRemoveScroll";
-import { removeDashAndCapitalize } from "utiles";
 
-import Hero from "components/sites/clinic/landing/hero";
-import Slide from "components/sites/clinic/landing/Slide"
-import BookOutDoctor from "components/sites/clinic/landing/BookOutDoctor"
-import CardsSection from "components/sites/clinic/landing/CardsSection";
-import ContactUs from "components/sites/clinic/landing/ContactUs";
-import AvailabeFeatures from "components/sites/clinic/landing/AvailabeFeatures";
+import Hero from "components/sites/clinic/landing/landingSections/heroSection";
+import SlideSection from "components/sites/clinic/landing/landingSections/slideSection"
+import BookOutDoctor from "components/sites/clinic/landing/landingSections/bookOurDoctorSection"
+import CardsSection from "components/sites/clinic/landing/landingSections/cardsSection";
+import ContactUs from "components/sites/clinic/landing/landingSections/contactUs";
+import AvailabeFeatures from "components/sites/clinic/landing/landingSections/availabelFeatures";
 import LandingLayout from "components/layout/landingLayout";
-import Blogs from "components/sites/clinic/landing/Blogs";
-import { rootState } from "redux/store";
+import Blogs from "components/sites/clinic/landing/landingSections/blogsSection";
 
 
 export default function Index() {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
   const router = useRouter();
-  const { user } = useSelector(state => (state as rootState).auth)
   const ref = React.useRef(null)
-  let slideTitle = "Clinic and Specialities"
-  let slideSubTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-
   useRemoveScroll(ref)
 
 
@@ -52,7 +44,7 @@ export default function Index() {
         <Hero direction={direction} />
 
         <CardsSection direction={direction} />
-        <Slide title={slideTitle} subTitle={slideSubTitle} direction={direction} />
+        <SlideSection direction={direction} />
         <BookOutDoctor direction={direction} />
         <AvailabeFeatures direction={direction} />
         <ContactUs direction={direction} />

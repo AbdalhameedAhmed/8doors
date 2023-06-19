@@ -1,11 +1,9 @@
 import React from 'react';
-import Head from "next/head";
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 
 import SignInContainer from 'components/login';
-import SignInSignOutLayout from 'components/layout/signIn-signOut';
 import { removeDashAndCapitalize } from 'utiles';
 import LandingLayout from "components/layout/landingLayout"
 import classNames from 'classnames';
