@@ -10,12 +10,27 @@ import DoubleRightArrow from "assets/angles-right-solid.svg"
 import Location from "assets/location-dot-solid.svg"
 import Phone from "assets/phone-solid.svg"
 import Mail from "assets/envelope-regular.svg"
+import FooterSubMenu from "./footerSubMenu";
 type footerTypes = {
   direction?: "ltr" | "rtl"
 }
 export default function Footer({ direction = "ltr" }: footerTypes) {
 
+  const items1 = [
+    { title: "Search for Doctors" },
+    { title: "Login" },
+    { title: "Register" },
+    { title: "Booking" },
+    { title: "Patient Dashboard" },
+  ]
 
+  const items2 = [
+    { title: "Appointments" },
+    { title: "Chat" },
+    { title: "Login" },
+    { title: "Register" },
+    { title: "octor Dashboard" },
+  ]
   return (
     <footer className={`${styles.footer} text-white`} style={{
       direction
@@ -55,67 +70,11 @@ export default function Footer({ direction = "ltr" }: footerTypes) {
               </div>
 
             </div>
-            <div className="col-lg-3 col-md-6">
+            
+            <FooterSubMenu items={items1} direction={direction} menuTitle="For Patients" />
 
-              <div className={`${styles.footerWidget} ${styles.footerMenu}`}>
-                <h2 className={`${styles.footerTitle}`}>For Patients</h2>
-                <ul>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-                    <a href="search.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
-                      Search for Doctors</a></li>
-                  <li className="flex items-center justify-start">
+            <FooterSubMenu items={items2} direction={direction} menuTitle="For Doctors" />
 
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-                    <a href="login.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
-                      Login</a></li>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-                    <a href="register.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
-                      Register</a></li>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-                    <a href="booking.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
-                      Booking</a></li>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-                    <a href="patient-dashboard.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>
-
-                      Patient Dashboard</a></li>
-                </ul>
-              </div>
-
-            </div>
-            <div className="col-lg-3 col-md-6">
-
-              <div className={`${styles.footerWidget} ${styles.footerMenu}`}>
-                <h2 className={`${styles.footerTitle}`}>For Doctors</h2>
-                <ul>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-
-                    <a href="appointments.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Appointments</a></li>
-
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-
-                    <a href="chat.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Chat</a></li>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-
-                    <a href="login.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Login</a></li>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-
-                    <a href="doctor-register.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Register</a></li>
-                  <li className="flex items-center justify-start">
-                    <DoubleRightArrow className={`w-[15px] ${direction === "rtl" ? "m-2 rotate-180" : "mr-2"} fill-white`} />
-
-                    <a href="doctor-dashboard.html" className={`!p-0 before:!hidden ${direction === "ltr" ? "hover:ml-2" : "hover:mr-2"}`}>Doctor Dashboard</a></li>
-                </ul>
-              </div>
-
-            </div>
             <div className="col-lg-3 col-md-6">
 
               <div className={`${styles.footerWidget} footer-contact`}>
