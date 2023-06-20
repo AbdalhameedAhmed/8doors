@@ -27,7 +27,8 @@ module.exports = {
         },
         gray: "#637381",
         "main-border": "rgba(145, 158, 171, 0.24)",
-        "floating-border":"#09e5ab"
+        "floating-border": "#09e5ab",
+        "land-primary": "#09e5ab"
 
       },
       textColor: {

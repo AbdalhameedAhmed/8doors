@@ -36,8 +36,8 @@
 }
 
 .newsBg .newsLeft > div {
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .newsBg .newsLeft .formGroup {
@@ -103,7 +103,7 @@
     width: 290px;
   }
 }
-@media only screen and (max-width: 991.98px) {
+@media only screen and (max-width: 1030px) {
   .newsLetterBg {
     padding: 40px 0 40px;
   }
@@ -114,8 +114,15 @@
   .newsBg .newsLeft h2 {
     font-size: 36px;
   }
+  .newsImgContainer {
+    display: none;
+  }
   .newsImg {
     display: none;
+  }
+  .newsBg .newsLeft > div {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 @media only screen and (max-width: 767.98px) {

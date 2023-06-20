@@ -29,7 +29,7 @@ export default function ContactUs({direction="ltr"}:contactTypes) {
                 </form>
               </div>
             </div>
-            <div className="col-lg-4 col-md-12 aos aos-init aos-animate" data-aos="fade-up">
+            <div className={`col-lg-4 col-md-12 aos ${styles.newsImgContainer} `} data-aos="fade-up">
               <div className={`${styles.newsImg}`}>
                 <img src={doctor.src} className="img-fluid" alt="" />
               </div>
