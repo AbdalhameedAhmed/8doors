@@ -6,7 +6,7 @@ import useRemoveScroll from "hooks/useRemoveScroll";
 import LandingLayout from "components/layout/landingLayout";
 
 import OtpPage from "components/sites/clinic/otp"
-import BreadCrumb from "components/sites/clinic/landing/BreadCrumb"
+import BreadCrumb from "components/sites/clinic/landing/breadCrumb"
 import { removeDashAndCapitalize } from "utiles";
 import { useRouter } from "next/router";
 

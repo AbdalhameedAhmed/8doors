@@ -36,6 +36,7 @@ export default function OtpInput({ length, onChange,inputStyle,error,isErrorActi
       {[...Array(length)].map((_, index) => (
         <input
           key={index}
+          name={`otp${index+1}`}
           type="text"
           maxLength={1}
           ref={ref => inputsRef?.current![index] = ref}
