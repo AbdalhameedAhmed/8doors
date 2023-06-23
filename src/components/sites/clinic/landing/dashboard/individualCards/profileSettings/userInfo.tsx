@@ -1,4 +1,4 @@
-import React from "react"
+import React,{useState} from "react"
 import styles from "./profileSettings.module.css"
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import CustomSingleSelector from "components/shared/customSingleSelector"
@@ -20,18 +20,23 @@ import { useSelector } from "react-redux"
 import { rootState } from "redux/store"
 import useToast from "hooks/useToast"
 import BtnWithLoader from "components/shared/button/buttonWithLoader"
+import PopUp from "./popUp"
+import ChangePhoneForm from "./changeNumberForm"
+import ChangePhoneOtp from "./changeNumberForm/changePhoneOTP"
 
 
 
 export default function UserInfo() {
 
-  const [error, activeError] = React.useState(false)
-  const [countries, setCountries] = React.useState<[] | singleSelectorTypes["options"]>([])
-  const [bloodGroups, setBloodGroups] = React.useState<[] | singleSelectorTypes["options"]>([])
-  const [states, setStates] = React.useState<[] | singleSelectorTypes["options"]>([])
-  const [cities, setCities] = React.useState<[] | singleSelectorTypes["options"]>([])
-  const [initialProfileData, setInitialProfileData] = React.useState<null | patientProfileDataTypes>(null)
-  const [loadingState, changeLoadingState] = React.useState(false)
+  const [error, activeError] = useState(false)
+  const [countries, setCountries] = useState<[] | singleSelectorTypes["options"]>([])
+  const [bloodGroups, setBloodGroups] = useState<[] | singleSelectorTypes["options"]>([])
+  const [states, setStates] = useState<[] | singleSelectorTypes["options"]>([])
+  const [cities, setCities] = useState<[] | singleSelectorTypes["options"]>([])
+  const [initialProfileData, setInitialProfileData] = useState<null | patientProfileDataTypes>(null)
+  const [loadingState, changeLoadingState] = useState(false)
+  const [popUpState,openPopUp] = useState(false)
+  const[activePopUpCardNum,changeActivePopUpCardNum] = useState(0)
   const { data: profileData, refetch: refetchProfileData } = useGetProfileDataQuery(null)
   const { data: backCountries } = useGetCountriesQuery(null)
   const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
@@ -40,7 +45,12 @@ export default function UserInfo() {
   const [postPatientData] = useUpdatePatientDataMutation()
   const { user } = useSelector(state => (state as rootState).auth)
   const addToast = useToast()
+  const changeNumberCards=  [
 
+    <ChangePhoneForm key={0} onSuccess={()=>{changeActivePopUpCardNum(activePopUpCardNum+1)}}/>,
+    <ChangePhoneOtp key={1} onSuccess={()=>{refetchProfileData();openPopUp(false)}}/>,
+
+  ]
 
   // console.log("profile is", user);
 
@@ -108,6 +118,10 @@ export default function UserInfo() {
 
   }
 
+  const handelchangePhoneBtn = ()=>{
+    openPopUp(true)
+  }
+
 
   React.useEffect(() => {
 
@@ -155,6 +169,7 @@ export default function UserInfo() {
 
   return (
     <div className={`card ${styles.infoCard}`}>
+      <PopUp popUpState={popUpState} activeItemNum={activePopUpCardNum} openPopup={openPopUp} cardInfo={changeNumberCards} changeActivePopUpCardNum={changeActivePopUpCardNum}/>
       <div className={`card-body ${styles.infoCardBody}`}>
         <Form
           onSubmit={onSubmit}
@@ -250,6 +265,7 @@ export default function UserInfo() {
                             placeholder="Mobile"
                             inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                             placeholderStyles="!bg-white peer-focus:!bg-white z-0"
+                            handelChangeBtn={handelchangePhoneBtn}
                             error={meta.error}
                             errorActive={error}
                             type="text"

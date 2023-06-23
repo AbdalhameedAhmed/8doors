@@ -24,7 +24,7 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
     const [error, isErrorActive] = React.useState(false)
     const [sendOTP] = useOtpMutation()
-    const [submitSpiner, showSubmitSpinar] = React.useState(false)
+    const [submitSpiner, showSubmitSpiner] = React.useState(false)
     const [resendOTPSpiner, showResendOtpSpiner] = React.useState(false)
     const [resendOTP] = useResendOtpMutation()
     const dispatch = useDispatch()
@@ -45,10 +45,10 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (otp.length == otpLength) {
-            showSubmitSpinar(true)
+            showSubmitSpiner(true)
             await sendOTP({ username: user.username, otpCode: otp }).unwrap()
                 .then((res) => {
-                    showSubmitSpinar(false)
+                    showSubmitSpiner(false)
                     if (res.token) {
                         localStorage.setItem("token", res.token)
                         axios.post("/api/setToken", { token: res.token })
@@ -58,7 +58,7 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
                 })
                 .catch((err) => {
-                    showSubmitSpinar(false)
+                    showSubmitSpiner(false)
                     addToast("error", err?.data?.detail)
                 })
         } else {
@@ -91,21 +91,9 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                 <div className={`${styles.onboardingContentBox} ${styles.contentWrap} shadow mb-[20px]`}>
                     <h2>Enter 4-digit code sent to your email.</h2>
                     <div>
-                        {/* <div className={`${styles.onboardingTitle}`}>
-                            <h6>We’ve sent it to 8doors@example.com</h6>
-                        </div> */}
-                        <div className={`onboarding-content ${styles.passcodewrap}`}>
-                            <div className="flex justify-center gap-[23px] digit-group">
-
-                                {
-                                    <OtpInput key={1} length={otpLength} onChange={handleOtpChange} error={error} isErrorActive={isErrorActive} />
-                                }
-
-                            </div>
-                        </div>
-                        {/* <div className={`${styles.otpResend}`}>
-                            <a href="#" className="text-danger">Resend OTP</a>
-                        </div> */}
+                        {
+                            <OtpInput key={1} length={otpLength} onChange={handleOtpChange} error={error} isErrorActive={isErrorActive} />
+                        }
                     </div>
                     <div className={`${styles.onboardingBtn} text-right`}>
                         <BtnWithLoader spinerStyles="!border-[#09e5ab]" showSpinner={resendOTPSpiner} title="Resend OTP" fullWidht={false} onClick={(event) => { handelResendOtp(event) }} />

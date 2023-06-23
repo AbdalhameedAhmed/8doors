@@ -1,0 +1,20 @@
+
+.passcodewrap input {
+  background-color: #f5f6fa;
+  border: 1px solid #e6e9f4;
+  border-radius: 5px;
+  width: 60px;
+  height: 54px;
+  text-align: center;
+  color: #354052;
+  font-size: 20px;
+  font-weight: 500;
+  /* margin-right: 23px; */
+}
+
+.passcodewrap input:focus {
+  color: #354052;
+  border-color: #09e5ab;
+  background-color: #fff;
+  outline: none;
+}

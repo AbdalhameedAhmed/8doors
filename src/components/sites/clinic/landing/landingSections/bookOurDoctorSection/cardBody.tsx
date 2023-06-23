@@ -11,7 +11,7 @@ export default function CardBody({ cardInfo }: cardInfoTypes) {
 
 
   return (
-    <div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned !snap-center`} data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
+    <div className={`${styles.slickSlide} shrink-0 !snap-center slick-cloned`} data-slick-index="-1" id="" aria-hidden="true" tabIndex={-1}>
       <div>
         <div className={`${styles.profileWidget}`} style={{ width: "100%", display: "inline-block" }}>
           <div className="doc-img">

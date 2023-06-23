@@ -47,7 +47,7 @@ export default function FloatingInput({
         }
         {
           props.disabled && (
-            <span className="h-[40px] px-8 bg-[#F5F6FA] absolute flex items-center justify-center top-1/2 -translate-y-1/2 right-[10px] rounded cursor-pointer" onClick={() => { handelChange() }}>Change</span>
+            <button className="h-[40px] px-8 bg-[#F5F6FA] absolute flex items-center justify-center top-1/2 -translate-y-1/2 right-[10px] rounded cursor-pointer" onClick={() => { handelChange() }}>Change</button>
           )
         }
       </div>

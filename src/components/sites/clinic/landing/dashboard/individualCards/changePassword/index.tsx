@@ -11,6 +11,7 @@ import FloatingInput from "components/shared/floatingInput/FloatingPassword";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
 import { useChangePasswordMutation } from "redux/services/clinic/changePassword";
 import { changePasswordTypes } from "types/patientTypes/changePasswordTypes";
+import useToast from "hooks/useToast";
 
 
 
@@ -23,6 +24,7 @@ export default function IdInfo({ direction }: idInfoType) {
   const [loadingState, changeLoadingState] = React.useState(false)
   const [postNewPassword] = useChangePasswordMutation()
 
+  const addToast = useToast()
 
 
   const btnHandler = () => {
@@ -33,9 +35,11 @@ export default function IdInfo({ direction }: idInfoType) {
     changeLoadingState(true)
 
     postNewPassword({ currentPassword: values.currentPassword, newPassword: values.newPassword }).unwrap().then((res) => {
+      addToast("success", "Your password changed successfully")
       changeLoadingState(false)
     }).catch((err) => {
 
+      addToast("error", err?.data?.detail)
       changeLoadingState(false)
 
     })

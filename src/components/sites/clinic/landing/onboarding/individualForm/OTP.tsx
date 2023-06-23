@@ -1,15 +1,17 @@
 import classNames from 'classnames';
 import { useRef, useEffect, Dispatch, SetStateAction } from 'react';
 
+import styles from "./OTP.module.css"
+
 interface OtpInputProps {
   length: number;
   onChange: (otp: string) => void;
-  inputStyle?:string
-  error:boolean
-  isErrorActive:Dispatch<SetStateAction<boolean>>
+  inputStyle?: string
+  error: boolean
+  isErrorActive: Dispatch<SetStateAction<boolean>>
 }
 
-export default function OtpInput({ length, onChange,inputStyle,error,isErrorActive }: OtpInputProps) {
+export default function OtpInput({ length, onChange, inputStyle, error, isErrorActive }: OtpInputProps) {
 
   const inputsRef = useRef<HTMLInputElement[]>([]);
   const handleChange = (index: number, value: string) => {
@@ -32,21 +34,22 @@ export default function OtpInput({ length, onChange,inputStyle,error,isErrorActi
     inputsRef.current[0].focus();
   }, []);
   return (
-    <>
-      {[...Array(length)].map((_, index) => (
-        <input
-          key={index}
-          name={`otp${index+1}`}
-          type="text"
-          maxLength={1}
-          ref={ref => inputsRef?.current![index] = ref}
-          className={classNames(inputStyle,{"!border-red-500":!inputsRef?.current[index]?.value&&error})}
-          onChange={event => handleChange(index, event.target.value)}
-          onKeyDown={event => handleKeyDown(index, event)}
+    <div className={`${styles.passcodewrap}`}>
+      <div className="flex justify-center gap-[23px] digit-group">
+        {[...Array(length)].map((_, index) => (
+          <input
+            key={index}
+            name={`otp${index + 1}`}
+            type="text"
+            maxLength={1}
+            ref={ref => inputsRef!.current[index] = ref}
+            className={classNames(inputStyle, { "!border-red-500": !inputsRef?.current[index]?.value && error })}
+            onChange={event => handleChange(index, event.target.value)}
+            onKeyDown={event => handleKeyDown(index, event)}
 
-        />
-      ))}
-
-    </>
+          />
+        ))}
+      </div>
+    </div >
   );
 }
