@@ -1,7 +1,8 @@
 
-const regUsername = 'newuser3';
-const email = 'anyEmail3@gmail';
-const phoneNumber = '01060663333';
+const regUsername = 'newuser14';
+const email = 'anyEmail14@gmail';
+const phoneNumber = '01060661414';
+const regPassword = "asdfgh"
 
 describe('register', () => {
   it('register', () => {
@@ -11,8 +12,8 @@ describe('register', () => {
     cy.get("[name='username']").type(regUsername);
     cy.get("[name='email']").type(email);
     cy.get("[name='phoneNumber']").type(phoneNumber);
-    cy.get("[name='password']").type('123456');
-    cy.get("[name='confirm']").type('123456');
+    cy.get("[name='password']").type(regPassword);
+    cy.get("[name='confirm']").type(regPassword);
     cy.get("button").contains("Submit").click()
     cy.get("[name='otp1']").type(phoneNumber[7])
     cy.get("[name='otp2']").type(phoneNumber[8])

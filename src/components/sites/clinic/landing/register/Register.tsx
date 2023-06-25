@@ -180,7 +180,7 @@ export default function Register() {
                               {({ input, meta }) => (
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
-                                    <input name={input.name} defaultChecked id="default-radio-1" type="radio" value="any" onChange={(e) => { input.onChange(e); handelChangeImage(Patient.src) }} className="hidden peer" />
+                                    <input name={input.name} defaultChecked id="default-radio-1" type="radio" value={input.value} onChange={(e) => { input.onChange(e); handelChangeImage(Patient.src) }} className="hidden peer" />
                                     <label htmlFor="default-radio-1"><span>Patient</span></label>
                                   </div>
                                 </>
@@ -202,7 +202,7 @@ export default function Register() {
                               {({ input, meta }) => (
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
-                                    <input name={input.name} id="default-radio-3" type="radio" value="any" onChange={(e) => { input.onChange(e); handelChangeImage(Pharmacist.src) }} className="hidden peer" />
+                                    <input name={input.name} id="default-radio-3" type="radio" value={input.value} onChange={(e) => { input.onChange(e); handelChangeImage(Pharmacist.src) }} className="hidden peer" />
                                     <label htmlFor="default-radio-3"><span>Pharmacist</span></label>
                                   </div>
                                 </>

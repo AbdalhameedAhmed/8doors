@@ -67,12 +67,12 @@
 }
 .onboardingBtn button:first-child {
   /* padding: 15px 20px; */
-  color: #09e5ab;
-  background: white;
+  background: #09e5ab;
+  color: white;
 }
 .onboardingBtn button:nth-child(2) {
-  color: white;
-  background: #09e5ab;
+  color: #09e5ab;
+  background: white;
 }
 .onboardingBtn button:hover {
   box-shadow: inset 0 60px 0 0 #10916f;

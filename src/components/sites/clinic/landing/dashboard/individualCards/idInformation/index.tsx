@@ -17,6 +17,7 @@ import { useGetNationalIdDataQuery } from "redux/services/patient/getNationalIdD
 import { useSelector } from "react-redux";
 import { rootState } from "redux/store";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
+import useToast from "hooks/useToast";
 
 
 
@@ -28,7 +29,7 @@ export default function IdInfo({ direction }: idInfoType) {
   const [loadingState, changeLoadingState] = React.useState(false)
   const [frontIdImage, setFrontIdImage] = React.useState(IdFrontSide.src)
   const [backIdImage, setBackIdImage] = React.useState(IdBackSide.src)
-
+  const addToast = useToast()
   const [postNationalIdFrontImage] = useNationalIdFrontMutation()
   const [postNationalIdBackImage] = useNationalIdBackMutation()
   const { data: nationalIdData, refetch: refetchNatinalIdData } = useGetNationalIdDataQuery(null)
@@ -53,6 +54,7 @@ export default function IdInfo({ direction }: idInfoType) {
       postNationalIdFrontImage(frontImageData).unwrap().then(res => {
         changeLoadingState(false)
         refetchNatinalIdData()
+        addToast("success", "Changed successFully")
       }).catch((err) => {
         changeLoadingState(false)
       })
@@ -63,8 +65,10 @@ export default function IdInfo({ direction }: idInfoType) {
       postNationalIdBackImage(backImageData).unwrap().then(res => {
         changeLoadingState(false)
         refetchNatinalIdData()
+        addToast("success", "Changed successFully")
       }).catch(err => {
         changeLoadingState(false)
+        addToast("error", err.data.message ? err.data.message : "There is something wrong")
       })
     }
   }

@@ -5,6 +5,8 @@ import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import { Form, Field } from "react-final-form"
 import { formValidate } from "./formValidate"
 import { useChangePhoneNubmerInitMutation } from "redux/services/patient/changePhoneNumberInit"
+import useToast from "hooks/useToast"
+
 
 type ChangeNumberFormTypes = {
   onSuccess: () => void
@@ -14,7 +16,7 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
   const [loadingState, changeLoadingState] = useState(false)
   const [error, activeError] = useState(false)
   const [postNewPhone] = useChangePhoneNubmerInitMutation()
-
+  const addToast = useToast()
 
   const onSubmit = (values: Record<string, any>) => {
     postNewPhone({ newPhoneNum: values.newPhoneNum, password: values.password }).unwrap().then(res => {
@@ -22,7 +24,7 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
       console.log(res);
 
     }).catch(err => {
-      console.log(err);
+      addToast("error",err?.data?.message)
 
     })
 
@@ -84,7 +86,7 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
               </Field>
             </div>
             <div className={`flex justify-end`}>
-              <BtnWithLoader showSpinner={loadingState} title="Save Changes" onClick={() => { activeError(true); onSuccess() }} disabled={submitting} />
+              <BtnWithLoader showSpinner={loadingState} title="Save Changes" onClick={() => { activeError(true) }} disabled={submitting} />
             </div>
           </form>
         )}

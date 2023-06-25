@@ -20,7 +20,6 @@ export default function PopUp({ popUpState, openPopup, cardInfo, activeItemNum, 
   const closePopUp = () => {
     openPopup(false)
     showCard(false)
-    changeActivePopUpCardNum(0)
   }
   useOnClickOutside(popUpCardRef, closePopUp)
 

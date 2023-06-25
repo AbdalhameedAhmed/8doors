@@ -118,7 +118,7 @@ export default function IndividualDashboard() {
     profileData?.data?.dateOfBirth && setUserDateOfBirth(`${profileData?.data?.dateOfBirth}`)
 
     if (profileData?.data?.countryId) {
-      backCountries.data.map((country: country) => {
+      backCountries?.data?.map((country: country) => {
 
         if (country.id === profileData?.data?.countryId) {
           userLocation += country.nameEn

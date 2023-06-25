@@ -7,5 +7,6 @@ export type patientProfileDataTypes = {
   stateId: number;
   cityId: number;
   address: string;
-  nationalId:string
+  nationalId:string;
+  gender:"MALE" | "FEMALE"
 };

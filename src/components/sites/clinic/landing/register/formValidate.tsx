@@ -1,6 +1,7 @@
 function formValdate(values: Record<string, any>): Record<string, string> {
 
     const errors: Record<string, string> = {};
+    const validPassword = /^(?=.*[a-z].*[a-z].*[a-z].*[a-z].*[a-z].*[a-z])[a-z0-9]*$/
     const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const validPhone = /^(010|011|012|015)\d{8}$/
 
@@ -14,10 +15,12 @@ function formValdate(values: Record<string, any>): Record<string, string> {
     }
     if (!values.password) {
         errors.password = "This field is required";
+    } else if (!values.password.match(validPassword)) {
+        errors.password = "Password must contain at least 6 characters"
     }
-    if(!values.phoneNumber){
+    if (!values.phoneNumber) {
         errors.phoneNumber = "This field is required";
-    }else if (!values.phoneNumber.match(validPhone)){
+    } else if (!values.phoneNumber.match(validPhone)) {
         errors.phoneNumber = "Enter a valid 11-digit that starts with 010, 011, 012, or 015 without the country code"
     }
     if (!values.confirm) {

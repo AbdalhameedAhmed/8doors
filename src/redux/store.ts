@@ -26,6 +26,7 @@ import { nationalIdBack } from './services/patient/nationalIdBack';
 import { getNationalIdData } from './services/patient/getNationalIdData';
 import { updatePatientData } from './services/patient/updatePatientData';
 import { changePhoneNubmerInit } from './services/patient/changePhoneNumberInit';
+import { changePhoneNubmerFinish } from './services/patient/changePhoneNumberFinish';
 
 const persistConfig = {
   key: 'root',
@@ -48,6 +49,7 @@ const rootReducer = combineReducers({
   [getNationalIdData.reducerPath]: getNationalIdData.reducer,
   [updatePatientData.reducerPath]: updatePatientData.reducer,
   [changePhoneNubmerInit.reducerPath]:changePhoneNubmerInit.reducer,
+  [changePhoneNubmerFinish.reducerPath]:changePhoneNubmerFinish.reducer,
   auth: authReducer,
   activeClinic: activeClinicReducer,
   userInfo: userRegisterInfoReducer,
@@ -76,7 +78,8 @@ const middleware: Middleware[] = [
   nationalIdBack.middleware,
   getNationalIdData.middleware,
   updatePatientData.middleware,
-  changePhoneNubmerInit.middleware
+  changePhoneNubmerInit.middleware,
+  changePhoneNubmerFinish.middleware
 ];
 const store = configureStore({
   reducer: persistedReducer,

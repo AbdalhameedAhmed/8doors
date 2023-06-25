@@ -96,8 +96,8 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                         }
                     </div>
                     <div className={`${styles.onboardingBtn} text-right`}>
-                        <BtnWithLoader spinerStyles="!border-[#09e5ab]" showSpinner={resendOTPSpiner} title="Resend OTP" fullWidht={false} onClick={(event) => { handelResendOtp(event) }} />
                         <BtnWithLoader showSpinner={submitSpiner} title="Continue" fullWidht={false} onClick={() => { onSuccess() }} />
+                        <BtnWithLoader spinerStyles="!border-[#09e5ab]" showSpinner={resendOTPSpiner} title="Resend OTP" fullWidht={false} onClick={(event) => { handelResendOtp(event) }} />
                     </div>
                 </div>
             </form>

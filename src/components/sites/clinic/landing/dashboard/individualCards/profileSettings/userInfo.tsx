@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React, { useState } from "react"
 import styles from "./profileSettings.module.css"
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import CustomSingleSelector from "components/shared/customSingleSelector"
@@ -35,8 +35,8 @@ export default function UserInfo() {
   const [cities, setCities] = useState<[] | singleSelectorTypes["options"]>([])
   const [initialProfileData, setInitialProfileData] = useState<null | patientProfileDataTypes>(null)
   const [loadingState, changeLoadingState] = useState(false)
-  const [popUpState,openPopUp] = useState(false)
-  const[activePopUpCardNum,changeActivePopUpCardNum] = useState(0)
+  const [popUpState, openPopUp] = useState(false)
+  const [activePopUpCardNum, changeActivePopUpCardNum] = useState(0)
   const { data: profileData, refetch: refetchProfileData } = useGetProfileDataQuery(null)
   const { data: backCountries } = useGetCountriesQuery(null)
   const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
@@ -45,10 +45,10 @@ export default function UserInfo() {
   const [postPatientData] = useUpdatePatientDataMutation()
   const { user } = useSelector(state => (state as rootState).auth)
   const addToast = useToast()
-  const changeNumberCards=  [
-
-    <ChangePhoneForm key={0} onSuccess={()=>{changeActivePopUpCardNum(activePopUpCardNum+1)}}/>,
-    <ChangePhoneOtp key={1} onSuccess={()=>{refetchProfileData();openPopUp(false)}}/>,
+  const changeNumberCards = [
+    
+    <ChangePhoneForm key={0} onSuccess={() => { changeActivePopUpCardNum(activePopUpCardNum + 1) }} />,
+    <ChangePhoneOtp key={1} onSuccess={() => { refetchProfileData(); openPopUp(false);changeActivePopUpCardNum(0) }} />,
 
   ]
 
@@ -65,7 +65,8 @@ export default function UserInfo() {
       stateId: values.stateId,
       cityId: values.cityId,
       address: values.address,
-      nationalId: values.nationalId
+      nationalId: values.nationalId,
+      gender: values.gender
     }
 
     postPatientData(dataForm).unwrap().then(res => {
@@ -118,7 +119,7 @@ export default function UserInfo() {
 
   }
 
-  const handelchangePhoneBtn = ()=>{
+  const handelchangePhoneBtn = () => {
     openPopUp(true)
   }
 
@@ -169,7 +170,7 @@ export default function UserInfo() {
 
   return (
     <div className={`card ${styles.infoCard}`}>
-      <PopUp popUpState={popUpState} activeItemNum={activePopUpCardNum} openPopup={openPopUp} cardInfo={changeNumberCards} changeActivePopUpCardNum={changeActivePopUpCardNum}/>
+      <PopUp popUpState={popUpState} activeItemNum={activePopUpCardNum} openPopup={openPopUp} cardInfo={changeNumberCards} changeActivePopUpCardNum={changeActivePopUpCardNum} />
       <div className={`card-body ${styles.infoCardBody}`}>
         <Form
           onSubmit={onSubmit}
@@ -185,7 +186,8 @@ export default function UserInfo() {
               cityId: initialProfileData.cityId,
               dateOfBirth: initialProfileData.dateOfBirth,
               address: initialProfileData.address,
-              zipCode: initialProfileData.nationalId
+              zipCode: initialProfileData.nationalId,
+              gender: initialProfileData.gender
             }
           }
           validate={(values): Record<string, string> => formValdate(values)
@@ -282,7 +284,32 @@ export default function UserInfo() {
                 <div className={`${styles.loginOr}`}>
                   <span></span>
                 </div>
+                <div className={`col-12 col-md-6`}>
+                  <div className={`row ${styles.selectRegisterType}`}>
 
+
+                  <Field name="gender" value="MALE" type="radio">
+                    {({ input, meta }) => (
+                      <>
+                        <div className={`col-6 ${styles.registerOption}`}>
+                          <input  id="gender-male" type="radio" {...input}  className="hidden peer" />
+                          <label htmlFor="gender-male"><span>Male</span></label>
+                        </div>
+                      </>
+                    )}
+                  </Field>
+                  <Field name="gender" value="FEMALE" type="radio" >
+                    {({ input, meta }) => (
+                      <>
+                        <div className={`col-6 ${styles.registerOption}`}>
+                          <input id="gender-female" type="radio" {...input} className="hidden peer" />
+                          <label htmlFor="gender-female"><span>Female</span></label>
+                        </div>
+                      </>
+                    )}
+                  </Field>
+                    </div>
+                </div>
                 <Field name="dateOfBirth" type="date">
                   {({ input, meta }) => (
                     <>
@@ -297,26 +324,6 @@ export default function UserInfo() {
                             type="text"
                             {...input}
 
-                          />
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </Field>
-
-                <Field name="bloodGroupId">
-                  {({ input, meta }) => (
-                    <>
-                      <div className="col-12 col-md-6">
-                        <div className={`form-group ${styles.infoGroup}`}>
-                          <CustomSingleSelector
-                            floatMenu={true}
-                            placeholder="Blood Group"
-                            error={meta.error}
-                            errorActive={error}
-                            options={bloodGroups}
-                            inputStyle="!p-4 bg-white !shadow-none !mt-0 focus:bg-white  h-[58px]"
-                            input={input}
                           />
                         </div>
                       </div>
@@ -370,7 +377,7 @@ export default function UserInfo() {
                 <Field name="cityId">
                   {({ input, meta }) => (
                     <>
-                      <div className="col-12">
+                      <div className="col-12 col-md-6">
                         <div className={`form-group ${styles.infoGroup}`}>
                           <CustomSingleSelector
                             floatMenu={true}
@@ -400,6 +407,28 @@ export default function UserInfo() {
                             type="text"
                             {...input}
 
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </Field>
+                <div className={`${styles.loginOr}`}>
+                  <span></span>
+                </div>
+                <Field name="bloodGroupId">
+                  {({ input, meta }) => (
+                    <>
+                      <div className="col-12 col-md-6">
+                        <div className={`form-group ${styles.infoGroup}`}>
+                          <CustomSingleSelector
+                            floatMenu={true}
+                            placeholder="Blood Group"
+                            error={meta.error}
+                            errorActive={error}
+                            options={bloodGroups}
+                            inputStyle="!p-4 bg-white !shadow-none !mt-0 focus:bg-white  h-[58px]"
+                            input={input}
                           />
                         </div>
                       </div>
