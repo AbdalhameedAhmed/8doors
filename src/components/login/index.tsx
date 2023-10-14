@@ -63,7 +63,13 @@ export default function SignIn() {
       })
       .catch((res) => {
         changeLoadingState(false)
-        addToast("error", res?.data?.detail ?res?.data?.detail : "There is something wrong")
+        if (res?.data?.detail) {
+          addToast("error", res?.data?.detail)
+        } else {
+          res?.data?.violations.forEach((fieldErr: { field: string, message: string }) => {
+            addToast("error", `${fieldErr.field} : ${fieldErr.message}`)
+          })
+        }
       })
 
   };

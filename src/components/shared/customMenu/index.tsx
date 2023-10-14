@@ -47,7 +47,7 @@ export default function CustomMenu({ children, icon, containerStyle, whenMenuOpe
   useOnClickOutside(menuRef, clickOutsideHandler)
 
   return (
-    <div className={classNames("p-1 rounded-full relative w-[45px] h-[45px] flex items-center justify-center hover:bg-layout-secondary", { "bg-layout-secondary": subMenu }, iconContainer)} onClick={() => {
+    <div className={classNames("p-1 rounded-full z-10 relative w-[45px] h-[45px] flex items-center justify-center hover:bg-layout-secondary", { "bg-layout-secondary": subMenu }, iconContainer)} onClick={() => {
       menuHandler()
     }}
       ref={menuRef}

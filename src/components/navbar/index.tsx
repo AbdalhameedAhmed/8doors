@@ -6,11 +6,13 @@ import classNames from "classnames";
 import useWindowSize from "hooks/useWindowSize";
 import SearchBar from "./SearchBar"
 import ClinicSelector from "./ChooseClinics"
-import USerICon from "./UserIcon"
+import UserICon from "../shared/menus/UserIcon"
 
 import Bars from "assets/bars.svg";
 import SearchIcon from "assets/search.svg"
 import SelectLang from "./SelectLang";
+import UserImage from "assets/avatar_default.jpg"
+
 
 type NavbarTypes = {
   smallView: boolean
@@ -95,7 +97,7 @@ function Navbar({
                 <ClinicSelector />
               }
 
-              <USerICon />
+              <UserICon userImgSrc={UserImage.src} userInfo={{ username: "username", email: "email@email.com" }} firstMenuItems={[{ name: "Home" }, { name: "profile" }, { name: "Settings" }]} lastMenuItems={[{ name: "Go to dashboard", url: "/dashboard" }, { name: "Logout", subDomain: { subDomain: "", path: "" } }]} />
             </div>
           </div>
         </div>

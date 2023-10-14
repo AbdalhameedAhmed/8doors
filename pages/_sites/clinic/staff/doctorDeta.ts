@@ -83,7 +83,7 @@ let data = [
     img: img7.src,
   },
   {
-    id: 6,
+    id: 7,
     name: 'Abdelhameed Ahmed',
     email: 'abdelhameedahmed@gmail.com',
     roles: ['Manager', 'Allergist', 'Dermatologist'],
@@ -92,7 +92,7 @@ let data = [
     img: img8.src,
   },
   {
-    id: 6,
+    id: 8,
     name: 'Abdelhameed Ahmed',
     email: 'abdelhameedahmed@gmail.com',
     roles: ['Manager', 'Allergist', 'Dermatologist'],

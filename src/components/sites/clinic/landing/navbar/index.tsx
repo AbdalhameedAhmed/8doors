@@ -1,14 +1,20 @@
 import React from "react"
+import { parse } from "cookie"
+import { useRouter } from "next/router";
+
 import classNames from "classnames";
-import Bars from "assets/bars.svg"
+import axios from "axios";
+import { useSelector } from "react-redux";
+
 import useWindowSize from "hooks/useWindowSize";
-import Hospital from "assets/hospital-svgrepo-com.svg"
 import useOnClickOutside from "hooks/useOnClickOutside";
 import CollapsedMenu from "./CollapsedMenu";
 import { toSubDomain } from "utiles";
-import { parse } from "cookie"
-import { useRouter } from "next/router";
-import axios from "axios";
+import UserICon from "components/shared/menus/UserIcon"
+import { rootState } from "redux/store";
+import Bars from "assets/bars.svg"
+import UserImage from "assets/avatar_default.jpg"
+
 type navbarTypes = {
   direction?: "ltr" | "rtl"
 }
@@ -19,11 +25,14 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   const { width } = useWindowSize()
   const menuRef = React.useRef(null)
   const [tokenValue, setTokenValue] = React.useState("")
+  const userInfo = useSelector((state) => (state as rootState).auth)
 
   const handelMenuOpen = () => {
     isMenuOpen(!openMenu)
 
   }
+
+  console.log(userInfo);
 
   const closeMenu = () => {
     width < 950 && openMenu && isMenuOpen(false)
@@ -66,7 +75,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
             <p className={classNames("text-logo text-4xl font-bold transition-all pb-2 duration-300")}>8doors</p>
           </button>
 
-          <ul ref={menuRef} className={classNames("flex items-center gap-8 h-full", {"gap-4":width<1080 ,"fixed left-0 top-0 h-screen w-[250px] transition duration-300 flex-col overflow-auto scrollbar-hide z-50 scale-x-0 !items-start origin-[0%_100%] bg-[#0071dc] text-white fill-white !gap-[0px]": width < 950, "scale-x-100": width < 950 && openMenu, "!left-auto !right-0 origin-[100%_100%]": width < 950 && direction === "rtl" })}>
+          <ul ref={menuRef} className={classNames("flex items-center gap-8 h-full", { "gap-4": width < 1080, "fixed left-0 top-0 h-screen w-[250px] transition duration-300 flex-col overflow-auto scrollbar-hide z-50 scale-x-0 !items-start origin-[0%_100%] bg-[#0071dc] text-white fill-white !gap-[0px]": width < 950, "scale-x-100": width < 950 && openMenu, "!left-auto !right-0 origin-[100%_100%]": width < 950 && direction === "rtl" })}>
             <div className="bg-white w-full text-center">
               <p className={classNames("text-logo text-4xl font-bold transition-all duration-300 py-4", { "hidden": width > 950 })}>8doors</p>
 
@@ -88,20 +97,20 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
 
         <div className="flex gap-8">
           {/* icon */}
-          <div className={classNames("flex items-center gap-2", { "hidden": width < 1277 })}>
-            <Hospital className="w-[35px] h-[35px] fill-secondary" />
-            <div>
 
-              <p className="text-gray text-sm">Contact</p>
-              <p className="text-[14px]">+1 315 369 5943</p>
-            </div>
-          </div>
-          <button className="bg-white min-w-[110px] border border-[2px] border-land-primary rounded-[4px] px-[15px] py-[10px] text-center text-[15px] text-land-primary transition-all duration-[0.5s] shadow-[inset_0_0_0_0_#09e5ab] hover:bg-land-primary hover:text-white hover:shadow-[inset_0_50px_0_0_#09e5ab] font-[500]" onClick={() => { logout() }}>
-            <p className="nav-link">
-              {
-                tokenValue ? "Logout" : "login / Signup"
-              }</p>
-          </button>
+          {
+            tokenValue ? (
+              <UserICon userImgSrc={UserImage.src} userInfo={{ username: userInfo.user.username, email: userInfo.user.email }} firstMenuItems={[{ name: "Home" }, { name: "profile" }, { name: "Settings" }]} lastMenuItems={[{ name: "Logout", onClick: logout }]} />
+            ) : (
+              <button className="bg-white min-w-[110px] border border-[2px] border-land-primary rounded-[4px] px-[15px] py-[10px] text-center text-[15px] text-land-primary transition-all duration-[0.5s] shadow-[inset_0_0_0_0_#09e5ab] hover:bg-land-primary hover:text-white hover:shadow-[inset_0_50px_0_0_#09e5ab] font-[500]" onClick={() => { logout() }}>
+                <p className="nav-link">
+                  login / Sign up
+                </p>
+              </button>
+
+            )
+          }
+
         </div>
 
       </nav>

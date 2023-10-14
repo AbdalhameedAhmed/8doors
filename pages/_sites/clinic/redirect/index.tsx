@@ -11,13 +11,13 @@ export default function Redirect() {
 
 
   React.useEffect(() => {
-    console.log(page,token);
-    
+    console.log(page, token);
+
     if (token && page) {
-      axios.post("/api/setToken", { token:token })
-      setTimeout(()=>{
-        router.push(toSubDomain("clinic",`/${page}`))
-      },1100)
+      axios.post("/api/setToken", { token: token })
+      setTimeout(() => {
+        router.push(toSubDomain("clinic", `/${page}`))
+      }, 1100)
     }
   }, [page, router, token])
 

@@ -15,7 +15,7 @@ type menuTypes = {
   smallView?: boolean
   removeIcon?: boolean
   activeIconStyle?: string;
-  liStyles?:string
+  liStyles?: string
   activeStyle?: string;
   onClick?: () => void;
   textContainerStyle?: string
@@ -29,7 +29,7 @@ export default function MenuItem({
   children = <React.Fragment />,
   activeStyle = "font-bold !text-theme-primary bg-theme-secondary [&_svg]:fill-primary ",
   onClick = () => { },
-  liStyles="",
+  liStyles = "",
   smallView = false,
   textContainerStyle = ""
 }: menuTypes) {
@@ -76,7 +76,7 @@ export default function MenuItem({
             <div className="">
               {item.submenu?.length !== 0 && (
                 <span className={classNames("absolute  top-[5px] -translate-y-1/2 -right-[15px] w-[5px] h-[5px] block", { "hidden": !smallView })}>
-                  <RightAngle classNames=" w-[5px] h-[5px]" />
+                  <RightAngle className=" w-[5px] h-[5px]" />
                 </span>
               )}
             </div>
