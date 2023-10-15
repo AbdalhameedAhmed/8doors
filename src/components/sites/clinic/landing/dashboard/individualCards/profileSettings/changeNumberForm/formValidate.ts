@@ -10,6 +10,10 @@ function formValidate(values: Record<string, any>): Record<string, string> {
   }
   if (!values.password) {
     errors.password = 'This field is required';
+  } else if (values.password.length < 6) {
+    errors.password = 'Password should be at least 6 character';
+  } else if (values.password.length > 50) {
+    errors.username = 'Password should be up to 20 characters long';
   }
 
   return errors;

@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import BtnWithLoader from "components/shared/button/buttonWithLoader"
 
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
+import PasswordInput from "components/shared/floatingInput/FloatingPassword";
+
 import { Form, Field } from "react-final-form"
 import { formValidate } from "./formValidate"
 import { useChangePhoneNubmerInitMutation } from "redux/services/patient/changePhoneNumberInit"
@@ -24,7 +26,7 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
       console.log(res);
 
     }).catch(err => {
-      addToast("error",err?.data?.message)
+      addToast("error", err?.data?.message)
 
     })
 
@@ -58,7 +60,7 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
                         placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                         error={meta.error}
                         errorActive={error}
-                        type="text"
+                        type="tel"
                         {...input}
 
                       />
@@ -70,13 +72,12 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
                 {({ input, meta }) => (
                   <>
                     <div className="col-12">
-                      <FloatingInput
+                      <PasswordInput
                         placeholder="Enter your password"
                         inputStyle="!p-4 !w-full !text-left focus:!bg-white focus:border-floating-border"
                         placeholderStyles="!bg-white peer-focus:!bg-white z-0"
                         error={meta.error}
                         errorActive={error}
-                        type="text"
                         {...input}
 
                       />

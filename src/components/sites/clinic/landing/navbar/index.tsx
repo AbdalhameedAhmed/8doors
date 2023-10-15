@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import classNames from "classnames";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import useWindowSize from "hooks/useWindowSize";
 import useOnClickOutside from "hooks/useOnClickOutside";
@@ -14,6 +14,9 @@ import UserICon from "components/shared/menus/UserIcon"
 import { rootState } from "redux/store";
 import Bars from "assets/bars.svg"
 import UserImage from "assets/avatar_default.jpg"
+import NoUser from "assets/dashboard/blank-profile-picture-973460_1280.webp"
+import { resetIndividualInfo } from "redux/slices/landing/individualInfo";
+
 
 type navbarTypes = {
   direction?: "ltr" | "rtl"
@@ -25,12 +28,17 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   const { width } = useWindowSize()
   const menuRef = React.useRef(null)
   const [tokenValue, setTokenValue] = React.useState("")
+  const dispatch = useDispatch()
+
   const userInfo = useSelector((state) => (state as rootState).auth)
+  const individualInfo = useSelector((state) => (state as rootState).individualInfo)
+  const [userImageSrc, setUserImageSrc] = React.useState(NoUser.src)
 
   const handelMenuOpen = () => {
     isMenuOpen(!openMenu)
 
   }
+
 
   console.log(userInfo);
 
@@ -42,6 +50,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   const logout = () => {
     axios.post("/api/removeToken")
     router.push("/login")
+    dispatch(resetIndividualInfo())
   }
 
   React.useEffect(() => {
@@ -50,6 +59,11 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   React.useEffect(() => {
     setTokenValue(parse(document?.cookie).token)
   }, [])
+
+  React.useEffect(() => {
+    individualInfo.imageUrl && setUserImageSrc(individualInfo.imageUrl)
+  }, [userInfo, individualInfo])
+
 
   return (
     <>
@@ -100,7 +114,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
 
           {
             tokenValue ? (
-              <UserICon userImgSrc={UserImage.src} userInfo={{ username: userInfo.user.username, email: userInfo.user.email }} firstMenuItems={[{ name: "Home" }, { name: "profile" }, { name: "Settings" }]} lastMenuItems={[{ name: "Logout", onClick: logout }]} />
+              <UserICon userImgSrc={userImageSrc} userInfo={{ username: userInfo.user.username, email: userInfo.user.email }} firstMenuItems={[{ name: "Home" }, { name: "profile" }, { name: "Settings" }]} lastMenuItems={[{ name: "Logout", onClick: logout }]} />
             ) : (
               <button className="bg-white min-w-[110px] border border-[2px] border-land-primary rounded-[4px] px-[15px] py-[10px] text-center text-[15px] text-land-primary transition-all duration-[0.5s] shadow-[inset_0_0_0_0_#09e5ab] hover:bg-land-primary hover:text-white hover:shadow-[inset_0_50px_0_0_#09e5ab] font-[500]" onClick={() => { logout() }}>
                 <p className="nav-link">
