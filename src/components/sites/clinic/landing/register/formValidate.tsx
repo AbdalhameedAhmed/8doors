@@ -1,4 +1,4 @@
-function formValdate(values: Record<string, any>): Record<string, string> {
+function formValidate(values: Record<string, any>): Record<string, string> {
 
     const errors: Record<string, string> = {};
     const validPassword = /^(?=.*[a-z].*[a-z].*[a-z].*[a-z].*[a-z].*[a-z])[a-z0-9]*$/
@@ -47,4 +47,4 @@ function formValdate(values: Record<string, any>): Record<string, string> {
     return errors;
 }
 
-export { formValdate }
+export { formValidate }

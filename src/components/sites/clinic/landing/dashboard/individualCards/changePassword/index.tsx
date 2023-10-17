@@ -2,16 +2,16 @@ import React from "react"
 
 import { Form, Field } from "react-final-form";
 
-import { formValdate } from "./formValidate";
-
-
-
-import styles from "./idInfo.module.css"
+import { formValidate } from "./formValidate";
 import FloatingInput from "components/shared/floatingInput/FloatingPassword";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
-import { useChangePasswordMutation } from "redux/services/clinic/changePassword";
-import { changePasswordTypes } from "types/patientTypes/changePasswordTypes";
 import useToast from "hooks/useToast";
+import { useChangePasswordMutation } from "redux/services/clinic/changePassword";
+
+import { changePasswordTypes } from "types/patientTypes/changePasswordTypes";
+import { changePasswordResponse } from "types/patientTypes/changePasswordResponse";
+
+import styles from "./idInfo.module.css"
 
 
 
@@ -26,6 +26,16 @@ export default function IdInfo({ direction }: idInfoType) {
 
   const addToast = useToast()
 
+  const ChangedSuccessfully = () => {
+    addToast("success", "Your password changed successfully")
+    changeLoadingState(false)
+  }
+
+  const changeFailed = (err: changePasswordResponse) => {
+    addToast("error", err?.data?.detail)
+    changeLoadingState(false)
+
+  }
 
   const btnHandler = () => {
     isErrorActive(true)
@@ -35,13 +45,9 @@ export default function IdInfo({ direction }: idInfoType) {
     changeLoadingState(true)
 
     postNewPassword({ currentPassword: values.currentPassword, newPassword: values.newPassword }).unwrap().then((res) => {
-      addToast("success", "Your password changed successfully")
-      changeLoadingState(false)
+      ChangedSuccessfully()
     }).catch((err) => {
-
-      addToast("error", err?.data?.detail)
-      changeLoadingState(false)
-
+      changeFailed(err)
     })
 
   }
@@ -52,7 +58,7 @@ export default function IdInfo({ direction }: idInfoType) {
         <Form
           onSubmit={onSubmit}
 
-          validate={(values): Record<string, string> => formValdate(values)}
+          validate={(values): Record<string, string> => formValidate(values)}
 
           render={(props) => (
             <form onSubmit={props.handleSubmit}>

@@ -6,18 +6,20 @@ import { useTranslation } from "react-i18next";
 import { Form, Field } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./register.module.css"
+import { rootState } from "redux/store";
+
 
 import LoginInput from "components/shared/floatingInput/FloatingInput";
 import PasswordInput from "components/shared/floatingInput/FloatingPassword";
-import { formValdate } from "./formValidate";
-import { LoginFormData } from "types";
+import { formValidate } from "./formValidate";
 import { addUser } from "redux/slices/auth"
 import { useLoginMutation } from "redux/services/clinic/auth"
 import useToast from "hooks/useToast";
+import { LoginFormData } from "types";
+import { LoginResponse } from "types/LoginResponse";
 
 
 
-import { rootState } from "redux/store";
 import TestSvg from "assets/addPharmacist.jpg"
 import axios from "axios";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
@@ -32,44 +34,59 @@ export default function SignIn() {
   const dispatch = useDispatch()
   const router = useRouter()
   const addToast = useToast()
-  React.useEffect(() => {
-    // console.log(cookies.parse(document.cookie));
-    // console.log(document.cookie);
 
+  const loginSuccessfully = (res: LoginResponse) => {
 
-  }, [])
+    changeLoadingState(false)
+    dispatch(addUser(res))
 
+    if (res.mobileVerified === false) {
+
+      axios.post("/api/setToken", { token: "" })
+      router.push("/otp")
+
+    } else if (res.token) {
+
+      axios.post("/api/setToken", { token: res.token })
+      router.push("/")
+
+    }
+
+  }
+
+  const loginFailed = (res: LoginResponse) => {
+
+    changeLoadingState(false)
+
+    if (res?.data?.detail) {
+
+      addToast("error", res?.data?.detail)
+
+    } else {
+
+      res?.data?.violations.forEach((fieldErr) => {
+
+        addToast("error", `${fieldErr.field} : ${fieldErr.message}`)
+
+      })
+    }
+  }
 
   const onSubmit = async (values: LoginFormData) => {
+
     changeLoadingState(true)
+
     await postData({ login: values.username, password: values.password }).unwrap()
+
       .then((res) => {
-        changeLoadingState(false)
-        dispatch(addUser(res))
-        if (res.token) {
-          localStorage.setItem("token", res.token)
-          axios.post("/api/setToken", { token: res.token })
-        } else {
-          axios.post("/api/setToken", { token: "" })
 
-        }
-        if (res.mobileVerified === false) {
-          router.push("/otp")
-        } else {
-          router.push("/")
-        }
-
+        loginSuccessfully(res)
 
       })
       .catch((res) => {
-        changeLoadingState(false)
-        if (res?.data?.detail) {
-          addToast("error", res?.data?.detail)
-        } else {
-          res?.data?.violations.forEach((fieldErr: { field: string, message: string }) => {
-            addToast("error", `${fieldErr.field} : ${fieldErr.message}`)
-          })
-        }
+
+        loginFailed(res)
+
       })
 
   };
@@ -97,7 +114,7 @@ export default function SignIn() {
                     <Form
                       onSubmit={onSubmit}
 
-                      validate={(values): Record<string, string> => formValdate(values)}
+                      validate={(values): Record<string, string> => formValidate(values)}
 
                       render={({ handleSubmit, submitting }) => (
                         <form onSubmit={handleSubmit}>

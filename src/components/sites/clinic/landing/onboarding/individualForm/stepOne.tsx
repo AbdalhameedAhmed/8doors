@@ -8,7 +8,7 @@ type stepOneTypes = {
   nestedActiveForm: number
   changeActiveItem: Dispatch<SetStateAction<number>>
   changeNestedActiveForm: Dispatch<SetStateAction<number>>
-  initialInputValues: { name?: string|undefined, mobile?: string|undefined, email?: string|undefined }
+  initialInputValues: { name?: string | undefined, mobile?: string | undefined, email?: string | undefined }
   direction: "rtl" | "ltr"
 }
 
@@ -46,14 +46,14 @@ export default function StepOne({ changeActiveItem, direction, activeItem, chang
             <div className="col-lg-12">
               <div className={`${styles.formGroup}`}>
                 <div className={`input-placeholder ${styles.formFocus} ${styles.passcodeWrap} mail-box`}>
-                  <FloatingInput placeholder="Email Address" name="name" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.email} />
+                  <FloatingInput placeholder="Email Address" name="email" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.email} />
                 </div>
               </div>
             </div>
             <div className="col-lg-12">
               <div className={`${styles.formGroup}`}>
                 <div className={`input-placeholder ${styles.formFocus} ${styles.passcodeWrap} mail-box`}>
-                  <FloatingInput placeholder="Mobile number" name="name" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.mobile} />
+                  <FloatingInput placeholder="Mobile number" name="mobile" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.mobile} />
                 </div>
               </div>
             </div>

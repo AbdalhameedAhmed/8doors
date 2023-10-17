@@ -10,7 +10,7 @@ import Patient from "assets/registerPatient.jpg"
 import { Form, Field } from "react-final-form";
 import useToast from "hooks/useToast"
 import { useSignupMutation } from "redux/services/signup"
-import { formValdate } from "./formValidate";
+import { formValidate } from "./formValidate";
 import { addUser } from "redux/slices/auth"
 import { useDispatch } from "react-redux"
 import BtnWithLoader from "components/shared/button/buttonWithLoader"
@@ -75,7 +75,7 @@ export default function Register() {
                       initialValues={{
                         type: "patient"
                       }}
-                      validate={(values): Record<string, string> => formValdate(values)
+                      validate={(values): Record<string, string> => formValidate(values)
                       }
 
                       render={(props) => (

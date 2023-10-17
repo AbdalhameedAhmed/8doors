@@ -52,7 +52,7 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
       })
     }
 
-  }, [input.value, options])
+  }, [input?.value, options])
 
   return (
     <div className={classNames(containerStyle)} ref={selectorRef}>

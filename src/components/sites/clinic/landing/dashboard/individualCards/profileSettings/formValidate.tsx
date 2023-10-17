@@ -1,4 +1,4 @@
-function formValdate(values: Record<string, any>): Record<string, string> {
+function formValidate(values: Record<string, any>): Record<string, string> {
 
     const errors: Record<string, string> = {};
     const validNationalId = /^([23])(\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(?!00)\d{7}$/;
@@ -40,10 +40,10 @@ function formValdate(values: Record<string, any>): Record<string, string> {
     }
     if (!values.nationalId) {
         errors.nationalId = "This field is required";
-    }else if(!values.nationalId.match(validNationalId)){
+    } else if (!values.nationalId.match(validNationalId)) {
         errors.nationalId = "Please enter a valid Egyptian national ID number.";
     }
     return errors;
 }
 
-export { formValdate }
+export { formValidate }

@@ -1,28 +1,24 @@
-import { AxiosResponse } from "axios";
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { AxiosResponse } from 'axios';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { otpResponse } from 'types/otpResponse';
 
-import { customBaseQuery } from "./customBaseQuery"
-
-interface otpReqType {
-  token:string
-}
+import { customBaseQuery } from './customBaseQuery';
 
 export const Otp = createApi({
-  reducerPath: "otp",
+  reducerPath: 'otp',
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
     Otp: builder.mutation({
       query: (data) => ({
         url: `/account/otp`,
-        method: "post",
-        body: data
+        method: 'post',
+        body: data,
       }),
-      transformResponse: (response: AxiosResponse<otpReqType>) => {
+      transformResponse: (response: AxiosResponse<otpResponse>) => {
         return response.data;
       },
-
     }),
   }),
 });
 
-export const { useOtpMutation } = Otp
+export const { useOtpMutation } = Otp;

@@ -3,6 +3,7 @@ import { Form, Field } from "react-final-form";
 import Link from "next/link";
 
 import FloatingInput from 'components/shared/floatingInput/FloatingInput';
+import { formValidate } from "./formValidate"
 import LeftIcon from "assets/left-arrow.svg"
 import SecuritySvg from "assets/securityVector.png"
 
@@ -19,6 +20,7 @@ export default function ForgetPassword() {
     console.log("done");
 
   }
+
   return (
 
     <div className={`${styles.content} py-[50px] relative `} style={{
@@ -40,26 +42,16 @@ export default function ForgetPassword() {
                   <Form
                     onSubmit={onSubmit}
 
-                    validate={(values): Record<string, string> => {
-                      const errors: Record<string, string> = {};
-
-                      if (!values.username) {
-                        errors.username = "This field is required";
-                      }
-                      if (!values.password) {
-                        errors.password = "This field is required";
-                      }
-                      return errors;
-                    }}
+                    validate={(values): Record<string, string> => formValidate(values)}
 
                     render={({ handleSubmit, submitting }) => (
                       <form onSubmit={handleSubmit}>
-                        <Field name="username">
+                        <Field name="email">
                           {({ input, meta }) => (
                             <>
                               <FloatingInput
                                 label=""
-                                placeholder={"Username / Email / Phone number"}
+                                placeholder={"Enter your email"}
                                 error={meta.error}
                                 inputStyle="focus:border-floating-border"
                                 errorActive={error}

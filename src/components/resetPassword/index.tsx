@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field } from "react-final-form";
 import Link from "next/link";
 
-import { formValdate } from "./formValidate"
+import { formValidate } from "./formValidate"
 
 import FloatingInput from 'components/shared/floatingInput/FloatingPassword';
 import SecuritySvg from "assets/securityVector.png"
@@ -42,7 +42,7 @@ export default function ForgetPassword() {
                   </div>
                   <Form
                     onSubmit={onSubmit}
-                    validate={(values): Record<string, string> => formValdate(values)}
+                    validate={(values): Record<string, string> => formValidate(values)}
                     render={({ handleSubmit, submitting }) => (
                       <form onSubmit={handleSubmit}>
                         <Field name="password">
@@ -72,7 +72,7 @@ export default function ForgetPassword() {
                       </form>
                     )}
                   ></Form>
-                   <p className="mt-6 text-sm text-primary flex items-center justify-center mt-6  text-right hover:underline">
+                  <p className="mt-6 text-sm text-primary flex items-center justify-center mt-6  text-right hover:underline">
                     <Link href="/login">
                       <LeftIcon className="w-[7px] h-[7px] inline-block mb-[2px] mr-[2px]" />
                       Return to sign in

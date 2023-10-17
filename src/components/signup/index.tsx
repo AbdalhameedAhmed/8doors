@@ -13,7 +13,7 @@ import PasswordInput from "./PasswordInput";
 import Twitter from "assets/twitter.svg"
 import Github from "assets/github.svg"
 import Google from "assets/google.svg"
-import { formValdate } from "./formValidate";
+import { formValidate } from "./formValidate";
 
 
 function SignUp() {
@@ -24,13 +24,23 @@ function SignUp() {
   const addToast = useToast()
   const [error, activeError] = React.useState(false)
 
+  const signedUpSuccessfully = () => {
+    router.push('/login');
+
+  }
+
+  const signedUpFailed = () => {
+    addToast("error", "somthing wrong")
+
+  }
+
   const onSubmit = async (values: Record<string, any>) => {
 
     await signup({ username: values.username, email: values.email, password: values.password }).unwrap()
       .then(() => {
-        router.push('/login');
+        signedUpSuccessfully()
       }).catch(() => {
-        addToast("error", "somthing wrong")
+        signedUpFailed()
       })
   };
 
@@ -46,7 +56,7 @@ function SignUp() {
         <Form
           onSubmit={onSubmit}
 
-          validate={(values): Record<string, string> => formValdate(values)
+          validate={(values): Record<string, string> => formValidate(values)
           }
 
           render={({ handleSubmit, submitting, values, errors }) => (

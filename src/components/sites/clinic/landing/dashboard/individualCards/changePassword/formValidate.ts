@@ -1,4 +1,4 @@
-function formValdate(values: Record<string, any>): Record<string, string> {
+function formValidate(values: Record<string, any>): Record<string, string> {
   const errors: Record<string, string> = {};
   const validPassword =
     /^(?=.*[a-z].*[a-z].*[a-z].*[a-z].*[a-z].*[a-z])[a-z0-9]*$/;
@@ -11,6 +11,8 @@ function formValdate(values: Record<string, any>): Record<string, string> {
     errors.newPassword = 'This field is required';
   } else if (!values.newPassword.match(validPassword)) {
     errors.newPassword = 'Password must contain at least 6 characters';
+  } else if (values.newPassword.length > 50) {
+    errors.newPassword = 'Password should be up to 20 characters long';
   }
 
   if (!values.confirmNewPassword) {
@@ -21,4 +23,4 @@ function formValdate(values: Record<string, any>): Record<string, string> {
   return errors;
 }
 
-export { formValdate };
+export { formValidate };

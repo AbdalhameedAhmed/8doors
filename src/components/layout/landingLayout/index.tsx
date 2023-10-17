@@ -34,15 +34,15 @@ export default function LandingLayout({ children, showBreadCrumb = false, uncomp
 
   }, [])
 
-  React.useEffect(() => {
-    refetchProfileData()
-  }, [refetchProfileData, user])
+  // React.useEffect(() => {
+  //   refetchProfileData()
+  // }, [refetchProfileData, user])
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
 
-    dispatch(addIndividualInfo(profileData.data))
+  //   dispatch(addIndividualInfo(profileData.data))
 
-  }, [dispatch, profileData])
+  // }, [dispatch, profileData])
 
   console.log("user data", user);
 

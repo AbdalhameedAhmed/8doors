@@ -3,7 +3,7 @@ import styles from "./profileSettings.module.css"
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import CustomSingleSelector from "components/shared/customSingleSelector"
 import { Form, Field } from "react-final-form"
-import { formValdate } from "./formValidate";
+import { formValidate } from "./formValidate";
 import { useGetCountriesQuery } from "redux/services/lookup/getAllCountries"
 import { country } from "types/lookupTypes/country"
 import { useGetBloodGroupsQuery } from "redux/services/lookup/getBloodGroup"
@@ -46,9 +46,9 @@ export default function UserInfo() {
   const { user } = useSelector(state => (state as rootState).auth)
   const addToast = useToast()
   const changeNumberCards = [
-    
+
     <ChangePhoneForm key={0} onSuccess={() => { changeActivePopUpCardNum(activePopUpCardNum + 1) }} />,
-    <ChangePhoneOtp key={1} onSuccess={() => { refetchProfileData(); openPopUp(false);changeActivePopUpCardNum(0) }} />,
+    <ChangePhoneOtp key={1} onSuccess={() => { refetchProfileData(); openPopUp(false); changeActivePopUpCardNum(0) }} />,
 
   ]
 
@@ -84,7 +84,9 @@ export default function UserInfo() {
 
 
     getAllStates({ id: countryId }).unwrap().then(({ data }) => {
+
       let allStatesData: singleSelectorTypes["options"] = []
+
       data.map((state: state) => {
 
         let stateData: { id: number, value: string | number, title: string } = { id: state.id, title: state.nameEn, value: state.id }
@@ -190,7 +192,7 @@ export default function UserInfo() {
               gender: initialProfileData.gender
             }
           }
-          validate={(values): Record<string, string> => formValdate(values)
+          validate={(values): Record<string, string> => formValidate(values)
           }
 
           render={({ handleSubmit, submitting, values, errors }) => (
@@ -288,27 +290,27 @@ export default function UserInfo() {
                   <div className={`row ${styles.selectRegisterType}`}>
 
 
-                  <Field name="gender" value="MALE" type="radio">
-                    {({ input, meta }) => (
-                      <>
-                        <div className={`col-6 ${styles.registerOption}`}>
-                          <input  id="gender-male" type="radio" {...input}  className="hidden peer" />
-                          <label htmlFor="gender-male"><span>Male</span></label>
-                        </div>
-                      </>
-                    )}
-                  </Field>
-                  <Field name="gender" value="FEMALE" type="radio" >
-                    {({ input, meta }) => (
-                      <>
-                        <div className={`col-6 ${styles.registerOption}`}>
-                          <input id="gender-female" type="radio" {...input} className="hidden peer" />
-                          <label htmlFor="gender-female"><span>Female</span></label>
-                        </div>
-                      </>
-                    )}
-                  </Field>
-                    </div>
+                    <Field name="gender" value="MALE" type="radio">
+                      {({ input, meta }) => (
+                        <>
+                          <div className={`col-6 ${styles.registerOption}`}>
+                            <input id="gender-male" type="radio" {...input} className="hidden peer" />
+                            <label htmlFor="gender-male"><span>Male</span></label>
+                          </div>
+                        </>
+                      )}
+                    </Field>
+                    <Field name="gender" value="FEMALE" type="radio" >
+                      {({ input, meta }) => (
+                        <>
+                          <div className={`col-6 ${styles.registerOption}`}>
+                            <input id="gender-female" type="radio" {...input} className="hidden peer" />
+                            <label htmlFor="gender-female"><span>Female</span></label>
+                          </div>
+                        </>
+                      )}
+                    </Field>
+                  </div>
                 </div>
                 <Field name="dateOfBirth" type="date">
                   {({ input, meta }) => (

@@ -3,7 +3,7 @@ import React from "react"
 import { Form, Field } from "react-final-form";
 
 import UploadImage from "./Uploadimage"
-import { formValdate } from "./formValidate";
+import { formValidate } from "./formValidate";
 
 
 import IdFrontSide from "assets/dashboard/idFrontSide.jpg"
@@ -91,7 +91,7 @@ export default function IdInfo({ direction }: idInfoType) {
         <Form
           onSubmit={onSubmit}
 
-          validate={(values): Record<string, string> => formValdate(values)}
+          validate={(values): Record<string, string> => formValidate(values)}
 
           render={(props) => (
             <form onSubmit={props.handleSubmit}>

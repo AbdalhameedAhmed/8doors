@@ -20,6 +20,8 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
   const [postNewPhone] = useChangePhoneNubmerInitMutation()
   const addToast = useToast()
 
+
+
   const onSubmit = (values: Record<string, any>) => {
     postNewPhone({ newPhoneNum: values.newPhoneNum, password: values.password }).unwrap().then(res => {
       onSuccess()
@@ -33,9 +35,7 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
 
   }
 
-  const formValdate = () => {
 
-  }
   return (
     <div className="w-full shrink-0 !snap-center px-12 py-8">
       <h1 className="text-center text-3xl pb-4 font-bold" >Change your phone Number</h1>

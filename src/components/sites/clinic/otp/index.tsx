@@ -12,6 +12,8 @@ import { rootState } from "redux/store";
 import useToast from "hooks/useToast";
 import axios from "axios";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
+import { otpResponse } from 'types/otpResponse';
+
 
 
 
@@ -40,6 +42,22 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
         setOtp(newOtp);
     };
 
+    const otpSuccessfully = (res: otpResponse) => {
+        showSubmitSpiner(false)
+        if (res.token) {
+            localStorage.setItem("token", res.token)
+            axios.post("/api/setToken", { token: res.token })
+
+            router.push("/")
+        }
+
+    }
+
+    const otpFailed = (err: otpResponse) => {
+        showSubmitSpiner(false)
+        addToast("error", err?.data?.detail)
+    }
+
 
 
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -48,18 +66,10 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
             showSubmitSpiner(true)
             await sendOTP({ username: user.username, otpCode: otp }).unwrap()
                 .then((res) => {
-                    showSubmitSpiner(false)
-                    if (res.token) {
-                        localStorage.setItem("token", res.token)
-                        axios.post("/api/setToken", { token: res.token })
-
-                        router.push("/")
-                    }
-
+                    otpSuccessfully(res)
                 })
                 .catch((err) => {
-                    showSubmitSpiner(false)
-                    addToast("error", err?.data?.detail)
+                    otpFailed(err)
                 })
         } else {
             isErrorActive(true)
