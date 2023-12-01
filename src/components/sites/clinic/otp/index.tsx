@@ -1,18 +1,14 @@
 import React, { FormEvent, MouseEvent } from "react"
 import styles from "./otp.module.css"
 import OtpInput from "components/sites/clinic/landing/onboarding/individualForm/OTP"
-import OtpImg from "assets/otp/otp2.jpg"
-import { Form } from "react-final-form";
-import { useOtpMutation } from "redux/services/patient/otp";
-import { useResendOtpMutation } from "redux/services/patient/resendOtp";
-import { addUser } from "redux/slices/auth";
-import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { rootState } from "redux/store";
 import useToast from "hooks/useToast";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
-import { otpResponse } from 'types/otpResponse';
+import { otpFailed, otpRequest, otpResponse } from 'types/otpResponse';
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query"
+import axiosClient from "api/axiosClient";
+import { User } from "types/auth/registerTypes";
 
 
 
@@ -25,16 +21,19 @@ type otpTypes = {
 export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
     const [error, isErrorActive] = React.useState(false)
-    const [sendOTP] = useOtpMutation()
-    const [submitSpiner, showSubmitSpiner] = React.useState(false)
-    const [resendOTPSpiner, showResendOtpSpiner] = React.useState(false)
-    const [resendOTP] = useResendOtpMutation()
-    const dispatch = useDispatch()
-    const { user } = useSelector(state => (state as rootState).auth)
+    const { data: user }: { data: User | undefined } = useQuery({ queryKey: ["auth"], enabled: false })
     const router = useRouter()
     const addToast = useToast()
+    const queryClient = useQueryClient()
     const otpLength = 4
-    console.log(user);
+
+    const sendOtp = (data: otpRequest) => {
+        return axiosClient.post("/account/otp", data)
+    }
+
+    const resendOtp = ({ username }: { username: string }) => {
+        return axiosClient.post(`/account/otp/resend/${username}`)
+    }
 
     const [otp, setOtp] = React.useState('');
 
@@ -43,34 +42,46 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
     };
 
     const otpSuccessfully = (res: otpResponse) => {
-        showSubmitSpiner(false)
+        queryClient.setQueryData(["auth"], res)
         if (res.token) {
             localStorage.setItem("token", res.token)
             axios.post("/api/setToken", { token: res.token })
-
             router.push("/")
         }
 
     }
 
-    const otpFailed = (err: otpResponse) => {
-        showSubmitSpiner(false)
-        addToast("error", err?.data?.detail)
+    const otpFailed = (err: otpFailed) => {
+        addToast("error", err?.detail)
     }
 
+    const { mutate: resendMutate, isPending: resendIsPending } = useMutation({
+        mutationFn: resendOtp,
+        onSuccess: async (res) => {
+            console.log(res);
+        },
+        onError: async (error) => {
+            console.log(error);
+        }
+    })
 
+    const { mutate, isPending } = useMutation({
+        mutationFn: sendOtp,
+        onSuccess: async (res: AxiosResponse) => {
+            otpSuccessfully(res.data)
+        },
+        onError: async (error: AxiosError) => {
+            otpFailed(error.response?.data as otpFailed)
+            console.log(error.response?.data);
+
+        }
+    })
 
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (otp.length == otpLength) {
-            showSubmitSpiner(true)
-            await sendOTP({ username: user.username, otpCode: otp }).unwrap()
-                .then((res) => {
-                    otpSuccessfully(res)
-                })
-                .catch((err) => {
-                    otpFailed(err)
-                })
+            if (user) mutate({ username: user?.username, otpCode: otp })
+            else addToast("error", "There is something wrong, try again later")
         } else {
             isErrorActive(true)
         }
@@ -79,19 +90,8 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
     const handelResendOtp = async (event: MouseEvent) => {
         event.preventDefault()
-        showResendOtpSpiner(true)
-        await resendOTP({ username: user.username }).unwrap()
-            .then((res) => {
-                // showResendOtpSpiner(false)
-                console.log(res, "resendotp");
-
-            })
-            .catch((err) => {
-                console.log(err);
-                // showResendOtpSpiner(false)
-
-                addToast("error", err?.data?.detail)
-            })
+        if (user)
+            resendMutate({ username: user?.username })
     }
 
     return (
@@ -106,8 +106,8 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
                         }
                     </div>
                     <div className={`${styles.onboardingBtn} text-right`}>
-                        <BtnWithLoader showSpinner={submitSpiner} title="Continue" fullWidht={false} onClick={() => { onSuccess() }} />
-                        <BtnWithLoader spinerStyles="!border-[#09e5ab]" showSpinner={resendOTPSpiner} title="Resend OTP" fullWidht={false} onClick={(event) => { handelResendOtp(event) }} />
+                        <BtnWithLoader showSpinner={isPending} title="Continue" fullWidht={false} onClick={() => { onSuccess() }} />
+                        <BtnWithLoader spinerStyles="!border-[#09e5ab]" showSpinner={resendIsPending} title="Resend OTP" fullWidht={false} onClick={(event) => { handelResendOtp(event) }} />
                     </div>
                 </div>
             </form>

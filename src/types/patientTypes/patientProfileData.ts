@@ -7,6 +7,11 @@ export type patientProfileDataTypes = {
   stateId: number;
   cityId: number;
   address: string;
-  nationalId:string;
-  gender:"MALE" | "FEMALE"
+  nationalId: string;
+  gender: 'MALE' | 'FEMALE';
+};
+
+export type patientError = {
+  message: string;
+  detail: string;
 };

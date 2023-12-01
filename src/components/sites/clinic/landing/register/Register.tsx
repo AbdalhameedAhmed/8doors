@@ -6,27 +6,31 @@ import FloatingPassword from "components/shared/floatingInput/FloatingPassword"
 import Doctor from "assets/addDoctor.jpg"
 import Pharmacist from "assets/addPharmacist.jpg"
 import Patient from "assets/registerPatient.jpg"
+import { useQueryClient, useMutation } from "@tanstack/react-query"
 
 import { Form, Field } from "react-final-form";
 import useToast from "hooks/useToast"
-import { useSignupMutation } from "redux/services/signup"
 import { formValidate } from "./formValidate";
-import { addUser } from "redux/slices/auth"
-import { useDispatch } from "react-redux"
+import { RegisterFaild, RegisterRequest, User } from "types/auth/registerTypes"
 import BtnWithLoader from "components/shared/button/buttonWithLoader"
+import axiosClient from "api/axiosClient"
+import { AxiosError } from "axios"
+
 
 
 
 
 export default function Register() {
   let [activeImage, changeActiveImage] = React.useState(Patient.src)
-  const [loadingState, changeLoadingState] = React.useState(false)
 
   const [error, activeError] = React.useState(false)
-  const [signup] = useSignupMutation()
   const addToast = useToast()
-  const dispatch = useDispatch()
+  const queryClient = useQueryClient()
 
+
+  let register = (registerData: RegisterRequest) => {
+    return axiosClient.post("/account/register", registerData)
+  }
 
   let handelChangeImage = (imageSrc: string) => {
     changeActiveImage(imageSrc)
@@ -34,20 +38,48 @@ export default function Register() {
 
   const router = useRouter()
 
-  const onSubmit = async (values: Record<string, any>) => {
-    changeLoadingState(true)
+  const registerSuccessfully = (data: User) => {
 
-    await signup({ username: values.username, email: values.email, password: values.password, phoneNumber: values.phoneNumber }).unwrap()
-      .then((res) => {
-        changeLoadingState(false)
-        dispatch(addUser(res.data))
-        router.push('/otp');
-      }).catch((res) => {
-        changeLoadingState(false)
+    queryClient.setQueryData(["auth"], data)
+    router.push('/otp');
 
-        addToast("error", res?.data?.message)
+  }
+
+  const registerFailed = (data: RegisterFaild) => {
+
+
+    if (data?.violations) {
+
+      data?.violations.forEach((fieldErr) => {
+
+        addToast("error", `${fieldErr.field} : ${fieldErr.message}`)
+
       })
 
+    } else if (data?.message) {
+      addToast("error", data?.message)
+    }
+  }
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: register,
+    onSuccess: async (res) => {
+      registerSuccessfully(res.data)
+    },
+    onError: async (error: AxiosError) => {
+      registerFailed(error.response?.data as RegisterFaild)
+    }
+  })
+
+  const onSubmit = async (values: Record<string, any>) => {
+
+    let registerData = {
+      username: values.username,
+      password: values.password,
+      email: values.email,
+      phoneNumber: values.phoneNumber
+    }
+    mutate(registerData)
   };
 
 
@@ -62,10 +94,10 @@ export default function Register() {
 
               <div className="account-content">
                 <div className="row align-items-center justify-content-center">
-                  <div className="col-md-7 col-lg-6 login-left">
+                  <div className="col-md-7 col-lg-5 col-xl-6 login-left">
                     <img src={activeImage} className="img-fluid" alt="Login Banner" />
                   </div>
-                  <div className={`col-md-12 col-lg-6 ${styles.loginRight}`}>
+                  <div className={`col-md-12 col-lg-7 col-xl-6 ${styles.loginRight}`}>
                     <div className={`${styles.loginHeader}`}>
                       <h3>Register</h3>
                     </div>
@@ -129,7 +161,7 @@ export default function Register() {
 
                                   <FloatingInput
                                     label=""
-                                    placeholder={"phoneNumber"}
+                                    placeholder={"Phone number"}
                                     error={meta.error}
                                     inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA] focus:border-floating-border" placeholderStyles="!bg-[#F5F6FA] z-0"
                                     errorActive={error}
@@ -181,7 +213,7 @@ export default function Register() {
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
                                     <input name={input.name} defaultChecked id="default-radio-1" type="radio" value={input.value} onChange={(e) => { input.onChange(e); handelChangeImage(Patient.src) }} className="hidden peer" />
-                                    <label htmlFor="default-radio-1"><span>Patient</span></label>
+                                    <label htmlFor="default-radio-1" className="cursor-pointer lg:text-sm"><span>Patient</span></label>
                                   </div>
                                 </>
                               )}
@@ -192,7 +224,7 @@ export default function Register() {
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
                                     <input name={input.name} id="default-radio-2" type="radio" value={input.value} onChange={(e) => { input.onChange(e); handelChangeImage(Doctor.src) }} className="hidden peer" />
-                                    <label htmlFor="default-radio-2"><span>Doctor</span></label>
+                                    <label htmlFor="default-radio-2" className="cursor-pointer lg:text-sm"><span>Doctor</span></label>
                                   </div>
                                 </>
                               )}
@@ -203,14 +235,14 @@ export default function Register() {
                                 <>
                                   <div className={`col-4 ${styles.registerOption}`}>
                                     <input name={input.name} id="default-radio-3" type="radio" value={input.value} onChange={(e) => { input.onChange(e); handelChangeImage(Pharmacist.src) }} className="hidden peer" />
-                                    <label htmlFor="default-radio-3"><span>Pharmacist</span></label>
+                                    <label htmlFor="default-radio-3" className="cursor-pointer lg:text-sm"><span>Pharmacist</span></label>
                                   </div>
                                 </>
                               )}
                             </Field>
                           </div>
 
-                          <BtnWithLoader showSpinner={loadingState} title="Submit" onClick={() => { activeError(true) }} disabled={props.submitting} />
+                          <BtnWithLoader showSpinner={isPending} title="Submit" onClick={() => { activeError(true) }} disabled={props.submitting} />
 
                         </form>
                       )}

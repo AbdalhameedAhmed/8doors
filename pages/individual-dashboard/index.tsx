@@ -19,6 +19,7 @@ import WaveFileIcon from "assets/dashboard/file-waveform-solid.svg"
 import LitIcon from "assets/dashboard/rectangle-list-solid.svg"
 import ClipboardIcon from "assets/dashboard/clipboard-solid.svg"
 import IdIcon from "assets/dashboard/id-card-solid.svg"
+
 import UserInfo from "components/sites/clinic/landing/dashboard/individualCards/profileSettings/userInfo";
 import IdInfo from "components/sites/clinic/landing/dashboard/individualCards/idInformation"
 import ChangePassword from "components/sites/clinic/landing/dashboard/individualCards/changePassword"

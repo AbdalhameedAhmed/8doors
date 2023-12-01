@@ -9,7 +9,6 @@ import LandingLayout from "components/layout/landingLayout"
 import classNames from 'classnames';
 import useRemoveScroll from 'hooks/useRemoveScroll';
 
-
 export const getServerSideProps = async ({ locale }: any) => ({
   props: {
     ...(await serverSideTranslations(locale ?? 'en-US', ['common'])),

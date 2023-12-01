@@ -28,6 +28,9 @@ export default function middleware(req: NextRequest, res: NextResponse) {
   if (!token?.value && req.url.includes('individual-dashboard')) {
     return NextResponse.redirect(`${origin}/login`);
   }
+  if (token?.value && req.url.includes('login')) {
+    return NextResponse.redirect(`${origin}`);
+  }
   // console.log(req.url);
 
   // If localhost, assign the host value manually

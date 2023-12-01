@@ -2,6 +2,8 @@ import React from "react"
 
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import { parse } from "cookie"
+import { useQuery } from "@tanstack/react-query";
 
 import useRemoveScroll from "hooks/useRemoveScroll";
 
@@ -18,10 +20,15 @@ import Blogs from "components/sites/clinic/landing/landingSections/blogsSection"
 export default function Index() {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
+  const [tokenValue, setTokenValue] = React.useState("")
+  const [uncompletedInfo, showUncompletedInfo] = React.useState(false)
   const router = useRouter();
+  const data = useQuery({ queryKey: ["auth"], enabled: false })
+
   const ref = React.useRef(null)
   useRemoveScroll(ref)
 
+  console.log("look at this", data.data);
 
 
   React.useEffect(() => {
@@ -36,10 +43,16 @@ export default function Index() {
 
   }, [router.asPath])
 
+  React.useEffect(() => {
+    let token = parse(document?.cookie).token
+    setTokenValue(token)
+    token ? showUncompletedInfo(true) : showUncompletedInfo(false)
+  }, [])
 
   return (
+
     <div ref={ref} className={classNames("overflow-y-auto h-screen")} >
-      <LandingLayout uncompletedInfo={true}>
+      <LandingLayout uncompletedInfo={uncompletedInfo}>
 
         <Hero direction={direction} />
 

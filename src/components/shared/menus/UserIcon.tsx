@@ -10,7 +10,7 @@ import { isTemplateMiddle } from "typescript"
 
 type UserIconTypes = {
   userImgSrc: string
-  userInfo: { username: string, email: string }
+  userInfo: { username: string | undefined, email: string | undefined }
   firstMenuItems?: { name: string, url?: string, onClick?: () => void }[]
   lastMenuItems?: { name: string, url?: string, subDomain?: { subDomain: string, path: string }, onClick?: () => void }[]
 }

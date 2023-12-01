@@ -1,22 +1,20 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
 
 import { Form, Field } from "react-final-form";
-import { useDispatch, useSelector } from "react-redux";
 import styles from "./register.module.css"
-import { rootState } from "redux/store";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axiosClient from "api/axiosClient";
+import { AxiosError, AxiosResponse } from "axios";
 
 
 import LoginInput from "components/shared/floatingInput/FloatingInput";
 import PasswordInput from "components/shared/floatingInput/FloatingPassword";
 import { formValidate } from "./formValidate";
-import { addUser } from "redux/slices/auth"
-import { useLoginMutation } from "redux/services/clinic/auth"
 import useToast from "hooks/useToast";
 import { LoginFormData } from "types";
-import { LoginResponse } from "types/LoginResponse";
+import { LoginResponse } from "types/auth/LoginResponse";
 
 
 
@@ -27,27 +25,28 @@ import BtnWithLoader from "components/shared/button/buttonWithLoader";
 
 export default function SignIn() {
   const [error, activeError] = React.useState(false)
-  const [loadingState, changeLoadingState] = React.useState(false)
-  const token = useSelector(state => (state as rootState).auth.user.token)
-  const { t } = useTranslation("common");
-  const [postData] = useLoginMutation()
-  const dispatch = useDispatch()
   const router = useRouter()
   const addToast = useToast()
+  const queryClient = useQueryClient()
 
-  const loginSuccessfully = (res: LoginResponse) => {
 
-    changeLoadingState(false)
-    dispatch(addUser(res))
+  const login = ({ login, password }: { login: string; password: string }) => {
+    return axiosClient.post('/authenticate', { login, password });
+  };
 
-    if (res.mobileVerified === false) {
+
+  const loginSuccessfully = (data: LoginResponse) => {
+
+    queryClient.setQueryData(["auth"], data)
+
+    if (data.mobileVerified === false) {
 
       axios.post("/api/setToken", { token: "" })
       router.push("/otp")
 
-    } else if (res.token) {
+    } else if (data.token) {
 
-      axios.post("/api/setToken", { token: res.token })
+      axios.post("/api/setToken", { token: data.token })
       router.push("/")
 
     }
@@ -55,16 +54,16 @@ export default function SignIn() {
   }
 
   const loginFailed = (res: LoginResponse) => {
+    console.log(res, "Errorrr");
 
-    changeLoadingState(false)
 
-    if (res?.data?.detail) {
+    if (res?.detail) {
 
-      addToast("error", res?.data?.detail)
+      addToast("error", res?.detail)
 
     } else {
 
-      res?.data?.violations.forEach((fieldErr) => {
+      res?.violations.forEach((fieldErr) => {
 
         addToast("error", `${fieldErr.field} : ${fieldErr.message}`)
 
@@ -72,22 +71,20 @@ export default function SignIn() {
     }
   }
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: login,
+    onSuccess: async (data: AxiosResponse) => {
+      loginSuccessfully(data.data)
+    },
+    onError: async (error: AxiosError) => {
+      loginFailed((error?.response?.data as LoginResponse))
+    }
+
+  });
+
   const onSubmit = async (values: LoginFormData) => {
 
-    changeLoadingState(true)
-
-    await postData({ login: values.username, password: values.password }).unwrap()
-
-      .then((res) => {
-
-        loginSuccessfully(res)
-
-      })
-      .catch((res) => {
-
-        loginFailed(res)
-
-      })
+    mutate({ login: values.username, password: values.password })
 
   };
 
@@ -116,7 +113,7 @@ export default function SignIn() {
 
                       validate={(values): Record<string, string> => formValidate(values)}
 
-                      render={({ handleSubmit, submitting }) => (
+                      render={({ handleSubmit, submitting, }) => (
                         <form onSubmit={handleSubmit}>
                           <Field name="username">
                             {({ input, meta }) => (
@@ -154,7 +151,7 @@ export default function SignIn() {
                             <Link className={`${styles.forgotLink} hover:text-[#09dca4]`} href="/forget-password">forgot your password?</Link>
                             <Link className={`${styles.forgotLink} hover:text-[#09dca4]`} href="/register">you don&apos;t have an account?</Link>
                           </div>
-                          <BtnWithLoader showSpinner={loadingState} title="Login" onClick={() => { activeError(true) }} disabled={submitting} />
+                          <BtnWithLoader showSpinner={isPending} title="Login" onClick={() => { activeError(true) }} disabled={submitting} />
 
                         </form>
                       )}

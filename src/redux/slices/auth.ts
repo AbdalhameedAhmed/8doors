@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const dewfaultValue = { token: '', email: '', phoneNumber: '', username: '' };
 const auth = createSlice({
   name: 'auth',
   initialState: {
-    user: { token: '', email: '', phoneNumber: '', username: '' },
+    user: dewfaultValue,
   },
   reducers: {
     addUser: (state, action) => {
       state.user = { ...action.payload };
     },
     clearUser: (state) => {
-      state.user = { token: '', email: '', phoneNumber: '', username: '' };
+      state.user = dewfaultValue;
     },
   },
 });

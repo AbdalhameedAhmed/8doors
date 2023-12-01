@@ -13,16 +13,17 @@ import { useGetStatesMutation } from "redux/services/lookup/getStates"
 import { state } from "types/lookupTypes/stateType"
 import { useGetCitiesMutation } from "redux/services/lookup/getCities"
 import { city } from "types/lookupTypes/cityType"
-import { useUpdatePatientDataMutation } from "redux/services/patient/updatePatientData"
-import { patientProfileDataTypes } from "types/patientTypes/patientProfileData"
+import { patientError, patientProfileDataTypes } from "types/patientTypes/patientProfileData"
 import { useGetProfileDataQuery } from "redux/services/patient/getProfileData"
-import { useSelector } from "react-redux"
-import { rootState } from "redux/store"
 import useToast from "hooks/useToast"
 import BtnWithLoader from "components/shared/button/buttonWithLoader"
 import PopUp from "./popUp"
 import ChangePhoneForm from "./changeNumberForm"
 import ChangePhoneOtp from "./changeNumberForm/changePhoneOTP"
+import axiosClient from "api/axiosClient"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import axios, { AxiosError, AxiosResponse } from "axios"
+import { User } from "types/auth/registerTypes"
 
 
 
@@ -34,7 +35,6 @@ export default function UserInfo() {
   const [states, setStates] = useState<[] | singleSelectorTypes["options"]>([])
   const [cities, setCities] = useState<[] | singleSelectorTypes["options"]>([])
   const [initialProfileData, setInitialProfileData] = useState<null | patientProfileDataTypes>(null)
-  const [loadingState, changeLoadingState] = useState(false)
   const [popUpState, openPopUp] = useState(false)
   const [activePopUpCardNum, changeActivePopUpCardNum] = useState(0)
   const { data: profileData, refetch: refetchProfileData } = useGetProfileDataQuery(null)
@@ -42,8 +42,9 @@ export default function UserInfo() {
   const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
   const [getAllStates] = useGetStatesMutation()
   const [getAllCities] = useGetCitiesMutation()
-  const [postPatientData] = useUpdatePatientDataMutation()
-  const { user } = useSelector(state => (state as rootState).auth)
+
+  const { data: user }: { data: User | undefined } = useQuery({ queryKey: ["auth"], enabled: false })
+
   const addToast = useToast()
   const changeNumberCards = [
 
@@ -54,8 +55,32 @@ export default function UserInfo() {
 
   // console.log("profile is", user);
 
+  const sendPatientData = (patientData: patientProfileDataTypes) => {
+    return axiosClient.put("/patients", patientData)
+  }
+
+
+
+  const sendPatientDataSuccessfully = () => {
+    addToast("success", "Your profile information has been updated successfully!")
+    refetchProfileData()
+  }
+
+  const sendPatientDataFailed = (err: patientError) => {
+    addToast("error", err?.detail)
+  }
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: sendPatientData,
+    onSuccess: async (res: AxiosResponse) => {
+      sendPatientDataSuccessfully()
+    },
+    onError: async (error: AxiosError) => {
+      sendPatientDataFailed(error.response?.data as patientError)
+    }
+  })
+
   const onSubmit = (values: patientProfileDataTypes) => {
-    changeLoadingState(true)
     const dataForm = {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -68,17 +93,13 @@ export default function UserInfo() {
       nationalId: values.nationalId,
       gender: values.gender
     }
-
-    postPatientData(dataForm).unwrap().then(res => {
-      changeLoadingState(false)
-      addToast("success", "Your profile information has been updated successfully!")
-      refetchProfileData()
-    }).catch((err) => {
-      changeLoadingState(false)
-      addToast("error", err?.data?.message)
-    })
+    mutate(dataForm)
   }
 
+  const getPatientData = () => {
+    return axiosClient.get("/account/profile").then(res => res.data)
+  }
+  const patientData = useQuery({ queryKey: ["patient"], queryFn: getPatientData })
 
   const fetchStates = (countryId: number) => {
 
@@ -161,9 +182,9 @@ export default function UserInfo() {
   }, [backBloodGroups])
 
   React.useEffect(() => {
-    profileData?.data && setInitialProfileData(profileData?.data)
+    patientData?.data && setInitialProfileData(patientData?.data)
 
-  }, [profileData?.data])
+  }, [patientData?.data])
 
   React.useEffect(() => {
     refetchProfileData()
@@ -180,8 +201,8 @@ export default function UserInfo() {
             initialProfileData && {
               firstName: initialProfileData.firstName,
               lastName: initialProfileData.lastName,
-              email: user.email,
-              mobile: user.phoneNumber,
+              email: user?.email,
+              mobile: user?.phoneNumber,
               bloodGroupId: initialProfileData.bloodGroupId,
               countryId: initialProfileData.countryId,
               stateId: initialProfileData.stateId,
@@ -460,7 +481,7 @@ export default function UserInfo() {
 
               </div>
               <div className={`flex justify-end`}>
-                <BtnWithLoader showSpinner={loadingState} title="Save Changes" fullWidht={false} onClick={() => { activeError(true) }} disabled={submitting} />
+                <BtnWithLoader showSpinner={isPending} title="Save Changes" fullWidht={false} onClick={() => { activeError(true) }} disabled={submitting} />
               </div>
             </form>
           )}

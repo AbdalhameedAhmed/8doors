@@ -12,6 +12,8 @@ import { ThemeProvider } from 'theme-ui';
 import { theme } from '../theme/index';
 import CustomToast from "components/customToast"
 import { ToastContextProvider } from "context/toastContext"
+import TanStackProvider from "components/providers";
+
 
 import "../styles/bootstrap-grid.css"
 import 'react-toastify/dist/ReactToastify.css'
@@ -42,20 +44,23 @@ function App({ Component, pageProps }: AppProps) {
   }, [router.locale]);
 
   return (
-    <Provider store={store}>
-      <ToastContextProvider>
+    <TanStackProvider>
 
-        <PersistGate persistor={persistor} />
-        <ToastContainer />
-        <CustomToast />
-        <ThemeProvider theme={theme}>
-          {/* <ThemeSettings/> */}
-          {/* <main className={inter.className}> */}
-          <Component {...pageProps} />
-          {/* </main> */}
-        </ThemeProvider>
-      </ToastContextProvider>
-    </Provider>
+      <Provider store={store}>
+        <ToastContextProvider>
+
+          <PersistGate persistor={persistor} />
+          <ToastContainer />
+          <CustomToast />
+          <ThemeProvider theme={theme}>
+            {/* <ThemeSettings/> */}
+            {/* <main className={inter.className}> */}
+            <Component {...pageProps} />
+            {/* </main> */}
+          </ThemeProvider>
+        </ToastContextProvider>
+      </Provider>
+    </TanStackProvider>
   );
 }
 
