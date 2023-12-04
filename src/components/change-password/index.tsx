@@ -1,24 +1,32 @@
 import React from "react"
 
 import { Form, Field } from "react-final-form";
-import { useChangePasswordMutation } from "redux/services/clinic/changePassword"
 
 import { FormValidate } from "./formValidate"
 import CustomBtn from "components/shared/button/CustomBtn";
 import PasswordInput from "./passwordInput"
 import useToast from "hooks/useToast";
 import { changePasswordFormTypes } from "types/changePasswordFormTypes"
-
-
+import { useMutation } from "@tanstack/react-query";
+import { changePassword } from "tanstack/fetchers/sites/clinic/Settings";
 
 export default function ChangePasswordForm() {
 
-  let [changePassword] = useChangePasswordMutation()
+  const { mutate: changePasswordMutate, isPending: isChangePasswordPending } = useMutation({
+    mutationFn: changePassword,
+    onSuccess: async () => {
+      addToast("success", "changed Succesfully")
+    },
+    onError: async () => {
+      addToast("error", "not changed")
+    }
+  })
+
   let addToast = useToast()
 
-  const handleSubmit = async (values: changePasswordFormTypes) => {
+  const handleSubmit = (values: changePasswordFormTypes) => {
 
-    await changePassword({ currentPassword: values.currentPassword, newPassword: values.newPassword }).unwrap().then(() => { addToast("success", "changed Succesfully") }).catch(() => { addToast("error", "not changed") })
+    changePasswordMutate({ currentPassword: values.currentPassword, newPassword: values.newPassword })
 
   };
 

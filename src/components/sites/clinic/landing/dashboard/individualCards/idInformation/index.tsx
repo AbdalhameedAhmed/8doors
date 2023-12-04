@@ -5,38 +5,72 @@ import { Form, Field } from "react-final-form";
 import UploadImage from "./Uploadimage"
 import { formValidate } from "./formValidate";
 
-
 import IdFrontSide from "assets/dashboard/idFrontSide.jpg"
 import IdBackSide from "assets/dashboard/idBackSide.jpg"
 
 import styles from "./idInfo.module.css"
 import { nationalidData } from "types/patientTypes/nationalID";
-import { useNationalIdFrontMutation } from "redux/services/patient/nationalIdFront";
-import { useNationalIdBackMutation } from "redux/services/patient/nationalIdBack";
-import { useGetNationalIdDataQuery } from "redux/services/patient/getNationalIdData";
-import { useSelector } from "react-redux";
-import { rootState } from "redux/store";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
 import useToast from "hooks/useToast";
-
-
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getNationalIdData, sendNationalIdBack, sendNationalIdFront } from "tanstack/fetchers/individualDashboard";
+import { AxiosError } from "axios";
 
 type idInfoType = {
   direction?: "rtl" | "ltr"
 }
+
 export default function IdInfo({ direction }: idInfoType) {
   const [error, isErrorActive] = React.useState(false)
-  const [loadingState, changeLoadingState] = React.useState(false)
   const [frontIdImage, setFrontIdImage] = React.useState(IdFrontSide.src)
   const [backIdImage, setBackIdImage] = React.useState(IdBackSide.src)
+
   const addToast = useToast()
-  const [postNationalIdFrontImage] = useNationalIdFrontMutation()
-  const [postNationalIdBackImage] = useNationalIdBackMutation()
-  const { data: nationalIdData, refetch: refetchNatinalIdData } = useGetNationalIdDataQuery(null)
 
-  const { user } = useSelector(state => (state as rootState).auth)
+  const nationalIdData = useQuery({ queryKey: ["nationalId"], queryFn: getNationalIdData })
 
+  const { mutate: frontIdMutation, isPending: frontIdIsPending } = useMutation({
+    mutationFn: sendNationalIdFront,
+    onSuccess: async () => {
+      sendIdFrontSuccessfully()
+    },
+    onError: async (err: AxiosError) => {
+      sendIdFaild(err)
+    }
+  })
 
+  const { mutate: backIdMutation, isPending: backIdIsPending } = useMutation({
+    mutationFn: sendNationalIdBack,
+    onSuccess: async () => {
+      sendIdBackSuccessfully()
+    },
+    onError: async (err: AxiosError) => {
+      sendIdFaild(err)
+    }
+  })
+
+  React.useEffect(() => {
+
+    nationalIdData?.data?.map((idInfo: { summary: string, url: string }) => {
+      idInfo.summary == "NATIONAL_ID_FRONT" && setFrontIdImage(idInfo.url)
+      idInfo.summary == "NATIONAL_ID_BACK" && setBackIdImage(idInfo.url)
+
+    })
+  }, [nationalIdData.data])
+
+  const sendIdFrontSuccessfully = () => {
+    addToast("success", "Changed successFully")
+    nationalIdData.refetch()
+  }
+
+  const sendIdBackSuccessfully = () => {
+    addToast("success", "Changed successFully")
+    nationalIdData.refetch()
+  }
+
+  const sendIdFaild = (err: AxiosError) => {
+    // addToast("error", (err?.data as {message:string}).message ? err.data.message : "There is something wrong")
+  }
 
   const btnHandler = () => {
     isErrorActive(true)
@@ -50,41 +84,14 @@ export default function IdInfo({ direction }: idInfoType) {
     backImageData.append("file", values.backImage)
 
     if (values.frontImage) {
-      changeLoadingState(true)
-      postNationalIdFrontImage(frontImageData).unwrap().then(res => {
-        changeLoadingState(false)
-        refetchNatinalIdData()
-        addToast("success", "Changed successFully")
-      }).catch((err) => {
-        changeLoadingState(false)
-      })
+      frontIdMutation(frontImageData)
     }
 
     if (values.backImage) {
-      changeLoadingState(true)
-      postNationalIdBackImage(backImageData).unwrap().then(res => {
-        changeLoadingState(false)
-        refetchNatinalIdData()
-        addToast("success", "Changed successFully")
-      }).catch(err => {
-        changeLoadingState(false)
-        addToast("error", err.data.message ? err.data.message : "There is something wrong")
-      })
+      backIdMutation(backImageData)
     }
   }
-  React.useEffect(() => {
 
-    nationalIdData?.data?.map((idInfo: { summary: string, url: string }) => {
-      idInfo.summary == "NATIONAL_ID_FRONT" && setFrontIdImage(idInfo.url)
-      idInfo.summary == "NATIONAL_ID_BACK" && setBackIdImage(idInfo.url)
-
-    })
-  }, [nationalIdData])
-
-  React.useEffect(() => {
-    refetchNatinalIdData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
   return (
     <div className={`card ${styles.infoCard} w-full`}>
       <div className={`card-body ${styles.infoCardBody} w-full`}>
@@ -115,13 +122,12 @@ export default function IdInfo({ direction }: idInfoType) {
 
 
                 <div className={`${styles.submitSection} offset-8 flex items-center justify-end pr-[84px] col-3`}>
-                  <BtnWithLoader showSpinner={loadingState} title="Save Changes" fullWidht={false} onClick={() => { btnHandler() }} disabled={props.submitting} />
+                  <BtnWithLoader showSpinner={frontIdIsPending || backIdIsPending} title="Save Changes" fullWidht={false} onClick={() => { btnHandler() }} disabled={props.submitting} />
                 </div>
               </div>
             </form>
           )}
         ></Form>
-
 
       </div>
     </div>

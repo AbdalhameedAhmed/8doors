@@ -1,6 +1,5 @@
 import classNames from "classnames";
 
-import CustomBtn from "components/shared/button/CustomBtn";
 
 type sectionHeaderTypes = {
   title?: string | null | undefined;

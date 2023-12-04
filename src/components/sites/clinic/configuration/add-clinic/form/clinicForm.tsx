@@ -1,26 +1,49 @@
 import React from "react"
-import { useSelector } from "react-redux"
 
 import { formValidate } from "./formValidate"
 import OpacityForm from "components/shared/opacityForm"
 import { inputInfo } from "types/opacityFormTypes"
 import useToast from "hooks/useToast"
-import { useAddClinicMutation, useGetClinicsQuery } from "redux/services/clinic/addAndGetClinics"
-import { useUpdateClinicMutation } from "redux/services/clinic/updateClinic"
-import { rootState } from "redux/store"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { addClinic, getAllClinics, updateClinic } from "tanstack/fetchers/sites/clinic/dashboard"
 
 type clinicFormTypes = {
   openModal: Function
 }
+type clinicData = {
+  clinicName: string;
+  address: string;
+  phone: string
+}
 export default function ClinicForm({ openModal }: clinicFormTypes) {
 
-  const activeClinic = useSelector(reduxData => (reduxData as rootState).activeClinic)
+  const { data: activeClinic }: { data: clinicData | undefined } = useQuery({ queryKey: ["activeClinic"], enabled: false })
 
-  const [addClinic] = useAddClinicMutation()
-  const [updateClinic] = useUpdateClinicMutation()
+  const { data: apiClinicsData, refetch } = useQuery({ queryKey: ["clinics"], queryFn: getAllClinics })
 
+  const { mutate: addClinieMutate, isPending: isAddClinicPending } = useMutation({
+    mutationFn: addClinic,
+    onSuccess: async () => {
+      addToast("success", "Added successfully")
+      refetch()
+    },
+    onError: async () => {
+      addToast("error", "rejected")
+    }
+  })
 
-  let { refetch } = useGetClinicsQuery(undefined)
+  const { mutate: updateClinieMutate, isPending: isUpdateClinicPending } = useMutation({
+    mutationFn: updateClinic,
+    onSuccess: async () => {
+      addToast("success", "Updated successfully")
+
+      refetch()
+    },
+    onError: async () => {
+      addToast("error", "rejected")
+    }
+  })
+
   let addToast = useToast()
 
   let inputsData: inputInfo[] = [
@@ -45,32 +68,16 @@ export default function ClinicForm({ openModal }: clinicFormTypes) {
   ]
 
   const onSubmit = async (values: FormData) => {
+
     if (!activeClinic) {
-      await addClinic(values).unwrap()
-        .then(() => {
-          addToast("success", "Added successfully")
-          refetch()
-
-        })
-        .catch(() => {
-          addToast("error", "rejected")
-
-        })
-
+      addClinieMutate(values)
     } else {
-      await updateClinic({ id: activeClinic.id, ...values }).unwrap()
-        .then(() => {
-          addToast("success", "Updated successfully")
-          refetch()
-
-        })
-        .catch(() => {
-          addToast("error", "rejected")
-        })
+      updateClinieMutate({ id: activeClinic?.id, ...values })
     }
 
     openModal!()
   }
+
   return (
 
     <OpacityForm inputsData={inputsData} formValidate={formValidate} formSubmit={onSubmit} inputContainerStyle="py-0" trackerContainerStyle="absolute top-[37px] right-[24px] xs:right-[16px] !m-0" submitBtnContainer="!pt-0 !border-0" />

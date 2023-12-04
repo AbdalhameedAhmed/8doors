@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-import { useDispatch } from 'react-redux';
-
 import MainAnimation from "components/shared/mainAnimation";
 import useOnClickOutside from "hooks/useOnClickOutside";
 import CustomBtn from "components/shared/button/CustomBtn";
-import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
 
 import DangerIcon from "assets/danger.svg";
+import { useQueryClient } from "@tanstack/react-query";
 
 
 type confirmationModalTypes = {
@@ -25,7 +23,7 @@ export default function ConfirmationModal({
 
   let [layout, setLayout] = useState(false);
   const ref = useRef(null);
-  const dispatch = useDispatch()
+  const queryClient = useQueryClient()
   useOnClickOutside(ref, () => openModal && closeModal());
 
 
@@ -33,7 +31,7 @@ export default function ConfirmationModal({
     changeModalState(false);
     setTimeout(() => {
       setLayout(false);
-      dispatch(changeActiveClinic(null))
+      queryClient.setQueryData(["activeClinic"], null)
     }, 300);
   }
 

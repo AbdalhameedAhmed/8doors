@@ -5,15 +5,10 @@ import { useRouter } from "next/router";
 import useToast from "hooks/useToast";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
-import { otpFailed, otpRequest, otpResponse } from 'types/otpResponse';
+import { otpFailed, otpResponse } from 'types/otpResponse';
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query"
-import axiosClient from "api/axiosClient";
 import { User } from "types/auth/registerTypes";
-
-
-
-
-
+import { resendOtp, sendOtp } from "tanstack/fetchers/otp";
 
 type otpTypes = {
     onSuccess?: () => void
@@ -21,39 +16,13 @@ type otpTypes = {
 export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
     const [error, isErrorActive] = React.useState(false)
-    const { data: user }: { data: User | undefined } = useQuery({ queryKey: ["auth"], enabled: false })
-    const router = useRouter()
-    const addToast = useToast()
-    const queryClient = useQueryClient()
-    const otpLength = 4
-
-    const sendOtp = (data: otpRequest) => {
-        return axiosClient.post("/account/otp", data)
-    }
-
-    const resendOtp = ({ username }: { username: string }) => {
-        return axiosClient.post(`/account/otp/resend/${username}`)
-    }
-
     const [otp, setOtp] = React.useState('');
 
-    const handleOtpChange = (newOtp: string) => {
-        setOtp(newOtp);
-    };
+    const router = useRouter()
+    const addToast = useToast()
 
-    const otpSuccessfully = (res: otpResponse) => {
-        queryClient.setQueryData(["auth"], res)
-        if (res.token) {
-            localStorage.setItem("token", res.token)
-            axios.post("/api/setToken", { token: res.token })
-            router.push("/")
-        }
-
-    }
-
-    const otpFailed = (err: otpFailed) => {
-        addToast("error", err?.detail)
-    }
+    const { data: user }: { data: User | undefined } = useQuery({ queryKey: ["auth"], enabled: false })
+    const queryClient = useQueryClient()
 
     const { mutate: resendMutate, isPending: resendIsPending } = useMutation({
         mutationFn: resendOtp,
@@ -77,7 +46,27 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
         }
     })
 
-    const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const otpLength = 4
+
+    const handleOtpChange = (newOtp: string) => {
+        setOtp(newOtp);
+    };
+
+    const otpSuccessfully = (res: otpResponse) => {
+        queryClient.setQueryData(["auth"], res)
+        if (res.token) {
+            localStorage.setItem("token", res.token)
+            axios.post("/api/setToken", { token: res.token })
+            router.push("/")
+        }
+
+    }
+
+    const otpFailed = (err: otpFailed) => {
+        addToast("error", err?.detail)
+    }
+
+    const handelSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (otp.length == otpLength) {
             if (user) mutate({ username: user?.username, otpCode: otp })
@@ -88,7 +77,7 @@ export default function Otp({ onSuccess = () => { } }: otpTypes) {
 
     }
 
-    const handelResendOtp = async (event: MouseEvent) => {
+    const handelResendOtp = (event: MouseEvent) => {
         event.preventDefault()
         if (user)
             resendMutate({ username: user?.username })

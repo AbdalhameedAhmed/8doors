@@ -20,16 +20,12 @@ import Blogs from "components/sites/clinic/landing/landingSections/blogsSection"
 export default function Index() {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
-  const [tokenValue, setTokenValue] = React.useState("")
   const [uncompletedInfo, showUncompletedInfo] = React.useState(false)
   const router = useRouter();
   const data = useQuery({ queryKey: ["auth"], enabled: false })
 
   const ref = React.useRef(null)
   useRemoveScroll(ref)
-
-  console.log("look at this", data.data);
-
 
   React.useEffect(() => {
 
@@ -45,7 +41,6 @@ export default function Index() {
 
   React.useEffect(() => {
     let token = parse(document?.cookie).token
-    setTokenValue(token)
     token ? showUncompletedInfo(true) : showUncompletedInfo(false)
   }, [])
 
@@ -53,9 +48,7 @@ export default function Index() {
 
     <div ref={ref} className={classNames("overflow-y-auto h-screen")} >
       <LandingLayout uncompletedInfo={uncompletedInfo}>
-
         <Hero direction={direction} />
-
         <CardsSection direction={direction} />
         <SlideSection direction={direction} />
         <BookOutDoctor direction={direction} />

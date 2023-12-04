@@ -6,8 +6,11 @@ import PasswordInput from "components/shared/floatingInput/FloatingPassword";
 
 import { Form, Field } from "react-final-form"
 import { formValidate } from "./formValidate"
-import { useChangePhoneNubmerInitMutation } from "redux/services/patient/changePhoneNumberInit"
 import useToast from "hooks/useToast"
+import { useMutation } from "@tanstack/react-query";
+import { sendChangePhoneNubmerInit } from "tanstack/fetchers/individualDashboard";
+import { AxiosError } from "axios";
+import { changePhoneNumberFailed } from "types/patientTypes/changePhoneNumber";
 
 
 type ChangeNumberFormTypes = {
@@ -15,24 +18,24 @@ type ChangeNumberFormTypes = {
 }
 
 export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
-  const [loadingState, changeLoadingState] = useState(false)
   const [error, activeError] = useState(false)
-  const [postNewPhone] = useChangePhoneNubmerInitMutation()
+
+  const { mutate: changePhoneNumberMutation, isPending: changePhoneNumberIsPending } = useMutation({
+    mutationFn: sendChangePhoneNubmerInit,
+    onSuccess: async () => {
+      onSuccess()
+    },
+    onError: async (err: AxiosError) => {
+      let errorData = err.response?.data
+      addToast("error", (errorData as changePhoneNumberFailed).detail || (errorData as changePhoneNumberFailed).message)
+    }
+  })
   const addToast = useToast()
 
 
 
   const onSubmit = (values: Record<string, any>) => {
-    postNewPhone({ newPhoneNum: values.newPhoneNum, password: values.password }).unwrap().then(res => {
-      onSuccess()
-      console.log(res);
-
-    }).catch(err => {
-      addToast("error", err?.data?.message)
-
-    })
-
-
+    changePhoneNumberMutation({ newPhoneNum: values.newPhoneNum, password: values.password })
   }
 
 
@@ -87,7 +90,7 @@ export default function ChangePhoneForm({ onSuccess }: ChangeNumberFormTypes) {
               </Field>
             </div>
             <div className={`flex justify-end`}>
-              <BtnWithLoader showSpinner={loadingState} title="Save Changes" onClick={() => { activeError(true) }} disabled={submitting} />
+              <BtnWithLoader showSpinner={changePhoneNumberIsPending} title="Save Changes" onClick={() => { activeError(true) }} disabled={submitting} />
             </div>
           </form>
         )}

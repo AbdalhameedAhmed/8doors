@@ -42,12 +42,12 @@ export default function CustomSingleSelector(props: singleSelectorTypes) {
 
   React.useEffect(() => {
 
-    if (input.value && initialState) {
+    if (input?.value && initialState) {
       options.map((item, index) => {
 
-        if (item.value == input.value) {
+        if (item?.value == input?.value) {
           setInitialState(false)
-          handelLiClick(index, item.title, item.id, item.value)
+          handelLiClick(index, item?.title, item?.id, item?.value)
         }
       })
     }

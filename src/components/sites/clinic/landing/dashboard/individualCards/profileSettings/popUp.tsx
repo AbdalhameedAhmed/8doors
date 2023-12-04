@@ -34,7 +34,7 @@ export default function PopUp({ popUpState, openPopup, cardInfo, activeItemNum, 
   useEffect(() => {
     const slideElement = document.querySelector("#popUpSlider")
 
-    slideElement!.scrollLeft = 300 * ++activeItemNum;
+    slideElement!.scrollLeft = 300 * +activeItemNum;
 
 
   }, [activeItemNum, popUpState])

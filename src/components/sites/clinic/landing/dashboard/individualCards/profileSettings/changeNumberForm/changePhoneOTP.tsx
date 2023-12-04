@@ -1,24 +1,41 @@
+import { useMutation } from "@tanstack/react-query"
+import { AxiosError } from "axios"
 import BtnWithLoader from "components/shared/button/buttonWithLoader"
 import useToast from "hooks/useToast"
 import React, { FormEvent, MouseEvent, useState } from "react"
-import { useChangePhoneNubmerFinishMutation } from "redux/services/patient/changePhoneNumberFinish"
+import { sendPhoneOtp } from "tanstack/fetchers/individualDashboard"
+import { phoneOtpFailed } from "types/patientTypes/changePhoneNumber"
 import OtpInput from "../../../../onboarding/individualForm/OTP"
 import styles from "./changeNumber.module.css"
-
 
 type changePhoneOtpTypes = {
   onSuccess: () => void
 }
+
 export default function ChangePhoneOtp({ onSuccess }: changePhoneOtpTypes) {
-  const [submitSpiner, showSubmitSpiner] = useState(false)
+
   const [resendOTPSpiner, showResendOTPSpiner] = useState(false)
   const [otp, setOtp] = React.useState('');
   const [error, isErrorActive] = React.useState(false)
-  const [postPhoneOtp] = useChangePhoneNubmerFinishMutation()
+
   const addToast = useToast()
+
+  const { mutate: phoneOtpMutate, isPending: phoneOtpIspending } = useMutation({
+    mutationFn: sendPhoneOtp,
+    onSuccess: async () => {
+      onSuccess()
+      addToast("success", "Your phone number changed successfully")
+    },
+    onError: async (err: AxiosError) => {
+      let errorData = err.response?.data
+      addToast("error", (errorData as phoneOtpFailed).detail || (errorData as phoneOtpFailed).message)
+
+    }
+  })
+
   const otpLength = 4
 
-  const handelResendOtp = async (event: MouseEvent) => {
+  const handelResendOtp = (event: MouseEvent) => {
     event.preventDefault()
 
   }
@@ -27,24 +44,13 @@ export default function ChangePhoneOtp({ onSuccess }: changePhoneOtpTypes) {
     setOtp(newOtp);
   };
 
-  const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handelSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (otp.length == otpLength) {
-      showSubmitSpiner(true)
-      postPhoneOtp(otp).unwrap().then(res => {
-        onSuccess()
-        addToast("success", "Your phone number changed successfully")
-
-        console.log(res);
-      }).catch(err => {
-        addToast("error", err.data.message)
-
-      })
-
+      phoneOtpMutate(otp)
     } else {
       isErrorActive(true)
     }
-
   }
 
   return (
@@ -54,7 +60,7 @@ export default function ChangePhoneOtp({ onSuccess }: changePhoneOtpTypes) {
 
         <OtpInput length={otpLength} onChange={handleOtpChange} error={error} isErrorActive={isErrorActive} />
         <div className={`w-full ${styles.onboardingBtn} `}>
-          <BtnWithLoader showSpinner={submitSpiner} title="Continue" fullWidht={false} />
+          <BtnWithLoader showSpinner={phoneOtpIspending} title="Continue" fullWidht={false} />
           <BtnWithLoader spinerStyles="!border-[#09e5ab]" showSpinner={resendOTPSpiner} title="Resend OTP" fullWidht={false} onClick={(event) => { handelResendOtp(event) }} />
         </div>
       </form>

@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Page, Section, UserTemplate } from 'components/shared';
 import NoItemsFound from "components/sites/clinic/configuration/add-clinic/no-items/NoItemsFound"
 import ClinicForm from "components/sites/clinic/configuration/add-clinic/form/clinicForm"
 import Modal from "components/shared/modal";
 import ConfirmationModal from 'components/shared/confirmationModal';
-import { useGetClinicsQuery } from "redux/services/clinic/addAndGetClinics"
-import { useDeleteClinicMutation } from 'redux/services/clinic/deleteClinic';
-import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
-import { rootState } from "redux/store"
-import { removeDashAndCapitalize, removeQueryParams } from "utiles"
+import { removeDashAndCapitalize } from "utiles"
 import useToast from 'hooks/useToast';
 
 import Edit from "assets/pen-to-square-solid.svg"
 import Join from "assets/right-to-bracket-solid.svg"
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { getAllClinics, deleteClinic } from 'tanstack/fetchers/sites/clinic/dashboard';
 
 type clinicData = {
   id: string
@@ -29,41 +26,50 @@ export default function Dashboard() {
   const [clinics, setClinics] = useState<clinicData[]>([])
   const [modal, setModal] = useState(false)
   const [openConfirmationModal, changeConfirmationModal] = useState(false)
-  const activeClinic = useSelector(reduxData => (reduxData as rootState).activeClinic)
-  const {data:apiClinicsData,refetch} = useGetClinicsQuery(null)
+  const { data: activeClinic }: { data: clinicData | undefined } = useQuery({ queryKey: ["activeClinic"], enabled: false })
+
   const router = useRouter();
-  const [removeClinic] = useDeleteClinicMutation()
-  const dispatch = useDispatch()
+
+  const { mutate: deleteClinicMutate, isPending: isDeleteClinicPending } = useMutation({
+    mutationFn: deleteClinic,
+    onSuccess: async () => {
+      addToast("success", "deleted Successfully")
+    },
+    onError: async () => {
+      addToast("error", "something wrong")
+    }
+  })
+
   const addToast = useToast()
+
+  const { data: apiClinicsData, refetch } = useQuery({ queryKey: ["clinics"], queryFn: getAllClinics })
+  const queryClient = useQueryClient()
 
 
   const sectionBtnHandler = () => {
     setModal(!modal)
 
   }
-    
+
   const joinBtnHandler = (clinic: clinicData) => {
     router.push('/clinic-dashboard');
-    dispatch(changeActiveClinic(clinic))
+    queryClient.setQueryData(["activeClinic"], clinic)
   }
 
   const editBtnHandler = (clinic: clinicData) => {
     setModal(true)
-    dispatch(changeActiveClinic(clinic))
-  }
-
-  const deleteClinic = async (id: string) => {
-    await removeClinic({ id: id }).unwrap().then(() => { addToast("success", "deleted Successfully") }).catch(error => { addToast("error", "something wrong") })
-    refetch()
+    queryClient.setQueryData(["activeClinic"], clinic)
   }
 
   useEffect(() => {
     setClinics(apiClinicsData)
-    document.title = removeDashAndCapitalize(router.asPath)
-    !(clinics == undefined || clinics.length) ? changeBtnState(false) : changeBtnState(true)
+    document.title = removeDashAndCapitalize(router.asPath);
+
+    (clinics == undefined || clinics.length == 0) ? changeBtnState(false) : changeBtnState(true)
     refetch()
-  }, [clinics, apiClinicsData, router.asPath, refetch,activeClinic])
-  
+  }, [clinics, apiClinicsData, router.asPath, refetch, activeClinic])
+
+  console.log("clinics is", clinics);
 
   return (
     <>
@@ -71,11 +77,11 @@ export default function Dashboard() {
         openModal={modal}
         changeModalState={setModal}
         title={(activeClinic && activeClinic.id) ? "Update clinic" : "Add clinic"}
-        onModalClose={() => { dispatch(changeActiveClinic(null)) }}
+        onModalClose={() => { queryClient.setQueryData(["activeClinic"], null) }}
       >
         <ClinicForm openModal={setModal} />
       </Modal>
-      <ConfirmationModal openModal={openConfirmationModal} changeModalState={changeConfirmationModal} deleteFunction={() => { deleteClinic(activeClinic.id) }} warningMessage='Do you realy want to delete this clinic?' />
+      <ConfirmationModal openModal={openConfirmationModal} changeModalState={changeConfirmationModal} deleteFunction={() => { deleteClinicMutate(activeClinic?.id || "") }} warningMessage='Do you realy want to delete this clinic?' />
       <Page navbarTitle="Dashboard" showSiderMenu>
         <Section
           sectionHeaderBtnTitle="Add clinic"
@@ -84,7 +90,7 @@ export default function Dashboard() {
           title='Clinics'
           subtitle='create . choose a clinic'
           childernClassName='p-0'
-          className='!w-[90%]'   
+          className='!w-[90%]'
         >
           {
             showAddBtn ? (
@@ -115,7 +121,7 @@ export default function Dashboard() {
                         className="p-2 pr-0"
                       >
 
-                        <Join width={20} height={20} className="fill-secondary hover:fill-primary"/>
+                        <Join width={20} height={20} className="fill-secondary hover:fill-primary" />
                       </button>
                     </div>
                   </li>

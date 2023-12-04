@@ -29,37 +29,19 @@ export default function FloatingInput({
   handelChangeBtn = () => { },
   ...props
 }: LoginInputTypes) {
-  const [errorAfterSubmit, showErrorAfterSubmit] = React.useState(true)
   const initialBorderStyles = "border-gray-300 focus:border-[rgb(118,118,118)]"
   const handelChange = () => {
-    console.log("done");
-
     handelChangeBtn()
   }
-  const handelInputOnFocus = () => {
-    if (errorActive) {
-      showErrorAfterSubmit(true)
-    }
-  }
 
-  const handelInputOnBlur = () => {
-    if (errorActive) {
-      showErrorAfterSubmit(false)
-    }
-
-  }
 
   return (
     <div className="relative w-full mb-6">
 
       <div className="relative">
-        <input type={props.type} name={props.name} id={props.name} placeholder=" " className={classNames(`block p-4 w-full text-gray-900 dark:text-white bg-transparent rounded-lg border-[1px] dark:border-[#3D464F] appearance-none hover:border-[rgb(118,118,118)] dark:hover:border-white dark:focus:border-white  focus:outline-none focus:ring-0 peer autofill-prevent ${inputStyle ? inputStyle : initialBorderStyles}`, { "!border-red-500 focus:!border-red-500": error && errorActive && errorAfterSubmit, "!bg-stone-200 cursor-not-allowed border-stone-200 hover:border-stone-200": props.disabled })} {...props} onFocus={() => {
-          handelInputOnFocus()
-        }} onBlur={() => {
-          handelInputOnBlur()
-        }} />
+        <input type={props.type} name={props.name} id={props.name} placeholder=" " className={classNames(`block p-4 w-full text-gray-900 dark:text-white bg-transparent rounded-lg border-[1px] dark:border-[#3D464F] appearance-none hover:border-[rgb(118,118,118)] dark:hover:border-white dark:focus:border-white  focus:outline-none focus:ring-0 peer autofill-prevent ${inputStyle ? inputStyle : initialBorderStyles}`, { "!border-red-500 focus:!border-red-500": error && errorActive, "!bg-stone-200 cursor-not-allowed border-stone-200 hover:border-stone-200": props.disabled })} {...props} />
         {!props.disabled &&
-          <label htmlFor={props.name} className={classNames("absolute text-sm text-[#6b7280] duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-primary px-2 peer-focus:px-2 peer-focus:text-[rgb(33,43,54)] dark:peer-focus:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:!left-3 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 peer-focus:left-3", { "!text-red-500": error && errorActive && errorAfterSubmit, "!left-3": props.value, "!bg-stone-200": props.disabled }, placeholderStyles)}>
+          <label htmlFor={props.name} className={classNames("absolute text-sm text-[#6b7280] duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-primary px-2 peer-focus:px-2 peer-focus:text-[rgb(33,43,54)] dark:peer-focus:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:!left-3 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 peer-focus:left-3", { "!text-red-500": error && errorActive, "!left-3": props.value, "!bg-stone-200": props.disabled }, placeholderStyles)}>
             {placeholder}</label>
         }
         {
@@ -68,7 +50,7 @@ export default function FloatingInput({
           )
         }
       </div>
-      {error && errorActive && errorAfterSubmit && <p className={`text-red-500 text-[0.75rem] mt-2 ${errorStyle}`}>{error}</p>}
+      {error && errorActive && <p className={`text-red-500 text-[0.75rem] mt-2 ${errorStyle}`}>{error}</p>}
     </div>
   );
 

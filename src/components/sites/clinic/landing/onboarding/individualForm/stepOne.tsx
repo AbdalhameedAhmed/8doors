@@ -2,19 +2,18 @@ import React, { Dispatch, SetStateAction } from "react"
 import styles from "./forms.module.css"
 
 import FloatingInput from "components/shared/floatingInput/FloatingInput"
+import { User } from "types/auth/registerTypes"
 
 type stepOneTypes = {
-  activeItem: number
   nestedActiveForm: number
-  changeActiveItem: Dispatch<SetStateAction<number>>
   changeNestedActiveForm: Dispatch<SetStateAction<number>>
-  initialInputValues: { name?: string | undefined, mobile?: string | undefined, email?: string | undefined }
+  initialInputValues: User | undefined
   direction: "rtl" | "ltr"
 }
 
-export default function StepOne({ changeActiveItem, direction, activeItem, changeNestedActiveForm, nestedActiveForm, initialInputValues }: stepOneTypes) {
+export default function StepOne({ direction, changeNestedActiveForm, nestedActiveForm, initialInputValues }: stepOneTypes) {
 
-  const [defaultInputValue, changeDefaultInputValue] = React.useState({ name: "", mobile: "", email: "" })
+  const [defaultInputValue, changeDefaultInputValue] = React.useState<User>({ username: "", phoneNumber: "", email: "", token: "" })
   const handelChangeForm = () => {
     changeNestedActiveForm(nestedActiveForm + 1)
   }
@@ -39,7 +38,7 @@ export default function StepOne({ changeActiveItem, direction, activeItem, chang
             <div className="col-lg-12">
               <div className={`${styles.formGroup}`}>
                 <div className={`input-placeholder ${styles.formFocus} ${styles.passcodeWrap} mail-box`}>
-                  <FloatingInput placeholder="Legal name" name="name" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.name} />
+                  <FloatingInput placeholder="Legal name" name="name" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.username} />
                 </div>
               </div>
             </div>
@@ -53,7 +52,7 @@ export default function StepOne({ changeActiveItem, direction, activeItem, chang
             <div className="col-lg-12">
               <div className={`${styles.formGroup}`}>
                 <div className={`input-placeholder ${styles.formFocus} ${styles.passcodeWrap} mail-box`}>
-                  <FloatingInput placeholder="Mobile number" name="mobile" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.mobile} />
+                  <FloatingInput placeholder="Mobile number" name="mobile" inputStyle="!p-4 !w-full !text-left focus:!bg-white !bg-[#F5F6FA]" placeholderStyles="!bg-[#F5F6FA] peer-focus:!bg-white z-0" defaultValue={defaultInputValue.phoneNumber} />
                 </div>
               </div>
             </div>

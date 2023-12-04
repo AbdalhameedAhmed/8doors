@@ -4,21 +4,18 @@ import { useRouter } from "next/router";
 
 import classNames from "classnames";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
 
 import useWindowSize from "hooks/useWindowSize";
 import useOnClickOutside from "hooks/useOnClickOutside";
 import CollapsedMenu from "./CollapsedMenu";
 import { toSubDomain } from "utiles";
 import UserICon from "components/shared/menus/UserIcon"
-import { rootState } from "redux/store";
 import Bars from "assets/bars.svg"
-import UserImage from "assets/avatar_default.jpg"
 import NoUser from "assets/dashboard/blank-profile-picture-973460_1280.webp"
-import { resetIndividualInfo } from "redux/slices/landing/individualInfo";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "types/auth/registerTypes";
 import { useQueryClient } from '@tanstack/react-query'
+import { patientProfileDataTypes } from "types/patientTypes/patientProfileData";
 
 
 
@@ -34,12 +31,11 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   const { width } = useWindowSize()
   const menuRef = React.useRef(null)
   const [tokenValue, setTokenValue] = React.useState("")
-  const dispatch = useDispatch()
   const queryClient = useQueryClient()
 
-  // const userInfo = useSelector((state) => (state as rootState).auth)
+
   const { data: userInfo }: { data: User | undefined } = useQuery({ queryKey: ["auth"], enabled: false })
-  const individualInfo = useSelector((state) => (state as rootState).individualInfo)
+  const { data: individualInfo }: { data: patientProfileDataTypes | undefined } = useQuery({ queryKey: ["patient"], enabled: userInfo?.token ? true : false })
   const [userImageSrc, setUserImageSrc] = React.useState(NoUser.src)
 
   const handelMenuOpen = () => {
@@ -58,7 +54,6 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
     axios.post("/api/removeToken").then(() => {
       queryClient.setQueryData(["auth"], {})
       router.push("/login")
-      dispatch(resetIndividualInfo())
     })
   }
 
@@ -70,7 +65,7 @@ function Navbar({ direction = "ltr" }: navbarTypes) {
   }, [])
 
   React.useEffect(() => {
-    individualInfo.imageUrl && setUserImageSrc(individualInfo.imageUrl)
+    individualInfo?.imageUrl && setUserImageSrc(individualInfo.imageUrl)
   }, [userInfo, individualInfo])
 
 

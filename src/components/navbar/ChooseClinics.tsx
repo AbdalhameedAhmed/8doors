@@ -2,16 +2,15 @@ import React from "react"
 import { useRouter } from 'next/router';
 
 import classNames from "classnames"
-import { useDispatch } from 'react-redux';
 
 
-import { useGetClinicsQuery } from "redux/services/clinic/addAndGetClinics"
 import { UserTemplate } from 'components/shared';
-import { changeActiveClinic } from "redux/slices/clinic/activeClinic"
 import CustomMenu from "components/shared/customMenu"
 
 import ClinicIcon from "assets/clinic.svg"
 import Join from "assets/right-to-bracket-solid.svg"
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getAllClinics } from "tanstack/fetchers/sites/clinic/dashboard";
 
 
 
@@ -26,13 +25,15 @@ export default function ChooseClinic() {
 
   const [clinics, setClinics] = React.useState<clinicData[]>([])
   const [subMenu, openSubMenu] = React.useState(false)
-  const { data: apiClinicsData, refetch } = useGetClinicsQuery(null)
+  const queryClient = useQueryClient()
+
+  const { data: apiClinicsData, refetch } = useQuery({ queryKey: ["clinics"], queryFn: getAllClinics })
+
   const router = useRouter()
-  const dispatch = useDispatch()
 
   const joinBtnHandler = (clinic: clinicData) => {
     router.push('/clinic-dashboard');
-    dispatch(changeActiveClinic(clinic))
+    queryClient.setQueryData(["activeClinic"], clinic)
   }
 
 

@@ -6,49 +6,48 @@ import { formValidate } from "./formValidate";
 import FloatingInput from "components/shared/floatingInput/FloatingPassword";
 import BtnWithLoader from "components/shared/button/buttonWithLoader";
 import useToast from "hooks/useToast";
-import { useChangePasswordMutation } from "redux/services/clinic/changePassword";
-
-import { changePasswordTypes } from "types/patientTypes/changePasswordTypes";
-import { changePasswordResponse } from "types/patientTypes/changePasswordResponse";
 
 import styles from "./idInfo.module.css"
-
-
+import { useMutation } from "@tanstack/react-query";
+import { sendNewPassword } from "tanstack/fetchers/individualDashboard";
+import { AxiosError } from "axios";
+import { changePasswordFailed, changePasswordRequestData } from "types/auth/changePassword";
 
 type idInfoType = {
   direction?: "rtl" | "ltr"
 }
+
 export default function IdInfo({ direction }: idInfoType) {
 
   const [error, isErrorActive] = React.useState(false)
-  const [loadingState, changeLoadingState] = React.useState(false)
-  const [postNewPassword] = useChangePasswordMutation()
 
   const addToast = useToast()
 
+  const { mutate: newPasswordMutation, isPending: newPasswordIsPending } = useMutation({
+    mutationFn: sendNewPassword,
+    onSuccess: async () => {
+      ChangedSuccessfully()
+    },
+    onError: async (err: AxiosError) => {
+      changeFailed(err.response as changePasswordFailed)
+    }
+  })
+
   const ChangedSuccessfully = () => {
     addToast("success", "Your password changed successfully")
-    changeLoadingState(false)
   }
 
-  const changeFailed = (err: changePasswordResponse) => {
+  const changeFailed = (err: changePasswordFailed) => {
     addToast("error", err?.data?.detail)
-    changeLoadingState(false)
-
   }
 
   const btnHandler = () => {
     isErrorActive(true)
   }
 
-  const onSubmit = (values: changePasswordTypes) => {
-    changeLoadingState(true)
+  const onSubmit = (values: changePasswordRequestData) => {
 
-    postNewPassword({ currentPassword: values.currentPassword, newPassword: values.newPassword }).unwrap().then((res) => {
-      ChangedSuccessfully()
-    }).catch((err) => {
-      changeFailed(err)
-    })
+    newPasswordMutation({ currentPassword: values.currentPassword, newPassword: values.newPassword })
 
   }
 
@@ -104,7 +103,7 @@ export default function IdInfo({ direction }: idInfoType) {
                 </div>
 
                 <div className={`${styles.submitSection} flex items-center justify-end`}>
-                  <BtnWithLoader showSpinner={loadingState} title="Save Changes" fullWidht={false} onClick={() => { btnHandler() }} disabled={props.submitting} />
+                  <BtnWithLoader showSpinner={newPasswordIsPending} title="Save Changes" fullWidht={false} onClick={() => { btnHandler() }} disabled={props.submitting} />
                 </div>
               </div>
             </form>

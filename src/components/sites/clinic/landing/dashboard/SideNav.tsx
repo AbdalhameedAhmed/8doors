@@ -7,7 +7,8 @@ import NoUser from "assets/dashboard/blank-profile-picture-973460_1280.webp"
 import UploadIcon from "assets/dashboard/upload-solid.svg"
 
 import classNames from "classnames"
-import { useProfilePicMutation } from "redux/services/patient/profilePic"
+import { useMutation } from "@tanstack/react-query"
+import { sendProfilePic } from "tanstack/fetchers/individualDashboard"
 
 
 type sideNavTypes = {
@@ -22,9 +23,31 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
 
   const [prevScrollPosition, setPrevScrollPosition] = React.useState(0);
   const [scrollDirection, changeScrollDirection] = React.useState("down")
-  const { width } = useWindowSize()
-  const [postProfilePic] = useProfilePicMutation()
 
+  const { width } = useWindowSize()
+
+  const { mutate: sendProfilePicMutate } = useMutation({
+    mutationFn: sendProfilePic,
+    onSuccess: async () => {
+      refetchProfileData()
+    }
+  })
+
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPosition = window.pageYOffset;
+      const scrollDirection = currentScrollPosition > prevScrollPosition ? 'down' : 'up';
+      setPrevScrollPosition(currentScrollPosition);
+      changeScrollDirection(scrollDirection)
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPosition]);
 
   const handelLiClick = (index: number) => {
     setActiveItem(index)
@@ -38,27 +61,10 @@ export default function SideNav({ items, userInfo, direction, activeItem, setAct
     }
     const formData = new FormData()
     formData.append("file", file)
-    postProfilePic(formData).unwrap().then((res) => {
-      refetchProfileData()
-    })
+
+    sendProfilePicMutate(formData)
+
   }
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPosition = window.pageYOffset;
-      const scrollDirection = currentScrollPosition > prevScrollPosition ? 'down' : 'up';
-      setPrevScrollPosition(currentScrollPosition);
-      changeScrollDirection(scrollDirection)
-    };
-
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [prevScrollPosition]);
-
 
   return (
     <div className={classNames(`col-md-5 col-lg-4 col-xl-3 ${width > 767 && "!sticky"}  top-[1.5rem] transition-all duration-300`, { "": scrollDirection === "down" })} style={{ overflow: "visible", boxSizing: "border-box", minHeight: "1px" }}>

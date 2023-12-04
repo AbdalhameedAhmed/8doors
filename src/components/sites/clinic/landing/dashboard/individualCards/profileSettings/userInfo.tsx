@@ -4,26 +4,21 @@ import FloatingInput from "components/shared/floatingInput/FloatingInput"
 import CustomSingleSelector from "components/shared/customSingleSelector"
 import { Form, Field } from "react-final-form"
 import { formValidate } from "./formValidate";
-import { useGetCountriesQuery } from "redux/services/lookup/getAllCountries"
 import { country } from "types/lookupTypes/country"
-import { useGetBloodGroupsQuery } from "redux/services/lookup/getBloodGroup"
 import { bloodType } from "types/lookupTypes/bloodGroups"
 import { singleSelectorTypes } from "types/singleSelectorTypes"
-import { useGetStatesMutation } from "redux/services/lookup/getStates"
 import { state } from "types/lookupTypes/stateType"
-import { useGetCitiesMutation } from "redux/services/lookup/getCities"
 import { city } from "types/lookupTypes/cityType"
-import { patientError, patientProfileDataTypes } from "types/patientTypes/patientProfileData"
-import { useGetProfileDataQuery } from "redux/services/patient/getProfileData"
+import { citiesTypes, patientError, patientProfileDataTypes, statesTypes } from "types/patientTypes/patientProfileData"
 import useToast from "hooks/useToast"
 import BtnWithLoader from "components/shared/button/buttonWithLoader"
 import PopUp from "./popUp"
 import ChangePhoneForm from "./changeNumberForm"
 import ChangePhoneOtp from "./changeNumberForm/changePhoneOTP"
-import axiosClient from "api/axiosClient"
 import { useMutation, useQuery } from "@tanstack/react-query"
-import axios, { AxiosError, AxiosResponse } from "axios"
+import { AxiosError, AxiosResponse } from "axios"
 import { User } from "types/auth/registerTypes"
+import { getAllCitiesData, getAllStatesData, getBloodGroups, getCountries, getProfileData, sendProfileData } from "tanstack/fetchers/individualDashboard"
 
 
 
@@ -37,41 +32,29 @@ export default function UserInfo() {
   const [initialProfileData, setInitialProfileData] = useState<null | patientProfileDataTypes>(null)
   const [popUpState, openPopUp] = useState(false)
   const [activePopUpCardNum, changeActivePopUpCardNum] = useState(0)
-  const { data: profileData, refetch: refetchProfileData } = useGetProfileDataQuery(null)
-  const { data: backCountries } = useGetCountriesQuery(null)
-  const { data: backBloodGroups } = useGetBloodGroupsQuery(null)
-  const [getAllStates] = useGetStatesMutation()
-  const [getAllCities] = useGetCitiesMutation()
-
-  const { data: user }: { data: User | undefined } = useQuery({ queryKey: ["auth"], enabled: false })
 
   const addToast = useToast()
-  const changeNumberCards = [
 
-    <ChangePhoneForm key={0} onSuccess={() => { changeActivePopUpCardNum(activePopUpCardNum + 1) }} />,
-    <ChangePhoneOtp key={1} onSuccess={() => { refetchProfileData(); openPopUp(false); changeActivePopUpCardNum(0) }} />,
-
-  ]
-
-  // console.log("profile is", user);
-
-  const sendPatientData = (patientData: patientProfileDataTypes) => {
-    return axiosClient.put("/patients", patientData)
-  }
+  const { data: backCountries } = useQuery({ queryKey: ["countries"], queryFn: getCountries })
+  const { data: backBloodGroups } = useQuery({ queryKey: ["blodGroups"], queryFn: getBloodGroups })
+  const patientData = useQuery({ queryKey: ["patient"], queryFn: getProfileData })
+  const { data: user }: { data: User | undefined } = useQuery({ queryKey: ["auth"], enabled: false })
 
 
-
-  const sendPatientDataSuccessfully = () => {
-    addToast("success", "Your profile information has been updated successfully!")
-    refetchProfileData()
-  }
-
-  const sendPatientDataFailed = (err: patientError) => {
-    addToast("error", err?.detail)
-  }
-
+  const { mutate: getAllStatesMutation } = useMutation({
+    mutationFn: getAllStatesData,
+    onSuccess: async (res) => {
+      getStatesSuccessfully(res.data)
+    }
+  })
+  const { mutate: getAllCitiesMutation } = useMutation({
+    mutationFn: getAllCitiesData,
+    onSuccess: async (res) => {
+      getCitiesSuccessfully(res.data)
+    }
+  })
   const { mutate, isPending } = useMutation({
-    mutationFn: sendPatientData,
+    mutationFn: sendProfileData,
     onSuccess: async (res: AxiosResponse) => {
       sendPatientDataSuccessfully()
     },
@@ -80,79 +63,12 @@ export default function UserInfo() {
     }
   })
 
-  const onSubmit = (values: patientProfileDataTypes) => {
-    const dataForm = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      dateOfBirth: values.dateOfBirth,
-      bloodGroupId: values.bloodGroupId,
-      countryId: values.countryId,
-      stateId: values.stateId,
-      cityId: values.cityId,
-      address: values.address,
-      nationalId: values.nationalId,
-      gender: values.gender
-    }
-    mutate(dataForm)
-  }
-
-  const getPatientData = () => {
-    return axiosClient.get("/account/profile").then(res => res.data)
-  }
-  const patientData = useQuery({ queryKey: ["patient"], queryFn: getPatientData })
-
-  const fetchStates = (countryId: number) => {
-
-
-    getAllStates({ id: countryId }).unwrap().then(({ data }) => {
-
-      let allStatesData: singleSelectorTypes["options"] = []
-
-      data.map((state: state) => {
-
-        let stateData: { id: number, value: string | number, title: string } = { id: state.id, title: state.nameEn, value: state.id }
-
-        allStatesData.push(stateData)
-
-
-      })
-      setStates((allStatesData))
-
-    })
-
-  }
-
-
-  const fetchCities = (stateId: number) => {
-
-    getAllCities({ id: stateId }).unwrap().then(({ data }) => {
-
-      let citiesData: singleSelectorTypes["options"] = []
-      data.map((city: city) => {
-
-        let cityData: { id: number, value: string | number, title: string } = { id: city.id, title: city.nameEn, value: city.id }
-
-        citiesData.push(cityData)
-
-
-      })
-      setCities((citiesData))
-
-    })
-
-  }
-
-  const handelchangePhoneBtn = () => {
-    openPopUp(true)
-  }
-
-
   React.useEffect(() => {
 
     if (backCountries) {
       let selectorData: singleSelectorTypes["options"] = []
 
-      backCountries.data.map((country: country) => {
+      backCountries.map((country: country) => {
 
         let countryData: { id: number, value: string | number, title: string } = { id: country.id, value: country.id, title: country.nameEn }
 
@@ -169,7 +85,7 @@ export default function UserInfo() {
     if (backBloodGroups) {
       let selectorData: singleSelectorTypes["options"] = []
 
-      backBloodGroups.data.map((bloodType: bloodType) => {
+      backBloodGroups.map((bloodType: bloodType) => {
 
         let bloodData: { id: number, value: string | number, title: string } = { id: bloodType.id, value: bloodType.id, title: bloodType.value }
 
@@ -187,9 +103,73 @@ export default function UserInfo() {
   }, [patientData?.data])
 
   React.useEffect(() => {
-    refetchProfileData()
+    patientData.refetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
+
+
+  const changeNumberCards = [
+
+    <ChangePhoneForm key={0} onSuccess={() => { changeActivePopUpCardNum(activePopUpCardNum + 1) }} />,
+    <ChangePhoneOtp key={1} onSuccess={() => { patientData.refetch(); openPopUp(false); changeActivePopUpCardNum(0) }} />,
+
+  ]
+
+  const getStatesSuccessfully = (states: statesTypes) => {
+
+    let allStatesData: singleSelectorTypes["options"] = []
+
+    states.map((state: state) => {
+
+      let stateData: { id: number, value: string | number, title: string } = { id: state.id, title: state.nameEn, value: state.id }
+
+      allStatesData.push(stateData)
+    })
+
+    setStates((allStatesData))
+  }
+
+  const getCitiesSuccessfully = (cities: citiesTypes) => {
+    let citiesData: singleSelectorTypes["options"] = []
+    cities.map((city: city) => {
+
+      let cityData: { id: number, value: string | number, title: string } = { id: city.id, title: city.nameEn, value: city.id }
+
+      citiesData.push(cityData)
+
+
+    })
+    setCities((citiesData))
+  }
+
+  const sendPatientDataSuccessfully = () => {
+    addToast("success", "Your profile information has been updated successfully!")
+    patientData.refetch()
+  }
+
+  const sendPatientDataFailed = (err: patientError) => {
+    addToast("error", err?.detail)
+  }
+
+  const onSubmit = (values: patientProfileDataTypes) => {
+    const dataForm = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      dateOfBirth: values.dateOfBirth,
+      bloodGroupId: values.bloodGroupId,
+      countryId: values.countryId,
+      stateId: values.stateId,
+      cityId: values.cityId,
+      address: values.address,
+      nationalId: values.nationalId,
+      gender: values.gender
+    }
+    mutate(dataForm)
+  }
+
+  const handelchangePhoneBtn = () => {
+    openPopUp(true)
+  }
 
   return (
     <div className={`card ${styles.infoCard}`}>
@@ -366,7 +346,7 @@ export default function UserInfo() {
                             placeholder="Country"
                             error={meta.error}
                             errorActive={error}
-                            onActiveLi={fetchStates}
+                            onActiveLi={getAllStatesMutation}
                             options={countries}
                             inputStyle="!p-4 bg-white !shadow-none !mt-0 focus:bg-white  h-[58px]"
                             input={input}
@@ -387,7 +367,7 @@ export default function UserInfo() {
                             placeholder="State"
                             error={meta.error}
                             errorActive={error}
-                            onActiveLi={fetchCities}
+                            onActiveLi={getAllCitiesMutation}
                             options={states}
                             inputStyle="!p-4 bg-white !shadow-none !mt-0  focus:bg-white  h-[58px]"
                             input={input}

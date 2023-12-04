@@ -1,13 +1,9 @@
 import React from "react"
 
-import { useSelector, useDispatch } from "react-redux"
 import Navbar from "components/sites/clinic/landing/navbar"
 import Footer from "components/sites/clinic/landing/footer"
 import BreadCrumb from "components/sites/clinic/landing/breadCrumb"
 import UncompletedInfo from "components/sites/clinic/landing/uncompletedInfo"
-import { rootState } from "redux/store"
-import { useGetProfileDataQuery } from "redux/services/patient/getProfileData"
-import { addIndividualInfo } from "redux/slices/landing/individualInfo"
 
 type LandingLayoutTypes = {
   children: React.ReactNode;
@@ -17,12 +13,6 @@ type LandingLayoutTypes = {
 export default function LandingLayout({ children, showBreadCrumb = false, uncompletedInfo = false }: LandingLayoutTypes) {
 
   const [direction, changeDirection] = React.useState<"ltr" | "rtl">("ltr")
-  const { user } = useSelector(state => (state as rootState).auth)
-  const { data: profileData, refetch: refetchProfileData } = useGetProfileDataQuery(null)
-  const dispatch = useDispatch()
-
-
-
 
   React.useEffect(() => {
 
@@ -33,20 +23,6 @@ export default function LandingLayout({ children, showBreadCrumb = false, uncomp
     }
 
   }, [])
-
-  // React.useEffect(() => {
-  //   refetchProfileData()
-  // }, [refetchProfileData, user])
-
-  // React.useEffect(() => {
-
-  //   dispatch(addIndividualInfo(profileData.data))
-
-  // }, [dispatch, profileData])
-
-  console.log("user data", user);
-
-
 
   return (
     <>
